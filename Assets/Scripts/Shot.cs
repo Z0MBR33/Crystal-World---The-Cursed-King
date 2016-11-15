@@ -43,7 +43,7 @@ public class Shot : MonoBehaviour {
 
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.collider.tag == "WAND")
+        if (collision.collider.tag == "Floor" || collision.collider.tag ==  "Enemy")
         {
             Instantiate(explosion, transform.position, new Quaternion());
 
