@@ -22,11 +22,11 @@ public class Player : MonoBehaviour {
         {
             if (ModeOfShots == Classes.ShotMode.Rocket)
             {
-                Shot.Create(Shots, ModeOfShots, transform.position, Direction, transform.rotation, 50, 1);
+                Shot.Create(Shots, ModeOfShots, transform.position + new Vector3(0, 1, 0), Direction, transform.rotation, 50, 1);
             }
             else if (ModeOfShots == Classes.ShotMode.Bomb)
             {
-                GameObject obj = Shot.Create(Shots, ModeOfShots, transform.position, Direction, transform.rotation, 0, 1);
+                GameObject obj = Shot.Create(Shots, ModeOfShots, transform.position + new Vector3(0,1,0), Direction, transform.rotation, 0, 1);
                 Rigidbody rb = obj.GetComponent<Rigidbody>();
 
   

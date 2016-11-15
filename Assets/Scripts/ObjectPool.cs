@@ -7,7 +7,6 @@ using System.Collections.Generic;
 /// Andere Skripte holen sich die Referenz per ObjectPool.getObjectPool();
 /// Die Prefabs werden in dieser Version per drag and drop im Editor gesetzt.
 /// Die Listen muessen von NULL Werten frei bleiben.
-/// Die Listen fungieren Stackaehnlich.
 /// Per get/return Methoden können sich andere Skripte Objekte holen/wiederbringen.
 /// </summary>
 public class ObjectPool : MonoBehaviour
