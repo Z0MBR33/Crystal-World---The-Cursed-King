@@ -24,7 +24,7 @@ GameObject:
   - 114: {fileID: 114000013234969106}
   m_Layer: 0
   m_Name: ParticleExplosion
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1764,7 +1764,7 @@ ParticleSystem:
     radiusScale: 1
     collidesWith:
       serializedVersion: 2
-      m_Bits: 4294967295
+      m_Bits: 4294967039
     maxCollisionShapes: 256
     quality: 0
     voxelSize: 0.5

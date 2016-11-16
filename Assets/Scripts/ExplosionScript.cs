@@ -20,7 +20,7 @@ public class ExplosionScript : MonoBehaviour {
         yield return new WaitForSeconds(5);
 
         StopCoroutine(timerHandler());
-        mr.returnShot(gameObject, 0);
+        mr.returnExplosion(gameObject, 0);
         
     }
 }
