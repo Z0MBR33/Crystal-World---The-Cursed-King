@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
-using System.Timers;
-using System;
 
-public class Shot : MonoBehaviour {
+
+public class Shot : MonoBehaviour
+{
 
     private Rigidbody rb;
     private Classes.ShotMode ModeOfShot;
@@ -33,8 +33,9 @@ public class Shot : MonoBehaviour {
         rb.velocity = Vector3.zero;
     }
 
-   
-	void FixedUpdate() {
+
+    void FixedUpdate()
+    {
         if (ModeOfShot == Classes.ShotMode.Rocket)
         {
             rb.velocity = this.Direction * this.Speed;
@@ -43,17 +44,23 @@ public class Shot : MonoBehaviour {
 
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.collider.tag == "Floor" || collision.collider.tag ==  "Enemy")
+        if (collision.collider.tag == "Floor" || collision.collider.tag == "Enemy")
         {
             ExplosionScript expl = mr.getExplosion(0).GetComponent<ExplosionScript>();
             expl.gameObject.SetActive(true);
 
             expl.Initialize(transform.position, new Quaternion());
 
-            //Instantiate(explosion, transform.position, new Quaternion());
+            // check for enemy hit
+            if (collision.collider.tag == "Enemy")
+            {
+                Enemy enemy = collision.collider.GetComponent<Enemy>();
+                enemy.TakeDamage(1, rb.velocity, 5);
+                print("H");
+            }
 
-            mr.returnShot(gameObject, 0);
             StopCoroutine(timerHandler());
+            mr.returnShot(gameObject, 0);
         }
     }
 
@@ -63,7 +70,7 @@ public class Shot : MonoBehaviour {
 
         StopCoroutine(timerHandler());
         mr.returnShot(gameObject, 0);
-       
+
     }
 
 }
