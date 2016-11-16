@@ -11,43 +11,49 @@ public class Shot : MonoBehaviour {
     private float Speed;
     public ParticleSystem explosion;
 
-    public static GameObject Create(GameObject prefab, Classes.ShotMode shotMode, Vector3 pos, Vector3 direction, Quaternion rotation, float speed, float scale)
+    private ObjectPool mr;
+
+    public void Initialize(Classes.ShotMode shotMode, Vector3 pos, Vector3 direction, Quaternion rotation, float speed, float scale)
     {
-        GameObject obj = Instantiate(prefab, pos, rotation) as GameObject;
 
-        Shot shot = obj.GetComponent<Shot>();
+        mr = ObjectPool.getObjectPool();
+        rb = GetComponent<Rigidbody>();
 
-        shot.ModeOfShot = shotMode;
+        this.ModeOfShot = shotMode;
+        transform.position = pos;
+
         direction.Normalize();
-        shot.Direction = direction;
-        shot.Speed = speed;
-        shot.transform.localScale = new Vector3(scale, scale, scale);
+        this.Direction = direction;
+        transform.rotation = rotation;
+        this.Speed = speed;
+        this.transform.localScale = new Vector3(scale, scale, scale);
 
-        return obj;
+        StartCoroutine(timerHandler());
+
+        rb.velocity = Vector3.zero;
     }
 
    
-    // Use this for initialization
-    void Start () {
-        rb = GetComponent<Rigidbody>();
-
-        StartCoroutine(timerHandler());
-	}
-	
-	void FixedUpdate () {
+	void FixedUpdate() {
         if (ModeOfShot == Classes.ShotMode.Rocket)
         {
             rb.velocity = this.Direction * this.Speed;
-        }    
-	}
+        }
+    }
 
     void OnCollisionEnter(Collision collision)
     {
         if (collision.collider.tag == "Floor" || collision.collider.tag ==  "Enemy")
         {
-            Instantiate(explosion, transform.position, new Quaternion());
+            ExplosionScript expl = mr.getExplosion(0).GetComponent<ExplosionScript>();
+            expl.gameObject.SetActive(true);
 
-            Destroy(gameObject);
+            expl.Initialize(transform.position, new Quaternion());
+
+            //Instantiate(explosion, transform.position, new Quaternion());
+
+            mr.returnShot(gameObject, 0);
+            StopCoroutine(timerHandler());
         }
     }
 
@@ -55,7 +61,9 @@ public class Shot : MonoBehaviour {
     {
         yield return new WaitForSeconds(3);
 
-        Destroy(gameObject);
+        StopCoroutine(timerHandler());
+        mr.returnShot(gameObject, 0);
+       
     }
 
 }

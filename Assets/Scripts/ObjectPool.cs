@@ -27,15 +27,28 @@ public class ObjectPool : MonoBehaviour
     public List<GameObject> structuresPrefabs;
     public List<int> structuresCount;
 
+    // Schuesse
+    public List<GameObject> shotsPrefabs;
+    public List<int> shotsCount;
+
+    // Explosions
+    public List<GameObject> explosionsPrefabs;
+    public List<int> explosionsCount;
 
     private GameObject playerObject;                    //Spieler Objekt
     private GameObject cameraObject;                    //Kamera Objekt
 
     private List<Stack<GameObject>> enemiesObjectPool;   //instanztizierte Objekte
     private List<Stack<GameObject>> structuresObjectPool;
+    private List<Stack<GameObject>> shotsObjectPool;
+    private List<Stack<GameObject>> explosionsObjectPool;
 
     private List<List<GameObject>> activeEnemies;       //aktiv vergebene Objekte
     private List<List<GameObject>> activeStructures;
+    private List<List<GameObject>> activeShots;
+    private List<List<GameObject>> activeExplosions;
+
+
 
 
     public static ObjectPool getObjectPool()
@@ -60,6 +73,12 @@ public class ObjectPool : MonoBehaviour
 
         structuresObjectPool = createInstances(structuresPrefabs, structuresCount);
         activeStructures = createEmptyLists(structuresPrefabs.Count);
+
+        shotsObjectPool = createInstances(shotsPrefabs, shotsCount);
+        activeShots = createEmptyLists(shotsPrefabs.Count);
+
+        explosionsObjectPool = createInstances(explosionsPrefabs, explosionsCount);
+        activeExplosions = createEmptyLists(explosionsPrefabs.Count);
     }
 
     private List<List<GameObject>> createEmptyLists(int quantity)
@@ -129,6 +148,42 @@ public class ObjectPool : MonoBehaviour
         objectToGiveBack.SetActive(false);
         activeStructures[id].Remove(objectToGiveBack);
         structuresObjectPool[id].Push(objectToGiveBack);
+    }
+
+    public GameObject getShot(int id)
+    {
+        if (shotsObjectPool[id].Count == 0)
+        {
+            shotsObjectPool[id].Push(Instantiate(shotsPrefabs[id]));
+        }
+        GameObject toReturn = shotsObjectPool[id].Pop();
+        activeShots[id].Add(toReturn);
+        return toReturn;
+    }
+
+    public void returnShot(GameObject objectToGiveBack, int id)
+    {
+        objectToGiveBack.SetActive(false);
+        activeShots[id].Remove(objectToGiveBack);
+        shotsObjectPool[id].Push(objectToGiveBack);
+    }
+
+    public GameObject getExplosion(int id)
+    {
+        if (explosionsObjectPool[id].Count == 0)
+        {
+            explosionsObjectPool[id].Push(Instantiate(explosionsPrefabs[id]));
+        }
+        GameObject toReturn = explosionsObjectPool[id].Pop();
+        activeExplosions[id].Add(toReturn);
+        return toReturn;
+    }
+
+    public void returnExplosion(GameObject objectToGiveBack, int id)
+    {
+        objectToGiveBack.SetActive(false);
+        activeExplosions[id].Remove(objectToGiveBack);
+        explosionsObjectPool[id].Push(objectToGiveBack);
     }
 
     public GameObject getPlayer()
