@@ -133,7 +133,8 @@ MonoBehaviour:
   shotsCount: 64000000
   explosionsPrefabs:
   - {fileID: 1000010230680444, guid: 838763d376e8d02449eb0e8756c3df31, type: 2}
-  explosionsCount: 64000000
+  - {fileID: 1000010384853792, guid: daf8039cbcb11eb4784edb8a6c5876f0, type: 2}
+  explosionsCount: 6400000014000000
 --- !u!114 &269002803
 MonoBehaviour:
   m_ObjectHideFlags: 0
