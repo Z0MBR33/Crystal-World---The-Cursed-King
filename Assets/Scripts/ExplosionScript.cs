@@ -3,8 +3,15 @@ using System.Collections;
 
 public class ExplosionScript : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
+    ObjectPool mr;
+
+    public void Initialize(Vector3 position, Quaternion rotation)
+    {
+        mr = ObjectPool.getObjectPool();
+
+        transform.position = position;
+        transform.rotation = rotation;
+
         StartCoroutine(timerHandler());
     }
 	
@@ -12,6 +19,8 @@ public class ExplosionScript : MonoBehaviour {
     {
         yield return new WaitForSeconds(5);
 
-        Destroy(gameObject);
+        StopCoroutine(timerHandler());
+        mr.returnShot(gameObject, 0);
+        
     }
 }
