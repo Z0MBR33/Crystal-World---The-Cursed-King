@@ -56,7 +56,6 @@ public class Shot : MonoBehaviour
             {
                 Enemy enemy = collision.collider.GetComponent<Enemy>();
                 enemy.TakeDamage(1, rb.velocity, 5);
-                print("H");
             }
 
             StopCoroutine(timerHandler());
