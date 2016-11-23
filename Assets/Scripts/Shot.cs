@@ -48,7 +48,6 @@ public class Shot : MonoBehaviour
         {
             ExplosionScript expl = mr.getExplosion(0).GetComponent<ExplosionScript>();
             expl.gameObject.SetActive(true);
-
             expl.Initialize(transform.position, new Quaternion());
 
             // check for enemy hit
@@ -56,7 +55,6 @@ public class Shot : MonoBehaviour
             {
                 Enemy enemy = collision.collider.GetComponent<Enemy>();
                 enemy.TakeDamage(1, rb.velocity, 5);
-                print("H");
             }
 
             StopCoroutine(timerHandler());

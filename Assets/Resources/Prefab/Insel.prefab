@@ -21,7 +21,6 @@ GameObject:
   - 4: {fileID: 4000010008667682}
   - 33: {fileID: 33000013692663222}
   - 23: {fileID: 23000014002181202}
-  - 136: {fileID: 136000014017246922}
   m_Layer: 0
   m_Name: Baum_prototyp (2)
   m_TagString: Untagged
@@ -57,7 +56,6 @@ GameObject:
   - 4: {fileID: 4000013452105146}
   - 33: {fileID: 33000012915316980}
   - 23: {fileID: 23000012614966350}
-  - 136: {fileID: 136000011373774452}
   m_Layer: 0
   m_Name: Baum_prototyp (4)
   m_TagString: Untagged
@@ -93,7 +91,6 @@ GameObject:
   - 4: {fileID: 4000014060372102}
   - 33: {fileID: 33000013268940366}
   - 23: {fileID: 23000013737678730}
-  - 136: {fileID: 136000013162786896}
   m_Layer: 0
   m_Name: Baum_prototyp (1)
   m_TagString: Untagged
@@ -126,7 +123,6 @@ GameObject:
   - 4: {fileID: 4000012711682488}
   - 33: {fileID: 33000014003038438}
   - 23: {fileID: 23000013764517118}
-  - 136: {fileID: 136000013328285848}
   m_Layer: 0
   m_Name: Baum_prototyp (3)
   m_TagString: Untagged
@@ -144,7 +140,6 @@ GameObject:
   - 4: {fileID: 4000011857998214}
   - 33: {fileID: 33000013095731128}
   - 23: {fileID: 23000010390352864}
-  - 136: {fileID: 136000010741572332}
   m_Layer: 0
   m_Name: Baum_prototyp
   m_TagString: Untagged
@@ -162,7 +157,6 @@ GameObject:
   - 4: {fileID: 4000013073661914}
   - 33: {fileID: 33000014283975036}
   - 23: {fileID: 23000014055731792}
-  - 114: {fileID: 114000010172570648}
   m_Layer: 0
   m_Name: Portalplattform_prototyp
   m_TagString: Untagged
@@ -615,81 +609,3 @@ MeshCollider:
   serializedVersion: 2
   m_Convex: 0
   m_Mesh: {fileID: 4300000, guid: 0a0bd86e214f5154f9261e4587f02658, type: 3}
---- !u!114 &114000010172570648
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000014285091686}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 21f4d35cc4107db499b5749d797e0f93, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  prefab: {fileID: 1000010515572876, guid: d92110930a1bf304da3fd39372039803, type: 2}
-  playerTarget: {fileID: 0}
---- !u!136 &136000010741572332
-CapsuleCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000013643211088}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.05
-  m_Height: 0.43695432
-  m_Direction: 2
-  m_Center: {x: 0, y: 0.2, z: 0.4}
---- !u!136 &136000011373774452
-CapsuleCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000011173608716}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.05
-  m_Height: 0.43695432
-  m_Direction: 2
-  m_Center: {x: 0, y: 0.2, z: 0.4}
---- !u!136 &136000013162786896
-CapsuleCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000011842715512}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.05
-  m_Height: 0.43695432
-  m_Direction: 2
-  m_Center: {x: 0, y: 0.2, z: 0.4}
---- !u!136 &136000013328285848
-CapsuleCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000013010863716}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.05
-  m_Height: 0.43695432
-  m_Direction: 2
-  m_Center: {x: 0, y: 0.2, z: 0.4}
---- !u!136 &136000014017246922
-CapsuleCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000010864613892}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.05
-  m_Height: 0.43695432
-  m_Direction: 2
-  m_Center: {x: 0, y: 0.2, z: 0.4}
