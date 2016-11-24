@@ -10,8 +10,13 @@ public class Controll : MonoBehaviour
     private Vector3 lastHorizontalCamVelocity = new Vector3(0, 0, 0);
     private Vector3 lastVerticalCamVelocity = new Vector3(0, 0, 0);
 
-    public float desiredHorizontalDistance = 7;
-    public float desiredVerticalDistance = 4;
+    public float desiredHorizontalDistance = 4;
+    public float minDesiredHorizontalDistance = 3;
+    public float maxDesiredHorizontalDistance = 10.5f;
+
+    public float desiredVerticalDistance = 1.6f;
+    // public float minDesiredVerticalDistance = 2;
+    //public float maxDesiredVerticalDistance = 10;
 
     public int speed = 10;
 
@@ -21,14 +26,16 @@ public class Controll : MonoBehaviour
         playerObj = mr.getPlayer();
         camObj = mr.getCamera();
 
-        camObj.transform.position = playerObj.transform.position + new Vector3(1, 1, 1);
+        camObj.transform.position = playerObj.transform.position + new Vector3(desiredHorizontalDistance, desiredVerticalDistance, desiredHorizontalDistance);
     }
 
     void FixedUpdate()
     {
         playerMovement();
-        camHorizontalMovement();
-        camVerticalMovement();
+        camAutoHorizontalMovement();
+        camAutoVerticalMovement();
+        camManualHorizontalMovement();
+        camManualVerticalMovement();
     }
 
     void playerMovement()
@@ -40,7 +47,7 @@ public class Controll : MonoBehaviour
         playerVelo *= speed;
         playerObj.GetComponent<CharacterController>().SimpleMove(playerVelo);
     }
-    void camHorizontalMovement()
+    void camAutoHorizontalMovement()
     {
         Vector3 camHorizontalVelo = new Vector3(0, 0, 0);
         Vector3 oldDistance;
@@ -61,7 +68,7 @@ public class Controll : MonoBehaviour
         lastHorizontalCamVelocity = camHorizontalVelo;
         camObj.GetComponent<Rigidbody>().velocity = Vector3.Scale(camHorizontalVelo, new Vector3(1, 0, 1)) + Vector3.Scale(camObj.GetComponent<Rigidbody>().velocity, new Vector3(0, 1, 0));
     }
-    void camVerticalMovement()
+    void camAutoVerticalMovement()
     {
         Vector3 camVerticalVelo = new Vector3(0, 0, 0);
         float oldDistance = (playerObj.transform.position.y + desiredVerticalDistance) - camObj.transform.position.y; // vertical distance, "is" to "should be"
@@ -70,7 +77,7 @@ public class Controll : MonoBehaviour
         camVerticalVelo *= (Mathf.Abs(oldDistance));
         camVerticalVelo *= (Mathf.Abs(oldDistance));
 
-        if (oldDistance < 0 )
+        if (oldDistance < 0)
         {
             camVerticalVelo *= -1;
         }
@@ -78,5 +85,21 @@ public class Controll : MonoBehaviour
         camVerticalVelo = (camVerticalVelo + lastVerticalCamVelocity) / 2;
         lastVerticalCamVelocity = camVerticalVelo;
         camObj.GetComponent<Rigidbody>().velocity = Vector3.Scale(camVerticalVelo, new Vector3(0, 1, 0)) + Vector3.Scale(camObj.GetComponent<Rigidbody>().velocity, new Vector3(1, 0, 1));
+    }
+
+    void camManualHorizontalMovement()
+    {
+        Vector3 camVelo = new Vector3(0, 0, 0);
+        camVelo += Vector3.Scale(camObj.transform.right, new Vector3(1, 0, 1)) * Input.GetAxisRaw("Horizontal_camera");
+        //playerVelo.Normalize();
+        //playerVelo *= speed;
+        camObj.GetComponent<Rigidbody>().velocity += camVelo * 10;
+    }
+    void camManualVerticalMovement()
+    {
+        desiredHorizontalDistance += 0.5f * Input.GetAxisRaw("Vertical_camera");
+        desiredHorizontalDistance = Mathf.Clamp(desiredHorizontalDistance, minDesiredHorizontalDistance, maxDesiredHorizontalDistance);
+
+        desiredVerticalDistance = 0.1f * desiredHorizontalDistance * desiredHorizontalDistance;
     }
 }
