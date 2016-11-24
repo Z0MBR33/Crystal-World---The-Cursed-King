@@ -48,7 +48,6 @@ public class Shot : MonoBehaviour
         {
             ExplosionScript expl = mr.getExplosion(0).GetComponent<ExplosionScript>();
             expl.gameObject.SetActive(true);
-
             expl.Initialize(transform.position, new Quaternion());
 
             // check for enemy hit
