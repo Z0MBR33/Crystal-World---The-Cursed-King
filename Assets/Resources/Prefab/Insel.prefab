@@ -106,6 +106,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 4000012132327588}
+  - 114: {fileID: 114000011526238272}
   m_Layer: 0
   m_Name: Insel
   m_TagString: Untagged
@@ -609,3 +610,14 @@ MeshCollider:
   serializedVersion: 2
   m_Convex: 0
   m_Mesh: {fileID: 4300000, guid: 0a0bd86e214f5154f9261e4587f02658, type: 3}
+--- !u!114 &114000011526238272
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012180746328}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69ef674cfc3b4e444a841dea9a7216ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
