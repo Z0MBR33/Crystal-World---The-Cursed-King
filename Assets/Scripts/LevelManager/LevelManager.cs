@@ -26,6 +26,8 @@ public class LevelManager : MonoBehaviour
     private List<Isle> islesObjects;
     private List<Connection> connectionObjects;
 
+    private IsleAbstract currentIsle;
+
     private System.Random rnd;
 
     public static LevelManager getLevelManager()
@@ -165,8 +167,9 @@ public class LevelManager : MonoBehaviour
 
                 Vector3 pos = new Vector3(isle.Index.x * Fieldwidth, 0, (isle.Index.y * Fieldwidth) + offset);
                 Isle isleObj = Instantiate(IslePrefab, pos, new Quaternion()) as Isle;
-                isleObj.isleAbstract = isle;
+                isleObj.Initialize(isle);
                 isle.IsleObj = isleObj;
+
 
                 if (isle.Connected == true)
                 {
@@ -557,4 +560,13 @@ public class LevelManager : MonoBehaviour
         return isle;
     }
 
+    public void setCurrentIsle(IsleAbstract isle)
+    {
+        currentIsle = isle;
+    }
+
+    public IsleAbstract getCurrentIsle()
+    {
+        return currentIsle;
+    }
 }

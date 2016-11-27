@@ -192,9 +192,9 @@ MonoBehaviour:
     type: 2}
   WorldWidth: 10
   WorldHeight: 10
-  IsleDensity: 0.5
+  IsleDensity: 1
   Fieldwidth: 100
-  AddConnPerIsle: 0
+  AddConnPerIsle: 2
 --- !u!1 &1523631474
 GameObject:
   m_ObjectHideFlags: 0
