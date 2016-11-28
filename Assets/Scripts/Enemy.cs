@@ -26,6 +26,8 @@ public class Enemy : MonoBehaviour {
         pushDirection.Normalize();
         pushDirection = pushDirection * force;
 
+        gameObject.GetComponent<Rigidbody>().isKinematic = false;
+
         gameObject.GetComponent<NavMeshAgent>().enabled = false;
         gameObject.GetComponent<enemyMovement>().enabled = false;
 
@@ -38,6 +40,8 @@ public class Enemy : MonoBehaviour {
     public IEnumerator pushHandler()
     {
         yield return new WaitForSeconds(1);
+
+        gameObject.GetComponent<Rigidbody>().isKinematic = true;
 
         gameObject.GetComponent<NavMeshAgent>().enabled = true;
         gameObject.GetComponent<enemyMovement>().enabled = true;

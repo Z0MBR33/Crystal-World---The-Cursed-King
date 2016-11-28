@@ -8,11 +8,6 @@ public class Classes : MonoBehaviour {
 
     public enum ShotMode { Bomb, Rocket };
 
-    public GameObject HauptPanel;
-
-    public void HalloWelt()
-    {
-        HauptPanel.SetActive(false);
-    }
+    public enum ShotFrom { Player, Enemy };
 
 }

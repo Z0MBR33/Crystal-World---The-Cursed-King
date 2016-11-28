@@ -13,7 +13,7 @@ public class Shot : MonoBehaviour
 
     private ObjectPool mr;
 
-    public void Initialize(Classes.ShotMode shotMode, Vector3 pos, Vector3 direction, Quaternion rotation, float speed, float scale)
+    public void Initialize(Classes.ShotFrom shotFrom, Classes.ShotMode shotMode, Vector3 pos, Vector3 direction, Quaternion rotation, float speed, float scale)
     {
 
         mr = ObjectPool.getObjectPool();
