@@ -44,8 +44,8 @@ GameObject:
   m_Name: Portal_UpLeft
   m_TagString: Portal
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!1 &1000011027872842
 GameObject:
@@ -116,8 +116,8 @@ GameObject:
   m_Name: Portal_Down
   m_TagString: Portal
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!1 &1000011842715512
 GameObject:
@@ -168,8 +168,8 @@ GameObject:
   m_Name: Portal_UpRight
   m_TagString: Portal
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!1 &1000013010863716
 GameObject:
@@ -221,8 +221,8 @@ GameObject:
   m_Name: Portal_Up
   m_TagString: Portal
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!1 &1000013872140634
 GameObject:
@@ -240,8 +240,8 @@ GameObject:
   m_Name: Portal_DownLeft
   m_TagString: Portal
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!1 &1000014030903298
 GameObject:
@@ -259,8 +259,8 @@ GameObject:
   m_Name: Portal_DownRight
   m_TagString: Portal
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!1 &1000014285091686
 GameObject:
@@ -390,7 +390,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012180746328}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -70.370285, y: 935.3366, z: -1007.1992}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:

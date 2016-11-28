@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class GameMaster : MonoBehaviour {
     private ObjectPool mr;
     private LevelManager levelManager;
-    // private GameObject slime;
+    private GameObject slime;
     //private GameObject island;
 
     //DOTween
@@ -19,16 +19,17 @@ public class GameMaster : MonoBehaviour {
         levelManager = LevelManager.getLevelManager();
         levelManager.GenerateMap();
 
-        /*
+        
         slime = mr.getEnemie(0);
         slime.GetComponent<enemyMovement>().setTarget(mr.getPlayer().transform);
         slime.transform.position = new Vector3(0,0,0);
         slime.SetActive(true);
-        */
+        
 
 
         // TODO  create spawn-Points!
-        Isle startIsle = levelManager.getRandomIsle().IsleObj;
+        //Isle startIsle = levelManager.getRandomIsle().IsleObj;
+        Isle startIsle = levelManager.getWorld()[0, 0].IsleObj;
         levelManager.setCurrentIsle(startIsle.isleAbstract);
         mr.getPlayer().transform.position = new Vector3(startIsle.transform.position.x, startIsle.transform.position.y + 10, startIsle.transform.position.z);
         /*

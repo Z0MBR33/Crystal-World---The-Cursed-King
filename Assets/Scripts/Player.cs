@@ -29,12 +29,12 @@ public class Player : MonoBehaviour
 
             if (ModeOfShots == Classes.ShotMode.Rocket)
             {
-                shot.Initialize(ModeOfShots, transform.position + new Vector3(0, 1, 0), Direction, transform.rotation, 50, 1);
+                shot.Initialize(Classes.ShotFrom.Player ,ModeOfShots, transform.position + new Vector3(0, 1, 0), Direction, transform.rotation, 50, 1);
 
             }
             else if (ModeOfShots == Classes.ShotMode.Bomb)
             {
-                shot.Initialize(ModeOfShots, transform.position + new Vector3(0, 1, 0), Direction, transform.rotation, 0, 1);
+                shot.Initialize(Classes.ShotFrom.Player, ModeOfShots, transform.position + new Vector3(0, 1, 0), Direction, transform.rotation, 0, 1);
                 Rigidbody rb = shot.gameObject.GetComponent<Rigidbody>();
 
                 rb.AddForce(Direction.normalized * Speed, ForceMode.Impulse);
