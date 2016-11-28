@@ -19,12 +19,12 @@ public class GameMaster : MonoBehaviour {
         levelManager = LevelManager.getLevelManager();
         levelManager.GenerateMap();
 
-        
+        /*
         slime = mr.getEnemie(0);
         slime.GetComponent<enemyMovement>().setTarget(mr.getPlayer().transform);
         slime.transform.position = new Vector3(0,0,0);
         slime.SetActive(true);
-        
+        */
 
 
         // TODO  create spawn-Points!

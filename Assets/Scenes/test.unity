@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.44692492, g: 0.4967869, b: 0.57508546, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -161,8 +161,10 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1081858231}
+  - 114: {fileID: 1081858233}
   - 114: {fileID: 1081858230}
   - 114: {fileID: 1081858232}
+  - 114: {fileID: 1081858234}
   m_Layer: 0
   m_Name: GameMaster
   m_TagString: Untagged
@@ -178,18 +180,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1081858229}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f4ab6a5dfe6e024a876c26010b033d6, type: 3}
+  m_Script: {fileID: 11500000, guid: 0adc384211c822941a1eaf9e64a5f033, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerPrefab: {fileID: 180594, guid: e78961203a78f9d4b8b273916e7c9820, type: 2}
-  cameraPrefab: {fileID: 1000013544393320, guid: b0c184d1308ae5e4e9145a063bf59a4c,
-    type: 2}
-  enemiesPrefabs:
-  - {fileID: 1000010515572876, guid: d92110930a1bf304da3fd39372039803, type: 2}
-  enemiesCount: 01000000
-  structuresPrefabs:
-  - {fileID: 1000012180746328, guid: 27c87c3641b91964fabf9e0c376cc82a, type: 2}
-  structuresCount: 01000000
 --- !u!4 &1081858231
 Transform:
   m_ObjectHideFlags: 0
@@ -211,6 +204,60 @@ MonoBehaviour:
   m_GameObject: {fileID: 1081858229}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e05b268615d695c489b6f93f7f4e7bf8, type: 3}
+  m_Script: {fileID: 11500000, guid: 81270d838d0c2314ca7dd211900f0c67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  desiredHorizontalDistance: 4
+  minDesiredHorizontalDistance: 3
+  maxDesiredHorizontalDistance: 10.5
+  desiredVerticalDistance: 1.6
+  speed: 10
+--- !u!114 &1081858233
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1081858229}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f67035afa3597614495d5152b4ac2332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UI_Prefab: {fileID: 114000011317890732, guid: 697675f236d0e9c49b3f38593a8eb0b7,
+    type: 2}
+  playerPrefab: {fileID: 1000013405803128, guid: e28f5195e3258e34f8d63a465ae2cea7,
+    type: 2}
+  cameraPrefab: {fileID: 1000013544393320, guid: 057318eb1cce80341b108cd0f05de159,
+    type: 2}
+  enemiesPrefabs:
+  - {fileID: 1000010209064560, guid: 1627691596ec30c45bd8ab6c6f306916, type: 2}
+  enemiesCount: 01000000
+  structuresPrefabs:
+  - {fileID: 1000012180746328, guid: 86adf895fd245ae4eb079f6e7be14219, type: 2}
+  structuresCount: 01000000
+  shotsPrefabs:
+  - {fileID: 1000010133196268, guid: 0cb21fa5624af584f825fbe64b944137, type: 2}
+  shotsCount: 01000000
+  explosionsPrefabs:
+  - {fileID: 1000010463603434, guid: aeafcf853eb091d47801c8087cf94e39, type: 2}
+  explosionsCount: 01000000
+--- !u!114 &1081858234
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1081858229}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efe9ede0aa9267b45a4482dec3f9e03c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IslePrefab: {fileID: 114000011526238272, guid: 86adf895fd245ae4eb079f6e7be14219,
+    type: 2}
+  connectionPrefab: {fileID: 114000014136995400, guid: 6d6eae82c91ddac4e8e5b6aae4137bab,
+    type: 2}
+  WorldWidth: 5
+  WorldHeight: 5
+  IsleDensity: 1
+  Fieldwidth: 100
+  AddConnPerIsle: 1
