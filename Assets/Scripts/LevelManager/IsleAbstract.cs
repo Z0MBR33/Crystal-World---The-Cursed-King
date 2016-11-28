@@ -21,6 +21,8 @@ public class IsleAbstract
     public ConnectionAbstract ConnectionDownLeft;
     public ConnectionAbstract ConnectionUpLeft;
 
+    private UI_Isle ui_Isle;
+
     public IsleAbstract getIsleUp()
     {
         IsleAbstract isle = null;
@@ -153,5 +155,15 @@ public class IsleAbstract
         if (ConnectionDownRight != null) count++;
 
         return count;
+    }
+
+    public UI_Isle getUIIsle()
+    {
+        return ui_Isle;
+    }
+
+    public void setUIIsle(UI_Isle isle)
+    {
+        ui_Isle = isle;
     }
 }

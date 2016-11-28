@@ -102,7 +102,8 @@ public class Player : MonoBehaviour
                 transform.position = startPos;
 
                 lvlManager.setCurrentIsle(targetIsle);
-  
+
+                mr.getUI().UpdateMiniMap();
             }
 
         }

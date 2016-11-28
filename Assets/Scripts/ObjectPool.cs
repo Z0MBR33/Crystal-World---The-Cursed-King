@@ -13,6 +13,7 @@ public class ObjectPool : MonoBehaviour
 {
     public static ObjectPool objectPool;
 
+    public UI_Canvas UI_Prefab;
 
     public GameObject playerPrefab;                     //Spieler PreFab
     public GameObject cameraPrefab;                     //Kamera PreFab
@@ -34,6 +35,8 @@ public class ObjectPool : MonoBehaviour
     // Explosions
     public List<GameObject> explosionsPrefabs;
     public List<int> explosionsCount;
+
+    private UI_Canvas UI;
 
     private GameObject playerObject;                    //Spieler Objekt
     private GameObject cameraObject;                    //Kamera Objekt
@@ -79,6 +82,8 @@ public class ObjectPool : MonoBehaviour
 
         explosionsObjectPool = createInstances(explosionsPrefabs, explosionsCount);
         activeExplosions = createEmptyLists(explosionsPrefabs.Count);
+
+        UI = Instantiate(UI_Prefab);
     }
 
     private List<List<GameObject>> createEmptyLists(int quantity)
@@ -184,6 +189,11 @@ public class ObjectPool : MonoBehaviour
         objectToGiveBack.SetActive(false);
         activeExplosions[id].Remove(objectToGiveBack);
         explosionsObjectPool[id].Push(objectToGiveBack);
+    }
+
+    public UI_Canvas getUI()
+    {
+        return UI;
     }
 
     public GameObject getPlayer()

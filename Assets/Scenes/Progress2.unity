@@ -120,6 +120,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f67035afa3597614495d5152b4ac2332, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  UI_Prefab: {fileID: 114000011317890732, guid: 697675f236d0e9c49b3f38593a8eb0b7,
+    type: 2}
   playerPrefab: {fileID: 1000013405803128, guid: e28f5195e3258e34f8d63a465ae2cea7,
     type: 2}
   cameraPrefab: {fileID: 1000013544393320, guid: 057318eb1cce80341b108cd0f05de159,
@@ -190,11 +192,11 @@ MonoBehaviour:
     type: 2}
   connectionPrefab: {fileID: 114000014136995400, guid: 6d6eae82c91ddac4e8e5b6aae4137bab,
     type: 2}
-  WorldWidth: 10
-  WorldHeight: 10
-  IsleDensity: 1
+  WorldWidth: 5
+  WorldHeight: 5
+  IsleDensity: 0.8
   Fieldwidth: 100
-  AddConnPerIsle: 2
+  AddConnPerIsle: 1
 --- !u!1 &1523631474
 GameObject:
   m_ObjectHideFlags: 0

@@ -46,7 +46,7 @@ public class LevelManager : MonoBehaviour
         {
             GenerateMap();
 
-
+            ObjectPool.getObjectPool().getUI().GetComponent<UI_Canvas>().ShowMiniMap();
             /*int sum = 0;
             for (int i = 0; i < isles.Count; i++)
             {
@@ -55,11 +55,6 @@ public class LevelManager : MonoBehaviour
             float av = (float)sum / isles.Count;
             print(av);*/
         }
-    }
-
-    public IsleAbstract[,] getWorld()
-    {
-        return world;
     }
 
     public void GenerateMap()
@@ -185,7 +180,7 @@ public class LevelManager : MonoBehaviour
         {
             Connection connectionObj = Instantiate(connectionPrefab);
             connectionObj.connectionAbstract = connections[i];
-            connections[i].connection = connectionObj;
+            connections[i].connectionObj = connectionObj;
 
             LineRenderer lineRenderer = connectionObj.GetComponent<LineRenderer>();
             lineRenderer.SetVertexCount(2);
@@ -568,5 +563,15 @@ public class LevelManager : MonoBehaviour
     public IsleAbstract getCurrentIsle()
     {
         return currentIsle;
+    }
+
+    public IsleAbstract[,] getWorld()
+    {
+        return world;
+    }
+
+    public List<ConnectionAbstract> getConnections()
+    {
+        return connections;
     }
 }

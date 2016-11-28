@@ -15,6 +15,7 @@ public class GameMaster : MonoBehaviour {
         mr.getPlayer().SetActive(true);
         mr.getCamera().SetActive(true);
 
+        // Create world
         levelManager = LevelManager.getLevelManager();
         levelManager.GenerateMap();
 
@@ -36,6 +37,10 @@ public class GameMaster : MonoBehaviour {
         island.SetActive(true);
         //Application.targetFrameRate = 20000000;
         */
+
+        // show UI (inclusive Mini-Map)
+        UI_Canvas ui = mr.getUI().GetComponent<UI_Canvas>();
+        ui.ShowMiniMap();
     }
     
 }
