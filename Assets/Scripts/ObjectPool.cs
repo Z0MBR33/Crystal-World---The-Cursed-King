@@ -37,6 +37,8 @@ public class ObjectPool : MonoBehaviour
     public List<int> explosionsCount;
 
     private UI_Canvas UI;
+    private PlayerStats stats = new PlayerStats();
+    public PlayerStats _stats { get{ return stats; } }
 
     private GameObject playerObject;                    //Spieler Objekt
     private GameObject cameraObject;                    //Kamera Objekt
@@ -115,7 +117,6 @@ public class ObjectPool : MonoBehaviour
         return toReturn;
     }
 
-    //Sicherung für was wenn mehr rausgenommen werden soll? Methoden für Stack umschreiben.
     public GameObject getEnemie(int id)
     {
         if (enemiesObjectPool[id].Count == 0)

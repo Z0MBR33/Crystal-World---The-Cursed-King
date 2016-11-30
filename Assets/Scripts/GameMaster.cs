@@ -50,14 +50,6 @@ public class GameMaster : MonoBehaviour {
         slimeGhost.GetComponent<GhostMovement>().setghostCopy(slime.GetComponent<GhostCopy>());
         slime.GetComponent<GhostCopy>().ghost = slimeGhost.GetComponent<GhostMovement>();
 
-
-        /*
-        island = mr.getStructure(0);
-        island.transform.position = new Vector3(0, 0, 0);
-        island.SetActive(true);
-        //Application.targetFrameRate = 20000000;
-        */
-
         // show UI (inclusive Mini-Map)
         UI_Canvas ui = mr.getUI().GetComponent<UI_Canvas>();
         ui.ShowMiniMap();
