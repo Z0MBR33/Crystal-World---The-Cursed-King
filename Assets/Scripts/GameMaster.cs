@@ -64,12 +64,15 @@ public class GameMaster : MonoBehaviour {
     {
 
         Isle currentIsle = levelManager.getCurrentIsle().IsleObj;
+        
+        
 
         for (int i = 0; i < currentIsle.EnemyPoints.Count; i++)
         {
             currentIsle.EnemyPoints[i].IslePosition = currentIsle.transform.position;
 
             slime = mr.getEnemy(0);
+            slime.GetComponent<Enemy>().Initialize();
             slime.transform.position = currentIsle.EnemyPoints[i].transform.position;
             slime.SetActive(true);
             slime.GetComponent<GhostCopy>().IslePosition = currentIsle.transform.position;
@@ -121,6 +124,8 @@ public class GameMaster : MonoBehaviour {
 
                 currentIsle.PortalUpLeft.PortalActivated = true;
                 currentIsle.PortalUpLeft.GetComponent<Renderer>().material.color = new Color(230, 230, 0);
+
+                currentIsle.isleAbstract.setFinishState(true);
 
                 StopAllCoroutines();
 

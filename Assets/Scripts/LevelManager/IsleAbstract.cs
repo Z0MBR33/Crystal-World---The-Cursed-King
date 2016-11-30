@@ -22,6 +22,7 @@ public class IsleAbstract
     public ConnectionAbstract ConnectionUpLeft;
 
     private UI_Isle ui_Isle;
+    private bool finished;
 
     public IsleAbstract getIsleUp()
     {
@@ -165,5 +166,15 @@ public class IsleAbstract
     public void setUIIsle(UI_Isle isle)
     {
         ui_Isle = isle;
+    }
+
+    public bool getFinishState()
+    {
+        return finished;
+    }
+
+    public void setFinishState(bool state)
+    {
+        finished = state;
     }
 }

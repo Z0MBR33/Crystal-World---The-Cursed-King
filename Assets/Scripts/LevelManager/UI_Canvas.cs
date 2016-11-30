@@ -16,8 +16,6 @@ public class UI_Canvas : MonoBehaviour {
     private List<UI_Isle> listIsles;
     private List<UI_Connection> listConnections;
 
-    private UI_Isle currentUIIsle;
-
     public void ShowMiniMap()
     {
         if (listIsles != null)
@@ -71,6 +69,7 @@ public class UI_Canvas : MonoBehaviour {
 
                 UI_Isle ui_Isle = Instantiate(IsleImage);
                 isle.setUIIsle(ui_Isle);
+                ui_Isle.setIsle(isle);
 
                 ui_Isle.transform.SetParent(MiniMap.transform, false);
                 ui_Isle.transform.position = ui_Isle.transform.position + pos;
@@ -131,13 +130,23 @@ public class UI_Canvas : MonoBehaviour {
 
     public void UpdateMiniMap()
     {
-        if (currentUIIsle != null)
+        UI_Isle isle;
+
+        for(int i = 0; i < listIsles.Count; i++)
         {
-            currentUIIsle.GetComponent<RawImage>().color = new Color(255, 255, 255);
+            isle = listIsles[i];
+            
+            if (isle.getIsleAbstract().getFinishState() == false)
+            {
+                isle.GetComponent<RawImage>().texture = isle.Normal;
+            }    
+            else
+            {
+                isle.GetComponent<RawImage>().texture = isle.Finished;
+            }
         }
 
-        currentUIIsle = levelManager.getCurrentIsle().getUIIsle();
+        UI_Isle current = levelManager.getCurrentIsle().getUIIsle();
 
-        currentUIIsle.GetComponent<RawImage>().color = new Color(0, 100, 50);
-    }
+        current.GetComponent<RawImage>().texture = current.Current;     }
 }

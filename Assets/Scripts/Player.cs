@@ -105,7 +105,10 @@ public class Player : MonoBehaviour
 
                 GameMaster gm = GameMaster.getGameMaster();
 
-                gm.StartCurrentIsle();
+                if (targetIsle.getFinishState() == false)
+                {
+                    gm.StartCurrentIsle();
+                }
 
                 mr.getUI().UpdateMiniMap();
             }
