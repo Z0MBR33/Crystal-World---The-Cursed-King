@@ -57,7 +57,7 @@ public class Shot : MonoBehaviour
                 enemy.TakeDamage(1, rb.velocity, 5);
             }
 
-            StopCoroutine(timerHandler());
+            StopAllCoroutines();
             mr.returnShot(gameObject, 0);
         }
     }
@@ -66,7 +66,7 @@ public class Shot : MonoBehaviour
     {
         yield return new WaitForSeconds(3);
 
-        StopCoroutine(timerHandler());
+        StopAllCoroutines();
         mr.returnShot(gameObject, 0);
 
     }

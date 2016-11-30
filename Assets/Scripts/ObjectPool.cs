@@ -51,9 +51,6 @@ public class ObjectPool : MonoBehaviour
     private List<List<GameObject>> activeShots;
     private List<List<GameObject>> activeExplosions;
 
-
-
-
     public static ObjectPool getObjectPool()
     {
         return objectPool;

@@ -6,6 +6,18 @@ public class Enemy : MonoBehaviour {
     public int Life;
 
     private ObjectPool mr;
+    private GhostCopy ghostCopy;
+    private Coroutine currentPushHandler;
+
+    void Start()
+    {
+        mr = ObjectPool.getObjectPool();
+
+        if (GetComponent<GhostCopy>() != null)
+        {
+            ghostCopy = GetComponent<GhostCopy>();
+        }
+    }
 
     public void TakeDamage(int damage, Vector3 pushDirection, int force)
     {
@@ -26,34 +38,32 @@ public class Enemy : MonoBehaviour {
         pushDirection.Normalize();
         pushDirection = pushDirection * force;
 
+        if (ghostCopy != null)
+        {
+            ghostCopy.MovedByGhost = false;
+        }
         gameObject.GetComponent<Rigidbody>().isKinematic = false;
-
-        gameObject.GetComponent<NavMeshAgent>().enabled = false;
-        gameObject.GetComponent<enemyMovement>().enabled = false;
 
         gameObject.GetComponent<Rigidbody>().AddForce(pushDirection, ForceMode.Impulse);
 
-        StopCoroutine(pushHandler());
-        StartCoroutine(pushHandler());
+        if (currentPushHandler != null)
+        {
+            StopCoroutine(currentPushHandler);
+        }
+        currentPushHandler = StartCoroutine(pushHandler());
     }
 
     public IEnumerator pushHandler()
     {
         yield return new WaitForSeconds(1);
 
+        if (ghostCopy != null)
+        {
+            ghostCopy.MovedByGhost = true;
+        }
         gameObject.GetComponent<Rigidbody>().isKinematic = true;
 
-        gameObject.GetComponent<NavMeshAgent>().enabled = true;
-        gameObject.GetComponent<enemyMovement>().enabled = true;
-    }
-
-	// Use this for initialization
-	void Start () {
-        mr = ObjectPool.getObjectPool();
     }
 	
-	// Update is called once per frame
-	void Update () {
 	
-	}
 }
