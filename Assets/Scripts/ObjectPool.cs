@@ -37,6 +37,9 @@ public class ObjectPool : MonoBehaviour
     public List<int> explosionsCount;
 
     private UI_Canvas UI;
+    private PlayerStats stats = new PlayerStats();
+    public PlayerStats _stats { get { return stats; } private set { stats = value; } }
+
 
     private GameObject playerObject;                    //Spieler Objekt
     private GameObject cameraObject;                    //Kamera Objekt

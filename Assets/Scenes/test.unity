@@ -129,6 +129,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1000012180746328, guid: 86adf895fd245ae4eb079f6e7be14219, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 86adf895fd245ae4eb079f6e7be14219, type: 2}
   m_IsPrefabParent: 0
@@ -256,7 +260,6 @@ MonoBehaviour:
   minDesiredHorizontalDistance: 3
   maxDesiredHorizontalDistance: 10.5
   desiredVerticalDistance: 1.6
-  speed: 10
 --- !u!114 &1081858233
 MonoBehaviour:
   m_ObjectHideFlags: 0
