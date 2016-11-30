@@ -103,6 +103,10 @@ public class Player : MonoBehaviour
 
                 lvlManager.setCurrentIsle(targetIsle);
 
+                GameMaster gm = GameMaster.getGameMaster();
+
+                gm.StartCurrentIsle();
+
                 mr.getUI().UpdateMiniMap();
             }
 

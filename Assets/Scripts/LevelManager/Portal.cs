@@ -4,7 +4,7 @@ using System.Collections;
 public class Portal : MonoBehaviour
 {
 
-    public bool PortalActivated = true;
+    public bool PortalActivated = false;
 
     private int Direction;
 

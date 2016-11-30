@@ -116,18 +116,18 @@ public class ObjectPool : MonoBehaviour
     }
 
     //Sicherung für was wenn mehr rausgenommen werden soll? Methoden für Stack umschreiben.
-    public GameObject getEnemie(int id)
+    public GameObject getEnemy(int id)
     {
         if (enemiesObjectPool[id].Count == 0)
         {
-            enemiesObjectPool[id].Push(Instantiate(structuresPrefabs[id]));
+            enemiesObjectPool[id].Push(Instantiate(enemiesPrefabs[id]));
         }
         GameObject toReturn = enemiesObjectPool[id].Pop();
         activeEnemies[id].Add(toReturn);
         return toReturn;
     }
 
-    public void returnEnemie(GameObject objectToGiveBack, int id)
+    public void returnEnemy(GameObject objectToGiveBack, int id)
     {
         objectToGiveBack.SetActive(false);
         activeEnemies[id].Remove(objectToGiveBack);

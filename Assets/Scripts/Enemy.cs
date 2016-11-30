@@ -25,7 +25,18 @@ public class Enemy : MonoBehaviour {
         if (Life <= 0)
         {
             StopAllCoroutines();
-            mr.returnEnemie(gameObject, 0);
+
+            GameMaster gm = GameMaster.getGameMaster();
+
+            gm.ListEnemies.Remove(gameObject);
+
+            mr.returnEnemy(gameObject, 0);
+
+            // destroy ghost
+            if (ghostCopy != null)
+            {
+                Destroy(ghostCopy.ghost.gameObject);
+            }
 
             ExplosionScript expl = mr.getExplosion(1).GetComponent<ExplosionScript>();
             expl.gameObject.SetActive(true);

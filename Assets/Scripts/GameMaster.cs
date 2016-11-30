@@ -9,12 +9,23 @@ public class GameMaster : MonoBehaviour {
     private GameObject slimeGhost;
     //private GameObject island;
 
-    [Header("TO-Do: Ghost klären!")]
+    [Header("TO-Do: In Object-Pool")]
     public GameObject GhostPrefab;
 
     public List<GameObject> ListEnemies;
 
-    //DOTween
+    public static GameMaster gameMaster;
+
+    public static GameMaster getGameMaster()
+    {
+        return gameMaster;
+    }
+
+    void Awake()
+    {
+        gameMaster = this;
+    }
+
 
     void Start () {
         mr = ObjectPool.getObjectPool();
@@ -35,21 +46,7 @@ public class GameMaster : MonoBehaviour {
         mr.getPlayer().transform.position = new Vector3(startIsle.transform.position.x, startIsle.transform.position.y + 2, startIsle.transform.position.z);
         mr.getPlayer().GetComponent<NavMeshTarget>().IslePosition = startIsle.transform.position;
 
-        // TODO
-
         StartCurrentIsle();
-
-        slime = mr.getEnemie(0);
-        slime.transform.position = new Vector3(0, 0, 0);
-        slime.SetActive(true);
-        slime.GetComponent<GhostCopy>().IslePosition = startIsle.transform.position;
-        slimeGhost = Instantiate(GhostPrefab, new Vector3(-100, 2 , 0), Quaternion.Euler(0,0,0)) as GameObject;
-
-        slimeGhost.GetComponent<GhostMovement>().NavMashPosition = startIsle.NavMeshPosition;
-        slimeGhost.GetComponent<GhostMovement>().setTarget(mr.getPlayer().GetComponent<NavMeshTarget>());
-        slimeGhost.GetComponent<GhostMovement>().setghostCopy(slime.GetComponent<GhostCopy>());
-        slime.GetComponent<GhostCopy>().ghost = slimeGhost.GetComponent<GhostMovement>();
-
 
         /*
         island = mr.getStructure(0);
@@ -66,6 +63,70 @@ public class GameMaster : MonoBehaviour {
     public void StartCurrentIsle()
     {
 
+        Isle currentIsle = levelManager.getCurrentIsle().IsleObj;
+
+        for (int i = 0; i < currentIsle.EnemyPoints.Count; i++)
+        {
+            currentIsle.EnemyPoints[i].IslePosition = currentIsle.transform.position;
+
+            slime = mr.getEnemy(0);
+            slime.transform.position = currentIsle.EnemyPoints[i].transform.position;
+            slime.SetActive(true);
+            slime.GetComponent<GhostCopy>().IslePosition = currentIsle.transform.position;
+
+            slimeGhost = Instantiate(GhostPrefab, currentIsle.NavMeshPosition + currentIsle.EnemyPoints[i].getPositionOnIsle(), Quaternion.Euler(0, 0, 0)) as GameObject;
+            slimeGhost.GetComponent<GhostMovement>().NavMashPosition = currentIsle.NavMeshPosition;
+            slimeGhost.GetComponent<GhostMovement>().setTarget(mr.getPlayer().GetComponent<NavMeshTarget>());
+            slimeGhost.GetComponent<GhostMovement>().setghostCopy(slime.GetComponent<GhostCopy>());
+            slime.GetComponent<GhostCopy>().ghost = slimeGhost.GetComponent<GhostMovement>();
+
+            currentIsle.EnemyPoints[i].gameObject.SetActive(false);
+
+            ListEnemies.Add(slime);
+        }
+
+        mr.getPlayer().GetComponent<NavMeshTarget>().IslePosition = currentIsle.transform.position;
+
+        StartCoroutine(timerHandler());
+    }
+
+    public IEnumerator timerHandler()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(1);
+
+            if (ListEnemies.Count <= 0)
+            {
+                // Level finished
+
+                // activate portals
+
+                Isle currentIsle = levelManager.getCurrentIsle().IsleObj;
+
+                currentIsle.PortalUp.PortalActivated = true;
+                currentIsle.PortalUp.GetComponent<Renderer>().material.color = new Color(230, 230, 0);
+
+                currentIsle.PortalUpRight.PortalActivated = true;
+                currentIsle.PortalUpRight.GetComponent<Renderer>().material.color = new Color(230, 230, 0);
+
+                currentIsle.PortalDownRight.PortalActivated = true;
+                currentIsle.PortalDownRight.GetComponent<Renderer>().material.color = new Color(230, 230, 0);
+
+                currentIsle.PortalDown.PortalActivated = true;
+                currentIsle.PortalDown.GetComponent<Renderer>().material.color = new Color(230, 230, 0);
+
+                currentIsle.PortalDownLeft.PortalActivated = true;
+                currentIsle.PortalDownLeft.GetComponent<Renderer>().material.color = new Color(230, 230, 0);
+
+                currentIsle.PortalUpLeft.PortalActivated = true;
+                currentIsle.PortalUpLeft.GetComponent<Renderer>().material.color = new Color(230, 230, 0);
+
+                StopAllCoroutines();
+
+                yield return null;
+            }
+        }
     }
 
 }

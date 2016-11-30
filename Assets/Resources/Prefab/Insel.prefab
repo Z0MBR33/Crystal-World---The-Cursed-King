@@ -413,7 +413,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010699696866}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -22.430717, y: 2.2, z: -16.676842}
+  m_LocalPosition: {x: -25.1, y: 2.36, z: -8.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -1593,7 +1593,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c264b965d3aeca41b91822e6283afbf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PortalActivated: 1
+  PortalActivated: 0
 --- !u!114 &114000010895169136
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1605,7 +1605,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c264b965d3aeca41b91822e6283afbf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PortalActivated: 1
+  PortalActivated: 0
 --- !u!114 &114000010958366258
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1617,7 +1617,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c264b965d3aeca41b91822e6283afbf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PortalActivated: 1
+  PortalActivated: 0
 --- !u!114 &114000011347438524
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1629,7 +1629,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c264b965d3aeca41b91822e6283afbf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PortalActivated: 1
+  PortalActivated: 0
 --- !u!114 &114000011526238272
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1666,7 +1666,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c264b965d3aeca41b91822e6283afbf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PortalActivated: 1
+  PortalActivated: 0
 --- !u!114 &114000012117756614
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1678,6 +1678,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbf8f643ccec62543b14b33d4b0f018c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IslePosition: {x: 0, y: 0, z: 0}
 --- !u!114 &114000012184171868
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1689,7 +1690,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c264b965d3aeca41b91822e6283afbf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PortalActivated: 1
+  PortalActivated: 0
 --- !u!114 &114000012614274298
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1701,6 +1702,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbf8f643ccec62543b14b33d4b0f018c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IslePosition: {x: 0, y: 0, z: 0}
 --- !u!114 &114000012644677922
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1712,6 +1714,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbf8f643ccec62543b14b33d4b0f018c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IslePosition: {x: 0, y: 0, z: 0}
 --- !u!114 &114000013008975038
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1723,6 +1726,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbf8f643ccec62543b14b33d4b0f018c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IslePosition: {x: 0, y: 0, z: 0}
 --- !u!114 &114000013187494696
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1734,6 +1738,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbf8f643ccec62543b14b33d4b0f018c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IslePosition: {x: 0, y: 0, z: 0}
 --- !u!114 &114000014103509586
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1745,3 +1750,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbf8f643ccec62543b14b33d4b0f018c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IslePosition: {x: 0, y: 0, z: 0}

@@ -160,7 +160,10 @@ public class LevelManager : MonoBehaviour
                     offset = Fieldwidth / 2;
                 }
 
-                Vector3 pos = new Vector3(isle.Index.x * Fieldwidth, 0, (isle.Index.y * Fieldwidth) + offset);
+                int isleHeight = rnd.Next(-50, 51);
+                //int isleHeight = 0;
+
+                Vector3 pos = new Vector3(isle.Index.x * Fieldwidth, isleHeight, (isle.Index.y * Fieldwidth) + offset);
                 Isle isleObj = Instantiate(IslePrefab, pos, new Quaternion()) as Isle;
                 isleObj.Initialize(isle);
                 isle.IsleObj = isleObj;
