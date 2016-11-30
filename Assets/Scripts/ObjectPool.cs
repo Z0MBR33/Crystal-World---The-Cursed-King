@@ -38,7 +38,7 @@ public class ObjectPool : MonoBehaviour
 
     private UI_Canvas UI;
     private PlayerStats stats = new PlayerStats();
-    public PlayerStats _stats { get{ return stats; } }
+    public PlayerStats _stats { get{ return stats; } private set { } }
 
     private GameObject playerObject;                    //Spieler Objekt
     private GameObject cameraObject;                    //Kamera Objekt

@@ -17,8 +17,6 @@ public class Controll : MonoBehaviour
 
     public float desiredVerticalDistance = 1.6f;
 
-    public int speed = 10;
-
     void Start()
     {
         mr = ObjectPool.getObjectPool();
@@ -48,7 +46,7 @@ public class Controll : MonoBehaviour
         playerVelo += Vector3.Scale(camObj.transform.right, new Vector3(1, 0, 1)) * Input.GetAxisRaw("Horizontal");
         playerVelo.Normalize();
         playerObj.transform.LookAt(playerObj.transform.position + playerVelo);
-        playerVelo *= speed;
+        playerVelo *= mr._stats.speed;
         playerObj.GetComponent<CharacterController>().SimpleMove(playerVelo);
     }
 
