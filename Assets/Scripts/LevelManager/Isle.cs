@@ -1,9 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Isle : MonoBehaviour
 {
     public IsleAbstract isleAbstract;
+
+    public Vector3 NavMeshPosition;
 
     public Portal PortalUp;
     public Portal PortalUpRight;
@@ -12,7 +15,7 @@ public class Isle : MonoBehaviour
     public Portal PortalDownLeft;
     public Portal PortalUpLeft;
 
-
+    public List<EnemyPoint> EnemyPoints;
     public void Initialize(IsleAbstract isle)
     {
         isleAbstract = isle;
