@@ -15,10 +15,7 @@ public class Controll : MonoBehaviour
     public float minDesiredHorizontalDistance = 3;
     public float maxDesiredHorizontalDistance = 10.5f;
 
-
     public float desiredVerticalDistance = 1.6f;
-
-    public int speed = 10;
 
     void Start()
     {
@@ -32,7 +29,10 @@ public class Controll : MonoBehaviour
     void FixedUpdate()
     {
         playerMovement();
-        camSetBack();
+        if (Input.GetAxisRaw("Cam_setback") != 0)
+        {
+            camSetBack();
+        }
         camAutoHorizontalMovement();
         camAutoVerticalMovement();
         camManualHorizontalMovement();
@@ -46,9 +46,10 @@ public class Controll : MonoBehaviour
         playerVelo += Vector3.Scale(camObj.transform.right, new Vector3(1, 0, 1)) * Input.GetAxisRaw("Horizontal");
         playerVelo.Normalize();
         playerObj.transform.LookAt(playerObj.transform.position + playerVelo);
-        playerVelo *= speed;
+        playerVelo *= mr._stats.speed;
         playerObj.GetComponent<CharacterController>().SimpleMove(playerVelo);
     }
+
     void camAutoHorizontalMovement()
     {
         Vector3 camHorizontalVelo = new Vector3(1, 1, 1);
@@ -94,10 +95,10 @@ public class Controll : MonoBehaviour
     {
         Vector3 camVelo = new Vector3(0, 0, 0);
         camVelo += Vector3.Scale(camObj.transform.right, new Vector3(1, 0, 1)) * Input.GetAxisRaw("Horizontal_camera");
-        //playerVelo.Normalize();
-        //playerVelo *= speed;
+
         camObj.GetComponent<Rigidbody>().velocity += camVelo * 10;
     }
+
     void camManualVerticalMovement()
     {
         desiredHorizontalDistance += 0.5f * Input.GetAxisRaw("Vertical_camera");
@@ -105,14 +106,12 @@ public class Controll : MonoBehaviour
 
         desiredVerticalDistance = 0.1f * desiredHorizontalDistance * desiredHorizontalDistance;
     }
+
     void camSetBack()
     {
-        if (Input.GetAxisRaw("Cam_setback") != 0)// Axis durch direkte Key abfrage ändern.
-        {
             lastHorizontalCamVelocity = new Vector3(0, 0, 0);
             lastVerticalCamVelocity = new Vector3(0, 0, 0);
 
             camObj.transform.position = playerObj.transform.position - (Vector3.Scale(playerObj.transform.forward, new Vector3(1, 0, 1)) * desiredHorizontalDistance) + new Vector3(0, desiredVerticalDistance, 0);
-        }
     }
 }
