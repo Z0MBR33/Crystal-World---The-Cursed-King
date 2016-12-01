@@ -17,6 +17,10 @@ public class ObjectPool : MonoBehaviour
 
     public GameObject playerPrefab;                     //Spieler PreFab
     public GameObject cameraPrefab;                     //Kamera PreFab
+
+    public GameObject GhostPrefab;
+    public GameObject PortalPrefab;
+
     //Was soll gespawnt werden.
     //Wie viele sollen gespawnt werden. 
 

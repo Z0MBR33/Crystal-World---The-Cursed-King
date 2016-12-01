@@ -16,42 +16,78 @@ public class Isle : MonoBehaviour
     public Portal PortalUpLeft;
 
     public List<EnemyPoint> EnemyPoints;
+
+    private ObjectPool mr;
+
     public void Initialize(IsleAbstract isle)
     {
         isleAbstract = isle;
 
-        // disable Portals
+        mr = ObjectPool.getObjectPool();
 
-        PortalUp.setDirection(0);
-        PortalUpRight.setDirection(1);
-        PortalDownRight.setDirection(2);
-        PortalDown.setDirection(3);
-        PortalDownLeft.setDirection(4);
-        PortalUpLeft.setDirection(5);
+        // disable Portal-Tempaltes
+        PortalUp.gameObject.SetActive(false);
+        PortalUpRight.gameObject.SetActive(false);
+        PortalDownRight.gameObject.SetActive(false);
+        PortalDown.gameObject.SetActive(false);
+        PortalDownLeft.gameObject.SetActive(false);
+        PortalUpLeft.gameObject.SetActive(false);
 
-        if (isle.ConnectionUp == null)
+        Portal realPortal;
+
+        if (isle.ConnectionUp != null)
         {
-            PortalUp.gameObject.SetActive(false);
+            realPortal = Instantiate(mr.PortalPrefab).GetComponent<Portal>();
+            realPortal.transform.position = PortalUp.transform.position;
+            realPortal.transform.rotation = PortalUp.transform.rotation;
+            realPortal.portalSpiral.gameObject.SetActive(false);
+            realPortal.setDirection(0);
+            PortalUp = realPortal;
         }
-        if (isle.ConnectionUpRight == null)
+        if (isle.ConnectionUpRight != null)
         {
-            PortalUpRight.gameObject.SetActive(false);
+            realPortal = Instantiate(mr.PortalPrefab).GetComponent<Portal>();
+            realPortal.transform.position = PortalUpRight.transform.position;
+            realPortal.transform.rotation = PortalUpRight.transform.rotation;
+            realPortal.portalSpiral.gameObject.SetActive(false);
+            realPortal.setDirection(1);
+            PortalUpRight = realPortal;
         }
-        if (isle.ConnectionDownRight == null)
+        if (isle.ConnectionDownRight != null)
         {
-            PortalDownRight.gameObject.SetActive(false);
+            realPortal = Instantiate(mr.PortalPrefab).GetComponent<Portal>();
+            realPortal.transform.position = PortalDownRight.transform.position;
+            realPortal.transform.rotation = PortalDownRight.transform.rotation;
+            realPortal.portalSpiral.gameObject.SetActive(false);
+            realPortal.setDirection(2);
+            PortalDownRight = realPortal;
         }
-        if (isle.ConnectionDown == null)
+        if (isle.ConnectionDown != null)
         {
-            PortalDown.gameObject.SetActive(false);
+            realPortal = Instantiate(mr.PortalPrefab).GetComponent<Portal>();
+            realPortal.transform.position = PortalDown.transform.position;
+            realPortal.transform.rotation = PortalDown.transform.rotation;
+            realPortal.portalSpiral.gameObject.SetActive(false);
+            realPortal.setDirection(3);
+            PortalDown = realPortal;
         }
-        if (isle.ConnectionDownLeft == null)
+        if (isle.ConnectionDownLeft != null)
         {
-            PortalDownLeft.gameObject.SetActive(false);
+            realPortal = Instantiate(mr.PortalPrefab).GetComponent<Portal>();
+            realPortal.transform.position = PortalDownLeft.transform.position;
+            realPortal.transform.rotation = PortalDownLeft.transform.rotation;
+            realPortal.portalSpiral.gameObject.SetActive(false);
+            realPortal.setDirection(4);
+            PortalDownLeft = realPortal;
         }
-        if (isle.ConnectionUpLeft == null)
+        if (isle.ConnectionUpLeft != null)
         {
-            PortalUpLeft.gameObject.SetActive(false);
+            realPortal = Instantiate(mr.PortalPrefab).GetComponent<Portal>();
+            realPortal.transform.position = PortalUpLeft.transform.position;
+            realPortal.transform.rotation = PortalUpLeft.transform.rotation;
+            realPortal.portalSpiral.gameObject.SetActive(false);
+            realPortal.setDirection(5);
+            PortalUpLeft = realPortal;
         }
 
     }
