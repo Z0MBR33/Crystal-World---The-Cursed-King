@@ -90,48 +90,6 @@ NavMeshSettings:
     cellSize: 0.16666667
     manualCellSize: 0
   m_NavMeshData: {fileID: 23800000, guid: eedfd78fd477eb4499bc0f5d315a86a8, type: 2}
---- !u!1001 &50974937
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4000011022072372, guid: aeafcf853eb091d47801c8087cf94e39, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000011022072372, guid: aeafcf853eb091d47801c8087cf94e39, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000011022072372, guid: aeafcf853eb091d47801c8087cf94e39, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000011022072372, guid: aeafcf853eb091d47801c8087cf94e39, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000011022072372, guid: aeafcf853eb091d47801c8087cf94e39, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000011022072372, guid: aeafcf853eb091d47801c8087cf94e39, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000011022072372, guid: aeafcf853eb091d47801c8087cf94e39, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000011022072372, guid: aeafcf853eb091d47801c8087cf94e39, type: 2}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: aeafcf853eb091d47801c8087cf94e39, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1001 &396436715
 Prefab:
   m_ObjectHideFlags: 0
@@ -169,7 +127,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000012132327588, guid: 86adf895fd245ae4eb079f6e7be14219, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1000012180746328, guid: 86adf895fd245ae4eb079f6e7be14219, type: 2}
       propertyPath: m_IsActive
@@ -288,7 +246,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
 --- !u!114 &1081858232
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -444,4 +402,4 @@ Transform:
   m_LocalEulerAnglesHint: {x: 421.327, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
