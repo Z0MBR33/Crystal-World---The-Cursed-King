@@ -4,31 +4,39 @@ using System.Collections;
 
 public class Shot : MonoBehaviour
 {
-
+    //Just needs to be initialized once.
+    private ObjectPool mr;
     private Rigidbody rb;
+
+    //Needs a reset every time it comes back from the ObjectPool
+    private GameObject shootedFrom;
     private Classes.ShotMode ModeOfShot;
     private Vector3 Direction;
     private float Speed;
     public ParticleSystem explosion;
+    private Coroutine timer;
 
-    private ObjectPool mr;
-
-    public void Initialize(Classes.ShotFrom shotFrom, Classes.ShotMode shotMode, Vector3 pos, Vector3 direction, Quaternion rotation, float speed, float scale)
+    public void Awake()
     {
-
         mr = ObjectPool.getObjectPool();
         rb = GetComponent<Rigidbody>();
+    }
 
-        this.ModeOfShot = shotMode;
-        transform.position = pos;
-
-        direction.Normalize();
-        this.Direction = direction;
+    public void reset(GameObject shootedFrom, Vector3 horizontalDirection, Quaternion rotation)
+    {
+        this.shootedFrom = shootedFrom;
+        transform.position = shootedFrom.transform.position + shootedFrom.GetComponent<Stats>().shootOffset;
         transform.rotation = rotation;
-        this.Speed = speed;
-        this.transform.localScale = new Vector3(scale, scale, scale);
 
-        StartCoroutine(timerHandler());
+        this.tag = shootedFrom.tag;
+        ModeOfShot = shootedFrom.GetComponent<Stats>()._randomShotType;
+        
+        Direction = horizontalDirection;
+        //implement vertical Direction!
+        
+        Speed = shootedFrom.GetComponent<Stats>().shotSpeed;
+
+        timer = StartCoroutine(timerHandler());
 
         rb.velocity = Vector3.zero;
     }
@@ -53,11 +61,11 @@ public class Shot : MonoBehaviour
             // check for enemy hit
             if (collision.collider.tag == "Enemy")
             {
-                Enemy enemy = collision.collider.GetComponent<Enemy>();
-                enemy.TakeDamage(1, rb.velocity, 5);
+                Stats targetStats = collision.collider.GetComponent<Stats>();
+                targetStats.TakeDamage(1, rb.velocity, 5);
             }
 
-            StopAllCoroutines();
+            StopCoroutine(timer);
             mr.returnShot(gameObject, 0);
         }
     }
@@ -65,10 +73,8 @@ public class Shot : MonoBehaviour
     private IEnumerator timerHandler()
     {
         yield return new WaitForSeconds(3);
-
-        StopAllCoroutines();
+        StopCoroutine(timer);
         mr.returnShot(gameObject, 0);
-
     }
 
 }

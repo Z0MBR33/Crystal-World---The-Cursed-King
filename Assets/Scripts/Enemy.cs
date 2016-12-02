@@ -23,7 +23,7 @@ public class Enemy : MonoBehaviour {
         }
     }
 
-    public void TakeDamage(int damage, Vector3 pushDirection, int force)
+    public void TakeDamage(Vector3 pushDirection, int force)
     {
         life--;
         if (life <= 0)

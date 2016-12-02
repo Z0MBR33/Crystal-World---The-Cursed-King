@@ -25,6 +25,7 @@ GameObject:
   - 54: {fileID: 54000011040578080}
   - 114: {fileID: 114000012359361236}
   - 114: {fileID: 114000011953761282}
+  - 114: {fileID: 114000011715350156}
   m_Layer: 9
   m_Name: Slime
   m_TagString: Enemy
@@ -96,6 +97,25 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
+--- !u!114 &114000011715350156
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010209064560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad2ca409fc26e2e47a272683c7cec68f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 10
+  speed: 10
+  luck: 0
+  shootOffset: {x: 0, y: 0, z: 0}
+  shotStartVerticalDegree: 45
+  shotSpeed: 1
+  fireRate: 1
+  possibleShotMode: 
 --- !u!114 &114000011953761282
 MonoBehaviour:
   m_ObjectHideFlags: 1

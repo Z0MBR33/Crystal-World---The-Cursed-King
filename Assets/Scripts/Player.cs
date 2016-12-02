@@ -3,12 +3,6 @@ using System.Collections;
 
 public class Player : MonoBehaviour
 {
-
-    public Classes.ShotMode ModeOfShots;
-
-    public Vector3 Direction;
-    public float Speed;
-
     private ObjectPool mr;
 
     // Use this for initialization
@@ -21,28 +15,13 @@ public class Player : MonoBehaviour
     void Update()
     {
 
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
+    }
 
-            Shot shot = mr.getShot(0).GetComponent<Shot>();
-            shot.gameObject.SetActive(true);
-
-            if (ModeOfShots == Classes.ShotMode.Rocket)
-            {
-                shot.Initialize(Classes.ShotFrom.Player ,ModeOfShots, transform.position + new Vector3(0, 1, 0), Direction, transform.rotation, 50, 1);
-
-            }
-            else if (ModeOfShots == Classes.ShotMode.Bomb)
-            {
-                shot.Initialize(Classes.ShotFrom.Player, ModeOfShots, transform.position + new Vector3(0, 1, 0), Direction, transform.rotation, 0, 1);
-                Rigidbody rb = shot.gameObject.GetComponent<Rigidbody>();
-
-                rb.AddForce(Direction.normalized * Speed, ForceMode.Impulse);
-
-            }
-
-        }
-
+    public void shoot(Vector3 horizontalDirection)
+    {
+        Shot shot = mr.getShot(0).GetComponent<Shot>();
+        shot.gameObject.SetActive(true);
+        shot.reset(gameObject, horizontalDirection, transform.rotation);
     }
 
     void OnControllerColliderHit(ControllerColliderHit hit)
@@ -50,13 +29,13 @@ public class Player : MonoBehaviour
         if (hit.gameObject.tag == "Portal")
         {
             Portal portal = hit.gameObject.GetComponent<Portal>();
-            
+
             if (portal.PortalActivated == true)
-            { 
-        
+            {
+
                 // teleport player to isle;
-                CharacterController cr = GetComponent<CharacterController>();
-                cr.velocity.Set(0,0,0);
+                CharacterController cr = gameObject.GetComponent<CharacterController>();
+                cr.velocity.Set(0, 0, 0);
 
                 LevelManager lvlManager = LevelManager.getLevelManager();
                 IsleAbstract currentIsle = lvlManager.getCurrentIsle();
@@ -115,5 +94,4 @@ public class Player : MonoBehaviour
 
         }
     }
-
 }

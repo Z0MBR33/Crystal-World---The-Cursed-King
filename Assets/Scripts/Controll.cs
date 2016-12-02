@@ -17,6 +17,12 @@ public class Controll : MonoBehaviour
 
     public float desiredVerticalDistance = 1.6f;
 
+    private Coroutine CoolDownShooting;
+    private bool canShoot = true;
+    private Coroutine CoolDownCamSetBack;
+    private bool canCamSetBack = true;
+    private float camSetBackCoolDownInSeconds = 1;
+
     void Start()
     {
         mr = ObjectPool.getObjectPool();
@@ -26,12 +32,23 @@ public class Controll : MonoBehaviour
         camObj.transform.position = playerObj.transform.position + new Vector3(desiredHorizontalDistance, desiredVerticalDistance, desiredHorizontalDistance);
     }
 
+    void Update()
+    {
+        if (canShoot)
+        {
+            canShoot = false;
+            playerShoot();
+            CoolDownShooting = StartCoroutine(shootCoolDown());
+        }
+    }
     void FixedUpdate()
     {
         playerMovement();
-        if (Input.GetAxisRaw("Cam_setback") != 0)
+        if (Input.GetAxisRaw("Cam_setback") != 0 && canCamSetBack)
         {
             camSetBack();
+            canCamSetBack = false;
+            CoolDownCamSetBack = StartCoroutine(camSetBackCoolDown());
         }
         camAutoHorizontalMovement();
         camAutoVerticalMovement();
@@ -46,8 +63,27 @@ public class Controll : MonoBehaviour
         playerVelo += Vector3.Scale(camObj.transform.right, new Vector3(1, 0, 1)) * Input.GetAxisRaw("Horizontal");
         playerVelo.Normalize();
         playerObj.transform.LookAt(playerObj.transform.position + playerVelo);
-        playerVelo *= mr._stats.speed;
+        playerVelo *= mr.getPlayer().GetComponent<Stats>().speed;
         playerObj.GetComponent<CharacterController>().SimpleMove(playerVelo);
+    }
+
+    void playerShoot()
+    {
+        if(Input.GetAxisRaw("fire_trigger") > 0.8f)
+        {
+            Vector3 inputVector = new Vector3(Input.GetAxis("fire_x"),0, Input.GetAxis("fire_z"));
+            if(inputVector.normalized.sqrMagnitude > 0.1)
+            {
+                playerObj.GetComponent<Player>().shoot(inputVector);
+            }
+        }
+    }
+
+    IEnumerator shootCoolDown()
+    {
+        yield return new WaitForSeconds(playerObj.GetComponent<Stats>().fireRate);
+        StopCoroutine(CoolDownShooting);
+        canShoot = true;
     }
 
     void camAutoHorizontalMovement()
@@ -113,5 +149,12 @@ public class Controll : MonoBehaviour
             lastVerticalCamVelocity = new Vector3(0, 0, 0);
 
             camObj.transform.position = playerObj.transform.position - (Vector3.Scale(playerObj.transform.forward, new Vector3(1, 0, 1)) * desiredHorizontalDistance) + new Vector3(0, desiredVerticalDistance, 0);
+    }
+
+    IEnumerator camSetBackCoolDown()
+    {
+        yield return new WaitForSeconds(camSetBackCoolDownInSeconds);
+        StopCoroutine(CoolDownCamSetBack);
+        canCamSetBack = true;
     }
 }
