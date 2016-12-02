@@ -14,132 +14,44 @@ public class IsleAbstract
 
     public bool Connected = false;
 
-    public ConnectionAbstract ConnectionUp;
-    public ConnectionAbstract ConnectionUpRight;
-    public ConnectionAbstract ConnectionDownRight;
-    public ConnectionAbstract ConnectionDown;
-    public ConnectionAbstract ConnectionDownLeft;
-    public ConnectionAbstract ConnectionUpLeft;
+    public PortalAbstract PortalUp;
+    public PortalAbstract PortalUpRight;
+    public PortalAbstract PortalDownRight;
+    public PortalAbstract PortalDown;
+    public PortalAbstract PortalDownLeft;
+    public PortalAbstract PortalUpLeft;
 
     private UI_Isle ui_Isle;
+    private bool finished;
 
     public IsleAbstract getIsleUp()
     {
-        IsleAbstract isle = null;
-
-        if (ConnectionUp != null)
-        {
-            if (ConnectionUp.Isle1 == this)
-            {
-                isle = ConnectionUp.Isle2;
-            }
-            else
-            {
-                isle = ConnectionUp.Isle1;
-            }
-        }
-
-        return isle;
-
+        return PortalUp.ConnectecPortal.isleAbstract;   
     }
 
     public IsleAbstract getIsleUpRight()
     {
-        IsleAbstract isle = null;
-
-        if (ConnectionUpRight != null)
-        {
-            if (ConnectionUpRight.Isle1 == this)
-            {
-                isle = ConnectionUpRight.Isle2;
-            }
-            else
-            {
-                isle = ConnectionUpRight.Isle1;
-            }
-        }
-
-        return isle;
-
+        return PortalUpRight.ConnectecPortal.isleAbstract;
     }
 
     public IsleAbstract getIsleDownRight()
     {
-        IsleAbstract isle = null;
-
-        if (ConnectionDownRight != null)
-        {
-            if (ConnectionDownRight.Isle1 == this)
-            {
-                isle = ConnectionDownRight.Isle2;
-            }
-            else
-            {
-                isle = ConnectionDownRight.Isle1;
-            }
-        }
-
-        return isle;
-
+        return PortalDownRight.ConnectecPortal.isleAbstract;
     }
 
     public IsleAbstract getIsleDown()
     {
-        IsleAbstract isle = null;
-
-        if (ConnectionDown != null)
-        {
-            if (ConnectionDown.Isle1 == this)
-            {
-                isle = ConnectionDown.Isle2;
-            }
-            else
-            {
-                isle = ConnectionDown.Isle1;
-            }
-        }
-
-        return isle;
-
+        return PortalDown.ConnectecPortal.isleAbstract;
     }
 
     public IsleAbstract getIsleDownLeft()
     {
-        IsleAbstract isle = null;
-
-        if (ConnectionDownLeft != null)
-        {
-            if (ConnectionDownLeft.Isle1 == this)
-            {
-                isle = ConnectionDownLeft.Isle2;
-            }
-            else
-            {
-                isle = ConnectionDownLeft.Isle1;
-            }
-        }
-
-        return isle;
-
+        return PortalDownLeft.ConnectecPortal.isleAbstract;
     }
 
     public IsleAbstract getIsleUpLeft()
     {
-        IsleAbstract isle = null;
-
-        if (ConnectionUpLeft != null)
-        {
-            if (ConnectionUpLeft.Isle1 == this)
-            {
-                isle = ConnectionUpLeft.Isle2;
-            }
-            else
-            {
-                isle = ConnectionUpLeft.Isle1;
-            }
-        }
-
-        return isle;
+        return PortalUpLeft.ConnectecPortal.isleAbstract;
 
     }
 
@@ -147,12 +59,12 @@ public class IsleAbstract
     {
         int count = 0;
 
-        if (ConnectionUp != null) count++;
-        if (ConnectionUpRight != null) count++;
-        if (ConnectionDownRight != null) count++;
-        if (ConnectionDown != null) count++;
-        if (ConnectionDownLeft != null) count++;
-        if (ConnectionDownRight != null) count++;
+        if (PortalUp != null) count++;
+        if (PortalUpRight != null) count++;
+        if (PortalDownRight != null) count++;
+        if (PortalDown != null) count++;
+        if (PortalDownLeft != null) count++;
+        if (PortalDownRight != null) count++;
 
         return count;
     }
@@ -165,5 +77,15 @@ public class IsleAbstract
     public void setUIIsle(UI_Isle isle)
     {
         ui_Isle = isle;
+    }
+
+    public bool getFinishState()
+    {
+        return finished;
+    }
+
+    public void setFinishState(bool state)
+    {
+        finished = state;
     }
 }

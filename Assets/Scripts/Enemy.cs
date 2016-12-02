@@ -5,24 +5,28 @@ public class Enemy : MonoBehaviour {
 
     public int Life;
 
+    private int life;
     private ObjectPool mr;
     private GhostCopy ghostCopy;
     private Coroutine currentPushHandler;
 
-    void Start()
+    public void Initialize()
     {
         mr = ObjectPool.getObjectPool();
+
+        life = Life;
 
         if (GetComponent<GhostCopy>() != null)
         {
             ghostCopy = GetComponent<GhostCopy>();
+            ghostCopy.MovedByGhost = true;
         }
     }
 
     public void TakeDamage(int damage, Vector3 pushDirection, int force)
     {
-        Life--;
-        if (Life <= 0)
+        life--;
+        if (life <= 0)
         {
             StopAllCoroutines();
 

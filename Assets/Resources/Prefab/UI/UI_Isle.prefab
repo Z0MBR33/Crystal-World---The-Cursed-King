@@ -66,6 +66,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 477d09484e37ee343b8c053e3d23914f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Normal: {fileID: 2800000, guid: 27ce9fbf56aa751468f5a236ab96b2bb, type: 3}
+  Current: {fileID: 2800000, guid: 2ee95c48d7b35ea449831cd59689c051, type: 3}
+  Finished: {fileID: 2800000, guid: 3ddedbf77b14d9749944b99fc04d5b39, type: 3}
 --- !u!222 &222000011427101480
 CanvasRenderer:
   m_ObjectHideFlags: 1

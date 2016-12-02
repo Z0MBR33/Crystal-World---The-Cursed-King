@@ -96,8 +96,8 @@ public class Player : MonoBehaviour
 
                 Vector3 vec = targetIsle.IsleObj.transform.position - targetPortal.transform.position;
                 vec.Normalize();
-                vec = vec * 5;
-                Vector3 startPos = new Vector3(targetPortal.transform.position.x + vec.x, targetPortal.transform.position.y, targetPortal.transform.position.z + vec.z);
+                vec = vec * 2;
+                Vector3 startPos = new Vector3(targetPortal.transform.position.x + vec.x, targetPortal.transform.position.y + 1, targetPortal.transform.position.z + vec.z);
 
                 transform.position = startPos;
 
@@ -105,7 +105,10 @@ public class Player : MonoBehaviour
 
                 GameMaster gm = GameMaster.getGameMaster();
 
-                gm.StartCurrentIsle();
+                if (targetIsle.getFinishState() == false)
+                {
+                    gm.StartCurrentIsle();
+                }
 
                 mr.getUI().UpdateMiniMap();
             }
