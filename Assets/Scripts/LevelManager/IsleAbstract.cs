@@ -4,13 +4,10 @@ using System.Collections;
 public class IsleAbstract
 {
 
-
     public Isle IsleObj;
     public Vector2 Index;
 
-    public enum IsleType { small, medium, big };
-
-    public IsleType Type;
+    public enum IsleObjectType { normal, start, boss, key };
 
     public bool Connected = false;
 
@@ -21,8 +18,10 @@ public class IsleAbstract
     public PortalAbstract PortalDownLeft;
     public PortalAbstract PortalUpLeft;
 
-    private UI_Isle ui_Isle;
-    private bool finished;
+    public UI_Isle ui_Isle;
+    public bool finished;
+    public bool discovered;
+    public IsleObjectType isleObjectType;
 
     public IsleAbstract getIsleUp()
     {
@@ -69,6 +68,8 @@ public class IsleAbstract
         return count;
     }
 
+
+    // Delete useless methods!
     public UI_Isle getUIIsle()
     {
         return ui_Isle;
@@ -88,4 +89,5 @@ public class IsleAbstract
     {
         finished = state;
     }
+
 }

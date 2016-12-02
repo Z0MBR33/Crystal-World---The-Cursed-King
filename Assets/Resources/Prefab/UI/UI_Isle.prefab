@@ -48,7 +48,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Texture: {fileID: 2800000, guid: 27ce9fbf56aa751468f5a236ab96b2bb, type: 3}
+  m_Texture: {fileID: 2800000, guid: 69ac5687594d5cc4699bd6f615ada71b, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -66,9 +66,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 477d09484e37ee343b8c053e3d23914f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Normal: {fileID: 2800000, guid: 27ce9fbf56aa751468f5a236ab96b2bb, type: 3}
+  Normal: {fileID: 2800000, guid: 69ac5687594d5cc4699bd6f615ada71b, type: 3}
+  Discovered: {fileID: 2800000, guid: 27ce9fbf56aa751468f5a236ab96b2bb, type: 3}
   Current: {fileID: 2800000, guid: 2ee95c48d7b35ea449831cd59689c051, type: 3}
   Finished: {fileID: 2800000, guid: 3ddedbf77b14d9749944b99fc04d5b39, type: 3}
+  IconBoss: {fileID: 2800000, guid: d53e131a2bfa91a40bb6343c3655d8e3, type: 3}
+  IconKey: {fileID: 2800000, guid: 029467e0ab67b7141b4ed69311e016ba, type: 3}
 --- !u!222 &222000011427101480
 CanvasRenderer:
   m_ObjectHideFlags: 1

@@ -25,7 +25,13 @@ public class Isle : MonoBehaviour
 
         mr = ObjectPool.getObjectPool();
 
-        // disable Portal-Tempaltes
+        // hide Enemy Spawns
+        for(int i = 0; i < EnemyPoints.Count; i++)
+        {
+            EnemyPoints[i].GetComponent<Renderer>().enabled = false;
+        }
+
+        // hide Portal-Tempaltes
         PortalUp.gameObject.SetActive(false);
         PortalUpRight.gameObject.SetActive(false);
         PortalDownRight.gameObject.SetActive(false);
@@ -33,6 +39,8 @@ public class Isle : MonoBehaviour
         PortalDownLeft.gameObject.SetActive(false);
         PortalUpLeft.gameObject.SetActive(false);
 
+
+        // show real Portals
         Portal realPortal;
 
         if (isle.PortalUp != null)
@@ -45,6 +53,7 @@ public class Isle : MonoBehaviour
             isleAbstract.PortalUp.portalObj = realPortal;
             realPortal.portalAbstract = isleAbstract.PortalUp;
             PortalUp = realPortal;
+            realPortal.transform.SetParent(gameObject.transform);
         }
         if (isle.PortalUpRight != null)
         {
@@ -56,6 +65,7 @@ public class Isle : MonoBehaviour
             isleAbstract.PortalUpRight.portalObj = realPortal;
             realPortal.portalAbstract = isleAbstract.PortalUpRight;
             PortalUpRight = realPortal;
+            realPortal.transform.SetParent(gameObject.transform);
         }
         if (isle.PortalDownRight != null)
         {
@@ -67,6 +77,7 @@ public class Isle : MonoBehaviour
             isleAbstract.PortalDownRight.portalObj = realPortal;
             realPortal.portalAbstract = isleAbstract.PortalDownRight;
             PortalDownRight = realPortal;
+            realPortal.transform.SetParent(gameObject.transform);
         }
         if (isle.PortalDown != null)
         {
@@ -78,6 +89,7 @@ public class Isle : MonoBehaviour
             isleAbstract.PortalDown.portalObj = realPortal;
             realPortal.portalAbstract = isleAbstract.PortalDown;
             PortalDown = realPortal;
+            realPortal.transform.SetParent(gameObject.transform);
         }
         if (isle.PortalDownLeft != null)
         {
@@ -89,6 +101,7 @@ public class Isle : MonoBehaviour
             isleAbstract.PortalDownLeft.portalObj = realPortal;
             realPortal.portalAbstract = isleAbstract.PortalDownLeft;
             PortalDownLeft = realPortal;
+            realPortal.transform.SetParent(gameObject.transform);
         }
         if (isle.PortalUpLeft != null)
         {
@@ -100,6 +113,7 @@ public class Isle : MonoBehaviour
             isleAbstract.PortalUpLeft.portalObj = realPortal;
             realPortal.portalAbstract = isleAbstract.PortalUpLeft;
             PortalUpLeft = realPortal;
+            realPortal.transform.SetParent(gameObject.transform);
         }
 
     }

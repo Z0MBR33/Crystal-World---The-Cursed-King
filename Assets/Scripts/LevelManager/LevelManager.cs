@@ -27,6 +27,7 @@ public class LevelManager : MonoBehaviour
     private List<Connection> connectionObjects;
 
     private IsleAbstract currentIsle;
+    private IsleAbstract startIsle;
 
     private System.Random rnd;
 
@@ -121,6 +122,8 @@ public class LevelManager : MonoBehaviour
 
         insertAdditionalConnections();
 
+        inserObjectsOnMap();
+
         // render world
 
         renderWorld();
@@ -180,8 +183,8 @@ public class LevelManager : MonoBehaviour
 
             LineRenderer lineRenderer = connectionObj.GetComponent<LineRenderer>();
             lineRenderer.SetVertexCount(2);
-            lineRenderer.SetPosition(0, connections[i].Portal1.isleAbstract.IsleObj.transform.position);
-            lineRenderer.SetPosition(1, connections[i].Portal2.isleAbstract.IsleObj.transform.position);
+            lineRenderer.SetPosition(0, connections[i].Portal1.portalObj.transform.position + new Vector3(0, 1,0));
+            lineRenderer.SetPosition(1, connections[i].Portal2.portalObj.transform.position + new Vector3(0, 1, 0));
 
             connectionObjects.Add(connectionObj);
         }
@@ -551,6 +554,64 @@ public class LevelManager : MonoBehaviour
         }
     }
 
+    public void inserObjectsOnMap()
+    {
+        List<IsleAbstract> tmpList = new List<IsleAbstract>(this.isles);
+
+        // start Isle
+        int tmp = rnd.Next(0, tmpList.Count);
+        startIsle = tmpList[tmp];
+        startIsle.isleObjectType = IsleAbstract.IsleObjectType.start;
+        tmpList.RemoveAt(tmp);
+
+        // keys
+        for (int i = 0; i < 3; i++)
+        {
+            tmp = rnd.Next(0, tmpList.Count);
+            tmpList[tmp].isleObjectType = IsleAbstract.IsleObjectType.key;
+            tmpList.RemoveAt(tmp);
+        }
+
+        // boss
+        tmp = rnd.Next(0, tmpList.Count);
+        tmpList[tmp].isleObjectType = IsleAbstract.IsleObjectType.boss;
+        tmpList.RemoveAt(tmp);
+
+    }
+
+    public List<IsleAbstract> getAllNeighbours()
+    {
+        List<IsleAbstract> tmpList = new List<IsleAbstract>();
+
+        if (currentIsle.PortalUp != null)
+        {
+            tmpList.Add(currentIsle.PortalUp.ConnectecPortal.isleAbstract);
+        }
+        if (currentIsle.PortalUpRight != null)
+        {
+            tmpList.Add(currentIsle.PortalUpRight.ConnectecPortal.isleAbstract);
+        }
+        if (currentIsle.PortalDownRight != null)
+        {
+            tmpList.Add(currentIsle.PortalDownRight.ConnectecPortal.isleAbstract);
+        }
+        if (currentIsle.PortalDown != null)
+        {
+            tmpList.Add(currentIsle.PortalDown.ConnectecPortal.isleAbstract);
+        }
+        if (currentIsle.PortalDownLeft != null)
+        {
+            tmpList.Add(currentIsle.PortalDownLeft.ConnectecPortal.isleAbstract);
+        }
+        if (currentIsle.PortalUpLeft != null)
+        {
+            tmpList.Add(currentIsle.PortalUpLeft.ConnectecPortal.isleAbstract);
+        }
+
+
+        return tmpList;
+    }
+
     public IsleAbstract getRandomIsle()
     {
         IsleAbstract isle = null;
@@ -570,6 +631,16 @@ public class LevelManager : MonoBehaviour
     public IsleAbstract getCurrentIsle()
     {
         return currentIsle;
+    }
+
+    public void setStartIsle(IsleAbstract isle)
+    {
+        startIsle = isle;
+    }
+
+    public IsleAbstract getStartIsle()
+    {
+        return startIsle;
     }
 
     public IsleAbstract[,] getWorld()

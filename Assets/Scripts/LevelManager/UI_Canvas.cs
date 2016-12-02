@@ -68,6 +68,8 @@ public class UI_Canvas : MonoBehaviour {
                 pos = pos - new Vector3(mapWidth, mapHeight, 0);
 
                 UI_Isle ui_Isle = Instantiate(IsleImage);
+                ui_Isle.GetComponent<RawImage>().texture = ui_Isle.Normal;
+
                 isle.setUIIsle(ui_Isle);
                 ui_Isle.setIsle(isle);
 
@@ -130,23 +132,51 @@ public class UI_Canvas : MonoBehaviour {
 
     public void UpdateMiniMap()
     {
+
+        List<IsleAbstract> list = levelManager.getAllNeighbours();
+
+        list.Add(levelManager.getCurrentIsle());
+
         UI_Isle isle;
 
-        for(int i = 0; i < listIsles.Count; i++)
+        for(int i = 0; i < list.Count; i++)
         {
-            isle = listIsles[i];
-            
-            if (isle.getIsleAbstract().getFinishState() == false)
+            isle = list[i].ui_Isle;
+
+            // Todo: Set active in GameMaster or Player (or somewhere else)
+            isle.getIsleAbstract().discovered = true;
+
+            // draw background of isle
+            if (isle.getIsleAbstract() == levelManager.getCurrentIsle())
             {
-                isle.GetComponent<RawImage>().texture = isle.Normal;
-            }    
-            else
+                isle.GetComponent<RawImage>().texture = isle.Current;
+            }
+            else if (isle.getIsleAbstract().getFinishState() == true)
             {
                 isle.GetComponent<RawImage>().texture = isle.Finished;
+            }   
+            else if (isle.getIsleAbstract().discovered == true)
+            {
+                isle.GetComponent<RawImage>().texture = isle.Discovered;
+            }
+            else
+            {
+                isle.GetComponent<RawImage>().texture = isle.Normal;
+            }
+
+            // draw icon
+            if (isle.getIsleAbstract().discovered == true)
+            {
+                if (isle.getIsleAbstract().isleObjectType == IsleAbstract.IsleObjectType.boss)
+                {
+                    isle.setIcon(isle.IconBoss);
+                }
+                else if (isle.getIsleAbstract().isleObjectType == IsleAbstract.IsleObjectType.key)
+                {
+                    isle.setIcon(isle.IconKey);
+                }
             }
         }
 
-        UI_Isle current = levelManager.getCurrentIsle().getUIIsle();
-
-        current.GetComponent<RawImage>().texture = current.Current;     }
+    }
 }
