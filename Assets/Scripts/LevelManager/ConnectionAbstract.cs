@@ -6,6 +6,6 @@ public class ConnectionAbstract
 
     public Connection connectionObj;
 
-    public IsleAbstract Isle1;
-    public IsleAbstract Isle2;
+    public PortalAbstract Portal1;
+    public PortalAbstract Portal2;
 }

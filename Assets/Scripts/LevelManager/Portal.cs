@@ -5,8 +5,9 @@ public class Portal : MonoBehaviour
 {
 
     public bool PortalActivated = false;
-
     public PortalSpiral portalSpiral;
+
+    public PortalAbstract portalAbstract;
 
     private int Direction;
 
@@ -19,7 +20,5 @@ public class Portal : MonoBehaviour
     {
         return this.Direction;
     }
-
-
 
 }

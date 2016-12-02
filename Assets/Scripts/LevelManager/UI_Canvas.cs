@@ -84,8 +84,8 @@ public class UI_Canvas : MonoBehaviour {
         List<ConnectionAbstract> connections = levelManager.getConnections();
         for (int i = 0; i < connections.Count; i++)
         {
-            float x1 = connections[i].Isle1.Index.x;
-            float y1 = connections[i].Isle1.Index.y;
+            float x1 = connections[i].Portal1.isleAbstract.Index.x;
+            float y1 = connections[i].Portal1.isleAbstract.Index.y;
 
             int offset = 0;
             if (x1 % 2 == 1)
@@ -96,8 +96,8 @@ public class UI_Canvas : MonoBehaviour {
             Vector3 posIsle1 = new Vector3(x1 * Fieldwidth, (y1 * Fieldwidth) + offset, 0);
             posIsle1 = posIsle1 - new Vector3(mapWidth, mapHeight, 0);
 
-            float x2 = connections[i].Isle2.Index.x;
-            float y2 = connections[i].Isle2.Index.y;
+            float x2 = connections[i].Portal2.isleAbstract.Index.x;
+            float y2 = connections[i].Portal2.isleAbstract.Index.y;
 
             offset = 0;
             if (x2 % 2 == 1)

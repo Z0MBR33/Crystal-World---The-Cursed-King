@@ -104,37 +104,37 @@ public class GameMaster : MonoBehaviour {
 
                 Isle currentIsle = levelManager.getCurrentIsle().IsleObj;
 
-                if (currentIsle.isleAbstract.ConnectionUp != null)
+                if (currentIsle.isleAbstract.PortalUp != null)
                 {
                     currentIsle.PortalUp.PortalActivated = true;
                     currentIsle.PortalUp.portalSpiral.gameObject.SetActive(true);
                 }
 
-                if (currentIsle.isleAbstract.ConnectionUpRight != null)
+                if (currentIsle.isleAbstract.PortalUpRight != null)
                 {
                     currentIsle.PortalUpRight.PortalActivated = true;
                     currentIsle.PortalUpRight.portalSpiral.gameObject.SetActive(true);
                 }
 
-                if (currentIsle.isleAbstract.ConnectionDownRight != null)
+                if (currentIsle.isleAbstract.PortalDownRight != null)
                 {
                     currentIsle.PortalDownRight.PortalActivated = true;
                     currentIsle.PortalDownRight.portalSpiral.gameObject.SetActive(true);
                 }
 
-                if (currentIsle.isleAbstract.ConnectionDown != null)
+                if (currentIsle.isleAbstract.PortalDown != null)
                 {
                     currentIsle.PortalDown.PortalActivated = true;
                     currentIsle.PortalDown.portalSpiral.gameObject.SetActive(true);
                 }
 
-                if (currentIsle.isleAbstract.ConnectionDownLeft != null)
+                if (currentIsle.isleAbstract.PortalDownLeft != null)
                 {
                     currentIsle.PortalDownLeft.PortalActivated = true;
                     currentIsle.PortalDownLeft.portalSpiral.gameObject.SetActive(true);
                 }
 
-                if (currentIsle.isleAbstract.ConnectionUpLeft != null)
+                if (currentIsle.isleAbstract.PortalUpLeft != null)
                 {
                     currentIsle.PortalUpLeft.PortalActivated = true;
                     currentIsle.PortalUpLeft.portalSpiral.gameObject.SetActive(true);

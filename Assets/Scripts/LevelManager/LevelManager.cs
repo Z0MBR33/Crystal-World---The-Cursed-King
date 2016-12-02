@@ -47,13 +47,6 @@ public class LevelManager : MonoBehaviour
             GenerateMap();
 
             ObjectPool.getObjectPool().getUI().GetComponent<UI_Canvas>().ShowMiniMap();
-            /*int sum = 0;
-            for (int i = 0; i < isles.Count; i++)
-            {
-                sum += isles[i].getConnectionCount();
-            }
-            float av = (float)sum / isles.Count;
-            print(av);*/
         }
     }
 
@@ -187,8 +180,8 @@ public class LevelManager : MonoBehaviour
 
             LineRenderer lineRenderer = connectionObj.GetComponent<LineRenderer>();
             lineRenderer.SetVertexCount(2);
-            lineRenderer.SetPosition(0, connections[i].Isle1.IsleObj.transform.position);
-            lineRenderer.SetPosition(1, connections[i].Isle2.IsleObj.transform.position);
+            lineRenderer.SetPosition(0, connections[i].Portal1.isleAbstract.IsleObj.transform.position);
+            lineRenderer.SetPosition(1, connections[i].Portal2.isleAbstract.IsleObj.transform.position);
 
             connectionObjects.Add(connectionObj);
         }
@@ -279,36 +272,47 @@ public class LevelManager : MonoBehaviour
 
     private void connectIsles(IsleAbstract isle1, IsleAbstract isle2, int directionFrom)
     {
+        PortalAbstract portal1 = new PortalAbstract();
+        PortalAbstract portal2 = new PortalAbstract();
         ConnectionAbstract connection = new ConnectionAbstract();
-        connection.Isle1 = isle1;
-        connection.Isle2 = isle2;
+
+        portal1.isleAbstract = isle1;
+        portal1.ConnectecPortal = portal2;
+        portal1.Connection = connection;
+        
+        portal2.isleAbstract = isle2;
+        portal2.ConnectecPortal = portal1;
+        portal2.Connection = connection;
+        
+        connection.Portal1 = portal1;
+        connection.Portal2 = portal2;
         connections.Add(connection);
 
         switch (directionFrom)
         {
             case 0:
-                isle1.ConnectionDown = connection;
-                isle2.ConnectionUp = connection;
+                isle1.PortalDown = portal1;
+                isle2.PortalUp = portal2;
                 break;
             case 1:
-                isle1.ConnectionDownLeft = connection;
-                isle2.ConnectionUpRight = connection;
+                isle1.PortalDownLeft = portal1;
+                isle2.PortalUpRight = portal2;
                 break;
             case 2:
-                isle1.ConnectionUpLeft = connection;
-                isle2.ConnectionDownRight = connection;
+                isle1.PortalUpLeft = portal1;
+                isle2.PortalDownRight = portal2;
                 break;
             case 3:
-                isle1.ConnectionUp = connection;
-                isle2.ConnectionDown = connection;
+                isle1.PortalUp = portal1;
+                isle2.PortalDown = portal2;
                 break;
             case 4:
-                isle1.ConnectionUpRight = connection;
-                isle2.ConnectionDownLeft = connection;
+                isle1.PortalUpRight = portal1;
+                isle2.PortalDownLeft = portal2;
                 break;
             case 5:
-                isle1.ConnectionDownRight = connection;
-                isle2.ConnectionUpLeft = connection; ;
+                isle1.PortalDownRight = portal1;
+                isle2.PortalUpLeft = portal2;
                 break;
         }
     }
@@ -509,27 +513,27 @@ public class LevelManager : MonoBehaviour
                 switch (direction)
                 {
                     case 0:
-                        if (isle.ConnectionUp != null) continue;
+                        if (isle.PortalUp != null) continue;
                         islePartner = travelUp((int)isle.Index.x, (int)isle.Index.y);
                         break;
                     case 1:
-                        if (isle.ConnectionUpRight != null) continue;
+                        if (isle.PortalUpRight != null) continue;
                         islePartner = travelUpRight((int)isle.Index.x, (int)isle.Index.y);
                         break;
                     case 2:
-                        if (isle.ConnectionDownRight != null) continue;
+                        if (isle.PortalDownRight != null) continue;
                         islePartner = travelDownRight((int)isle.Index.x, (int)isle.Index.y);
                         break;
                     case 3:
-                        if (isle.ConnectionDown != null) continue;
+                        if (isle.PortalDown != null) continue;
                         islePartner = travelDown((int)isle.Index.x, (int)isle.Index.y);
                         break;
                     case 4:
-                        if (isle.ConnectionDownLeft != null) continue;
+                        if (isle.PortalDownLeft != null) continue;
                         islePartner = travelDownLeft((int)isle.Index.x, (int)isle.Index.y);
                         break;
                     case 5:
-                        if (isle.ConnectionUpLeft != null) continue;
+                        if (isle.PortalUpLeft != null) continue;
                         islePartner = travelUpLeft((int)isle.Index.x, (int)isle.Index.y);
                         break;
                 }
