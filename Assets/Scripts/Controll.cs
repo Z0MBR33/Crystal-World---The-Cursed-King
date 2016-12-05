@@ -79,6 +79,7 @@ public class Controll : MonoBehaviour
                 Shot shot = mr.getShot(0).GetComponent<Shot>();
                 shot.gameObject.SetActive(true);
                 shot.reset(mr.getPlayer(), inputVector, transform.rotation);
+                mr.getPlayer().GetComponent<AudioSource>().Play();
             }
         }
     }

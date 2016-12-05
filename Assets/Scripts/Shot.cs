@@ -26,15 +26,13 @@ public class Shot : MonoBehaviour
     {
         this.shootedFrom = shootedFrom;
         transform.position = shootedFrom.transform.position + shootedFrom.GetComponent<Stats>().shootOffset;
+        Direction = horizontalDirection.normalized;
         transform.rotation = rotation;
-
+        //implement vertical Direction!
         this.tag = shootedFrom.tag;
         ModeOfShot = shootedFrom.GetComponent<Stats>()._randomShotType;
-
-        Direction = horizontalDirection;
-        //implement vertical Direction!
+        print(shootedFrom.GetComponent<Stats>().shotSpeed);
         Speed = shootedFrom.GetComponent<Stats>().shotSpeed;
-        rb.velocity = horizontalDirection * Speed;
         timer = StartCoroutine(timerHandler());
     }
 
@@ -43,7 +41,7 @@ public class Shot : MonoBehaviour
     {
         if (ModeOfShot == Classes.ShotMode.Rocket)
         {
-            rb.velocity = this.Direction * this.Speed;
+            rb.velocity = Direction * Speed;
         }
     }
 
