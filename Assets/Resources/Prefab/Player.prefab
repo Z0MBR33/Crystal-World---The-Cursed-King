@@ -109,8 +109,9 @@ MonoBehaviour:
   speed: 10
   luck: 0
   shootOffset: {x: 0, y: 0, z: 0}
-  shotStartVerticalDegree: 45
+  StartVerticalDegree: 45
   shotSpeed: 1
+  shotStrength: 5
   fireRate: 1
   possibleShotMode: 
 --- !u!114 &114000013838176304
@@ -124,9 +125,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75ef5c03ab60a4840a994415ae32e067, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ModeOfShots: 0
-  Direction: {x: 10, y: 1, z: 0}
-  Speed: 8
 --- !u!135 &135000013484799046
 SphereCollider:
   m_ObjectHideFlags: 1

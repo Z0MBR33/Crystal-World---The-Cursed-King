@@ -17,13 +17,6 @@ public class Player : MonoBehaviour
 
     }
 
-    public void shoot(Vector3 horizontalDirection)
-    {
-        Shot shot = mr.getShot(0).GetComponent<Shot>();
-        shot.gameObject.SetActive(true);
-        shot.reset(gameObject, horizontalDirection, transform.rotation);
-    }
-
     void OnControllerColliderHit(ControllerColliderHit hit)
     {
         if (hit.gameObject.tag == "Portal")

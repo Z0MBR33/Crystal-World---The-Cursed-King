@@ -11,13 +11,14 @@ public class Stats : MonoBehaviour
     public float luck = 0.0f;
 
     //Shoot stats
-    public Vector3 shootOffset = new Vector3(0, 0, 0);
-    public float shotStartVerticalDegree = 45;
-    public float shotSpeed = 1.0f;
-    public float fireRate = 1.0f;
+    public Vector3 shootOffset = new Vector3(0, 1, 0);
+    public float StartVerticalDegree = 45;
+    public float shotSpeed = 10000.0f;
+    public float shotStrength = 5.0f;
+    public float fireRate = 0.1f;
     public List<Classes.ShotMode> possibleShotMode;
 
-    public Classes.ShotMode _randomShotType { get { return possibleShotMode[Mathf.RoundToInt(Random.value * possibleShotMode.Count) - 1]; } }
+    public Classes.ShotMode _randomShotType { get { print(Mathf.RoundToInt(Random.value * (possibleShotMode.Count - 1))); return possibleShotMode[Mathf.RoundToInt(Random.value * (possibleShotMode.Count - 1))]; } }
 
     public void Awake()
     {
@@ -25,16 +26,17 @@ public class Stats : MonoBehaviour
         possibleShotMode.Add(Classes.ShotMode.Bomb);
     }
 
-    public void TakeDamage(int damage, Vector3 pushDirection, int force)
+    public void gotHit(float damage, Vector3 pushDirection, float force)
     {
         health -= damage;
-        if (health <= 0)
-        {
-
-        }
+        
         if (gameObject.tag == "Enemy")
         {
-            gameObject.GetComponent<Enemy>().TakeDamage(pushDirection, force);
+            gameObject.GetComponent<Enemy>().getPushed(pushDirection, force);
+            if (health <= 0)
+            {
+                gameObject.GetComponent<Enemy>().die();
+            }
         }
     }
 }

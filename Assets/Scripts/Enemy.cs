@@ -3,9 +3,6 @@ using System.Collections;
 
 public class Enemy : MonoBehaviour {
 
-    public int Life;
-
-    private int life;
     private ObjectPool mr;
     private GhostCopy ghostCopy;
     private Coroutine currentPushHandler;
@@ -14,8 +11,6 @@ public class Enemy : MonoBehaviour {
     {
         mr = ObjectPool.getObjectPool();
 
-        life = Life;
-
         if (GetComponent<GhostCopy>() != null)
         {
             ghostCopy = GetComponent<GhostCopy>();
@@ -23,32 +18,30 @@ public class Enemy : MonoBehaviour {
         }
     }
 
-    public void TakeDamage(Vector3 pushDirection, int force)
+    public void die()
     {
-        life--;
-        if (life <= 0)
+        StopAllCoroutines();
+
+        GameMaster gm = GameMaster.getGameMaster();
+
+        gm.ListEnemies.Remove(gameObject);
+
+        mr.returnEnemy(gameObject, 0);
+
+        // destroy ghost
+        if (ghostCopy != null)
         {
-            StopAllCoroutines();
-
-            GameMaster gm = GameMaster.getGameMaster();
-
-            gm.ListEnemies.Remove(gameObject);
-
-            mr.returnEnemy(gameObject, 0);
-
-            // destroy ghost
-            if (ghostCopy != null)
-            {
-                Destroy(ghostCopy.ghost.gameObject);
-            }
-
-            ExplosionScript expl = mr.getExplosion(1).GetComponent<ExplosionScript>();
-            expl.gameObject.SetActive(true);
-
-            expl.Initialize(transform.position, new Quaternion());
-
-            return;
+            Destroy(ghostCopy.ghost.gameObject);
         }
+
+        ExplosionScript expl = mr.getExplosion(1).GetComponent<ExplosionScript>();
+        expl.gameObject.SetActive(true);
+
+        expl.Initialize(transform.position, new Quaternion());
+    }
+
+    public void getPushed(Vector3 pushDirection, float force)
+    {
 
         pushDirection.Normalize();
         pushDirection = pushDirection * force;

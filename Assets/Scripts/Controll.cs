@@ -69,12 +69,16 @@ public class Controll : MonoBehaviour
 
     void playerShoot()
     {
-        if(Input.GetAxisRaw("fire_trigger") > 0.8f)
+        if (Input.GetAxisRaw("fire_trigger") > 0.5f)
         {
-            Vector3 inputVector = new Vector3(Input.GetAxis("fire_x"),0, Input.GetAxis("fire_z"));
-            if(inputVector.normalized.sqrMagnitude > 0.1)
+            Vector3 inputVector = new Vector3(0, 0, 0);
+            inputVector += Vector3.Scale(camObj.transform.right, new Vector3(1, 0, 1)) * Input.GetAxis("fire_x");
+            inputVector += Vector3.Scale(camObj.transform.forward, new Vector3(1, 0, 1)) * Input.GetAxis("fire_z");
+            if (inputVector.normalized.sqrMagnitude > 0.1)
             {
-                playerObj.GetComponent<Player>().shoot(inputVector);
+                Shot shot = mr.getShot(0).GetComponent<Shot>();
+                shot.gameObject.SetActive(true);
+                shot.reset(mr.getPlayer(), inputVector, transform.rotation);
             }
         }
     }
@@ -145,10 +149,10 @@ public class Controll : MonoBehaviour
 
     void camSetBack()
     {
-            lastHorizontalCamVelocity = new Vector3(0, 0, 0);
-            lastVerticalCamVelocity = new Vector3(0, 0, 0);
+        lastHorizontalCamVelocity = new Vector3(0, 0, 0);
+        lastVerticalCamVelocity = new Vector3(0, 0, 0);
 
-            camObj.transform.position = playerObj.transform.position - (Vector3.Scale(playerObj.transform.forward, new Vector3(1, 0, 1)) * desiredHorizontalDistance) + new Vector3(0, desiredVerticalDistance, 0);
+        camObj.transform.position = playerObj.transform.position - (Vector3.Scale(playerObj.transform.forward, new Vector3(1, 0, 1)) * desiredHorizontalDistance) + new Vector3(0, desiredVerticalDistance, 0);
     }
 
     IEnumerator camSetBackCoolDown()

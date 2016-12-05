@@ -30,15 +30,12 @@ public class Shot : MonoBehaviour
 
         this.tag = shootedFrom.tag;
         ModeOfShot = shootedFrom.GetComponent<Stats>()._randomShotType;
-        
+
         Direction = horizontalDirection;
         //implement vertical Direction!
-        
         Speed = shootedFrom.GetComponent<Stats>().shotSpeed;
-
+        rb.velocity = horizontalDirection * Speed;
         timer = StartCoroutine(timerHandler());
-
-        rb.velocity = Vector3.zero;
     }
 
 
@@ -62,7 +59,7 @@ public class Shot : MonoBehaviour
             if (collision.collider.tag == "Enemy")
             {
                 Stats targetStats = collision.collider.GetComponent<Stats>();
-                targetStats.TakeDamage(1, rb.velocity, 5);
+                targetStats.gotHit(shootedFrom.GetComponent<Stats>().shotStrength, rb.velocity, 5);
             }
 
             StopCoroutine(timer);
