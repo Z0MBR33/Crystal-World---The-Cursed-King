@@ -34,6 +34,7 @@ public class Shot : MonoBehaviour
         print(shootedFrom.GetComponent<Stats>().shotSpeed);
         Speed = shootedFrom.GetComponent<Stats>().shotSpeed;
         timer = StartCoroutine(timerHandler());
+        this.GetComponent<AudioSource>().Play();
     }
 
 
