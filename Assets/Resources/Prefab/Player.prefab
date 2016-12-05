@@ -112,7 +112,7 @@ MonoBehaviour:
   StartVerticalDegree: 45
   shotSpeed: 10
   shotStrength: 5
-  fireRate: 0.1
+  fireRate: 0.5
   possibleShotMode: 
 --- !u!114 &114000013838176304
 MonoBehaviour:

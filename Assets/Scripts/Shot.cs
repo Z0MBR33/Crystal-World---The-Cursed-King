@@ -31,7 +31,6 @@ public class Shot : MonoBehaviour
         //implement vertical Direction!
         this.tag = shootedFrom.tag;
         ModeOfShot = shootedFrom.GetComponent<Stats>()._randomShotType;
-        print(shootedFrom.GetComponent<Stats>().shotSpeed);
         Speed = shootedFrom.GetComponent<Stats>().shotSpeed;
         timer = StartCoroutine(timerHandler());
         this.GetComponent<AudioSource>().Play();
