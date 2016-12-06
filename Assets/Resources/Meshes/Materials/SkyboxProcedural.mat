@@ -145,7 +145,7 @@ Material:
       second: {r: 1, g: 1, b: 1, a: 1}
     - first:
         name: _GroundColor
-      second: {r: 0.17906573, g: 0.29538244, b: 0.35294116, a: 1}
+      second: {r: 0.603, g: 0.441, b: 0.6985294, a: 1}
     - first:
         name: _SkyEquatorColor
       second: {r: 0.188311, g: 0.24798155, b: 0.31617647, a: 1}
@@ -154,7 +154,7 @@ Material:
       second: {r: 0.13327208, g: 0.16961901, b: 0.21323532, a: 1}
     - first:
         name: _SkyTint
-      second: {r: 0.09001945, g: 0.8161765, b: 0.60584134, a: 1}
+      second: {r: 0.9632353, g: 0.5382786, b: 0.8050117, a: 1}
     - first:
         name: _SkyTopColor
       second: {r: 0.08742432, g: 0.11787318, b: 0.1544118, a: 1}

@@ -136,13 +136,13 @@ Material:
     m_Colors:
     - first:
         name: _Color
-      second: {r: 0.0041029556, g: 0.057285696, b: 0.8000001, a: 0.99589705}
+      second: {r: 1, g: 1, b: 1, a: 0.99589705}
     - first:
         name: _EmissionColor
       second: {r: 0, g: 0, b: 0, a: 1}
     - first:
         name: _RimColor
-      second: {r: 0.26, g: 0.19, b: 0.16, a: 0}
+      second: {r: 0.8897059, g: 0.8897059, b: 0.8897059, a: 0}
     - first:
         name: _Silhoutte
       second: {r: 1, g: 1, b: 1, a: 1}
