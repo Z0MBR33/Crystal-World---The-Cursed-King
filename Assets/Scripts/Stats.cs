@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class Stats : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class Stats : MonoBehaviour
     public float health = 10;
     public float speed = 10.0f;
     public float luck = 0.0f;
+    public float strength = 10;
 
     //Shoot stats
     public Vector3 shootOffset = new Vector3(0, 1, 0);
@@ -18,7 +20,7 @@ public class Stats : MonoBehaviour
     public float fireRate = 0.1f;
     public List<Classes.ShotMode> possibleShotMode;
 
-    public Classes.ShotMode _randomShotType { get {return possibleShotMode[Mathf.RoundToInt(Random.value * (possibleShotMode.Count - 1))]; } }
+    public Classes.ShotMode _randomShotType { get { return possibleShotMode[Mathf.RoundToInt(Random.value * (possibleShotMode.Count - 1))]; } }
 
     public void Awake()
     {
@@ -26,16 +28,18 @@ public class Stats : MonoBehaviour
         possibleShotMode.Add(Classes.ShotMode.Rocket);
     }
 
-    public void gotHit(float damage, Vector3 pushDirection, float force)
+    public void gotHit(float damage)
     {
         health -= damage;
-        
-        if (gameObject.tag == "Enemy")
+        if (health <= 0)
         {
-            gameObject.GetComponent<Enemy>().getPushed(pushDirection, force);
-            if (health <= 0)
+            if (gameObject.tag == "Enemy")
             {
                 gameObject.GetComponent<Enemy>().die();
+            }
+            if (gameObject.tag == "Player")
+            {
+                SceneManager.LoadScene("Scenes/test");
             }
         }
     }

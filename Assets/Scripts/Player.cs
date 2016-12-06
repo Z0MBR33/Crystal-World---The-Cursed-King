@@ -19,6 +19,12 @@ public class Player : MonoBehaviour
 
     void OnControllerColliderHit(ControllerColliderHit hit)
     {
+        if (hit.gameObject.tag == "Enemy")
+        {
+            mr.getPlayer().GetComponent<Stats>().gotHit(hit.gameObject.GetComponent<Stats>().strength);
+        }
+
+
         if (hit.gameObject.tag == "Portal")
         {
             Portal portal = hit.gameObject.GetComponent<Portal>();
