@@ -7,6 +7,7 @@ public class Stats : MonoBehaviour
 {
 
     //Char stats
+    public float maxHealth = 10;
     public float health = 10;
     public float speed = 10.0f;
     public float luck = 0.0f;
@@ -24,8 +25,14 @@ public class Stats : MonoBehaviour
 
     public void Awake()
     {
+        resetStats();
         possibleShotMode = new List<Classes.ShotMode>();
         possibleShotMode.Add(Classes.ShotMode.Rocket);
+    }
+
+    public void resetStats()
+    {
+        health = maxHealth;
     }
 
     public void gotHit(float damage)

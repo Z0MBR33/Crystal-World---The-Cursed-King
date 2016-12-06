@@ -35,9 +35,9 @@ public class GameMaster : MonoBehaviour {
         levelManager = LevelManager.getLevelManager();
         levelManager.GenerateMap();
 
-  
-        // TODO  create spawn-Points!
-        Isle startIsle = levelManager.getRandomIsle().IsleObj;
+
+        //Set Player on Start Isle
+        Isle startIsle = levelManager.getStartIsle().IsleObj;
         //Isle startIsle = levelManager.getWorld()[0, 0].IsleObj;
         levelManager.setCurrentIsle(startIsle.isleAbstract);
         mr.getPlayer().transform.position = new Vector3(startIsle.transform.position.x, startIsle.transform.position.y + 2, startIsle.transform.position.z);
@@ -48,6 +48,7 @@ public class GameMaster : MonoBehaviour {
         // show UI (inclusive Mini-Map)
         UI_Canvas ui = mr.getUI().GetComponent<UI_Canvas>();
         ui.ShowMiniMap();
+        ui.UpdateLive(mr.getPlayer().GetComponent<Stats>().health);
     }
 
     public void StartCurrentIsle()

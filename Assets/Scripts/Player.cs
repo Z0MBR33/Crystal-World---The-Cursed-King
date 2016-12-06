@@ -4,26 +4,42 @@ using System.Collections;
 public class Player : MonoBehaviour
 {
     private ObjectPool mr;
+    private Coroutine currentImmortalHandler;
+    private bool isImmportal;
+
+    private MeshRenderer meshRenderer;
 
     // Use this for initialization
     void Start()
     {
         mr = ObjectPool.getObjectPool();
+        meshRenderer = GetComponent<MeshRenderer>();
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        if (isImmportal)
+        {
+            // flicker player
+            meshRenderer.enabled = !meshRenderer.enabled;
+        }
     }
 
     void OnControllerColliderHit(ControllerColliderHit hit)
     {
-        if (hit.gameObject.tag == "Enemy")
+        if (isImmportal == false)
         {
-            mr.getPlayer().GetComponent<Stats>().gotHit(hit.gameObject.GetComponent<Stats>().strength);
-        }
+            if (hit.gameObject.tag == "Enemy")
+            {
+                // TODO :  push player back
 
+                becomeImmortal(3);
+                Stats stats = GetComponent<Stats>();
+                stats.gotHit(hit.gameObject.GetComponent<Stats>().strength);
+                mr.getUI().UpdateLive(stats.health);
+            }
+        }
 
         if (hit.gameObject.tag == "Portal")
         {
@@ -92,5 +108,26 @@ public class Player : MonoBehaviour
             }
 
         }
+    }
+
+    public void becomeImmortal(float time)
+    {
+        isImmportal = true;
+
+        if (currentImmortalHandler != null)
+        {
+            StopCoroutine(currentImmortalHandler);
+        }
+
+        currentImmortalHandler = StartCoroutine(ImmportalHandler(time));
+
+    }
+
+    IEnumerator ImmportalHandler(float time)
+    {
+        yield return new WaitForSeconds(time);
+
+        meshRenderer.enabled = true;
+        isImmportal = false;
     }
 }

@@ -3,11 +3,16 @@ using System.Collections;
 
 public class ExplosionScript : MonoBehaviour {
 
-    ObjectPool mr;
+    private ObjectPool mr;
 
-    public void Initialize(Vector3 position, Quaternion rotation)
+    public enum ExplosionType { PlayerShot, EnemyShot, EnemyDeath};
+    public ExplosionType explosionType;
+
+    public void Initialize(ExplosionType type, Vector3 position, Quaternion rotation)
     {
         mr = ObjectPool.getObjectPool();
+
+        explosionType = type;
 
         transform.position = position;
         transform.rotation = rotation;
@@ -20,7 +25,20 @@ public class ExplosionScript : MonoBehaviour {
         yield return new WaitForSeconds(5);
 
         StopCoroutine(timerHandler());
-        mr.returnExplosion(gameObject, 0);
+
+        int itemID = 0;
+        
+        switch (explosionType)
+        {
+            case ExplosionType.PlayerShot: itemID = 0;
+                break;
+            case ExplosionType.EnemyShot: itemID = 1;
+                break;
+            case ExplosionType.EnemyDeath: itemID = 2;
+                break;
+        }
+
+        mr.returnExplosion(gameObject, itemID);
         
     }
 }

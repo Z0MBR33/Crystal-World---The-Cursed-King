@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class UI_Canvas : MonoBehaviour {
 
     public GameObject MiniMap;
+    public Text LiveField;
     public UI_Isle IsleImage;
     public UI_Connection ConnectionImage;
 
@@ -178,5 +179,10 @@ public class UI_Canvas : MonoBehaviour {
             }
         }
 
+    }
+
+    public void UpdateLive(float live)
+    {
+        LiveField.text = live.ToString();
     }
 }

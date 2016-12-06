@@ -11,6 +11,11 @@ public class Enemy : MonoBehaviour {
     {
         mr = ObjectPool.getObjectPool();
 
+        if (GetComponent<Stats>() != null)
+        {
+            GetComponent<Stats>().resetStats();
+        }
+
         if (GetComponent<GhostCopy>() != null)
         {
             ghostCopy = GetComponent<GhostCopy>();
@@ -34,10 +39,10 @@ public class Enemy : MonoBehaviour {
             Destroy(ghostCopy.ghost.gameObject);
         }
 
-        ExplosionScript expl = mr.getExplosion(1).GetComponent<ExplosionScript>();
+        ExplosionScript expl = mr.getExplosion(2).GetComponent<ExplosionScript>();
         expl.gameObject.SetActive(true);
 
-        expl.Initialize(transform.position, new Quaternion());
+        expl.Initialize(ExplosionScript.ExplosionType.EnemyDeath, transform.position, new Quaternion());
     }
 
     public void getPushed(Vector3 pushDirection, float force)

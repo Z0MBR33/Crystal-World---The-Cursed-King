@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.35004565, g: 0.72118133, b: 0.8173206, a: 1}
+  m_IndirectSpecularColor: {r: 0.982745, g: 0.7604418, b: 1.2179898, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -294,8 +294,9 @@ MonoBehaviour:
   shotsCount: 01000000
   explosionsPrefabs:
   - {fileID: 1000010230680444, guid: 838763d376e8d02449eb0e8756c3df31, type: 2}
+  - {fileID: 1000010230680444, guid: aff0c0444cebbdc49bfa3199a4b5f3b3, type: 2}
   - {fileID: 1000010384853792, guid: daf8039cbcb11eb4784edb8a6c5876f0, type: 2}
-  explosionsCount: 0100000001000000
+  explosionsCount: 0a0000000a0000000a000000
 --- !u!114 &1081858234
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -449,7 +450,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad2ca409fc26e2e47a272683c7cec68f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 1e+20
+  maxHealth: 10
+  health: 10
   speed: 10
   luck: 0
   strength: 1e+9

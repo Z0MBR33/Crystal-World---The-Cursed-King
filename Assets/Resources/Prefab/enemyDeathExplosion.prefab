@@ -23,7 +23,7 @@ GameObject:
   - 199: {fileID: 199000013409753094}
   - 114: {fileID: 114000010072673356}
   m_Layer: 9
-  m_Name: enemyExplosion
+  m_Name: enemyDeathExplosion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

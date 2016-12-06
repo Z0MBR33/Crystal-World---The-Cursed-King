@@ -24,7 +24,7 @@ GameObject:
   - 114: {fileID: 114000013234969106}
   m_Layer: 9
   m_Name: Explosion-Enemy
-  m_TagString: Player
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -53,6 +53,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 681dd7225acabc64eb640ab8cb3dba35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  explosionType: 0
 --- !u!198 &198000011032519866
 ParticleSystem:
   m_ObjectHideFlags: 1
