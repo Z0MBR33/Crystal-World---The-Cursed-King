@@ -41,6 +41,13 @@ public class Player : MonoBehaviour
             }
         }
 
+        if (hit.gameObject.tag == "DeathPlane")
+        {
+            Stats stats = GetComponent<Stats>();
+            stats.gotHit(hit.gameObject.GetComponent<Stats>().strength);
+        }
+
+
         if (hit.gameObject.tag == "Portal")
         {
             Portal portal = hit.gameObject.GetComponent<Portal>();

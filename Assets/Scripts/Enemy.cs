@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Enemy : MonoBehaviour {
+public class Enemy : MonoBehaviour
+{
 
     private ObjectPool mr;
     private GhostCopy ghostCopy;
@@ -63,7 +64,11 @@ public class Enemy : MonoBehaviour {
         {
             StopCoroutine(currentPushHandler);
         }
-        currentPushHandler = StartCoroutine(pushHandler());
+
+        if (gameObject.activeSelf == true)
+        {
+            currentPushHandler = StartCoroutine(pushHandler());
+        }
     }
 
     public IEnumerator pushHandler()
@@ -77,6 +82,13 @@ public class Enemy : MonoBehaviour {
         gameObject.GetComponent<Rigidbody>().isKinematic = true;
 
     }
-	
-	
+
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.collider.tag == "DeathPlane")
+        {
+            Stats stats = GetComponent<Stats>();
+            stats.gotHit(collision.collider.GetComponent<Stats>().strength);
+        }
+    }
 }

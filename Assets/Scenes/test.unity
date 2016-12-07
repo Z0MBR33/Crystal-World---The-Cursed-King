@@ -418,8 +418,8 @@ GameObject:
   - 114: {fileID: 2036720004}
   - 54: {fileID: 2036720003}
   m_Layer: 0
-  m_Name: PlayerDeath
-  m_TagString: Enemy
+  m_Name: DeathPlane
+  m_TagString: DeathPlane
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

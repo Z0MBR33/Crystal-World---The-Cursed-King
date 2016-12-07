@@ -1,11 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class MenuScript : MonoBehaviour
     {
 
         public void ChangeScene(string sceneName)
         {
-            Application.LoadLevel(sceneName);
-        }
+        SceneManager.LoadScene(sceneName);
+    }
     }
