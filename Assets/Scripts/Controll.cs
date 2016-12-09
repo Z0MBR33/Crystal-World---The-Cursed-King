@@ -69,18 +69,18 @@ public class Controll : MonoBehaviour
 
     void playerShoot()
     {
-        if (Input.GetAxisRaw("fire_trigger") > 0.5f)
-        {
+        //if (Input.GetAxisRaw("fire_trigger") > 0.5f)
+        //{
             Vector3 inputVector = new Vector3(0, 0, 0);
             inputVector += Vector3.Scale(camObj.transform.right, new Vector3(1, 0, 1)) * Input.GetAxis("fire_x");
             inputVector += Vector3.Scale(camObj.transform.forward, new Vector3(1, 0, 1)) * Input.GetAxis("fire_z");
-            if (inputVector.normalized.sqrMagnitude > 0.1)
+            if (inputVector.normalized.sqrMagnitude > 0.2)
             {
                 Shot shot = mr.getShot(0).GetComponent<Shot>();
                 shot.gameObject.SetActive(true);
                 shot.reset(mr.getPlayer(), inputVector, transform.rotation);
             }
-        }
+        //}
     }
 
     IEnumerator shootCoolDown()

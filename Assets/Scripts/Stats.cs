@@ -46,7 +46,7 @@ public class Stats : MonoBehaviour
             }
             if (gameObject.tag == "Player")
             {
-                SceneManager.LoadScene("Scenes/test");
+                SceneManager.LoadScene("Scenes/Main_Menue");
             }
         }
     }
