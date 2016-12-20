@@ -13,7 +13,6 @@ public class Shot : MonoBehaviour
     private Classes.ShotMode ModeOfShot;
     private Vector3 Direction;
     private float Speed;
-    public ParticleSystem explosion;
     private Coroutine timer;
 
     public void Awake()
@@ -49,7 +48,7 @@ public class Shot : MonoBehaviour
     {
         if (collision.collider.tag == "Floor" || collision.collider.tag == "Enemy")
         {
-            ExplosionScript expl = mr.getExplosion(0).GetComponent<ExplosionScript>();
+            ExplosionScript expl = mr.getObject(ObjectPool.categorie.explosion, (int)ObjectPool.explosion.shot).GetComponent<ExplosionScript>();
             expl.gameObject.SetActive(true);
             expl.Initialize(ExplosionScript.ExplosionType.PlayerShot, transform.position, new Quaternion());
 
@@ -62,7 +61,7 @@ public class Shot : MonoBehaviour
             }
 
             StopCoroutine(timer);
-            mr.returnShot(gameObject, 0);
+            mr.returnObject(gameObject);
         }
     }
 
@@ -70,7 +69,7 @@ public class Shot : MonoBehaviour
     {
         yield return new WaitForSeconds(3);
         StopCoroutine(timer);
-        mr.returnShot(gameObject, 0);
+        mr.returnObject(gameObject);
     }
 
 }
