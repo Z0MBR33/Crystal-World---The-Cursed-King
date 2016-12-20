@@ -70,20 +70,21 @@ public class GameMaster : MonoBehaviour {
             slime = mr.getObject(ObjectPool.categorie.enemy,(int)ObjectPool.enemy.slime);
             slime.GetComponent<Enemy>().Initialize();
             slime.transform.position = currentIsle.EnemyPoints[i].transform.position;
-            slime.SetActive(true);
             slime.GetComponent<GhostCopy>().IslePosition = currentIsle.transform.position;
 
             slimeGhost = mr.getObject(ObjectPool.categorie.enemy, (int)ObjectPool.enemy.ghost);
-            print("Instantiate muss durch objectpool Nutzung ersetzt werden!");
-            //Instantiate(mr.GhostPrefab, currentIsle.NavMeshPosition + currentIsle.EnemyPoints[i].getPositionOnIsle(), Quaternion.Euler(0, 0, 0)) as GameObject;
+            slimeGhost.transform.position = currentIsle.NavMeshPosition + currentIsle.EnemyPoints[i].getPositionOnIsle();
             slimeGhost.GetComponent<GhostMovement>().NavMashPosition = currentIsle.NavMeshPosition;
             slimeGhost.GetComponent<GhostMovement>().setTarget(playerObject.GetComponent<NavMeshTarget>());
             slimeGhost.GetComponent<GhostMovement>().setghostCopy(slime.GetComponent<GhostCopy>());
+            slimeGhost.GetComponent<NavMeshAgent>().enabled = true;
             slime.GetComponent<GhostCopy>().ghost = slimeGhost.GetComponent<GhostMovement>();
 
             currentIsle.EnemyPoints[i].gameObject.SetActive(false);
 
             ListEnemies.Add(slime);
+
+      
         }
 
         playerObject.GetComponent<NavMeshTarget>().IslePosition = currentIsle.transform.position;

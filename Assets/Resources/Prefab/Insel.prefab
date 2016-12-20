@@ -637,7 +637,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010699696866}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -25.1, y: 2.36, z: -8.9}
+  m_LocalPosition: {x: -25.1, y: 2.68, z: -8.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -760,7 +760,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012180746328}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 493.16974, y: 360.51743, z: -632.9282}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -2248,6 +2248,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PortalActivated: 0
+  portalSpiral: {fileID: 0}
 --- !u!114 &114000010814633812
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2260,6 +2261,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PortalActivated: 0
+  portalSpiral: {fileID: 0}
 --- !u!114 &114000011526238272
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2297,6 +2299,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PortalActivated: 0
+  portalSpiral: {fileID: 0}
 --- !u!114 &114000011937006104
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2309,6 +2312,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PortalActivated: 0
+  portalSpiral: {fileID: 0}
 --- !u!114 &114000012117756614
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2381,6 +2385,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PortalActivated: 0
+  portalSpiral: {fileID: 0}
 --- !u!114 &114000013408808284
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2393,6 +2398,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PortalActivated: 0
+  portalSpiral: {fileID: 0}
 --- !u!114 &114000014103509586
 MonoBehaviour:
   m_ObjectHideFlags: 1

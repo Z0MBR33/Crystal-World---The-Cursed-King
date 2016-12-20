@@ -120,7 +120,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MiniMap: {fileID: 1000012469178382}
-  LiveField: {fileID: 0}
+  LiveField: {fileID: 114000011488638692}
   IsleImage: {fileID: 114000011536863096, guid: 4b39ad6a80a37e44cba01a4ed0f32dd8,
     type: 2}
   ConnectionImage: {fileID: 114000010934706642, guid: 6578402b5511ab840a9fcfc340de1cdb,
