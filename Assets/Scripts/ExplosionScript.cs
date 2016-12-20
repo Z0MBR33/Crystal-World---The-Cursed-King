@@ -26,19 +26,7 @@ public class ExplosionScript : MonoBehaviour {
 
         StopCoroutine(timerHandler());
 
-        int itemID = 0;
-        
-        switch (explosionType)
-        {
-            case ExplosionType.PlayerShot: itemID = 0;
-                break;
-            case ExplosionType.EnemyShot: itemID = 1;
-                break;
-            case ExplosionType.EnemyDeath: itemID = 2;
-                break;
-        }
-
-        mr.returnExplosion(gameObject, itemID);
+        mr.returnObject(gameObject);
         
     }
 }

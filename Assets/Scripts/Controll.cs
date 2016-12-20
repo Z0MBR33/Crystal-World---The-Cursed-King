@@ -26,8 +26,8 @@ public class Controll : MonoBehaviour
     void Start()
     {
         mr = ObjectPool.getObjectPool();
-        playerObj = mr.getPlayer();
-        camObj = mr.getCamera();
+        playerObj = mr.getObject(ObjectPool.categorie.essential, (int) ObjectPool.essential.player);
+        camObj = mr.getObject(ObjectPool.categorie.essential, (int)ObjectPool.essential.camera);
 
         camObj.transform.position = playerObj.transform.position + new Vector3(desiredHorizontalDistance, desiredVerticalDistance, desiredHorizontalDistance);
     }
@@ -63,24 +63,21 @@ public class Controll : MonoBehaviour
         playerVelo += Vector3.Scale(camObj.transform.right, new Vector3(1, 0, 1)) * Input.GetAxisRaw("Horizontal");
         playerVelo.Normalize();
         playerObj.transform.LookAt(playerObj.transform.position + playerVelo);
-        playerVelo *= mr.getPlayer().GetComponent<Stats>().speed;
+        playerVelo *= playerObj.GetComponent<Stats>().speed;
         playerObj.GetComponent<CharacterController>().SimpleMove(playerVelo);
     }
 
     void playerShoot()
     {
-        //if (Input.GetAxisRaw("fire_trigger") > 0.5f)
-        //{
             Vector3 inputVector = new Vector3(0, 0, 0);
-            inputVector += Vector3.Scale(camObj.transform.right, new Vector3(1, 0, 1)) * Input.GetAxis("fire_x");
-            inputVector += Vector3.Scale(camObj.transform.forward, new Vector3(1, 0, 1)) * Input.GetAxis("fire_z");
+            inputVector += Vector3.Scale(camObj.transform.right, new Vector3(1, 0, 1)) * Input.GetAxisRaw("fire_x");
+            inputVector += Vector3.Scale(camObj.transform.forward, new Vector3(1, 0, 1)) * Input.GetAxisRaw("fire_z");
             if (inputVector.normalized.sqrMagnitude > 0.2)
             {
-                Shot shot = mr.getShot(0).GetComponent<Shot>();
+                Shot shot = mr.getObject(ObjectPool.categorie.shot, (int)ObjectPool.shot.round).GetComponent<Shot>();
                 shot.gameObject.SetActive(true);
-                shot.reset(mr.getPlayer(), inputVector, transform.rotation);
+                shot.reset(playerObj, inputVector, transform.rotation);
             }
-        //}
     }
 
     IEnumerator shootCoolDown()

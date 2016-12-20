@@ -32,7 +32,7 @@ public class Enemy : MonoBehaviour
 
         gm.ListEnemies.Remove(gameObject);
 
-        mr.returnEnemy(gameObject, 0);
+        mr.returnObject(gameObject);
 
         // destroy ghost
         if (ghostCopy != null)
@@ -40,7 +40,7 @@ public class Enemy : MonoBehaviour
             Destroy(ghostCopy.ghost.gameObject);
         }
 
-        ExplosionScript expl = mr.getExplosion(2).GetComponent<ExplosionScript>();
+        ExplosionScript expl = mr.getObject(ObjectPool.categorie.explosion, (int)ObjectPool.explosion.enemy).GetComponent<ExplosionScript>();
         expl.gameObject.SetActive(true);
 
         expl.Initialize(ExplosionScript.ExplosionType.EnemyDeath, transform.position, new Quaternion());

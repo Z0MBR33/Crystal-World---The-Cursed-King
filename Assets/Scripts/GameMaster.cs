@@ -4,6 +4,8 @@ using System.Collections.Generic;
 
 public class GameMaster : MonoBehaviour {
     private ObjectPool mr;
+    private GameObject playerObject;
+    private GameObject camObject;
     private LevelManager levelManager;
     private GameObject slime;
     private GameObject slimeGhost;
@@ -26,8 +28,11 @@ public class GameMaster : MonoBehaviour {
 
     void Start () {
         mr = ObjectPool.getObjectPool();
-        mr.getPlayer().SetActive(true);
-        mr.getCamera().SetActive(true);
+        playerObject = mr.getObject(ObjectPool.categorie.essential, (int)ObjectPool.essential.player);
+        camObject = mr.getObject(ObjectPool.categorie.essential, (int)ObjectPool.essential.camera);
+
+        playerObject.SetActive(true);
+        camObject.SetActive(true);
 
         ListEnemies = new List<GameObject>();
 
@@ -40,15 +45,15 @@ public class GameMaster : MonoBehaviour {
         Isle startIsle = levelManager.getStartIsle().IsleObj;
         //Isle startIsle = levelManager.getWorld()[0, 0].IsleObj;
         levelManager.setCurrentIsle(startIsle.isleAbstract);
-        mr.getPlayer().transform.position = new Vector3(startIsle.transform.position.x, startIsle.transform.position.y + 2, startIsle.transform.position.z);
-        mr.getPlayer().GetComponent<NavMeshTarget>().IslePosition = startIsle.transform.position;
+        playerObject.transform.position = new Vector3(startIsle.transform.position.x, startIsle.transform.position.y + 2, startIsle.transform.position.z);
+        playerObject.GetComponent<NavMeshTarget>().IslePosition = startIsle.transform.position;
 
         StartCurrentIsle();
 
         // show UI (inclusive Mini-Map)
-        UI_Canvas ui = mr.getUI().GetComponent<UI_Canvas>();
+        UI_Canvas ui = mr.getObject(ObjectPool.categorie.essential,(int)ObjectPool.essential.UI).GetComponent<UI_Canvas>();
         ui.ShowMiniMap();
-        ui.UpdateLive(mr.getPlayer().GetComponent<Stats>().health);
+        ui.UpdateLive(playerObject.GetComponent<Stats>().health);
     }
 
     public void StartCurrentIsle()
@@ -62,15 +67,17 @@ public class GameMaster : MonoBehaviour {
         {
             currentIsle.EnemyPoints[i].IslePosition = currentIsle.transform.position;
 
-            slime = mr.getEnemy(0);
+            slime = mr.getObject(ObjectPool.categorie.enemy,(int)ObjectPool.enemy.slime);
             slime.GetComponent<Enemy>().Initialize();
             slime.transform.position = currentIsle.EnemyPoints[i].transform.position;
             slime.SetActive(true);
             slime.GetComponent<GhostCopy>().IslePosition = currentIsle.transform.position;
 
-            slimeGhost = Instantiate(mr.GhostPrefab, currentIsle.NavMeshPosition + currentIsle.EnemyPoints[i].getPositionOnIsle(), Quaternion.Euler(0, 0, 0)) as GameObject;
+            slimeGhost = mr.getObject(ObjectPool.categorie.enemy, (int)ObjectPool.enemy.ghost);
+            print("Instantiate muss durch objectpool Nutzung ersetzt werden!");
+            //Instantiate(mr.GhostPrefab, currentIsle.NavMeshPosition + currentIsle.EnemyPoints[i].getPositionOnIsle(), Quaternion.Euler(0, 0, 0)) as GameObject;
             slimeGhost.GetComponent<GhostMovement>().NavMashPosition = currentIsle.NavMeshPosition;
-            slimeGhost.GetComponent<GhostMovement>().setTarget(mr.getPlayer().GetComponent<NavMeshTarget>());
+            slimeGhost.GetComponent<GhostMovement>().setTarget(playerObject.GetComponent<NavMeshTarget>());
             slimeGhost.GetComponent<GhostMovement>().setghostCopy(slime.GetComponent<GhostCopy>());
             slime.GetComponent<GhostCopy>().ghost = slimeGhost.GetComponent<GhostMovement>();
 
@@ -79,7 +86,7 @@ public class GameMaster : MonoBehaviour {
             ListEnemies.Add(slime);
         }
 
-        mr.getPlayer().GetComponent<NavMeshTarget>().IslePosition = currentIsle.transform.position;
+        playerObject.GetComponent<NavMeshTarget>().IslePosition = currentIsle.transform.position;
 
         StartCoroutine(timerHandler());
     }
