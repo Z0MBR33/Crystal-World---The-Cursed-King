@@ -37,7 +37,7 @@ public class Player : MonoBehaviour
                 becomeImmortal(3);
                 Stats stats = GetComponent<Stats>();
                 stats.gotHit(hit.gameObject.GetComponent<Stats>().strength);
-                mr.getUI().UpdateLive(stats.health);
+                mr.getObject(ObjectPool.categorie.essential, (int)ObjectPool.essential.UI).GetComponent<UI_Canvas>().UpdateLive(stats.health);
             }
         }
 
@@ -111,7 +111,7 @@ public class Player : MonoBehaviour
                     gm.StartCurrentIsle();
                 }
 
-                mr.getUI().UpdateMiniMap();
+                mr.getObject(ObjectPool.categorie.essential, (int)ObjectPool.essential.UI).GetComponent<UI_Canvas>().UpdateMiniMap();
             }
 
         }

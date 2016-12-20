@@ -273,30 +273,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f67035afa3597614495d5152b4ac2332, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UI_Prefab: {fileID: 114000011317890732, guid: 697675f236d0e9c49b3f38593a8eb0b7,
-    type: 2}
-  playerPrefab: {fileID: 1000013405803128, guid: e28f5195e3258e34f8d63a465ae2cea7,
-    type: 2}
-  cameraPrefab: {fileID: 1000013544393320, guid: 057318eb1cce80341b108cd0f05de159,
-    type: 2}
-  GhostPrefab: {fileID: 1000012905966870, guid: eac0b18bfaf4c6c4c9377b8cccda99e2,
-    type: 2}
-  PortalPrefab: {fileID: 1000013120968934, guid: aeafcf853eb091d47801c8087cf94e39,
-    type: 2}
-  enemiesPrefabs:
-  - {fileID: 1000010209064560, guid: 1627691596ec30c45bd8ab6c6f306916, type: 2}
-  enemiesCount: 01000000
-  structuresPrefabs:
-  - {fileID: 1000012180746328, guid: 86adf895fd245ae4eb079f6e7be14219, type: 2}
-  structuresCount: 01000000
-  shotsPrefabs:
+  essentialPrefabs:
+  - {fileID: 1000013405803128, guid: e28f5195e3258e34f8d63a465ae2cea7, type: 2}
+  - {fileID: 1000013544393320, guid: 057318eb1cce80341b108cd0f05de159, type: 2}
+  - {fileID: 1000013943836704, guid: 697675f236d0e9c49b3f38593a8eb0b7, type: 2}
+  shotPrefabs:
   - {fileID: 1000010133196268, guid: 0cb21fa5624af584f825fbe64b944137, type: 2}
-  shotsCount: 01000000
-  explosionsPrefabs:
+  enemyPrefabs:
+  - {fileID: 1000012905966870, guid: eac0b18bfaf4c6c4c9377b8cccda99e2, type: 2}
+  - {fileID: 1000010209064560, guid: 1627691596ec30c45bd8ab6c6f306916, type: 2}
+  ilandsPrefabs:
+  - {fileID: 1000012180746328, guid: 86adf895fd245ae4eb079f6e7be14219, type: 2}
+  structuresPrefabs:
+  - {fileID: 1000013120968934, guid: aeafcf853eb091d47801c8087cf94e39, type: 2}
+  - {fileID: 1000014061641422, guid: 6d6eae82c91ddac4e8e5b6aae4137bab, type: 2}
+  explosionPrefabs:
   - {fileID: 1000010230680444, guid: 838763d376e8d02449eb0e8756c3df31, type: 2}
   - {fileID: 1000010230680444, guid: aff0c0444cebbdc49bfa3199a4b5f3b3, type: 2}
   - {fileID: 1000010384853792, guid: daf8039cbcb11eb4784edb8a6c5876f0, type: 2}
-  explosionsCount: 0a0000000a0000000a000000
 --- !u!114 &1081858234
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -308,10 +302,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efe9ede0aa9267b45a4482dec3f9e03c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IslePrefab: {fileID: 114000011526238272, guid: 86adf895fd245ae4eb079f6e7be14219,
-    type: 2}
-  connectionPrefab: {fileID: 114000014136995400, guid: 6d6eae82c91ddac4e8e5b6aae4137bab,
-    type: 2}
   WorldWidth: 5
   WorldHeight: 5
   IsleDensity: 0.5

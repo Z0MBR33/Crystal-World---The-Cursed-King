@@ -27,7 +27,7 @@ public class ObjectPool : MonoBehaviour
         essential,
         shot,
         enemy,
-        ilands,
+        islands,
         structures,
         explosion
     }
@@ -50,18 +50,21 @@ public class ObjectPool : MonoBehaviour
         slime
     }
 
-    public enum ilands
+    public enum islands
     {
         normal
     }
 
     public enum structures
     {
-        placeholder
+        portal,
+        connection
     }
 
     public enum explosion
     {
+        shot,
+        enemyShot,
         enemy
     }
 
@@ -79,6 +82,8 @@ public class ObjectPool : MonoBehaviour
 
     void init()
     {
+        activeObjects = new List<GameObject>();  // TODO   Liste hat gefehlt
+
         pool = new List<List<Stack<GameObject>>>();
         pool.Add(createListOfEmptyStacks(System.Enum.GetNames(typeof(essential)).Length));
         fillCategoriesStacks(pool[pool.Count-1], essentialPrefabs,1);
@@ -86,7 +91,7 @@ public class ObjectPool : MonoBehaviour
         fillCategoriesStacks(pool[pool.Count - 1], shotPrefabs, 20);
         pool.Add(createListOfEmptyStacks(System.Enum.GetNames(typeof(enemy)).Length));
         fillCategoriesStacks(pool[pool.Count - 1], enemyPrefabs, 20);
-        pool.Add(createListOfEmptyStacks(System.Enum.GetNames(typeof(ilands)).Length));
+        pool.Add(createListOfEmptyStacks(System.Enum.GetNames(typeof(islands)).Length));
         fillCategoriesStacks(pool[pool.Count - 1], ilandsPrefabs, 20);
         pool.Add(createListOfEmptyStacks(System.Enum.GetNames(typeof(structures)).Length));
         fillCategoriesStacks(pool[pool.Count - 1], structuresPrefabs, 20);
@@ -117,7 +122,11 @@ public class ObjectPool : MonoBehaviour
     {
         for (int i = 0; i < amount; i++)
         {
-            stackToFill.Push(Instantiate(prefabToFillIn));
+            // TODO  alle Objekte waren anfangs an aktiv (böse bei den Partikel-Effekten, führte zu starken Rucklern)
+            GameObject go = Instantiate(prefabToFillIn);
+            go.SetActive(false);
+            stackToFill.Push(go);
+            //stackToFill.Push(Instantiate(prefabToFillIn));
         }
     }
 
@@ -149,6 +158,9 @@ public class ObjectPool : MonoBehaviour
             toReturn.GetComponent<ObjectPoolAgent>().tag_id = id;
             toReturn.SetActive(true);
         }
+     
+        toReturn.SetActive(true);  // TODO
+
         return toReturn;
     }
 
@@ -161,7 +173,7 @@ public class ObjectPool : MonoBehaviour
             case categorie.essential: toReturn = Instantiate(essentialPrefabs[id]); break;
             case categorie.shot: toReturn = Instantiate(shotPrefabs[id]); break;
             case categorie.enemy: toReturn = Instantiate(enemyPrefabs[id]); break;
-            case categorie.ilands: toReturn = Instantiate(ilandsPrefabs[id]); break;
+            case categorie.islands: toReturn = Instantiate(ilandsPrefabs[id]); break;
             case categorie.structures: toReturn = Instantiate(structuresPrefabs[id]); break;
             default: toReturn = null; break;
         }

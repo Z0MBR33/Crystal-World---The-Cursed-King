@@ -183,6 +183,6 @@ public class UI_Canvas : MonoBehaviour {
 
     public void UpdateLive(float live)
     {
-        LiveField.text = live.ToString();
+        //LiveField.text = live.ToString();  // TODO
     }
 }

@@ -6,9 +6,7 @@ public class LevelManager : MonoBehaviour
 {
 
     public static LevelManager levelManager;
-
-    public Isle IslePrefab;
-    public Connection connectionPrefab;
+    private ObjectPool mr;
 
     private IsleAbstract[,] world;
     private List<IsleAbstract> isles;
@@ -39,6 +37,7 @@ public class LevelManager : MonoBehaviour
     void Awake()
     {
         levelManager = this;
+        mr = ObjectPool.getObjectPool();
     }
 
     private void Update()
@@ -47,7 +46,7 @@ public class LevelManager : MonoBehaviour
         {
             GenerateMap();
 
-            ObjectPool.getObjectPool().getUI().GetComponent<UI_Canvas>().ShowMiniMap();
+            ObjectPool.getObjectPool().getObject(ObjectPool.categorie.essential, (int)ObjectPool.essential.UI).GetComponent<UI_Canvas>().ShowMiniMap();
         }
     }
 
@@ -160,7 +159,9 @@ public class LevelManager : MonoBehaviour
                 //int isleHeight = 0;
 
                 Vector3 pos = new Vector3(isle.Index.x * Fieldwidth, isleHeight, (isle.Index.y * Fieldwidth) + offset);
-                Isle isleObj = Instantiate(IslePrefab, pos, new Quaternion()) as Isle;
+                //Isle isleObj = Instantiate(IslePrefab, pos, new Quaternion()) as Isle;   // TODO REMOVE LINE!
+                Isle isleObj = mr.getObject(ObjectPool.categorie.islands, (int)ObjectPool.islands.normal).GetComponent<Isle>();
+                isleObj.transform.position = pos;
                 isleObj.Initialize(isle);
                 isle.IsleObj = isleObj;
 
@@ -177,7 +178,7 @@ public class LevelManager : MonoBehaviour
         // render connections
         for (int i = 0; i < connections.Count; i++)
         {
-            Connection connectionObj = Instantiate(connectionPrefab);
+            Connection connectionObj = mr.getObject(ObjectPool.categorie.structures, (int)ObjectPool.structures.connection).GetComponent<Connection>();
             connectionObj.connectionAbstract = connections[i];
             connections[i].connectionObj = connectionObj;
 

@@ -45,7 +45,7 @@ public class Isle : MonoBehaviour
 
         if (isle.PortalUp != null)
         {
-            realPortal = Instantiate(mr.PortalPrefab).GetComponent<Portal>();
+            realPortal = mr.getObject(ObjectPool.categorie.structures, (int)ObjectPool.structures.portal).GetComponent<Portal>();
             realPortal.transform.position = PortalUp.transform.position;
             realPortal.transform.rotation = PortalUp.transform.rotation;
             realPortal.portalSpiral.gameObject.SetActive(false);
@@ -57,7 +57,7 @@ public class Isle : MonoBehaviour
         }
         if (isle.PortalUpRight != null)
         {
-            realPortal = Instantiate(mr.PortalPrefab).GetComponent<Portal>();
+            realPortal = mr.getObject(ObjectPool.categorie.structures, (int)ObjectPool.structures.portal).GetComponent<Portal>();
             realPortal.transform.position = PortalUpRight.transform.position;
             realPortal.transform.rotation = PortalUpRight.transform.rotation;
             realPortal.portalSpiral.gameObject.SetActive(false);
@@ -69,7 +69,7 @@ public class Isle : MonoBehaviour
         }
         if (isle.PortalDownRight != null)
         {
-            realPortal = Instantiate(mr.PortalPrefab).GetComponent<Portal>();
+            realPortal = mr.getObject(ObjectPool.categorie.structures, (int)ObjectPool.structures.portal).GetComponent<Portal>();
             realPortal.transform.position = PortalDownRight.transform.position;
             realPortal.transform.rotation = PortalDownRight.transform.rotation;
             realPortal.portalSpiral.gameObject.SetActive(false);
@@ -81,7 +81,7 @@ public class Isle : MonoBehaviour
         }
         if (isle.PortalDown != null)
         {
-            realPortal = Instantiate(mr.PortalPrefab).GetComponent<Portal>();
+            realPortal = mr.getObject(ObjectPool.categorie.structures, (int)ObjectPool.structures.portal).GetComponent<Portal>();
             realPortal.transform.position = PortalDown.transform.position;
             realPortal.transform.rotation = PortalDown.transform.rotation;
             realPortal.portalSpiral.gameObject.SetActive(false);
@@ -93,7 +93,7 @@ public class Isle : MonoBehaviour
         }
         if (isle.PortalDownLeft != null)
         {
-            realPortal = Instantiate(mr.PortalPrefab).GetComponent<Portal>();
+            realPortal = mr.getObject(ObjectPool.categorie.structures, (int)ObjectPool.structures.portal).GetComponent<Portal>();
             realPortal.transform.position = PortalDownLeft.transform.position;
             realPortal.transform.rotation = PortalDownLeft.transform.rotation;
             realPortal.portalSpiral.gameObject.SetActive(false);
@@ -105,7 +105,7 @@ public class Isle : MonoBehaviour
         }
         if (isle.PortalUpLeft != null)
         {
-            realPortal = Instantiate(mr.PortalPrefab).GetComponent<Portal>();
+            realPortal = mr.getObject(ObjectPool.categorie.structures, (int)ObjectPool.structures.portal).GetComponent<Portal>();
             realPortal.transform.position = PortalUpLeft.transform.position;
             realPortal.transform.rotation = PortalUpLeft.transform.rotation;
             realPortal.portalSpiral.gameObject.SetActive(false);
