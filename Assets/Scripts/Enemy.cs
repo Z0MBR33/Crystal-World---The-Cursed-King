@@ -37,7 +37,7 @@ public class Enemy : MonoBehaviour
         // destroy ghost
         if (ghostCopy != null)
         {
-            Destroy(ghostCopy.ghost.gameObject);
+            mr.returnObject(ghostCopy.ghost.gameObject);
         }
 
         ExplosionScript expl = mr.getObject(ObjectPool.categorie.explosion, (int)ObjectPool.explosion.enemy).GetComponent<ExplosionScript>();
