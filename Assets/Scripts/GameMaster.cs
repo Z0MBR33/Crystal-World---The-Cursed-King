@@ -106,40 +106,13 @@ public class GameMaster : MonoBehaviour {
 
                 Isle currentIsle = levelManager.getCurrentIsle().IsleObj;
 
-                if (currentIsle.isleAbstract.PortalUp != null)
+                for(int i = 0; i < 6; i++)
                 {
-                    currentIsle.PortalUp.PortalActivated = true;
-                    currentIsle.PortalUp.portalSpiral.gameObject.SetActive(true);
-                }
-
-                if (currentIsle.isleAbstract.PortalUpRight != null)
-                {
-                    currentIsle.PortalUpRight.PortalActivated = true;
-                    currentIsle.PortalUpRight.portalSpiral.gameObject.SetActive(true);
-                }
-
-                if (currentIsle.isleAbstract.PortalDownRight != null)
-                {
-                    currentIsle.PortalDownRight.PortalActivated = true;
-                    currentIsle.PortalDownRight.portalSpiral.gameObject.SetActive(true);
-                }
-
-                if (currentIsle.isleAbstract.PortalDown != null)
-                {
-                    currentIsle.PortalDown.PortalActivated = true;
-                    currentIsle.PortalDown.portalSpiral.gameObject.SetActive(true);
-                }
-
-                if (currentIsle.isleAbstract.PortalDownLeft != null)
-                {
-                    currentIsle.PortalDownLeft.PortalActivated = true;
-                    currentIsle.PortalDownLeft.portalSpiral.gameObject.SetActive(true);
-                }
-
-                if (currentIsle.isleAbstract.PortalUpLeft != null)
-                {
-                    currentIsle.PortalUpLeft.PortalActivated = true;
-                    currentIsle.PortalUpLeft.portalSpiral.gameObject.SetActive(true);
+                    if (currentIsle.isleAbstract.Portals[i] != null)
+                    {
+                        currentIsle.Portals[i].PortalActivated = true;
+                        currentIsle.Portals[i].portalSpiral.gameObject.SetActive(true);
+                    }
                 }
 
                 currentIsle.isleAbstract.setFinishState(true);

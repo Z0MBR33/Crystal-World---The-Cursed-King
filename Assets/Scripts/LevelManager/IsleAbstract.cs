@@ -11,46 +11,52 @@ public class IsleAbstract
 
     public bool Connected = false;
 
-    public PortalAbstract PortalUp;
     public PortalAbstract PortalUpRight;
     public PortalAbstract PortalDownRight;
     public PortalAbstract PortalDown;
     public PortalAbstract PortalDownLeft;
     public PortalAbstract PortalUpLeft;
 
+    public PortalAbstract[] Portals= new PortalAbstract[6];
+
     public UI_Isle ui_Isle;
     public bool finished;
     public bool discovered;
     public IsleObjectType isleObjectType;
+      
+    public IsleAbstract getIsleFromForection(int direction)
+    {
+        return Portals[direction].ConnectedPortal.isleAbstract;
+    }
 
     public IsleAbstract getIsleUp()
     {
-        return PortalUp.ConnectecPortal.isleAbstract;   
+        return Portals[0].ConnectedPortal.isleAbstract;   
     }
 
     public IsleAbstract getIsleUpRight()
     {
-        return PortalUpRight.ConnectecPortal.isleAbstract;
+        return Portals[1].ConnectedPortal.isleAbstract;
     }
 
     public IsleAbstract getIsleDownRight()
     {
-        return PortalDownRight.ConnectecPortal.isleAbstract;
+        return Portals[2].ConnectedPortal.isleAbstract;
     }
 
     public IsleAbstract getIsleDown()
     {
-        return PortalDown.ConnectecPortal.isleAbstract;
+        return Portals[3].ConnectedPortal.isleAbstract;
     }
 
     public IsleAbstract getIsleDownLeft()
     {
-        return PortalDownLeft.ConnectecPortal.isleAbstract;
+        return Portals[4].ConnectedPortal.isleAbstract;
     }
 
     public IsleAbstract getIsleUpLeft()
     {
-        return PortalUpLeft.ConnectecPortal.isleAbstract;
+        return Portals[5].ConnectedPortal.isleAbstract;
 
     }
 
@@ -58,12 +64,13 @@ public class IsleAbstract
     {
         int count = 0;
 
-        if (PortalUp != null) count++;
-        if (PortalUpRight != null) count++;
-        if (PortalDownRight != null) count++;
-        if (PortalDown != null) count++;
-        if (PortalDownLeft != null) count++;
-        if (PortalDownRight != null) count++;
+        for (int i = 0; i < 6; i++)
+        {
+            if (Portals[i] != null)
+            {
+                count++;
+            }
+        }
 
         return count;
     }

@@ -67,33 +67,8 @@ public class Player : MonoBehaviour
 
                 int direction = portal.getDirection();
 
-                switch (direction)
-                {
-                    case 0:
-                        targetIsle = currentIsle.getIsleUp();
-                        targetPortal = targetIsle.IsleObj.PortalDown;
-                        break;
-                    case 1:
-                        targetIsle = currentIsle.getIsleUpRight();
-                        targetPortal = targetIsle.IsleObj.PortalDownLeft;
-                        break;
-                    case 2:
-                        targetIsle = currentIsle.getIsleDownRight();
-                        targetPortal = targetIsle.IsleObj.PortalUpLeft;
-                        break;
-                    case 3:
-                        targetIsle = currentIsle.getIsleDown(); ;
-                        targetPortal = targetIsle.IsleObj.PortalUp;
-                        break;
-                    case 4:
-                        targetIsle = currentIsle.getIsleDownLeft();
-                        targetPortal = targetIsle.IsleObj.PortalUpRight;
-                        break;
-                    case 5:
-                        targetIsle = currentIsle.getIsleUpLeft();
-                        targetPortal = targetIsle.IsleObj.PortalDownRight;
-                        break;
-                }
+                targetIsle = currentIsle.getIsleFromForection(direction);
+                targetPortal = targetIsle.IsleObj.Portals[(direction + 3) % 6];
 
                 Vector3 vec = targetIsle.IsleObj.transform.position - targetPortal.transform.position;
                 vec.Normalize();

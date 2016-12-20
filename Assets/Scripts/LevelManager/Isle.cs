@@ -17,6 +17,9 @@ public class Isle : MonoBehaviour
 
     public List<EnemyPoint> EnemyPoints;
 
+    [HideInInspector]
+    public Portal[] Portals;
+
     private ObjectPool mr;
 
     public void Initialize(IsleAbstract isle)
@@ -25,96 +28,40 @@ public class Isle : MonoBehaviour
 
         mr = ObjectPool.getObjectPool();
 
+        Portals = new Portal[6];
+        Portals[0] = PortalUp;
+        Portals[1] = PortalUpRight;
+        Portals[2] = PortalDownRight;
+        Portals[3] = PortalDown;
+        Portals[4] = PortalDownLeft;
+        Portals[5] = PortalUpLeft;
+
         // hide Enemy Spawns
         for(int i = 0; i < EnemyPoints.Count; i++)
         {
             EnemyPoints[i].GetComponent<Renderer>().enabled = false;
         }
 
-        // hide Portal-Tempaltes
-        PortalUp.gameObject.SetActive(false);
-        PortalUpRight.gameObject.SetActive(false);
-        PortalDownRight.gameObject.SetActive(false);
-        PortalDown.gameObject.SetActive(false);
-        PortalDownLeft.gameObject.SetActive(false);
-        PortalUpLeft.gameObject.SetActive(false);
+        for (int i = 0; i < 6; i++)
+        {
+            // hide Portal-Tempaltes
+            Portals[i].gameObject.SetActive(false);
 
-
-        // show real Portals
-        Portal realPortal;
-
-        if (isle.PortalUp != null)
-        {
-            realPortal = mr.getObject(ObjectPool.categorie.structures, (int)ObjectPool.structures.portal).GetComponent<Portal>();
-            realPortal.transform.position = PortalUp.transform.position;
-            realPortal.transform.rotation = PortalUp.transform.rotation;
-            realPortal.portalSpiral.gameObject.SetActive(false);
-            realPortal.setDirection(0);
-            isleAbstract.PortalUp.portalObj = realPortal;
-            realPortal.portalAbstract = isleAbstract.PortalUp;
-            PortalUp = realPortal;
-            realPortal.transform.SetParent(gameObject.transform);
+            // show real Portals (and remove old ones
+            
+            if (isleAbstract.Portals[i] != null)
+            {
+                Portal realPortal = mr.getObject(ObjectPool.categorie.structures, (int)ObjectPool.structures.portal).GetComponent<Portal>();
+                realPortal.transform.position = Portals[i].transform.position;
+                realPortal.transform.rotation = Portals[i].transform.rotation;
+                realPortal.portalSpiral.gameObject.SetActive(false);
+                realPortal.setDirection(i);
+                isleAbstract.Portals[i].portalObj = realPortal;
+                realPortal.portalAbstract = isleAbstract.Portals[i];
+                Portals[i] = realPortal;
+                realPortal.transform.SetParent(gameObject.transform);
+            }
         }
-        if (isle.PortalUpRight != null)
-        {
-            realPortal = mr.getObject(ObjectPool.categorie.structures, (int)ObjectPool.structures.portal).GetComponent<Portal>();
-            realPortal.transform.position = PortalUpRight.transform.position;
-            realPortal.transform.rotation = PortalUpRight.transform.rotation;
-            realPortal.portalSpiral.gameObject.SetActive(false);
-            realPortal.setDirection(1);
-            isleAbstract.PortalUpRight.portalObj = realPortal;
-            realPortal.portalAbstract = isleAbstract.PortalUpRight;
-            PortalUpRight = realPortal;
-            realPortal.transform.SetParent(gameObject.transform);
-        }
-        if (isle.PortalDownRight != null)
-        {
-            realPortal = mr.getObject(ObjectPool.categorie.structures, (int)ObjectPool.structures.portal).GetComponent<Portal>();
-            realPortal.transform.position = PortalDownRight.transform.position;
-            realPortal.transform.rotation = PortalDownRight.transform.rotation;
-            realPortal.portalSpiral.gameObject.SetActive(false);
-            realPortal.setDirection(2);
-            isleAbstract.PortalDownRight.portalObj = realPortal;
-            realPortal.portalAbstract = isleAbstract.PortalDownRight;
-            PortalDownRight = realPortal;
-            realPortal.transform.SetParent(gameObject.transform);
-        }
-        if (isle.PortalDown != null)
-        {
-            realPortal = mr.getObject(ObjectPool.categorie.structures, (int)ObjectPool.structures.portal).GetComponent<Portal>();
-            realPortal.transform.position = PortalDown.transform.position;
-            realPortal.transform.rotation = PortalDown.transform.rotation;
-            realPortal.portalSpiral.gameObject.SetActive(false);
-            realPortal.setDirection(3);
-            isleAbstract.PortalDown.portalObj = realPortal;
-            realPortal.portalAbstract = isleAbstract.PortalDown;
-            PortalDown = realPortal;
-            realPortal.transform.SetParent(gameObject.transform);
-        }
-        if (isle.PortalDownLeft != null)
-        {
-            realPortal = mr.getObject(ObjectPool.categorie.structures, (int)ObjectPool.structures.portal).GetComponent<Portal>();
-            realPortal.transform.position = PortalDownLeft.transform.position;
-            realPortal.transform.rotation = PortalDownLeft.transform.rotation;
-            realPortal.portalSpiral.gameObject.SetActive(false);
-            realPortal.setDirection(4);
-            isleAbstract.PortalDownLeft.portalObj = realPortal;
-            realPortal.portalAbstract = isleAbstract.PortalDownLeft;
-            PortalDownLeft = realPortal;
-            realPortal.transform.SetParent(gameObject.transform);
-        }
-        if (isle.PortalUpLeft != null)
-        {
-            realPortal = mr.getObject(ObjectPool.categorie.structures, (int)ObjectPool.structures.portal).GetComponent<Portal>();
-            realPortal.transform.position = PortalUpLeft.transform.position;
-            realPortal.transform.rotation = PortalUpLeft.transform.rotation;
-            realPortal.portalSpiral.gameObject.SetActive(false);
-            realPortal.setDirection(5);
-            isleAbstract.PortalUpLeft.portalObj = realPortal;
-            realPortal.portalAbstract = isleAbstract.PortalUpLeft;
-            PortalUpLeft = realPortal;
-            realPortal.transform.SetParent(gameObject.transform);
-        }
-
+       
     }
 }

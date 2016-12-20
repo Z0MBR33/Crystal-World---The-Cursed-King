@@ -281,44 +281,47 @@ public class LevelManager : MonoBehaviour
         ConnectionAbstract connection = new ConnectionAbstract();
 
         portal1.isleAbstract = isle1;
-        portal1.ConnectecPortal = portal2;
+        portal1.ConnectedPortal = portal2;
         portal1.Connection = connection;
         
         portal2.isleAbstract = isle2;
-        portal2.ConnectecPortal = portal1;
+        portal2.ConnectedPortal = portal1;
         portal2.Connection = connection;
         
         connection.Portal1 = portal1;
         connection.Portal2 = portal2;
         connections.Add(connection);
 
-        switch (directionFrom)
+        isle1.Portals[(directionFrom + 3) % 6] = portal1;
+        isle2.Portals[directionFrom] = portal2;
+    }
+
+    public IsleAbstract travelInDirection(int startX, int startY, int direction)
+    {
+        IsleAbstract endIsle = null;
+
+        switch(direction)
         {
-            case 0:
-                isle1.PortalDown = portal1;
-                isle2.PortalUp = portal2;
+            case 0: endIsle = travelUp(startX, startY);
                 break;
             case 1:
-                isle1.PortalDownLeft = portal1;
-                isle2.PortalUpRight = portal2;
+                endIsle = travelUpRight(startX, startY);
                 break;
             case 2:
-                isle1.PortalUpLeft = portal1;
-                isle2.PortalDownRight = portal2;
+                endIsle = travelDownRight(startX, startY);
                 break;
             case 3:
-                isle1.PortalUp = portal1;
-                isle2.PortalDown = portal2;
+                endIsle = travelDown(startX, startY);
                 break;
             case 4:
-                isle1.PortalUpRight = portal1;
-                isle2.PortalDownLeft = portal2;
+                endIsle = travelDownLeft(startX, startY);
                 break;
             case 5:
-                isle1.PortalDownRight = portal1;
-                isle2.PortalUpLeft = portal2;
+                endIsle = travelUpLeft(startX, startY);
                 break;
         }
+
+        return endIsle;
     }
 
     public IsleAbstract travelUp(int startX, int startY)
@@ -514,33 +517,12 @@ public class LevelManager : MonoBehaviour
 
                 IsleAbstract islePartner = null;
 
-                switch (direction)
+                if (isle.Portals[direction] != null)
                 {
-                    case 0:
-                        if (isle.PortalUp != null) continue;
-                        islePartner = travelUp((int)isle.Index.x, (int)isle.Index.y);
-                        break;
-                    case 1:
-                        if (isle.PortalUpRight != null) continue;
-                        islePartner = travelUpRight((int)isle.Index.x, (int)isle.Index.y);
-                        break;
-                    case 2:
-                        if (isle.PortalDownRight != null) continue;
-                        islePartner = travelDownRight((int)isle.Index.x, (int)isle.Index.y);
-                        break;
-                    case 3:
-                        if (isle.PortalDown != null) continue;
-                        islePartner = travelDown((int)isle.Index.x, (int)isle.Index.y);
-                        break;
-                    case 4:
-                        if (isle.PortalDownLeft != null) continue;
-                        islePartner = travelDownLeft((int)isle.Index.x, (int)isle.Index.y);
-                        break;
-                    case 5:
-                        if (isle.PortalUpLeft != null) continue;
-                        islePartner = travelUpLeft((int)isle.Index.x, (int)isle.Index.y);
-                        break;
+                    continue;
                 }
+
+                islePartner = travelInDirection((int)isle.Index.x, (int)isle.Index.y, direction);
 
                 int directionFrom = (direction + 3) % 6;
 
@@ -584,31 +566,13 @@ public class LevelManager : MonoBehaviour
     {
         List<IsleAbstract> tmpList = new List<IsleAbstract>();
 
-        if (currentIsle.PortalUp != null)
+        for(int i = 0; i < 6; i++)
         {
-            tmpList.Add(currentIsle.PortalUp.ConnectecPortal.isleAbstract);
+            if (currentIsle.Portals[i] != null)
+            {
+                tmpList.Add(currentIsle.Portals[i].ConnectedPortal.isleAbstract);
+            }
         }
-        if (currentIsle.PortalUpRight != null)
-        {
-            tmpList.Add(currentIsle.PortalUpRight.ConnectecPortal.isleAbstract);
-        }
-        if (currentIsle.PortalDownRight != null)
-        {
-            tmpList.Add(currentIsle.PortalDownRight.ConnectecPortal.isleAbstract);
-        }
-        if (currentIsle.PortalDown != null)
-        {
-            tmpList.Add(currentIsle.PortalDown.ConnectecPortal.isleAbstract);
-        }
-        if (currentIsle.PortalDownLeft != null)
-        {
-            tmpList.Add(currentIsle.PortalDownLeft.ConnectecPortal.isleAbstract);
-        }
-        if (currentIsle.PortalUpLeft != null)
-        {
-            tmpList.Add(currentIsle.PortalUpLeft.ConnectecPortal.isleAbstract);
-        }
-
 
         return tmpList;
     }

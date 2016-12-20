@@ -7,7 +7,7 @@ public class PortalAbstract {
 
     public IsleAbstract isleAbstract;
 
-    public PortalAbstract ConnectecPortal;
+    public PortalAbstract ConnectedPortal;
     public ConnectionAbstract Connection;
 	
 }
