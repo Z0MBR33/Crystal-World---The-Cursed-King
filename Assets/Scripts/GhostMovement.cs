@@ -18,7 +18,7 @@ public class GhostMovement : MonoBehaviour {
     // Update is called once per frame
     void FixedUpdate()
     {   // TODO
-        /*
+        
         if (ghostCopy.MovedByGhost == true)
         {
             agent.SetDestination(NavMashPosition + target.getPositionOnIsle());
@@ -26,7 +26,7 @@ public class GhostMovement : MonoBehaviour {
         else
         {
             transform.position = NavMashPosition + ghostCopy.getPositionOnIsle();
-        }*/
+        }
     }
 
     public void setTarget(NavMeshTarget target) {

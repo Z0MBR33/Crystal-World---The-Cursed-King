@@ -55,7 +55,7 @@ public class Shot : MonoBehaviour
             // check for enemy hit
             if (collision.collider.tag == "Enemy")
             {
-                collision.collider.GetComponent<Enemy>().getPushed(rb.velocity, 5);
+                collision.collider.GetComponent<Enemy>().getPushed(rb.velocity, 35);
                 Stats targetStats = collision.collider.GetComponent<Stats>();
                 targetStats.gotHit(shootedFrom.GetComponent<Stats>().shotStrength);
             }

@@ -15,14 +15,11 @@ public class GhostCopy : MonoBehaviour {
     }
 
     void FixedUpdate()
-    {
-        // TODO
-        /*
+    {     
         if (MovedByGhost)
         {
             transform.position = IslePosition + ghost.getPositionInNav();
-        } */
-
+        }
     }
 
     public Vector3 getPositionOnIsle()
