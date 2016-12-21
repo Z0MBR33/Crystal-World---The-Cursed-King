@@ -254,7 +254,7 @@ GameObject:
   - 64: {fileID: 64000011148759852}
   m_Layer: 0
   m_Name: Kliff_Prototyp
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -2287,6 +2287,7 @@ MonoBehaviour:
   - {fileID: 114000013008975038}
   - {fileID: 114000012614274298}
   - {fileID: 114000013187494696}
+  Portals: []
 --- !u!114 &114000011529078380
 MonoBehaviour:
   m_ObjectHideFlags: 1
