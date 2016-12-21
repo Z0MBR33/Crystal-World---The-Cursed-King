@@ -320,10 +320,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81270d838d0c2314ca7dd211900f0c67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  desiredHorizontalDistance: 8
+  desiredHorizontalDistance: 9
   minDesiredHorizontalDistance: 3
   maxDesiredHorizontalDistance: 10.5
-  desiredVerticalDistance: 8.4
+  desiredVerticalDistance: 8.1
 --- !u!114 &1081858233
 MonoBehaviour:
   m_ObjectHideFlags: 0

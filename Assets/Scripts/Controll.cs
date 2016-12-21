@@ -11,11 +11,11 @@ public class Controll : MonoBehaviour
     private Vector3 lastVerticalCamVelocity = new Vector3(0, 0, 0);
     private float maxSpeed = 10000f;
 
-    public float desiredHorizontalDistance = 4;
+    public float desiredHorizontalDistance = 9;
     public float minDesiredHorizontalDistance = 3;
     public float maxDesiredHorizontalDistance = 10.5f;
 
-    public float desiredVerticalDistance = 1.6f;
+    public float desiredVerticalDistance = 8.1f;
 
     private Coroutine CoolDownShooting;
     private bool canShoot = true;
