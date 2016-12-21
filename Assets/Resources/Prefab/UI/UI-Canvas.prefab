@@ -125,7 +125,9 @@ MonoBehaviour:
     type: 2}
   ConnectionImage: {fileID: 114000010934706642, guid: 6578402b5511ab840a9fcfc340de1cdb,
     type: 2}
-  Fieldwidth: 25
+  MapCompassImage: {fileID: 1000012347844764, guid: d8fe127c62dfc2243962162e92056993,
+    type: 2}
+  Fieldwidth: 35
 --- !u!114 &114000011488638692
 MonoBehaviour:
   m_ObjectHideFlags: 1

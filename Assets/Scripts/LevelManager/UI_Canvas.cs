@@ -9,6 +9,7 @@ public class UI_Canvas : MonoBehaviour {
     public Text LiveField;
     public UI_Isle IsleImage;
     public UI_Connection ConnectionImage;
+    public GameObject MapCompassImage;
 
     public int Fieldwidth;
 
@@ -16,6 +17,23 @@ public class UI_Canvas : MonoBehaviour {
 
     private List<UI_Isle> listIsles;
     private List<UI_Connection> listConnections;
+    private RawImage mapCompass;
+
+    private GameObject player;
+
+    private void Awake()
+    {
+        player = ObjectPool.getObjectPool().getObject(ObjectPool.categorie.essential, (int)ObjectPool.essential.player);
+    }
+
+    private void FixedUpdate()
+    {
+        if (mapCompass.enabled == true)
+        {
+            float angle = player.transform.rotation.eulerAngles.y;
+            mapCompass.transform.rotation = Quaternion.Euler(0f, 0f, -angle);
+        }
+    }
 
     public void ShowMiniMap()
     {
@@ -127,6 +145,11 @@ public class UI_Canvas : MonoBehaviour {
             listConnections.Add(ui_Conn);
         }
 
+        // Add Compas
+        mapCompass = Instantiate(MapCompassImage).GetComponent<RawImage>();
+        mapCompass.transform.SetParent(MiniMap.transform, false);
+        mapCompass.enabled = false;
+
         UpdateMiniMap();
 
     }
@@ -179,6 +202,12 @@ public class UI_Canvas : MonoBehaviour {
             }
         }
 
+        // update Compass Position
+        mapCompass.transform.position = levelManager.getCurrentIsle().ui_Isle.transform.position;
+        if (mapCompass.enabled == false)
+        {
+            mapCompass.enabled = true;
+        }
     }
 
     public void UpdateLive(float live)
