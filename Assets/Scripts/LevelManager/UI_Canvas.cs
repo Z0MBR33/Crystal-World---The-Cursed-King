@@ -19,18 +19,18 @@ public class UI_Canvas : MonoBehaviour {
     private List<UI_Connection> listConnections;
     private RawImage mapCompass;
 
-    private GameObject player;
+    private GameObject camera;
 
     private void Awake()
     {
-        player = ObjectPool.getObjectPool().getObject(ObjectPool.categorie.essential, (int)ObjectPool.essential.player);
+        camera = ObjectPool.getObjectPool().getObject(ObjectPool.categorie.essential, (int)ObjectPool.essential.camera);
     }
 
     private void FixedUpdate()
     {
         if (mapCompass.enabled == true)
         {
-            float angle = player.transform.rotation.eulerAngles.y;
+            float angle = camera.transform.rotation.eulerAngles.y;
             mapCompass.transform.rotation = Quaternion.Euler(0f, 0f, -angle);
         }
     }

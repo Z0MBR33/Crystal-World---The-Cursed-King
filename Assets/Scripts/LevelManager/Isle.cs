@@ -16,17 +16,24 @@ public class Isle : MonoBehaviour
     public Portal PortalUpLeft;
 
     public List<EnemyPoint> EnemyPoints;
+    public List<GameObject> ListEnemies;
 
     [HideInInspector]
     public Portal[] Portals;
 
     private ObjectPool mr;
+    private GameObject playerObject;
+
+    private Coroutine levelCheckRoutine;
 
     public void Initialize(IsleAbstract isle)
     {
         isleAbstract = isle;
 
         mr = ObjectPool.getObjectPool();
+        playerObject = mr.getObject(ObjectPool.categorie.essential, (int)ObjectPool.essential.player);
+
+        ListEnemies = new List<GameObject>();
 
         Portals = new Portal[6];
         Portals[0] = PortalUp;
@@ -60,8 +67,87 @@ public class Isle : MonoBehaviour
                 realPortal.portalAbstract = isleAbstract.Portals[i];
                 Portals[i] = realPortal;
                 realPortal.transform.SetParent(gameObject.transform);
+                realPortal.spawnPoint.SetActive(false);
             }
         }
        
     }
+
+    public void StartIsle()
+    {
+        
+        for (int i = 0; i < EnemyPoints.Count; i++)
+        {
+            EnemyPoints[i].IslePosition = transform.position;
+
+            GameObject slime = mr.getObject(ObjectPool.categorie.enemy, (int)ObjectPool.enemy.slime);
+            slime.GetComponent<Enemy>().Initialize();
+            slime.transform.position = EnemyPoints[i].transform.position;
+            slime.GetComponent<GhostCopy>().IslePosition = transform.position;
+
+            GameObject slimeGhost = mr.getObject(ObjectPool.categorie.enemy, (int)ObjectPool.enemy.ghost);
+            slimeGhost.transform.position = NavMeshPosition + EnemyPoints[i].getPositionOnIsle();
+            slimeGhost.GetComponent<GhostMovement>().NavMashPosition = NavMeshPosition;
+            slimeGhost.GetComponent<GhostMovement>().setTarget(playerObject.GetComponent<NavMeshTarget>());
+            slimeGhost.GetComponent<GhostMovement>().setghostCopy(slime.GetComponent<GhostCopy>());
+            slimeGhost.GetComponent<NavMeshAgent>().enabled = true;
+            slime.GetComponent<GhostCopy>().ghost = slimeGhost.GetComponent<GhostMovement>();
+
+            EnemyPoints[i].gameObject.SetActive(false);
+
+            ListEnemies.Add(slime);
+
+
+        }
+
+        playerObject.GetComponent<NavMeshTarget>().IslePosition = transform.position;
+
+        levelCheckRoutine = StartCoroutine(LevelCheckHandler());
+    }
+
+    public IEnumerator LevelCheckHandler()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(1);
+
+            if (ListEnemies.Count <= 0)
+            {
+                // Level finished
+
+                UnlockPortals();
+
+                isleAbstract.setFinishState(true);
+
+                StopCoroutine(levelCheckRoutine);
+
+                yield return null;
+            }
+        }
+    }
+
+    public void LockPortals()
+    {
+        for (int i = 0; i < 6; i++)
+        {
+            if (isleAbstract.Portals[i] != null)
+            {
+                Portals[i].PortalActivated = false;
+                Portals[i].portalSpiral.gameObject.SetActive(false);
+            }
+        }
+    }
+
+    public void UnlockPortals()
+    {
+        for (int i = 0; i < 6; i++)
+        {
+            if (isleAbstract.Portals[i] != null)
+            {
+                Portals[i].PortalActivated = true;
+                Portals[i].portalSpiral.gameObject.SetActive(true);
+            }
+        }
+    }
+
 }

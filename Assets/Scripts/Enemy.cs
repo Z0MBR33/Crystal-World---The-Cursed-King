@@ -7,10 +7,12 @@ public class Enemy : MonoBehaviour
     private ObjectPool mr;
     private GhostCopy ghostCopy;
     private Coroutine currentPushHandler;
+    private Isle currentIsle;
 
     public void Initialize()
     {
         mr = ObjectPool.getObjectPool();
+        currentIsle = LevelManager.getLevelManager().getCurrentIsle().IsleObj;
 
         if (GetComponent<Stats>() != null)
         {
@@ -28,9 +30,10 @@ public class Enemy : MonoBehaviour
     {
         StopAllCoroutines();
 
-        GameMaster gm = GameMaster.getGameMaster();
-
-        gm.ListEnemies.Remove(gameObject);
+        if (currentIsle.ListEnemies.Remove(gameObject) == false)
+        {
+            print("Komischer Fehler!");
+        }
 
         mr.returnObject(gameObject);
 
