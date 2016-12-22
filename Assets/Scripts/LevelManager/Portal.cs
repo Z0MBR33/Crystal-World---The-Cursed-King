@@ -52,8 +52,6 @@ public class Portal : MonoBehaviour
 
         lvlManager.setCurrentIsle(targetIsle);
 
-        GameMaster gm = GameMaster.getGameMaster();
-
         if (targetIsle.getFinishState() == false)
         {
             targetIsle.IsleObj.StartIsle();
