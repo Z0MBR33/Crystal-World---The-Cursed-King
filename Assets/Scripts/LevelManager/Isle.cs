@@ -61,13 +61,14 @@ public class Isle : MonoBehaviour
                 Portal realPortal = mr.getObject(ObjectPool.categorie.structures, (int)ObjectPool.structures.portal).GetComponent<Portal>();
                 realPortal.transform.position = Portals[i].transform.position;
                 realPortal.transform.rotation = Portals[i].transform.rotation;
+                realPortal.spawnPoint.transform.position = Portals[i].spawnPoint.transform.position;
+                realPortal.spawnPoint.SetActive(false);
                 realPortal.portalSpiral.gameObject.SetActive(false);
                 realPortal.setDirection(i);
                 isleAbstract.Portals[i].portalObj = realPortal;
                 realPortal.portalAbstract = isleAbstract.Portals[i];
                 Portals[i] = realPortal;
                 realPortal.transform.SetParent(gameObject.transform);
-                realPortal.spawnPoint.SetActive(false);
             }
         }
        
