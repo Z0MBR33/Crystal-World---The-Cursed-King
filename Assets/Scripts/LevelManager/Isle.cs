@@ -15,7 +15,10 @@ public class Isle : MonoBehaviour
     public Portal PortalDownLeft;
     public Portal PortalUpLeft;
 
+    public List<ItemPoint> ItemPoints;
     public List<EnemyPoint> EnemyPoints;
+
+    [HideInInspector]
     public List<GameObject> ListEnemies;
 
     [HideInInspector]
@@ -44,7 +47,7 @@ public class Isle : MonoBehaviour
         Portals[5] = PortalUpLeft;
 
         // hide Enemy Spawns
-        for(int i = 0; i < EnemyPoints.Count; i++)
+        for (int i = 0; i < EnemyPoints.Count; i++)
         {
             EnemyPoints[i].GetComponent<Renderer>().enabled = false;
         }
@@ -76,7 +79,14 @@ public class Isle : MonoBehaviour
 
     public void StartIsle()
     {
-        
+        // clear list
+        for (int i = 0; i < ListEnemies.Count; i++)
+        {
+            mr.returnObject(ListEnemies[i]);
+        }
+        ListEnemies.Clear();
+
+        // create enemies
         for (int i = 0; i < EnemyPoints.Count; i++)
         {
             EnemyPoints[i].IslePosition = transform.position;

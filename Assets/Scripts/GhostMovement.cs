@@ -16,8 +16,8 @@ public class GhostMovement : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void FixedUpdate()
-    {   // TODO
+    void Update()
+    {   
         
         if (ghostCopy.MovedByGhost == true)
         {

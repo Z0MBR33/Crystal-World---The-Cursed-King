@@ -14,11 +14,12 @@ public class GhostCopy : MonoBehaviour {
         MovedByGhost = true;
     }
 
-    void FixedUpdate()
+    void Update()
     {     
         if (MovedByGhost)
         {
             transform.position = IslePosition + ghost.getPositionInNav();
+            transform.rotation = ghost.transform.rotation;
         }
     }
 
