@@ -13,12 +13,20 @@ public class Portal : MonoBehaviour
     private int Direction;
 
     private ObjectPool mr;
+    private LevelManager lvlManager;
+    private GameObject player;
 
+    private Coroutine checkTeleportFinied;
     private Coroutine portalTimeOutRoutine;
 
-    private void Awake()
+    private Portal targetPortal;
+    private IsleAbstract targetIsle;
+
+    private void Start()
     {
         mr = ObjectPool.getObjectPool();
+        lvlManager = LevelManager.getLevelManager();
+        player = mr.getObject(ObjectPool.categorie.essential, (int)ObjectPool.essential.player);
     }
 
     public void setDirection(int direction)
@@ -35,32 +43,61 @@ public class Portal : MonoBehaviour
     {
         // teleport player to isle;
 
-        GameObject player = mr.getObject(ObjectPool.categorie.essential, (int)ObjectPool.essential.player);
-
         CharacterController cr = player.GetComponent<CharacterController>();
         cr.velocity.Set(0, 0, 0);
 
-        LevelManager lvlManager = LevelManager.getLevelManager();
         IsleAbstract currentIsle = lvlManager.getCurrentIsle();
 
         int direction = getDirection();
 
-        IsleAbstract targetIsle = currentIsle.getIsleFromForection(direction);
-        Portal targetPortal = targetIsle.IsleObj.Portals[(direction + 3) % 6];
+        targetIsle = currentIsle.getIsleFromForection(direction);
+        targetPortal = targetIsle.IsleObj.Portals[(direction + 3) % 6];
 
-        player.transform.position = targetPortal.spawnPoint.transform.position + new Vector3(0, 1, 0);
+        Vector3 startPos = transform.position + new Vector3(0, 1, 0);
+        Vector3 targetPos = targetPortal.spawnPoint.transform.position + new Vector3(0, 1, 0);
 
-        lvlManager.setCurrentIsle(targetIsle);
+        cr.enabled = false;
 
-        if (targetIsle.getFinishState() == false)
+        player.GetComponent<Lerper>().StartLerp(startPos, targetPos, 50);
+
+        checkTeleportFinied = StartCoroutine(checkTeleportFiniedHandler());
+
+        //player.transform.position = targetPortal.spawnPoint.transform.position + new Vector3(0, 1, 0);
+
+    }
+
+    public IEnumerator checkTeleportFiniedHandler()
+    {
+        while (true)
         {
-            targetIsle.IsleObj.StartIsle();
+            yield return new WaitForSeconds(0.5f);
 
-        } else {
-            targetPortal.StartPortalTimeOut();
+            if (player.GetComponent<Lerper>().Lerping == false)
+            {
+                player.GetComponent<CharacterController>().enabled = true;
+
+                lvlManager.setCurrentIsle(targetIsle);
+
+                if (targetIsle.getFinishState() == false)
+                {
+                    targetIsle.IsleObj.StartIsle();
+
+                }
+                else
+                {
+                    targetPortal.StartPortalTimeOut();
+                }
+
+                mr.getObject(ObjectPool.categorie.essential, (int)ObjectPool.essential.UI).GetComponent<UI_Canvas>().UpdateMiniMap();
+
+                StopCoroutine(checkTeleportFinied);
+
+                print("Ende");
+
+                yield return null;
+            }
+
         }
-
-        mr.getObject(ObjectPool.categorie.essential, (int)ObjectPool.essential.UI).GetComponent<UI_Canvas>().UpdateMiniMap();
     }
 
     public void StartPortalTimeOut()

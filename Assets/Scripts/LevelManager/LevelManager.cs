@@ -30,7 +30,7 @@ public class LevelManager : MonoBehaviour
     private System.Random rnd;
 
     public static LevelManager getLevelManager()
-    {
+    {   
         return levelManager;
     }
 
