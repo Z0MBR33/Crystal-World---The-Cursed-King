@@ -28,12 +28,13 @@ public class Enemy : MonoBehaviour
 
     public void die()
     {
-        StopAllCoroutines();
-
+        currentIsle.EnemyCount--;
         if (currentIsle.ListEnemies.Remove(gameObject) == false)
         {
             print("Komischer Fehler!");
         }
+
+        StopAllCoroutines();
 
         mr.returnObject(gameObject);
 

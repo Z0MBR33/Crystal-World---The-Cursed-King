@@ -23,6 +23,7 @@ public class IsleAbstract
     public bool finished;
     public bool discovered;
     public IsleObjectType isleObjectType;
+    public int keyNumber;
       
     public IsleAbstract getIsleFromForection(int direction)
     {

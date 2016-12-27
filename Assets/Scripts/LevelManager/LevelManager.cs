@@ -58,7 +58,7 @@ public class LevelManager : MonoBehaviour
         {
             for (int i = 0; i < islesObjects.Count; i++)
             {
-                Destroy(islesObjects[i].gameObject);
+                mr.returnObject(islesObjects[i].gameObject);
             }
             islesObjects.Clear();
         }
@@ -67,7 +67,7 @@ public class LevelManager : MonoBehaviour
         {
             for (int i = 0; i < connectionObjects.Count; i++)
             {
-                Destroy(connectionObjects[i].gameObject);
+                mr.returnObject(connectionObjects[i].gameObject);
             }
             connectionObjects.Clear();
         }
@@ -552,6 +552,7 @@ public class LevelManager : MonoBehaviour
         {
             tmp = rnd.Next(0, tmpList.Count);
             tmpList[tmp].isleObjectType = IsleAbstract.IsleObjectType.key;
+            tmpList[tmp].keyNumber = i + 1;
             tmpList.RemoveAt(tmp);
         }
 

@@ -17,6 +17,8 @@ public class Isle : MonoBehaviour
 
     public List<ItemPoint> ItemPoints;
     public List<EnemyPoint> EnemyPoints;
+    [HideInInspector]
+    public int EnemyCount;
 
     [HideInInspector]
     public List<GameObject> ListEnemies;
@@ -29,12 +31,16 @@ public class Isle : MonoBehaviour
 
     private Coroutine levelCheckRoutine;
 
+    private System.Random rnd;
+
     public void Initialize(IsleAbstract isle)
     {
         isleAbstract = isle;
 
         mr = ObjectPool.getObjectPool();
         playerObject = mr.getObject(ObjectPool.categorie.essential, (int)ObjectPool.essential.player);
+
+        rnd = mr.random;
 
         ListEnemies = new List<GameObject>();
 
@@ -52,6 +58,13 @@ public class Isle : MonoBehaviour
             EnemyPoints[i].GetComponent<Renderer>().enabled = false;
         }
 
+        // hide Item Spawns
+        for (int i = 0; i < ItemPoints.Count; i++)
+        {
+            ItemPoints[i].GetComponent<Renderer>().enabled = false;
+        }
+
+        // Portal stuff
         for (int i = 0; i < 6; i++)
         {
             // hide Portal-Tempaltes
@@ -74,6 +87,52 @@ public class Isle : MonoBehaviour
                 realPortal.transform.SetParent(gameObject.transform);
             }
         }
+
+        // set items ---------------------
+
+        int keyPoint =-1;
+
+        if (isleAbstract.isleObjectType == IsleAbstract.IsleObjectType.key)
+        {
+            keyPoint = rnd.Next(0, ItemPoints.Count);
+        }
+
+        for (int i = 0; i < ItemPoints.Count; i++)
+        {
+            // check for key
+            if (i == keyPoint)
+            {
+                // place key
+                GameObject key = null;
+                switch (isleAbstract.keyNumber)
+                {
+                    case 1: key = mr.getObject(ObjectPool.categorie.items, (int)ObjectPool.items.key1);
+                        break;
+                    case 2: key = mr.getObject(ObjectPool.categorie.items, (int)ObjectPool.items.key2);
+                        break;
+                    case 3: key = mr.getObject(ObjectPool.categorie.items, (int)ObjectPool.items.key3);
+                        break;
+                    default: print("Error Key-Isle, but no valid key-Number. " + isleAbstract.keyNumber);
+                        break;
+                }
+
+                key.transform.position = ItemPoints[i].transform.position;
+            }
+            else
+            {
+                // normal box
+                GameObject box = null;
+                if (rnd.Next(0, 101) < 75)
+                {
+                    box = mr.getObject(ObjectPool.categorie.items, (int)ObjectPool.items.smallBox);
+                    print("s");
+                }else{
+                    box = mr.getObject(ObjectPool.categorie.items, (int)ObjectPool.items.bigBox);
+                    print("b");
+                }
+                box.transform.position = ItemPoints[i].transform.position;
+            }
+        }
        
     }
 
@@ -82,9 +141,11 @@ public class Isle : MonoBehaviour
         // clear list
         for (int i = 0; i < ListEnemies.Count; i++)
         {
+            mr.returnObject(ListEnemies[i].GetComponent<GhostCopy>().ghost.gameObject);
             mr.returnObject(ListEnemies[i]);
         }
         ListEnemies.Clear();
+        EnemyCount = 0;
 
         // create enemies
         for (int i = 0; i < EnemyPoints.Count; i++)
@@ -107,7 +168,7 @@ public class Isle : MonoBehaviour
             EnemyPoints[i].gameObject.SetActive(false);
 
             ListEnemies.Add(slime);
-
+            EnemyCount++;
 
         }
 
@@ -122,7 +183,7 @@ public class Isle : MonoBehaviour
         {
             yield return new WaitForSeconds(1);
 
-            if (ListEnemies.Count <= 0)
+            if (ListEnemies.Count <= 0 || EnemyCount <= 0)
             {
                 // Level finished
 

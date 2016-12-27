@@ -20,6 +20,9 @@ public class ObjectPool : MonoBehaviour
     public GameObject[] ilandsPrefabs;
     public GameObject[] structuresPrefabs;
     public GameObject[] explosionPrefabs;
+    public GameObject[] itemPrefabs;
+
+    public System.Random random = new System.Random();
 
     //Enums
     public enum categorie
@@ -29,7 +32,8 @@ public class ObjectPool : MonoBehaviour
         enemy,
         islands,
         structures,
-        explosion
+        explosion,
+        items
     }
 
     public enum essential
@@ -68,6 +72,15 @@ public class ObjectPool : MonoBehaviour
         enemy
     }
 
+    public enum items
+    {
+        key1,
+        key2,
+        key3,
+        smallBox,
+        bigBox
+    }
+
     //StartOperationen
     public static ObjectPool getObjectPool()
     {
@@ -97,6 +110,8 @@ public class ObjectPool : MonoBehaviour
         fillCategoriesStacks(pool[pool.Count - 1], structuresPrefabs, 20);
         pool.Add(createListOfEmptyStacks(System.Enum.GetNames(typeof(explosion)).Length));
         fillCategoriesStacks(pool[pool.Count - 1], explosionPrefabs, 20);
+        pool.Add(createListOfEmptyStacks(System.Enum.GetNames(typeof(items)).Length));
+        fillCategoriesStacks(pool[pool.Count - 1], itemPrefabs, 20);
     }
 
 
@@ -175,6 +190,7 @@ public class ObjectPool : MonoBehaviour
             case categorie.enemy: toReturn = Instantiate(enemyPrefabs[id]); break;
             case categorie.islands: toReturn = Instantiate(ilandsPrefabs[id]); break;
             case categorie.structures: toReturn = Instantiate(structuresPrefabs[id]); break;
+            case categorie.items: toReturn = Instantiate(itemPrefabs[id]); break;
             default: toReturn = null; break;
         }
         toReturn.SetActive(false);

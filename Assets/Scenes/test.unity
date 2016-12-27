@@ -302,6 +302,12 @@ MonoBehaviour:
   - {fileID: 1000010230680444, guid: 838763d376e8d02449eb0e8756c3df31, type: 2}
   - {fileID: 1000010230680444, guid: aff0c0444cebbdc49bfa3199a4b5f3b3, type: 2}
   - {fileID: 1000010384853792, guid: daf8039cbcb11eb4784edb8a6c5876f0, type: 2}
+  itemPrefabs:
+  - {fileID: 1000013681732068, guid: b44fcca7c2136d149b4ae6430af6c1d4, type: 2}
+  - {fileID: 1000010971501996, guid: dac01df769baf1e44a043abf9f12337f, type: 2}
+  - {fileID: 1000011913060384, guid: fc7d7e5ea2225884d9c80475fdd386aa, type: 2}
+  - {fileID: 1000010882024320, guid: a0456b64c0ca3464e830050417c1a4ad, type: 2}
+  - {fileID: 1000011326509916, guid: b41739f7d629e564bb60dd966fd1f00e, type: 2}
 --- !u!114 &1081858234
 MonoBehaviour:
   m_ObjectHideFlags: 0
