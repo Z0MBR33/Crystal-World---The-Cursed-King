@@ -26,7 +26,7 @@ public class Controll : MonoBehaviour
     void Start()
     {
         mr = ObjectPool.getObjectPool();
-        playerObj = mr.getObject(ObjectPool.categorie.essential, (int) ObjectPool.essential.player);
+        playerObj = mr.getObject(ObjectPool.categorie.essential, (int)ObjectPool.essential.player);
         camObj = mr.getObject(ObjectPool.categorie.essential, (int)ObjectPool.essential.camera);
 
         camObj.transform.position = playerObj.transform.position + new Vector3(desiredHorizontalDistance, desiredVerticalDistance, desiredHorizontalDistance);
@@ -34,12 +34,7 @@ public class Controll : MonoBehaviour
 
     void Update()
     {
-        if (canShoot)
-        {
-            canShoot = false;
             playerShoot();
-            CoolDownShooting = StartCoroutine(shootCoolDown());
-        }
     }
     void FixedUpdate()
     {
@@ -69,15 +64,20 @@ public class Controll : MonoBehaviour
 
     void playerShoot()
     {
-            Vector3 inputVector = new Vector3(0, 0, 0);
-            inputVector += Vector3.Scale(camObj.transform.right, new Vector3(1, 0, 1)) * Input.GetAxisRaw("fire_x");
-            inputVector += Vector3.Scale(camObj.transform.forward, new Vector3(1, 0, 1)) * Input.GetAxisRaw("fire_z");
-            if (inputVector.normalized.sqrMagnitude > 0.2)
+        Vector3 inputVector = new Vector3(0, 0, 0);
+        inputVector += Vector3.Scale(camObj.transform.right, new Vector3(1, 0, 1)) * Input.GetAxisRaw("fire_x");
+        inputVector += Vector3.Scale(camObj.transform.forward, new Vector3(1, 0, 1)) * Input.GetAxisRaw("fire_z");
+        if (inputVector.normalized.sqrMagnitude > 0.2)
+        {
+            if (canShoot)
             {
+                canShoot = false;
                 Shot shot = mr.getObject(ObjectPool.categorie.shot, (int)ObjectPool.shot.round).GetComponent<Shot>();
                 shot.gameObject.SetActive(true);
                 shot.reset(playerObj, inputVector, transform.rotation);
+                CoolDownShooting = StartCoroutine(shootCoolDown());
             }
+        }
     }
 
     IEnumerator shootCoolDown()
