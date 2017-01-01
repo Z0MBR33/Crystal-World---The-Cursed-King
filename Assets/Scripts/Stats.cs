@@ -34,16 +34,19 @@ public class Stats : MonoBehaviour
 
     public void gotHit(float damage)
     {
-        health -= damage;
-        if (health <= 0)
+        if (health > 0)
         {
-            if (gameObject.tag == "Enemy")
+            health -= damage;
+            if (health <= 0)
             {
-                gameObject.GetComponent<Enemy>().die();
-            }
-            if (gameObject.tag == "Player")
-            {
-                SceneManager.LoadScene("Scenes/Main_Menue");
+                if (gameObject.tag == "Enemy")
+                {
+                    gameObject.GetComponent<Enemy>().die();
+                }
+                if (gameObject.tag == "Player")
+                {
+                    SceneManager.LoadScene("Scenes/Main_Menue");
+                }
             }
         }
     }
