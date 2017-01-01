@@ -190,6 +190,7 @@ public class ObjectPool : MonoBehaviour
             case categorie.enemy: toReturn = Instantiate(enemyPrefabs[id]); break;
             case categorie.islands: toReturn = Instantiate(ilandsPrefabs[id]); break;
             case categorie.structures: toReturn = Instantiate(structuresPrefabs[id]); break;
+            case categorie.explosion: toReturn = Instantiate(explosionPrefabs[id]); break;
             case categorie.items: toReturn = Instantiate(itemPrefabs[id]); break;
             default: toReturn = null; break;
         }

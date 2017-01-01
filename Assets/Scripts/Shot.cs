@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 
 public class Shot : MonoBehaviour
@@ -10,56 +11,83 @@ public class Shot : MonoBehaviour
 
     //Needs a reset every time it comes back from the ObjectPool
     private GameObject shootedFrom;
-    private Classes.ShotMode ModeOfShot;
-    private Vector3 Direction;
-    private float Speed;
+    public GameObject _shootedFrom
+    {
+        get { return shootedFrom; }
+        private set { }
+    }
+
+    private List<ShotEffect> effectsToExecute;
+
+    private Vector3 startDirection;
+    public Vector3 _startDirection
+    {
+        get { return startDirection; }
+        private set { }
+    }
+
+    private float timeOutInSec = 3;
     private Coroutine timer;
 
     public void Awake()
     {
         mr = ObjectPool.getObjectPool();
         rb = GetComponent<Rigidbody>();
+        effectsToExecute = new List<ShotEffect>();
+        effectsToExecute.Add(new basic());
     }
 
     public void reset(GameObject shootedFrom, Vector3 horizontalDirection, Quaternion rotation)
     {
-        this.shootedFrom = shootedFrom;
-        transform.position = shootedFrom.transform.position + shootedFrom.GetComponent<Stats>().shootOffset;
-        Direction = horizontalDirection.normalized;
-        transform.rotation = rotation;
-        //implement vertical Direction!
-        this.tag = shootedFrom.tag;
-        ModeOfShot = shootedFrom.GetComponent<Stats>()._randomShotType;
-        Speed = shootedFrom.GetComponent<Stats>().shotSpeed;
-        timer = StartCoroutine(timerHandler());
-        this.GetComponent<AudioSource>().Play();
+        reset(shootedFrom, horizontalDirection, rotation, shootedFrom.GetComponent<Stats>().possibleShotEffects);
     }
 
+    public void reset(GameObject shootedFrom, Vector3 horizontalDirection, Quaternion rotation, List<ShotEffect> Effects)
+    {
+        this.shootedFrom = shootedFrom;
+        this.tag = shootedFrom.tag;
+        rb.velocity = new Vector3(0, 0, 0);
+
+        transform.position = shootedFrom.transform.position + shootedFrom.GetComponent<Stats>().shootOffset;
+        startDirection = shootedFrom.GetComponent<CharacterController>().velocity;
+        startDirection = (horizontalDirection.normalized + new Vector3(0,0.5f,0)) * shootedFrom.GetComponent<Stats>().shotSpeed * shootedFrom.GetComponent<Stats>().speed;
+
+        transform.rotation = rotation;
+        timer = StartCoroutine(timerHandler());
+        this.GetComponent<AudioSource>().Play();
+
+        for (int i = 0; i < effectsToExecute.Count; i++)
+        {
+            effectsToExecute[i].triggerStart(gameObject);
+        }
+    }
 
     void FixedUpdate()
     {
-        if (ModeOfShot == Classes.ShotMode.Rocket)
+        for(int i = 0; i < effectsToExecute.Count; i++)
         {
-            rb.velocity = Direction * Speed;
+            effectsToExecute[i].triggerFixUpate(gameObject);
         }
     }
 
     void OnCollisionEnter(Collision collision)
     {
+        if (collision.collider.tag == "Floor")
+        {
+            for (int i = 0; i < effectsToExecute.Count; i++)
+            {
+                effectsToExecute[i].triggerHitStructure(gameObject);
+            }
+        }
+        if (collision.collider.tag == "Enemy")
+        {
+            for (int i = 0; i < effectsToExecute.Count; i++)
+            {
+                effectsToExecute[i].triggerHitEnemy( gameObject, collision.collider.gameObject);
+            }
+        }
         if (collision.collider.tag == "Floor" || collision.collider.tag == "Enemy")
         {
-            ExplosionScript expl = mr.getObject(ObjectPool.categorie.explosion, (int)ObjectPool.explosion.shot).GetComponent<ExplosionScript>();
-            expl.gameObject.SetActive(true);
-            expl.Initialize(ExplosionScript.ExplosionType.PlayerShot, transform.position, new Quaternion());
-
-            // check for enemy hit
-            if (collision.collider.tag == "Enemy")
-            {
-                collision.collider.GetComponent<Enemy>().getPushed(rb.velocity, 5);
-                Stats targetStats = collision.collider.GetComponent<Stats>();
-                targetStats.gotHit(shootedFrom.GetComponent<Stats>().shotStrength);
-            }
-
             StopCoroutine(timer);
             mr.returnObject(gameObject);
         }
@@ -67,7 +95,7 @@ public class Shot : MonoBehaviour
 
     private IEnumerator timerHandler()
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(timeOutInSec);
         StopCoroutine(timer);
         mr.returnObject(gameObject);
     }

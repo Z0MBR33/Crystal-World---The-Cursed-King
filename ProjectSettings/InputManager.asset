@@ -222,8 +222,8 @@ InputManager:
     altNegativeButton: 
     altPositiveButton: 
     gravity: 100
-    dead: 0
-    sensitivity: 10
+    dead: 0.2
+    sensitivity: 1
     snap: 1
     invert: 0
     type: 2
@@ -254,8 +254,8 @@ InputManager:
     altNegativeButton: 
     altPositiveButton: 
     gravity: 100
-    dead: 0
-    sensitivity: 10
+    dead: 0.2
+    sensitivity: 1
     snap: 1
     invert: 1
     type: 2
