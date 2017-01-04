@@ -46,7 +46,8 @@ public class GameMaster : MonoBehaviour {
         // show UI (inclusive Mini-Map)
         UI_Canvas ui = mr.getObject(ObjectPool.categorie.essential,(int)ObjectPool.essential.UI).GetComponent<UI_Canvas>();
         ui.ShowMiniMap();
-        ui.UpdateLive(playerObject.GetComponent<Stats>().health);
+        Stats stats = playerObject.GetComponent<Stats>();
+        ui.UpdateLive(stats.health, stats.maxHealth);
     }
 
 }

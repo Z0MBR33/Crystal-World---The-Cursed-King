@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class UI_Canvas : MonoBehaviour {
 
     public GameObject MiniMap;
-    public Text LiveField;
+    public GameObject DamageBar;
     public UI_Isle IsleImage;
     public UI_Connection ConnectionImage;
     public GameObject MapCompassImage;
@@ -28,7 +28,7 @@ public class UI_Canvas : MonoBehaviour {
 
     private void FixedUpdate()
     {
-        if (mapCompass.enabled == true)
+        if (mapCompass != null)
         {
             float angle = cameraObject.transform.rotation.eulerAngles.y;
             mapCompass.transform.rotation = Quaternion.Euler(0f, 0f, -angle);
@@ -210,8 +210,10 @@ public class UI_Canvas : MonoBehaviour {
         }
     }
 
-    public void UpdateLive(float live)
+    public void UpdateLive(float live, float maxLive)
     {
-        LiveField.text = live.ToString(); 
+        float barHeight = 250 - ((live / maxLive) * 250);
+
+        DamageBar.GetComponent<RectTransform>().sizeDelta =  new Vector2(250, barHeight); 
     }
 }

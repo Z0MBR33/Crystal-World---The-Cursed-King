@@ -517,7 +517,7 @@ MonoBehaviour:
   shotSpeed: 10
   shotStrength: 5
   fireRate: 0.1
-  possibleShotMode: 
+  possibleShotEffects: []
 --- !u!23 &2036720005
 MeshRenderer:
   m_ObjectHideFlags: 0
