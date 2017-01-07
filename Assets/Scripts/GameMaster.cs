@@ -35,13 +35,13 @@ public class GameMaster : MonoBehaviour {
 
 
         //Set Player on Start Isle
-        Isle startIsle = levelManager.getStartIsle().IsleObj;
+        Isle startIsle = levelManager.startIsle.IsleObj;
         //Isle startIsle = levelManager.getWorld()[0, 0].IsleObj;
-        levelManager.setCurrentIsle(startIsle.isleAbstract);
+        levelManager.currentIsle = startIsle.isleAbstract;
         playerObject.transform.position = new Vector3(startIsle.transform.position.x, startIsle.transform.position.y + 2, startIsle.transform.position.z);
         playerObject.GetComponent<NavMeshTarget>().IslePosition = startIsle.transform.position;
 
-        levelManager.getCurrentIsle().IsleObj.StartIsle();
+        levelManager.currentIsle.IsleObj.StartIsle();
 
         // show UI (inclusive Mini-Map)
         UI_Canvas ui = mr.getObject(ObjectPool.categorie.essential,(int)ObjectPool.essential.UI).GetComponent<UI_Canvas>();

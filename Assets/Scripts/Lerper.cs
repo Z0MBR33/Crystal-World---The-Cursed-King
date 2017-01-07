@@ -3,6 +3,7 @@ using System.Collections;
 
 public class Lerper : MonoBehaviour {
 
+    [HideInInspector]
     public bool Lerping = false;
 
     private Vector3 StartPos;

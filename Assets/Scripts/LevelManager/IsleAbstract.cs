@@ -19,8 +19,11 @@ public class IsleAbstract
 
     public PortalAbstract[] Portals= new PortalAbstract[6];
 
+    [HideInInspector]
     public UI_Isle ui_Isle;
+    [HideInInspector]
     public bool finished;
+    [HideInInspector]
     public bool discovered;
     public IsleObjectType isleObjectType;
     public int keyNumber;
@@ -75,27 +78,4 @@ public class IsleAbstract
 
         return count;
     }
-
-
-    // Delete useless methods!
-    public UI_Isle getUIIsle()
-    {
-        return ui_Isle;
-    }
-
-    public void setUIIsle(UI_Isle isle)
-    {
-        ui_Isle = isle;
-    }
-
-    public bool getFinishState()
-    {
-        return finished;
-    }
-
-    public void setFinishState(bool state)
-    {
-        finished = state;
-    }
-
 }

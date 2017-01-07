@@ -4,8 +4,10 @@ using System.Collections;
 public class GhostMovement : MonoBehaviour {
 
     public Vector3 NavMashPosition;
-    private GhostCopy ghostCopy;
-    private NavMeshTarget target;
+    [HideInInspector]
+    public GhostCopy ghostCopy;
+    [HideInInspector]
+    public NavMeshTarget target;
     
     private NavMeshAgent agent;
 
@@ -27,15 +29,6 @@ public class GhostMovement : MonoBehaviour {
         {
             transform.position = NavMashPosition + ghostCopy.getPositionOnIsle();
         }
-    }
-
-    public void setTarget(NavMeshTarget target) {
-        this.target = target;
-    }
-
-    public void setghostCopy(GhostCopy copy)
-    {
-        ghostCopy = copy;
     }
 
     public Vector3 getPositionInNav()

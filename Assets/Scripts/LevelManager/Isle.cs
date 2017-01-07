@@ -80,7 +80,7 @@ public class Isle : MonoBehaviour
                 realPortal.spawnPoint.transform.position = Portals[i].spawnPoint.transform.position;
                 realPortal.spawnPoint.SetActive(false);
                 realPortal.portalSpiral.gameObject.SetActive(false);
-                realPortal.setDirection(i);
+                realPortal.Direction = i;
                 isleAbstract.Portals[i].portalObj = realPortal;
                 realPortal.portalAbstract = isleAbstract.Portals[i];
                 Portals[i] = realPortal;
@@ -116,19 +116,18 @@ public class Isle : MonoBehaviour
                         break;
                 }
 
+                key.GetComponent<Item>().reset();
                 key.transform.position = ItemPoints[i].transform.position;
             }
             else
             {
-                // normal box
+                // place boxes
                 GameObject box = null;
                 if (rnd.Next(0, 101) < 75)
                 {
                     box = mr.getObject(ObjectPool.categorie.items, (int)ObjectPool.items.smallBox);
-                    print("s");
                 }else{
                     box = mr.getObject(ObjectPool.categorie.items, (int)ObjectPool.items.bigBox);
-                    print("b");
                 }
                 box.transform.position = ItemPoints[i].transform.position;
             }
@@ -158,10 +157,11 @@ public class Isle : MonoBehaviour
             slime.GetComponent<GhostCopy>().IslePosition = transform.position;
 
             GameObject slimeGhost = mr.getObject(ObjectPool.categorie.enemy, (int)ObjectPool.enemy.ghost);
+            slimeGhost.GetComponent<NavMeshAgent>().enabled = false;
             slimeGhost.transform.position = NavMeshPosition + EnemyPoints[i].getPositionOnIsle();
             slimeGhost.GetComponent<GhostMovement>().NavMashPosition = NavMeshPosition;
-            slimeGhost.GetComponent<GhostMovement>().setTarget(playerObject.GetComponent<NavMeshTarget>());
-            slimeGhost.GetComponent<GhostMovement>().setghostCopy(slime.GetComponent<GhostCopy>());
+            slimeGhost.GetComponent<GhostMovement>().target = playerObject.GetComponent<NavMeshTarget>();
+            slimeGhost.GetComponent<GhostMovement>().ghostCopy = slime.GetComponent<GhostCopy>();
             slimeGhost.GetComponent<NavMeshAgent>().enabled = true;
             slime.GetComponent<GhostCopy>().ghost = slimeGhost.GetComponent<GhostMovement>();
 
@@ -189,7 +189,7 @@ public class Isle : MonoBehaviour
 
                 UnlockPortals();
 
-                isleAbstract.setFinishState(true);
+                isleAbstract.finished = true;
 
                 StopCoroutine(levelCheckRoutine);
 

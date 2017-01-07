@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public abstract class ShotEffect : MonoBehaviour
+public abstract class ShotEffect
 {
     public abstract void triggerStart(GameObject shot);
     public abstract void triggerUpdate(GameObject shot);

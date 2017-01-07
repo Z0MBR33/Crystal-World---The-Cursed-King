@@ -14,22 +14,12 @@ public class UI_Isle : MonoBehaviour {
 
     private UI_Isle Icon;
 
-    private IsleAbstract isleAbstract;
+    [HideInInspector]
+    public IsleAbstract isleAbstract;
 
-    public IsleAbstract getIsleAbstract()
-    {
-        return isleAbstract;
-    }
-
-    public void setIsle(IsleAbstract isle)
-    {
-        isleAbstract = isle;
-    }
-
-    
     public void setIcon(Texture icon)
     {
-        if (Icon != null) Destroy(Icon.gameObject);
+        deleteIcon();
 
         GameObject obj = Instantiate(gameObject);
         obj.transform.SetParent(gameObject.transform);
@@ -40,7 +30,7 @@ public class UI_Isle : MonoBehaviour {
 
     public void deleteIcon()
     {
-        Destroy(Icon.gameObject);
+        if (Icon != null) Destroy(Icon.gameObject);
         Icon = null;
     }
 

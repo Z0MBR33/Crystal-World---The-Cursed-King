@@ -50,7 +50,8 @@ public class Shot : MonoBehaviour
 
         transform.position = shootedFrom.transform.position + shootedFrom.GetComponent<Stats>().shootOffset;
         startDirection = shootedFrom.GetComponent<CharacterController>().velocity;
-        startDirection = (horizontalDirection.normalized + new Vector3(0,0.5f,0)) * shootedFrom.GetComponent<Stats>().shotSpeed * shootedFrom.GetComponent<Stats>().speed;
+        //startDirection = (horizontalDirection.normalized + new Vector3(0,0.5f,0)) * shootedFrom.GetComponent<Stats>().shotSpeed * shootedFrom.GetComponent<Stats>().speed;   // TODO
+        startDirection = (horizontalDirection.normalized + new Vector3(0, 0.2f, 0)) * shootedFrom.GetComponent<Stats>().shotSpeed;
 
         transform.rotation = rotation;
         timer = StartCoroutine(timerHandler());

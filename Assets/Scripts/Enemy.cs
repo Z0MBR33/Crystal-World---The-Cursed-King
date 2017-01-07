@@ -12,7 +12,7 @@ public class Enemy : MonoBehaviour
     public void Initialize()
     {
         mr = ObjectPool.getObjectPool();
-        currentIsle = LevelManager.getLevelManager().getCurrentIsle().IsleObj;
+        currentIsle = LevelManager.getLevelManager().currentIsle.IsleObj;
 
         if (GetComponent<Stats>() != null)
         {

@@ -61,7 +61,7 @@ public class UI_Canvas : MonoBehaviour {
         listConnections = new List<UI_Connection>();
 
         levelManager = LevelManager.getLevelManager();
-        IsleAbstract[,] world = levelManager.getWorld();
+        IsleAbstract[,] world = levelManager.world;
 
         int mapWidth = world.GetLength(0) * Fieldwidth;
         int mapHeight = world.GetLength(1) * Fieldwidth;
@@ -89,8 +89,8 @@ public class UI_Canvas : MonoBehaviour {
                 UI_Isle ui_Isle = Instantiate(IsleImage);
                 ui_Isle.GetComponent<RawImage>().texture = ui_Isle.Normal;
 
-                isle.setUIIsle(ui_Isle);
-                ui_Isle.setIsle(isle);
+                isle.ui_Isle = ui_Isle;
+                ui_Isle.isleAbstract = isle;
 
                 ui_Isle.transform.SetParent(MiniMap.transform, false);
                 ui_Isle.transform.position = ui_Isle.transform.position + pos;
@@ -102,7 +102,7 @@ public class UI_Canvas : MonoBehaviour {
 
         // draw connections
 
-        List<ConnectionAbstract> connections = levelManager.getConnections();
+        List<ConnectionAbstract> connections = levelManager.connections;
         for (int i = 0; i < connections.Count; i++)
         {
             float x1 = connections[i].Portal1.isleAbstract.Index.x;
@@ -159,7 +159,7 @@ public class UI_Canvas : MonoBehaviour {
 
         List<IsleAbstract> list = levelManager.getAllNeighbours();
 
-        list.Add(levelManager.getCurrentIsle());
+        list.Add(levelManager.currentIsle);
 
         UI_Isle isle;
 
@@ -168,18 +168,18 @@ public class UI_Canvas : MonoBehaviour {
             isle = list[i].ui_Isle;
 
             // Todo: Set active in GameMaster or Player (or somewhere else)
-            isle.getIsleAbstract().discovered = true;
+            isle.isleAbstract.discovered = true;
 
             // draw background of isle
-            if (isle.getIsleAbstract() == levelManager.getCurrentIsle())
+            if (isle.isleAbstract == levelManager.currentIsle)
             {
                 isle.GetComponent<RawImage>().texture = isle.Current;
             }
-            else if (isle.getIsleAbstract().getFinishState() == true)
+            else if (isle.isleAbstract.finished == true)
             {
                 isle.GetComponent<RawImage>().texture = isle.Finished;
             }   
-            else if (isle.getIsleAbstract().discovered == true)
+            else if (isle.isleAbstract.discovered == true)
             {
                 isle.GetComponent<RawImage>().texture = isle.Discovered;
             }
@@ -189,21 +189,25 @@ public class UI_Canvas : MonoBehaviour {
             }
 
             // draw icon
-            if (isle.getIsleAbstract().discovered == true)
+            if (isle.isleAbstract.discovered == true)
             {
-                if (isle.getIsleAbstract().isleObjectType == IsleAbstract.IsleObjectType.boss)
+                if (isle.isleAbstract.isleObjectType == IsleAbstract.IsleObjectType.boss)
                 {
                     isle.setIcon(isle.IconBoss);
                 }
-                else if (isle.getIsleAbstract().isleObjectType == IsleAbstract.IsleObjectType.key)
+                else if (isle.isleAbstract.isleObjectType == IsleAbstract.IsleObjectType.key)
                 {
                     isle.setIcon(isle.IconKey);
+                }
+                else
+                {
+                    isle.deleteIcon();
                 }
             }
         }
 
         // update Compass Position
-        mapCompass.transform.position = levelManager.getCurrentIsle().ui_Isle.transform.position;
+        mapCompass.transform.position = levelManager.currentIsle.ui_Isle.transform.position;
         if (mapCompass.enabled == false)
         {
             mapCompass.enabled = true;

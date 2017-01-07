@@ -58,6 +58,17 @@ public class Player : MonoBehaviour
             }
 
         }
+
+        if (hit.gameObject.tag == "Item")
+        {
+            Item item = hit.gameObject.GetComponent<Item>();
+
+            if (item.collected == false)
+            {
+                item.Collect(gameObject);
+            }
+
+        }
     }
 
     public void becomeImmortal(float time)

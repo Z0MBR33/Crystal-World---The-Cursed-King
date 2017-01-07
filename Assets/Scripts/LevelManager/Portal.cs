@@ -10,13 +10,14 @@ public class Portal : MonoBehaviour
 
     public PortalAbstract portalAbstract;
 
-    private int Direction;
+    [HideInInspector]
+    public int Direction;
 
     private ObjectPool mr;
     private LevelManager lvlManager;
     private GameObject player;
 
-    private Coroutine checkTeleportFinied;
+    private Coroutine checkTeleportFinished;
     private Coroutine portalTimeOutRoutine;
 
     private Portal targetPortal;
@@ -29,16 +30,6 @@ public class Portal : MonoBehaviour
         player = mr.getObject(ObjectPool.categorie.essential, (int)ObjectPool.essential.player);
     }
 
-    public void setDirection(int direction)
-    {
-        this.Direction = direction;
-    }
-
-    public int getDirection()
-    {
-        return this.Direction;
-    }
-
     public void Teleport()
     {
         // teleport player to isle;
@@ -46,9 +37,9 @@ public class Portal : MonoBehaviour
         CharacterController cr = player.GetComponent<CharacterController>();
         cr.velocity.Set(0, 0, 0);
 
-        IsleAbstract currentIsle = lvlManager.getCurrentIsle();
+        IsleAbstract currentIsle = lvlManager.currentIsle;
 
-        int direction = getDirection();
+        int direction = Direction;
 
         targetIsle = currentIsle.getIsleFromForection(direction);
         targetPortal = targetIsle.IsleObj.Portals[(direction + 3) % 6];
@@ -60,7 +51,7 @@ public class Portal : MonoBehaviour
 
         player.GetComponent<Lerper>().StartLerp(startPos, targetPos, 50);
 
-        checkTeleportFinied = StartCoroutine(checkTeleportFiniedHandler());
+        checkTeleportFinished = StartCoroutine(checkTeleportFiniedHandler());
 
         //player.transform.position = targetPortal.spawnPoint.transform.position + new Vector3(0, 1, 0);
 
@@ -76,9 +67,9 @@ public class Portal : MonoBehaviour
             {
                 player.GetComponent<CharacterController>().enabled = true;
 
-                lvlManager.setCurrentIsle(targetIsle);
+                lvlManager.currentIsle = targetIsle;
 
-                if (targetIsle.getFinishState() == false)
+                if (targetIsle.finished == false)
                 {
                     targetIsle.IsleObj.StartIsle();
 
@@ -90,9 +81,7 @@ public class Portal : MonoBehaviour
 
                 mr.getObject(ObjectPool.categorie.essential, (int)ObjectPool.essential.UI).GetComponent<UI_Canvas>().UpdateMiniMap();
 
-                StopCoroutine(checkTeleportFinied);
-
-                print("Ende");
+                StopCoroutine(checkTeleportFinished);
 
                 yield return null;
             }

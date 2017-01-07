@@ -8,9 +8,11 @@ public class LevelManager : MonoBehaviour
     public static LevelManager levelManager;
     private ObjectPool mr;
 
-    private IsleAbstract[,] world;
+    [HideInInspector]
+    public IsleAbstract[,] world;
     private List<IsleAbstract> isles;
-    private List<ConnectionAbstract> connections;
+    [HideInInspector]
+    public List<ConnectionAbstract> connections;
 
     public int WorldWidth;
     public int WorldHeight;
@@ -24,8 +26,12 @@ public class LevelManager : MonoBehaviour
     private List<Isle> islesObjects;
     private List<Connection> connectionObjects;
 
-    private IsleAbstract currentIsle;
-    private IsleAbstract startIsle;
+    [HideInInspector]
+    public IsleAbstract currentIsle;
+    [HideInInspector]
+    public IsleAbstract startIsle;
+    [HideInInspector]
+    public IsleAbstract bossIsle;
 
     private System.Random rnd;
 
@@ -159,8 +165,14 @@ public class LevelManager : MonoBehaviour
                 //int isleHeight = 0;
 
                 Vector3 pos = new Vector3(isle.Index.x * Fieldwidth, isleHeight, (isle.Index.y * Fieldwidth) + offset);
-                //Isle isleObj = Instantiate(IslePrefab, pos, new Quaternion()) as Isle;   // TODO REMOVE LINE!
-                Isle isleObj = mr.getObject(ObjectPool.categorie.islands, (int)ObjectPool.islands.normal).GetComponent<Isle>();
+                Isle isleObj;   // TODO spawne passende Insel
+                if (isle.isleObjectType != IsleAbstract.IsleObjectType.boss)
+                {
+                    isleObj = mr.getObject(ObjectPool.categorie.islands, (int)ObjectPool.islands.normal).GetComponent<Isle>();
+                } else
+                {
+                    isleObj = mr.getObject(ObjectPool.categorie.islands, (int)ObjectPool.islands.boss_portal).GetComponent<Isle>();
+                }
                 isleObj.transform.position = pos;
                 isleObj.Initialize(isle);
                 isle.IsleObj = isleObj;
@@ -559,6 +571,7 @@ public class LevelManager : MonoBehaviour
         // boss
         tmp = rnd.Next(0, tmpList.Count);
         tmpList[tmp].isleObjectType = IsleAbstract.IsleObjectType.boss;
+        bossIsle = tmpList[tmp];
         tmpList.RemoveAt(tmp);
 
     }
@@ -589,33 +602,4 @@ public class LevelManager : MonoBehaviour
         return isle;
     }
 
-    public void setCurrentIsle(IsleAbstract isle)
-    {
-        currentIsle = isle;
-    }
-
-    public IsleAbstract getCurrentIsle()
-    {
-        return currentIsle;
-    }
-
-    public void setStartIsle(IsleAbstract isle)
-    {
-        startIsle = isle;
-    }
-
-    public IsleAbstract getStartIsle()
-    {
-        return startIsle;
-    }
-
-    public IsleAbstract[,] getWorld()
-    {
-        return world;
-    }
-
-    public List<ConnectionAbstract> getConnections()
-    {
-        return connections;
-    }
 }
