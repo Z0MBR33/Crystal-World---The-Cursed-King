@@ -23,6 +23,9 @@ public class LevelManager : MonoBehaviour
 
     public float AddConnPerIsle;
 
+    [Range(0, 100)]
+    public int ChancesBigBoxes;
+
     private List<Isle> islesObjects;
     private List<Connection> connectionObjects;
 
@@ -201,6 +204,11 @@ public class LevelManager : MonoBehaviour
 
             connectionObjects.Add(connectionObj);
         }
+
+        // add death Place
+
+        GameObject deathPlane = mr.getObject(ObjectPool.categorie.planes, (int)ObjectPool.planes.deathPlane);
+        deathPlane.transform.position = new Vector3(0, -100, 0);
     }
 
     private void buildMinimalTree()

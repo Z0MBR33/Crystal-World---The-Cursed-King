@@ -17,8 +17,8 @@ public class Isle : MonoBehaviour
 
     public List<ItemPoint> ItemPoints;
     public List<EnemyPoint> EnemyPoints;
-    [HideInInspector]
-    public int EnemyCount;
+
+    private List<Item> listBoxes; 
 
     [HideInInspector]
     public List<GameObject> ListEnemies;
@@ -27,6 +27,7 @@ public class Isle : MonoBehaviour
     public Portal[] Portals;
 
     private ObjectPool mr;
+    private LevelManager lvlManager;
     private GameObject playerObject;
 
     private Coroutine levelCheckRoutine;
@@ -38,11 +39,13 @@ public class Isle : MonoBehaviour
         isleAbstract = isle;
 
         mr = ObjectPool.getObjectPool();
+        lvlManager = LevelManager.getLevelManager();
         playerObject = mr.getObject(ObjectPool.categorie.essential, (int)ObjectPool.essential.player);
 
         rnd = mr.random;
 
         ListEnemies = new List<GameObject>();
+        listBoxes = new List<Item>();
 
         Portals = new Portal[6];
         Portals[0] = PortalUp;
@@ -116,20 +119,21 @@ public class Isle : MonoBehaviour
                         break;
                 }
 
-                key.GetComponent<Item>().reset();
+                key.GetComponent<Item>().initialize();
                 key.transform.position = ItemPoints[i].transform.position;
             }
             else
             {
                 // place boxes
                 GameObject box = null;
-                if (rnd.Next(0, 101) < 75)
+                if (rnd.Next(0, 101) > lvlManager.ChancesBigBoxes)
                 {
                     box = mr.getObject(ObjectPool.categorie.items, (int)ObjectPool.items.smallBox);
                 }else{
                     box = mr.getObject(ObjectPool.categorie.items, (int)ObjectPool.items.bigBox);
                 }
                 box.transform.position = ItemPoints[i].transform.position;
+                listBoxes.Add(box.GetComponent<Item>());
             }
         }
        
@@ -144,7 +148,6 @@ public class Isle : MonoBehaviour
             mr.returnObject(ListEnemies[i]);
         }
         ListEnemies.Clear();
-        EnemyCount = 0;
 
         // create enemies
         for (int i = 0; i < EnemyPoints.Count; i++)
@@ -168,7 +171,6 @@ public class Isle : MonoBehaviour
             EnemyPoints[i].gameObject.SetActive(false);
 
             ListEnemies.Add(slime);
-            EnemyCount++;
 
         }
 
@@ -183,11 +185,13 @@ public class Isle : MonoBehaviour
         {
             yield return new WaitForSeconds(1);
 
-            if (ListEnemies.Count <= 0 || EnemyCount <= 0)
+            if (ListEnemies.Count <= 0)
             {
                 // Level finished
 
                 UnlockPortals();
+
+                UnlockSmallBoxes();
 
                 isleAbstract.finished = true;
 
@@ -222,4 +226,16 @@ public class Isle : MonoBehaviour
         }
     }
 
+    public void UnlockSmallBoxes()
+    {
+        for(int i = 0; i < listBoxes.Count; i++)
+        {
+            if (listBoxes[i].Type == Item.ItemType.SmallBox)
+            {
+                listBoxes[i].opened = true;
+                Color col = listBoxes[i].gameObject.GetComponent<Renderer>().material.color;
+                listBoxes[i].gameObject.GetComponent<Renderer>().material.color = Color.green;
+            }
+        }
+    }
 }

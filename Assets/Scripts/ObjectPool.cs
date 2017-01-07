@@ -21,6 +21,7 @@ public class ObjectPool : MonoBehaviour
     public GameObject[] structuresPrefabs;
     public GameObject[] explosionPrefabs;
     public GameObject[] itemPrefabs;
+    public GameObject[] planePrefabs;
 
     public System.Random random = new System.Random();
 
@@ -33,7 +34,8 @@ public class ObjectPool : MonoBehaviour
         islands,
         structures,
         explosion,
-        items
+        items,
+        planes
     }
 
     public enum essential
@@ -82,6 +84,11 @@ public class ObjectPool : MonoBehaviour
         bigBox
     }
 
+    public enum planes
+    {
+        deathPlane
+    }
+
     //StartOperationen
     public static ObjectPool getObjectPool()
     {
@@ -113,6 +120,8 @@ public class ObjectPool : MonoBehaviour
         fillCategoriesStacks(pool[pool.Count - 1], explosionPrefabs, 20);
         pool.Add(createListOfEmptyStacks(System.Enum.GetNames(typeof(items)).Length));
         fillCategoriesStacks(pool[pool.Count - 1], itemPrefabs, 20);
+        pool.Add(createListOfEmptyStacks(System.Enum.GetNames(typeof(planes)).Length));
+        fillCategoriesStacks(pool[pool.Count - 1], planePrefabs, 5);
     }
 
 
@@ -193,6 +202,7 @@ public class ObjectPool : MonoBehaviour
             case categorie.structures: toReturn = Instantiate(structuresPrefabs[id]); break;
             case categorie.explosion: toReturn = Instantiate(explosionPrefabs[id]); break;
             case categorie.items: toReturn = Instantiate(itemPrefabs[id]); break;
+            case categorie.planes: toReturn = Instantiate(planePrefabs[id]); break;
             default: toReturn = null; break;
         }
         toReturn.SetActive(false);
@@ -225,4 +235,70 @@ public class ObjectPool : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// <para>With this method, you can lay back all objects into the pool.</para>
+    /// </summary>
+    public void returnAllObjects()
+    {
+        for(int i = 0; i < activeObjects.Count; i++)
+        {
+            returnObject(activeObjects[i]);
+            i--;
+        }
+    }
+
+    public void preserveObjectsOnLoad()
+    {
+        DontDestroyOnLoad(gameObject);
+
+
+        for (int i = 0; i < activeObjects.Count; i++)
+        {
+            DontDestroyOnLoad(activeObjects[i]);
+        }
+
+        for (int i = 0; i < pool.Count; i++)
+        {
+            for(int j = 0; j < pool[i].Count; j++)
+            {
+                Stack<GameObject> stack = new Stack<GameObject>();
+                GameObject go;
+                while (pool[i][j].Count > 0)
+                {
+                    go = pool[i][j].Pop();
+                    DontDestroyOnLoad(go);
+                    stack.Push(go);
+                }
+
+                while (stack.Count > 0)
+                {
+                    pool[i][j].Push(stack.Pop());
+                }
+            }
+        }
+    }
+
+    public void DestroyAllObjects()
+    {
+        Destroy(gameObject);
+
+        for (int i = 0; i < activeObjects.Count; i++)
+        {
+            Destroy(activeObjects[i]);
+        }
+
+        for (int i = 0; i < pool.Count; i++)
+        {
+            for (int j = 0; j < pool[i].Count; j++)
+            {
+                GameObject go;
+                while (pool[i][j].Count > 0)
+                {
+                    go = pool[i][j].Pop();
+                    Destroy(go);
+                   
+                }
+            }
+        }
+    }
 }

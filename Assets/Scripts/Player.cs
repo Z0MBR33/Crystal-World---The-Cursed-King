@@ -4,15 +4,20 @@ using System.Collections;
 public class Player : MonoBehaviour
 {
     private ObjectPool mr;
+    private LevelManager lvlManager;
     private Coroutine currentImmortalHandler;
     private bool isImmportal;
 
     private MeshRenderer meshRenderer;
 
+    [HideInInspector]
+    public int NumberKeys = 0;
+
     // Use this for initialization
     void Start()
     {
         mr = ObjectPool.getObjectPool();
+        lvlManager = LevelManager.getLevelManager();
         meshRenderer = GetComponent<MeshRenderer>();
     }
 
@@ -68,6 +73,16 @@ public class Player : MonoBehaviour
                 item.Collect(gameObject);
             }
 
+        }
+
+        if (hit.gameObject.tag == "Boss-Portal")
+        {
+            PortalIsle portalIsle = lvlManager.bossIsle.IsleObj.GetComponent<PortalIsle>();
+            portalIsle.open = true; // TODO
+            if (portalIsle.open == true)
+            {
+                portalIsle.teleport();
+            }
         }
     }
 

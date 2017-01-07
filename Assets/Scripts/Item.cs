@@ -4,12 +4,14 @@ using System.Collections.Generic;
 
 public class Item : MonoBehaviour {
 
-    public enum ItemType { PortalKey1, PortalKey2, PortalKey3, Keys }
-
+    public enum ItemType { PortalKey1, PortalKey2, PortalKey3, BigBox, SmallBox }
     public ItemType Type;
+
+    public enum ContentType { SmallKey, StatUpgrade, Splitter, Tornado }; // TODO
 
     [HideInInspector]
     public bool collected;
+    public bool opened;
 
     private ObjectPool mr;
     private LevelManager lvlManager;
@@ -25,9 +27,13 @@ public class Item : MonoBehaviour {
         lerpList = new List<lerpInfo>();
     }
 
-    public void reset()
+    public void initialize()
     {
         collected = false;
+        opened = false;
+
+        gameObject.GetComponent<Renderer>().material.color = new Color(0.296f, 0.141f, 0.057f, 1);
+
         transform.position = Vector3.zero;
     }
 
@@ -39,9 +45,26 @@ public class Item : MonoBehaviour {
 
             lvlManager.currentIsle.isleObjectType = IsleAbstract.IsleObjectType.normal;
             mr.getObject(ObjectPool.categorie.essential, (int)ObjectPool.essential.UI).GetComponent<UI_Canvas>().UpdateMiniMap();
+            collected = true;
+        }
+        else if (Type == ItemType.SmallBox)
+        {
+            if (opened == true)
+            {
+                // TODO
+                collected = true;
+            }
+        }
+        else if (Type == ItemType.BigBox)
+        {
+            Player player = mr.getObject(ObjectPool.categorie.essential, (int)ObjectPool.essential.player).GetComponent<Player>();
+
+            if (player.NumberKeys > 0)
+            {
+                print("TODO GROSSE FETTE BOX!");
+            }
         }
 
-        collected = true;
     }
 
     private void teleport()
@@ -50,13 +73,15 @@ public class Item : MonoBehaviour {
 
         Vector3 podestPosition = Vector3.zero;
 
-        switch(Type)
+        PortalIsle portalIsle = lvlManager.bossIsle.IsleObj.GetComponent<PortalIsle>();
+
+        switch (Type)
         {
-            case ItemType.PortalKey1: podestPosition = lvlManager.bossIsle.IsleObj.GetComponent<PortalIsle>().Podest1.transform.position;
+            case ItemType.PortalKey1: podestPosition = portalIsle.Podest1.transform.position;
                 break;
-            case ItemType.PortalKey2: podestPosition = lvlManager.bossIsle.IsleObj.GetComponent<PortalIsle>().Podest2.transform.position;
+            case ItemType.PortalKey2: podestPosition = portalIsle.Podest2.transform.position;
                 break;
-            case ItemType.PortalKey3: podestPosition = lvlManager.bossIsle.IsleObj.GetComponent<PortalIsle>().Podest3.transform.position;
+            case ItemType.PortalKey3: podestPosition = portalIsle.Podest3.transform.position;
                 break;
             default: print("Error: teleport von Items ohne gütigem Item-Type (nur PortalKey Erlaubt)");
                 break;
@@ -92,6 +117,8 @@ public class Item : MonoBehaviour {
 
             lerpList.RemoveAt(0);
         }
+
+        lvlManager.bossIsle.IsleObj.GetComponent<PortalIsle>().KeyArrived();
 
         StopCoroutine(checkTeleportFinished);
 

@@ -9,6 +9,7 @@ TagManager:
   - Portal
   - DeathPlane
   - Item
+  - Boss-Portal
   layers:
   - Default
   - TransparentFX

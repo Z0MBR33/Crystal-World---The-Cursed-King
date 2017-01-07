@@ -28,10 +28,9 @@ public class Enemy : MonoBehaviour
 
     public void die()
     {
-        currentIsle.EnemyCount--;
         if (currentIsle.ListEnemies.Remove(gameObject) == false)
         {
-            print("Komischer Fehler!");
+            print("Komischer Fehler!");  // TODO schauen, ob Fehler noch auftritt
         }
 
         StopAllCoroutines();
