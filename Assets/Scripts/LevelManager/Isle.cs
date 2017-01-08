@@ -26,6 +26,8 @@ public class Isle : MonoBehaviour
     [HideInInspector]
     public Portal[] Portals;
 
+    private GameObject[] borders;
+
     private ObjectPool mr;
     private LevelManager lvlManager;
     private GameObject playerObject;
@@ -54,6 +56,8 @@ public class Isle : MonoBehaviour
         Portals[3] = PortalDown;
         Portals[4] = PortalDownLeft;
         Portals[5] = PortalUpLeft;
+
+        borders = new GameObject[4];
 
         // hide Enemy Spawns
         for (int i = 0; i < EnemyPoints.Count; i++)
@@ -233,9 +237,47 @@ public class Isle : MonoBehaviour
             if (listBoxes[i].Type == Item.ItemType.SmallBox)
             {
                 listBoxes[i].opened = true;
-                Color col = listBoxes[i].gameObject.GetComponent<Renderer>().material.color;
                 listBoxes[i].gameObject.GetComponent<Renderer>().material.color = Color.green;
             }
+        }
+    }
+
+    public void AddBorders()
+    {
+        RemoveBorders();
+
+        // upper side
+        borders[0] = mr.getObject(ObjectPool.categorie.planes, (int)ObjectPool.planes.borderPlane);
+        borders[0].transform.position = transform.position + new Vector3(0, 0, lvlManager.Fieldwidth / 2);
+        borders[0].transform.rotation = Quaternion.Euler(0, 0, 0);
+        borders[0].GetComponent<Renderer>().material.color = Color.blue;
+        // right sight
+        borders[1] = mr.getObject(ObjectPool.categorie.planes, (int)ObjectPool.planes.borderPlane);
+        borders[1].transform.position = transform.position + new Vector3(lvlManager.Fieldwidth / 2, 0, 0);
+        borders[1].transform.rotation = Quaternion.Euler(0, 90, 0);
+        borders[1].GetComponent<Renderer>().material.color = Color.red;
+        // bottom side
+        borders[2] = mr.getObject(ObjectPool.categorie.planes, (int)ObjectPool.planes.borderPlane);
+        borders[2].transform.position = transform.position + new Vector3(0, 0, - (lvlManager.Fieldwidth / 2));
+        borders[2].transform.rotation = Quaternion.Euler(0, 0, 0);
+        borders[2].GetComponent<Renderer>().material.color = Color.yellow;
+        // left side
+        borders[3] = mr.getObject(ObjectPool.categorie.planes, (int)ObjectPool.planes.borderPlane);
+        borders[3].transform.position = transform.position + new Vector3(-(lvlManager.Fieldwidth / 2), 0, 0);
+        borders[3].transform.rotation = Quaternion.Euler(0, 90, 0);
+        borders[3].GetComponent<Renderer>().material.color = Color.green;
+    }
+
+    public void RemoveBorders()
+    {
+        for (int i = 0; i < borders.Length; i++)
+        {
+            if (borders[i] != null)
+            {
+                mr.returnObject(borders[i]);
+            }
+            borders[i] = null;
+
         }
     }
 }

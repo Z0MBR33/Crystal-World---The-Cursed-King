@@ -53,7 +53,7 @@ public class Portal : MonoBehaviour
 
         checkTeleportFinished = StartCoroutine(checkTeleportFiniedHandler());
 
-        //player.transform.position = targetPortal.spawnPoint.transform.position + new Vector3(0, 1, 0);
+        lvlManager.currentIsle.IsleObj.RemoveBorders();
 
     }
 
@@ -78,6 +78,8 @@ public class Portal : MonoBehaviour
                 {
                     targetPortal.StartPortalTimeOut();
                 }
+
+                lvlManager.currentIsle.IsleObj.AddBorders();
 
                 mr.getObject(ObjectPool.categorie.essential, (int)ObjectPool.essential.UI).GetComponent<UI_Canvas>().UpdateMiniMap();
 

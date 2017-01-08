@@ -24,7 +24,7 @@ GameObject:
   - 23: {fileID: 23000013820128886}
   - 114: {fileID: 114000012975251692}
   - 54: {fileID: 54000011090235148}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: DeathPlane
   m_TagString: DeathPlane
   m_Icon: {fileID: 0}

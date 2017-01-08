@@ -42,12 +42,17 @@ public class GameMaster : MonoBehaviour {
         playerObject.GetComponent<NavMeshTarget>().IslePosition = startIsle.transform.position;
 
         levelManager.currentIsle.IsleObj.StartIsle();
+        levelManager.currentIsle.IsleObj.AddBorders();
+
+        // activate Character Controller
+        playerObject.GetComponent<CharacterController>().enabled = true;
 
         // show UI (inclusive Mini-Map)
         UI_Canvas ui = mr.getObject(ObjectPool.categorie.essential,(int)ObjectPool.essential.UI).GetComponent<UI_Canvas>();
         ui.ShowMiniMap();
         Stats stats = playerObject.GetComponent<Stats>();
         ui.UpdateLive(stats.health, stats.maxHealth);
+
     }
 
 }

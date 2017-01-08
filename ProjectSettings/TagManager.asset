@@ -10,6 +10,7 @@ TagManager:
   - DeathPlane
   - Item
   - Boss-Portal
+  - BorderPlane
   layers:
   - Default
   - TransparentFX
@@ -21,7 +22,7 @@ TagManager:
   - 
   - Player
   - Enemy
-  - 
+  - Plane
   - 
   - 
   - 

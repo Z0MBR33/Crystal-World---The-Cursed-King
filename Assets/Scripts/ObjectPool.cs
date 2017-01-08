@@ -86,7 +86,8 @@ public class ObjectPool : MonoBehaviour
 
     public enum planes
     {
-        deathPlane
+        deathPlane,
+        borderPlane
     }
 
     //StartOperationen

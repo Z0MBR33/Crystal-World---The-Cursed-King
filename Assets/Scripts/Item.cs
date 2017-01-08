@@ -32,7 +32,10 @@ public class Item : MonoBehaviour {
         collected = false;
         opened = false;
 
-        gameObject.GetComponent<Renderer>().material.color = new Color(0.296f, 0.141f, 0.057f, 1);
+        if (Type == ItemType.SmallBox || Type == ItemType.BigBox)
+        {
+            gameObject.GetComponent<Renderer>().material.color = new Color(0.296f, 0.141f, 0.057f, 1);
+        }
 
         transform.position = Vector3.zero;
     }

@@ -38,7 +38,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000013434425126}
   - 33: {fileID: 33000013176470368}
-  - 135: {fileID: 135000013484799046}
   - 23: {fileID: 23000012734189776}
   - 143: {fileID: 143000013329404338}
   - 114: {fileID: 114000013838176304}
@@ -184,7 +183,6 @@ MonoBehaviour:
   shotSpeed: 10
   shotStrength: 5
   fireRate: 0.5
-  possibleShotMode: 
 --- !u!114 &114000013640037456
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -208,18 +206,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75ef5c03ab60a4840a994415ae32e067, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!135 &135000013484799046
-SphereCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000013405803128}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
+  DieOnCollision: 0
+  NumberKeys: 0
 --- !u!136 &136000011704491994
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -241,7 +229,7 @@ CharacterController:
   m_GameObject: {fileID: 1000013405803128}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Height: 1
   m_Radius: 0.5

@@ -7,6 +7,8 @@ public class Player : MonoBehaviour
     private LevelManager lvlManager;
     private Coroutine currentImmortalHandler;
     private bool isImmportal;
+    [HideInInspector]
+    public bool DieOnCollision;
 
     private MeshRenderer meshRenderer;
 
@@ -33,6 +35,12 @@ public class Player : MonoBehaviour
 
     void OnControllerColliderHit(ControllerColliderHit hit)
     {
+        if (DieOnCollision)
+        {
+            Stats stats = GetComponent<Stats>();
+            stats.gotHit(100000);
+        }
+
         if (isImmportal == false)
         {
             if (hit.gameObject.tag == "Enemy")
@@ -78,7 +86,7 @@ public class Player : MonoBehaviour
         if (hit.gameObject.tag == "Boss-Portal")
         {
             PortalIsle portalIsle = lvlManager.bossIsle.IsleObj.GetComponent<PortalIsle>();
-            portalIsle.open = true; // TODO
+
             if (portalIsle.open == true)
             {
                 portalIsle.teleport();
