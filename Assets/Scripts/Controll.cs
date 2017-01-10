@@ -23,6 +23,10 @@ public class Controll : MonoBehaviour
     private bool canCamSetBack = true;
     private float camSetBackCoolDownInSeconds = 1;
 
+    private bool teleporting = false;
+    private Vector3 teleportingStartPoint;
+    private Vector3 teleportingEndPoint;
+
     void Start()
     {
         mr = ObjectPool.getObjectPool();
@@ -38,17 +42,23 @@ public class Controll : MonoBehaviour
     }
     void FixedUpdate()
     {
-        playerMovement();
+        if (!teleporting)
+        {
+            playerMovement();
+        }
         if (Input.GetAxisRaw("Cam_setback") != 0 && canCamSetBack)
         {
             camSetBack();
             canCamSetBack = false;
             CoolDownCamSetBack = StartCoroutine(camSetBackCoolDown());
         }
-        camAutoHorizontalMovement();
-        camAutoVerticalMovement();
-        camManualHorizontalMovement();
-        camManualVerticalMovement();
+        if (!teleporting)
+        {
+            camAutoHorizontalMovement();
+            camAutoVerticalMovement();
+            camManualHorizontalMovement();
+            camManualVerticalMovement();
+        }
     }
 
     void playerMovement()
@@ -157,5 +167,29 @@ public class Controll : MonoBehaviour
         yield return new WaitForSeconds(camSetBackCoolDownInSeconds);
         StopCoroutine(CoolDownCamSetBack);
         canCamSetBack = true;
+    }
+
+    public void startTeleporting(Vector3 trajectory)
+    {
+        teleporting = true;
+        teleportingStartPoint = camObj.transform.position;
+        teleportingEndPoint = teleportingStartPoint + trajectory;
+        updateTeleportProgress(0);
+    }
+
+    public void updateTeleportProgress(float percentage)
+    {
+        if (teleporting)
+        {
+            camObj.transform.position = Vector3.Lerp(teleportingStartPoint, teleportingEndPoint, Mathf.Clamp01(percentage));
+            float viewProgress = (float) Mathf.Sin( Mathf.Lerp(0,Mathf.PI,percentage));
+            camObj.GetComponent<Camera>().fieldOfView = Mathf.Lerp(60,90,viewProgress);
+        }
+    }
+
+    public void endTeleporting()
+    {
+        teleporting = false;
+        camObj.GetComponent<Camera>().fieldOfView = 60;
     }
 }

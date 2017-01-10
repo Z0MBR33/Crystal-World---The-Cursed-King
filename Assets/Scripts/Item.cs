@@ -89,8 +89,8 @@ public class Item : MonoBehaviour {
             default: print("Error: teleport von Items ohne gütigem Item-Type (nur PortalKey Erlaubt)");
                 break;
         }
-        lerpList.Add(new lerpInfo(gameObject.transform.position + new Vector3(0, 5, 0), 3));
-        lerpList.Add(new lerpInfo(podestPosition + new Vector3(0, 5, 0), 25));
+        lerpList.Add(new lerpInfo(gameObject.transform.position + new Vector3(0, 55, 0), 3));
+        lerpList.Add(new lerpInfo(podestPosition + new Vector3(0, 55, 0), 50));
         lerpList.Add(new lerpInfo(podestPosition + new Vector3(0, 1, 0), 7));
 
         checkTeleportFinished = StartCoroutine(checkTeleportFinishedHandler());

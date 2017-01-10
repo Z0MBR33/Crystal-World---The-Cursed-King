@@ -222,7 +222,7 @@ GameObject:
   - 64: {fileID: 64000010877871854}
   m_Layer: 0
   m_Name: kristall_Insel_Prototyp
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -2828,6 +2828,7 @@ MonoBehaviour:
   PortalActivated: 0
   portalSpiral: {fileID: 114000013090652502}
   spawnPoint: {fileID: 1000010360914778}
+  Direction: 0
 --- !u!114 &114000011101794110
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2853,6 +2854,7 @@ MonoBehaviour:
   PortalActivated: 0
   portalSpiral: {fileID: 114000013230825442}
   spawnPoint: {fileID: 1000010326662764}
+  Direction: 0
 --- !u!114 &114000011359187994
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2867,6 +2869,7 @@ MonoBehaviour:
   PortalActivated: 0
   portalSpiral: {fileID: 114000010005636398}
   spawnPoint: {fileID: 1000012395352210}
+  Direction: 0
 --- !u!114 &114000011526238272
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2910,6 +2913,7 @@ MonoBehaviour:
   PortalActivated: 0
   portalSpiral: {fileID: 114000011943518334}
   spawnPoint: {fileID: 1000013380007536}
+  Direction: 0
 --- !u!114 &114000011943518334
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2947,6 +2951,7 @@ MonoBehaviour:
   PortalActivated: 0
   portalSpiral: {fileID: 114000012190013936}
   spawnPoint: {fileID: 1000010209467118}
+  Direction: 0
 --- !u!114 &114000012190013936
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2983,6 +2988,7 @@ MonoBehaviour:
   PortalActivated: 0
   portalSpiral: {fileID: 114000011101794110}
   spawnPoint: {fileID: 1000011505204158}
+  Direction: 0
 --- !u!114 &114000012614274298
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -13,6 +13,8 @@ public class Lerper : MonoBehaviour {
     private float Distance;
     private float StartTime;
 
+    private Controll conObject;
+
 	public void StartLerp(Vector3 startPos, Vector3 targetPos, float speed)
     {
         StartPos = startPos;
@@ -22,6 +24,9 @@ public class Lerper : MonoBehaviour {
         Distance = Vector3.Distance(startPos, targetPos);
         StartTime = Time.time;
 
+        conObject = GameMaster.getGameMaster().GetComponent<Controll>();
+
+        conObject.startTeleporting(targetPos - startPos);
         Lerping = true;
     }
 
@@ -33,10 +38,12 @@ public class Lerper : MonoBehaviour {
             float ratio = disCovered / Distance;
 
             transform.position = Vector3.Lerp(StartPos, TargetPos, ratio);
+            conObject.updateTeleportProgress(ratio);
 
             if (ratio >= 1)
             {
                 Lerping = false;
+                conObject.endTeleporting();
             }
         }
   
