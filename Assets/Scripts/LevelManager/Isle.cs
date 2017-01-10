@@ -59,9 +59,10 @@ public class Isle : MonoBehaviour
 
         borders = new GameObject[4];
 
-        // hide Enemy Spawns
+        // prepare Enemy Spawns
         for (int i = 0; i < EnemyPoints.Count; i++)
         {
+            EnemyPoints[i].IslePosition = transform.position;
             EnemyPoints[i].GetComponent<Renderer>().enabled = false;
         }
 
@@ -156,22 +157,10 @@ public class Isle : MonoBehaviour
         // create enemies
         for (int i = 0; i < EnemyPoints.Count; i++)
         {
-            EnemyPoints[i].IslePosition = transform.position;
 
-            GameObject slime = mr.getObject(ObjectPool.categorie.enemy, (int)ObjectPool.enemy.slime);
-            slime.GetComponent<Enemy>().Initialize();
-            slime.transform.position = EnemyPoints[i].transform.position;
-            slime.GetComponent<GhostCopy>().IslePosition = transform.position;
-
-            GameObject slimeGhost = mr.getObject(ObjectPool.categorie.enemy, (int)ObjectPool.enemy.ghost);
-            slimeGhost.GetComponent<NavMeshAgent>().enabled = false;
-            slimeGhost.transform.position = NavMeshPosition + EnemyPoints[i].getPositionOnIsle();
-            slimeGhost.GetComponent<GhostMovement>().NavMashPosition = NavMeshPosition;
-            slimeGhost.GetComponent<GhostMovement>().target = playerObject.GetComponent<NavMeshTarget>();
-            slimeGhost.GetComponent<GhostMovement>().ghostCopy = slime.GetComponent<GhostCopy>();
-            slimeGhost.GetComponent<NavMeshAgent>().enabled = true;
-            slime.GetComponent<GhostCopy>().ghost = slimeGhost.GetComponent<GhostMovement>();
-
+            GameObject slime = mr.getObject(ObjectPool.categorie.enemy, (int)ObjectPool.enemy.slime);  // TODO
+            slime.GetComponent<Enemy>().Initialize(EnemyPoints[i], transform.position, NavMeshPosition, playerObject.GetComponent<NavMeshTarget>());
+           
             EnemyPoints[i].gameObject.SetActive(false);
 
             ListEnemies.Add(slime);

@@ -4,26 +4,38 @@ using System.Collections;
 public class Enemy : MonoBehaviour
 {
 
-    private ObjectPool mr;
+    protected ObjectPool mr;
     private GhostCopy ghostCopy;
     private Coroutine currentPushHandler;
     private Isle currentIsle;
 
-    public void Initialize()
+    public void Initialize(EnemyPoint enemyPoint, Vector3 islePosition, Vector3 navMeshPosition, NavMeshTarget target)
     {
         mr = ObjectPool.getObjectPool();
         currentIsle = LevelManager.getLevelManager().currentIsle.IsleObj;
 
-        if (GetComponent<Stats>() != null)
-        {
-            GetComponent<Stats>().resetStats();
-        }
+        GetComponent<Stats>().resetStats();
+        
+        ghostCopy = GetComponent<GhostCopy>();
+        ghostCopy.MovedByGhost = true;
 
-        if (GetComponent<GhostCopy>() != null)
-        {
-            ghostCopy = GetComponent<GhostCopy>();
-            ghostCopy.MovedByGhost = true;
-        }
+        transform.position = enemyPoint.transform.position;
+        gameObject.GetComponent<GhostCopy>().IslePosition = islePosition;
+
+        GameObject slimeGhost = getGhost();
+        slimeGhost.GetComponent<NavMeshAgent>().enabled = false;
+        slimeGhost.transform.position = navMeshPosition + enemyPoint.getPositionOnIsle();
+        slimeGhost.GetComponent<GhostMovement>().NavMashPosition = navMeshPosition;
+        slimeGhost.GetComponent<GhostMovement>().target = target;
+        slimeGhost.GetComponent<GhostMovement>().ghostCopy = ghostCopy;
+        slimeGhost.GetComponent<NavMeshAgent>().enabled = true;
+        gameObject.GetComponent<GhostCopy>().ghost = slimeGhost.GetComponent<GhostMovement>();
+
+    }
+
+    protected virtual GameObject getGhost()
+    {
+        return mr.getObject(ObjectPool.categorie.enemy, (int)ObjectPool.enemy.slimeGhost);
     }
 
     public void die()

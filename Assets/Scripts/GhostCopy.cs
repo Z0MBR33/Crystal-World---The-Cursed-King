@@ -3,16 +3,14 @@ using System.Collections;
 
 public class GhostCopy : MonoBehaviour {
 
+    [HideInInspector]
     public bool MovedByGhost;
 
+    [HideInInspector]
     public GhostMovement ghost;
 
+    [HideInInspector]
     public Vector3 IslePosition;
-
-    void Start()
-    {
-        MovedByGhost = true;
-    }
 
     void Update()
     {     

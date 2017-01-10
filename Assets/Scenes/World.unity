@@ -133,6 +133,10 @@ Prefab:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1000011881192150, guid: b9637f296f91a8d4f90b96de807f5fc2, type: 2}
+      propertyPath: m_Name
+      value: NavMesh-Insel_4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b9637f296f91a8d4f90b96de807f5fc2, type: 2}
   m_IsPrefabParent: 0
@@ -178,6 +182,10 @@ Prefab:
     - target: {fileID: 1000012180746328, guid: 86adf895fd245ae4eb079f6e7be14219, type: 2}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000012180746328, guid: 86adf895fd245ae4eb079f6e7be14219, type: 2}
+      propertyPath: m_Name
+      value: NavMesh-Insel_1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 86adf895fd245ae4eb079f6e7be14219, type: 2}
@@ -323,6 +331,8 @@ MonoBehaviour:
   enemyPrefabs:
   - {fileID: 1000012905966870, guid: eac0b18bfaf4c6c4c9377b8cccda99e2, type: 2}
   - {fileID: 1000010209064560, guid: 1627691596ec30c45bd8ab6c6f306916, type: 2}
+  - {fileID: 1000011946386988, guid: 8467363c1b3f1244ba030c6ba16931d5, type: 2}
+  - {fileID: 1000010711077104, guid: 0b437f31d7814a441ba03ddefff9a40d, type: 2}
   ilandsPrefabs:
   - {fileID: 1000013761830436, guid: 0ee8fad6c91042d4f9552d03ba6faade, type: 2}
   - {fileID: 1000012180746328, guid: 86adf895fd245ae4eb079f6e7be14219, type: 2}
@@ -405,6 +415,10 @@ Prefab:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1000013761830436, guid: 0ee8fad6c91042d4f9552d03ba6faade, type: 2}
+      propertyPath: m_Name
+      value: NavMesh-Portal-Isle
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0ee8fad6c91042d4f9552d03ba6faade, type: 2}
   m_IsPrefabParent: 0
@@ -451,6 +465,10 @@ Prefab:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1000013265322336, guid: a6ee438a6c9868a45b17a31ecc39d49d, type: 2}
+      propertyPath: m_Name
+      value: NavMesh-Insel_3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a6ee438a6c9868a45b17a31ecc39d49d, type: 2}
   m_IsPrefabParent: 0
@@ -496,6 +514,10 @@ Prefab:
     - target: {fileID: 1000010201983034, guid: dbea83ef1422ff049861575f11c73ef7, type: 2}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000010201983034, guid: dbea83ef1422ff049861575f11c73ef7, type: 2}
+      propertyPath: m_Name
+      value: NavMesh-Insel_2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dbea83ef1422ff049861575f11c73ef7, type: 2}

@@ -52,8 +52,10 @@ public class ObjectPool : MonoBehaviour
 
     public enum enemy
     {
-        ghost,
-        slime
+        slimeGhost,
+        slime,
+        octopusGhost,
+        octopus
     }
 
     public enum islands
