@@ -168,10 +168,24 @@ public class LevelManager : MonoBehaviour
                 //int isleHeight = 0;
 
                 Vector3 pos = new Vector3(isle.Index.x * Fieldwidth, isleHeight, (isle.Index.y * Fieldwidth) + offset);
-                Isle isleObj;   // TODO spawne passende Insel
+                Isle isleObj;
                 if (isle.isleObjectType != IsleAbstract.IsleObjectType.boss)
                 {
-                    isleObj = mr.getObject(ObjectPool.categorie.islands, (int)ObjectPool.islands.normal).GetComponent<Isle>();
+                    int type = mr.random.Next(1, 4);
+                    switch(type)
+                    {
+                        case 1: isleObj = mr.getObject(ObjectPool.categorie.islands, (int)ObjectPool.islands.type1).GetComponent<Isle>();
+                            break;
+                        case 2: isleObj = mr.getObject(ObjectPool.categorie.islands, (int)ObjectPool.islands.type2).GetComponent<Isle>();
+                            break;
+                        case 3: isleObj = mr.getObject(ObjectPool.categorie.islands, (int)ObjectPool.islands.type3).GetComponent<Isle>();
+                            break;
+                        case 4: isleObj = mr.getObject(ObjectPool.categorie.islands, (int)ObjectPool.islands.type4).GetComponent<Isle>();
+                            break;
+                        default: isleObj = mr.getObject(ObjectPool.categorie.islands, (int)ObjectPool.islands.type1).GetComponent<Isle>();
+                            break;
+                    }
+                    
                 } else
                 {
                     isleObj = mr.getObject(ObjectPool.categorie.islands, (int)ObjectPool.islands.boss_portal).GetComponent<Isle>();

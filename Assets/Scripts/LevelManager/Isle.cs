@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class Isle : MonoBehaviour
 {
     public IsleAbstract isleAbstract;
-
+    
     public Vector3 NavMeshPosition;
 
     public Portal PortalUp;

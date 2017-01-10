@@ -58,8 +58,12 @@ public class ObjectPool : MonoBehaviour
 
     public enum islands
     {
-        normal,
-        boss_portal
+        boss_portal,
+        type1,
+        type2,
+        type3,
+        type4
+        
     }
 
     public enum structures

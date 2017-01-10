@@ -3,13 +3,10 @@ using System.Collections;
 
 public class ItemPoint : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+    [Range(0, 101)]
+    public int ChangeForSpawn;
+
+    public bool Slime;
+    public bool Octopus;
+    public bool Spider;
 }
