@@ -2936,6 +2936,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbf8f643ccec62543b14b33d4b0f018c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ChangeForSpawn: 80
+  Slime: 1
+  Octopus: 1
+  Spider: 1
   IslePosition: {x: 0, y: 0, z: 0}
 --- !u!114 &114000012148596574
 MonoBehaviour:
@@ -2974,10 +2978,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f88bc5eeb0dbfe4aa323227eebda80b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ChangeForSpawn: 0
-  Slime: 0
-  Octopus: 0
-  Spider: 0
 --- !u!114 &114000012282816340
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3004,6 +3004,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbf8f643ccec62543b14b33d4b0f018c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ChangeForSpawn: 80
+  Slime: 1
+  Octopus: 1
+  Spider: 1
   IslePosition: {x: 0, y: 0, z: 0}
 --- !u!114 &114000012644677922
 MonoBehaviour:
@@ -3016,6 +3020,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbf8f643ccec62543b14b33d4b0f018c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ChangeForSpawn: 80
+  Slime: 1
+  Octopus: 1
+  Spider: 1
   IslePosition: {x: 0, y: 0, z: 0}
 --- !u!114 &114000013008975038
 MonoBehaviour:
@@ -3028,6 +3036,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbf8f643ccec62543b14b33d4b0f018c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ChangeForSpawn: 80
+  Slime: 1
+  Octopus: 1
+  Spider: 1
   IslePosition: {x: 0, y: 0, z: 0}
 --- !u!114 &114000013090652502
 MonoBehaviour:
@@ -3051,6 +3063,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbf8f643ccec62543b14b33d4b0f018c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ChangeForSpawn: 80
+  Slime: 1
+  Octopus: 1
+  Spider: 1
   IslePosition: {x: 0, y: 0, z: 0}
 --- !u!114 &114000013230825442
 MonoBehaviour:
@@ -3074,4 +3090,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbf8f643ccec62543b14b33d4b0f018c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ChangeForSpawn: 80
+  Slime: 1
+  Octopus: 1
+  Spider: 1
   IslePosition: {x: 0, y: 0, z: 0}

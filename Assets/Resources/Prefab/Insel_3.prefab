@@ -2470,6 +2470,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbf8f643ccec62543b14b33d4b0f018c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ChangeForSpawn: 80
+  Slime: 1
+  Octopus: 1
+  Spider: 1
   IslePosition: {x: 0, y: 0, z: 0}
 --- !u!114 &114000011193172682
 MonoBehaviour:
@@ -2493,6 +2497,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbf8f643ccec62543b14b33d4b0f018c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ChangeForSpawn: 80
+  Slime: 1
+  Octopus: 1
+  Spider: 1
   IslePosition: {x: 0, y: 0, z: 0}
 --- !u!114 &114000011802796878
 MonoBehaviour:
@@ -2546,6 +2554,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbf8f643ccec62543b14b33d4b0f018c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ChangeForSpawn: 80
+  Slime: 1
+  Octopus: 1
+  Spider: 1
   IslePosition: {x: 0, y: 0, z: 0}
 --- !u!114 &114000012608798654
 MonoBehaviour:
@@ -2599,10 +2611,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f88bc5eeb0dbfe4aa323227eebda80b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ChangeForSpawn: 0
-  Slime: 0
-  Octopus: 0
-  Spider: 0
 --- !u!114 &114000014026385430
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2614,6 +2622,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbf8f643ccec62543b14b33d4b0f018c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ChangeForSpawn: 80
+  Slime: 1
+  Octopus: 1
+  Spider: 1
   IslePosition: {x: 0, y: 0, z: 0}
 --- !u!114 &114000014044134652
 MonoBehaviour:
@@ -2626,6 +2638,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbf8f643ccec62543b14b33d4b0f018c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ChangeForSpawn: 80
+  Slime: 1
+  Octopus: 1
+  Spider: 1
   IslePosition: {x: 0, y: 0, z: 0}
 --- !u!114 &114000014094944792
 MonoBehaviour:
@@ -2638,6 +2654,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbf8f643ccec62543b14b33d4b0f018c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ChangeForSpawn: 80
+  Slime: 1
+  Octopus: 1
+  Spider: 1
   IslePosition: {x: 0, y: 0, z: 0}
 --- !u!114 &114000014271154648
 MonoBehaviour:

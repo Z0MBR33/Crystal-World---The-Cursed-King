@@ -333,6 +333,8 @@ MonoBehaviour:
   - {fileID: 1000010209064560, guid: 1627691596ec30c45bd8ab6c6f306916, type: 2}
   - {fileID: 1000011946386988, guid: 8467363c1b3f1244ba030c6ba16931d5, type: 2}
   - {fileID: 1000010711077104, guid: 0b437f31d7814a441ba03ddefff9a40d, type: 2}
+  - {fileID: 1000013063982686, guid: 9699978fc19680748ba0571c74ba20c3, type: 2}
+  - {fileID: 1000011968151490, guid: d4b003a1c97c166488182fd18c7fa216, type: 2}
   ilandsPrefabs:
   - {fileID: 1000013761830436, guid: 0ee8fad6c91042d4f9552d03ba6faade, type: 2}
   - {fileID: 1000012180746328, guid: 86adf895fd245ae4eb079f6e7be14219, type: 2}

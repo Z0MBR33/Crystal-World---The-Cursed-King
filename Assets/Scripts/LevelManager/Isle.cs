@@ -158,12 +158,17 @@ public class Isle : MonoBehaviour
         for (int i = 0; i < EnemyPoints.Count; i++)
         {
 
-            GameObject slime = mr.getObject(ObjectPool.categorie.enemy, (int)ObjectPool.enemy.slime);  // TODO
-            slime.GetComponent<Enemy>().Initialize(EnemyPoints[i], transform.position, NavMeshPosition, playerObject.GetComponent<NavMeshTarget>());
+            GameObject enemy = EnemyPoints[i].createEnemy();
+            if (enemy == null)
+            {
+                continue;
+            }
+
+            enemy.GetComponent<Enemy>().Initialize(EnemyPoints[i], transform.position, NavMeshPosition, playerObject.GetComponent<NavMeshTarget>());
            
             EnemyPoints[i].gameObject.SetActive(false);
 
-            ListEnemies.Add(slime);
+            ListEnemies.Add(enemy);
 
         }
 

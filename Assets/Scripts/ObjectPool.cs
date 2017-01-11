@@ -55,7 +55,9 @@ public class ObjectPool : MonoBehaviour
         slimeGhost,
         slime,
         octopusGhost,
-        octopus
+        octopus,
+        spiderGhost,
+        spider
     }
 
     public enum islands
