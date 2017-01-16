@@ -159,16 +159,14 @@ public class Isle : MonoBehaviour
         {
 
             GameObject enemy = EnemyPoints[i].createEnemy();
-            if (enemy == null)
+            if (enemy != null)
             {
-                continue;
+                enemy.GetComponent<Enemy>().Initialize(EnemyPoints[i], transform.position, NavMeshPosition, playerObject.GetComponent<NavMeshTarget>());
+
+                ListEnemies.Add(enemy);
             }
 
-            enemy.GetComponent<Enemy>().Initialize(EnemyPoints[i], transform.position, NavMeshPosition, playerObject.GetComponent<NavMeshTarget>());
-           
             EnemyPoints[i].gameObject.SetActive(false);
-
-            ListEnemies.Add(enemy);
 
         }
 

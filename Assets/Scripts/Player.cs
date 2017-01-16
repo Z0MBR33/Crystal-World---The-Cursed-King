@@ -11,6 +11,8 @@ public class Player : MonoBehaviour
     public bool DieOnCollision;
 
     private MeshRenderer meshRenderer;
+    private Lerper lerper;
+    private Controll controller;
 
     [HideInInspector]
     public int NumberKeys = 0;
@@ -21,6 +23,8 @@ public class Player : MonoBehaviour
         mr = ObjectPool.getObjectPool();
         lvlManager = LevelManager.getLevelManager();
         meshRenderer = GetComponent<MeshRenderer>();
+        lerper = GetComponent<Lerper>();
+        controller = GameMaster.getGameMaster().GetComponent<Controll>();
     }
 
     // Update is called once per frame
@@ -30,6 +34,11 @@ public class Player : MonoBehaviour
         {
             // flicker player
             meshRenderer.enabled = !meshRenderer.enabled;
+        }
+
+        if (lerper.Lerping)
+        {
+            controller.updateTeleportProgress(lerper.Ratio);
         }
     }
 

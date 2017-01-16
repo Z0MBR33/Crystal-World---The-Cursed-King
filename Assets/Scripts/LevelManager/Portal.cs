@@ -49,7 +49,14 @@ public class Portal : MonoBehaviour
 
         cr.enabled = false;
 
+        // start lerping of player
         player.GetComponent<Lerper>().StartLerp(startPos, targetPos, 50);
+        // also start camera Teleportation
+        GameMaster.getGameMaster().GetComponent<Controll>().startTeleporting(targetPos - startPos);
+        // look at player
+        GameObject cam = ObjectPool.getObjectPool().getObject(ObjectPool.categorie.essential, (int)ObjectPool.essential.camera);
+        cam.GetComponent<justLook>().objectToLookAt = player;
+
 
         checkTeleportFinished = StartCoroutine(checkTeleportFiniedHandler());
 
@@ -65,6 +72,14 @@ public class Portal : MonoBehaviour
 
             if (player.GetComponent<Lerper>().Lerping == false)
             {
+                // end teleporting
+
+                // end camera teleporting
+                GameMaster.getGameMaster().GetComponent<Controll>().endTeleporting();
+                // don't look at player anmore
+                GameObject cam = ObjectPool.getObjectPool().getObject(ObjectPool.categorie.essential, (int)ObjectPool.essential.camera);
+                cam.GetComponent<justLook>().objectToLookAt = null;
+
                 player.GetComponent<CharacterController>().enabled = true;
 
                 lvlManager.currentIsle = targetIsle;
