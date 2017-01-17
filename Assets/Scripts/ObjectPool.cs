@@ -47,7 +47,8 @@ public class ObjectPool : MonoBehaviour
 
     public enum shot
     {
-        round
+        round,
+        loadingBall
     }
 
     public enum enemy

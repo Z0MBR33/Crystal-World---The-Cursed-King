@@ -1,14 +1,46 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Octopus : Enemy {
+public class Octopus : Enemy
+{
+
+    public float walkTimeSeconds;
+    public float loadTimeSeconds;
+    public float shotSize;
+
+    public GameObject ShotPoint;
 
     private bool walking;
+
+    private GameObject loadingShot;
+
+    private Vector3 posBeforeShooting;
+    private float shotScale;
+    private float startTime;
     private Coroutine octopusRythm;
+
+    public void FixedUpdate()
+    {
+        if (walking == true)
+        {
+            posBeforeShooting = transform.position;
+        }
+        else
+        {
+            transform.position = posBeforeShooting;
+            Vector3 vec = new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z);
+            transform.LookAt(vec);
+
+            loadShot();
+        }
+    }
 
     public override void Initialize(EnemyPoint enemyPoint, Vector3 islePosition, Vector3 navMeshPosition, NavMeshTarget target)
     {
         base.Initialize(enemyPoint, islePosition, navMeshPosition, target);
+
+        posBeforeShooting = transform.position;
+        loadingShot = null;
 
         octopusRythm = StartCoroutine(octopusRythmHandler());
     }
@@ -20,6 +52,12 @@ public class Octopus : Enemy {
 
     public override void die()
     {
+        if (loadingShot != null)
+        {
+            mr.returnObject(loadingShot);
+            loadingShot = null;
+        }
+
         StopAllCoroutines();
 
         base.die();
@@ -27,7 +65,39 @@ public class Octopus : Enemy {
 
     public override void getPushed(Vector3 pushDirection, float force)
     {
+        // YES! MUST BE EMPTY!
+    }
 
+    private void loadShot()
+    {
+        if (loadingShot == null)
+        {
+            loadingShot = mr.getObject(ObjectPool.categorie.shot, (int)ObjectPool.shot.loadingBall);
+            shotScale = 0;
+            loadingShot.transform.localScale = new Vector3(shotScale, shotScale, shotScale);
+            startTime = Time.time;
+        }
+
+        loadingShot.transform.position = ShotPoint.transform.position;
+        loadingShot.transform.rotation = transform.rotation;
+
+        float timeLoading = (Time.time - startTime);
+        float ratio = timeLoading / loadTimeSeconds;
+
+        shotScale = shotSize * ratio;
+
+        loadingShot.transform.localScale = new Vector3(shotScale, shotScale, shotScale);
+    }
+
+    private void shoot()
+    {
+        // shot! TODO
+
+        if (loadingShot != null)
+        {
+            mr.returnObject(loadingShot);
+            loadingShot = null;
+        }
     }
 
     public IEnumerator octopusRythmHandler()
@@ -40,14 +110,16 @@ public class Octopus : Enemy {
             {
                 ghostCopy.MovedByGhost = true;
 
-                yield return new WaitForSeconds(5);
+                yield return new WaitForSeconds(walkTimeSeconds);
                 walking = false;
             }
             else
             {
                 ghostCopy.MovedByGhost = false;
 
-                yield return new WaitForSeconds(3);
+                yield return new WaitForSeconds(loadTimeSeconds);
+                shoot();
+
                 walking = true;
             }
         }

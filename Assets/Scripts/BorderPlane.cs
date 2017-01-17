@@ -8,6 +8,11 @@ public class BorderPlane : MonoBehaviour {
     {
         if (col.gameObject.tag == "Player")
         {
+            if (col.gameObject.GetComponent<Player>() == null)
+            {
+                return;
+            }
+
             col.gameObject.GetComponent<Player>().DieOnCollision = true;
         }
     }

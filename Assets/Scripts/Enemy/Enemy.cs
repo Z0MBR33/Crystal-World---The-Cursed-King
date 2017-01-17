@@ -6,12 +6,14 @@ public class Enemy : MonoBehaviour
 
     protected ObjectPool mr;
     protected GhostCopy ghostCopy;
+    protected GameObject player;
     private Coroutine currentPushHandler;
     private Isle currentIsle;
 
     public virtual void Initialize(EnemyPoint enemyPoint, Vector3 islePosition, Vector3 navMeshPosition, NavMeshTarget target)
     {
         mr = ObjectPool.getObjectPool();
+        player = mr.getObject(ObjectPool.categorie.essential, (int)ObjectPool.essential.player);
         currentIsle = LevelManager.getLevelManager().currentIsle.IsleObj;
 
         GetComponent<Stats>().resetStats();

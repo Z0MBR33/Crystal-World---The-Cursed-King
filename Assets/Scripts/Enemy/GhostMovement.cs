@@ -28,6 +28,7 @@ public class GhostMovement : MonoBehaviour {
         else
         {
             transform.position = NavMashPosition + ghostCopy.getPositionOnIsle();
+            transform.rotation = ghostCopy.gameObject.transform.rotation;
         }
     }
 
