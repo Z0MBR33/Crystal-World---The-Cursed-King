@@ -5,11 +5,11 @@ public class Enemy : MonoBehaviour
 {
 
     protected ObjectPool mr;
-    private GhostCopy ghostCopy;
+    protected GhostCopy ghostCopy;
     private Coroutine currentPushHandler;
     private Isle currentIsle;
 
-    public void Initialize(EnemyPoint enemyPoint, Vector3 islePosition, Vector3 navMeshPosition, NavMeshTarget target)
+    public virtual void Initialize(EnemyPoint enemyPoint, Vector3 islePosition, Vector3 navMeshPosition, NavMeshTarget target)
     {
         mr = ObjectPool.getObjectPool();
         currentIsle = LevelManager.getLevelManager().currentIsle.IsleObj;
@@ -38,7 +38,7 @@ public class Enemy : MonoBehaviour
         return mr.getObject(ObjectPool.categorie.enemy, (int)ObjectPool.enemy.slimeGhost);
     }
 
-    public void die()
+    public virtual void die()
     {
         if (currentIsle.ListEnemies.Remove(gameObject) == false)
         {
@@ -61,7 +61,7 @@ public class Enemy : MonoBehaviour
         expl.Initialize(ExplosionScript.ExplosionType.EnemyDeath, transform.position, new Quaternion());
     }
 
-    public void getPushed(Vector3 pushDirection, float force)
+    public virtual void getPushed(Vector3 pushDirection, float force)
     {
 
         pushDirection.Normalize();
