@@ -49,7 +49,9 @@ public class LerperCameraFollow : MonoBehaviour
             if (ratio >= 1)
             {
                 Lerping = false;
-               
+
+                transform.position = TargetPos;
+
                 conObject.endTeleporting();
                
                 //TODO Bug für cam zurücksetzen zwischen meheren Lerps beheben...

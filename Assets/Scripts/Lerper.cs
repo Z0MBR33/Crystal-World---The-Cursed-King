@@ -41,6 +41,8 @@ public class Lerper : MonoBehaviour {
 
             if (Ratio >= 1)
             {
+                transform.position = TargetPos;
+
                 Lerping = false;
             }
         }

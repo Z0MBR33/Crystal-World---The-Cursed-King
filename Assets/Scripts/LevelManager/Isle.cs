@@ -35,7 +35,7 @@ public class Isle : MonoBehaviour
     private Coroutine levelCheckRoutine;
 
     private System.Random rnd;
-
+    
     public void Initialize(IsleAbstract isle)
     {
         isleAbstract = isle;
@@ -140,6 +140,7 @@ public class Isle : MonoBehaviour
                     // big box
                     box = mr.getObject(ObjectPool.categorie.items, (int)ObjectPool.items.bigBox);
                 }
+                box.GetComponent<Item>().initialize();
                 box.transform.position = ItemPoints[i].transform.position;
                 listBoxes.Add(box.GetComponent<Item>());
             }
@@ -231,8 +232,15 @@ public class Isle : MonoBehaviour
         {
             if (listBoxes[i].Type == Item.ItemType.SmallBox)
             {
-                listBoxes[i].opened = true;
-                listBoxes[i].gameObject.GetComponent<Renderer>().material.color = Color.green;
+                Item box = listBoxes[i];
+                box.opened = true;
+                box.gameObject.GetComponent<Renderer>().material.color = Color.green;
+                
+                if (box.ContentObj != null)
+                {
+                    box.ContentObj.GetComponent<Lerper>().StartLerp(box.transform.position, box.transform.position + new Vector3(0, 2, 0), 0.5f);
+                }
+
             }
         }
     }

@@ -7,13 +7,15 @@ public class Item : MonoBehaviour {
     public enum ItemType { PortalKey1, PortalKey2, PortalKey3, BigBox, SmallBox }
     public ItemType Type;
 
-    public enum ContentType { SmallKey, SpeedUpgrade, DamageUpgrade, RateUpgrade };
-    public ContentType Content;
+    public enum ContentType { SmallKey, SpeedUpgrade, DamageUpgrade, RateUpgrade, ShotSpeedUpgrade };
+    private ContentType Content;
+    [HideInInspector]
     public GameObject ContentObj;
 
 
     [HideInInspector]
     public bool collected;
+    [HideInInspector]
     public bool opened;
 
     private ObjectPool mr;
@@ -23,15 +25,13 @@ public class Item : MonoBehaviour {
 
     private List<lerpInfo> lerpList;
 
-    public void Start()
+  
+    public void initialize()
     {
         mr = ObjectPool.getObjectPool();
         lvlManager = LevelManager.getLevelManager();
         lerpList = new List<lerpInfo>();
-    }
 
-    public void initialize()
-    {
         collected = false;
         opened = false;
 
@@ -39,9 +39,55 @@ public class Item : MonoBehaviour {
         {
             gameObject.GetComponent<Renderer>().material.color = new Color(0.296f, 0.141f, 0.057f, 1);
         }
+        if (Type == ItemType.SmallBox)
+        {
+            generateSmallBoxContent();
+        }
+        if (Type == ItemType.BigBox)
+        {
+            generateBigBoxContent();
+        }
 
         transform.position = Vector3.zero;
     }
+
+    private void generateSmallBoxContent()
+    {
+
+        if (ContentObj != null)
+        {
+            mr.returnObject(ContentObj);
+            ContentObj = null;
+        }
+
+        int tmp = mr.random.Next(0, 5);
+
+        Content = (ContentType)tmp;
+
+        switch (Content)
+        {
+            case ContentType.SmallKey: ContentObj = mr.getObject(ObjectPool.categorie.items, (int)ObjectPool.items.smallKey);
+                break;
+            case ContentType.SpeedUpgrade: ContentObj = mr.getObject(ObjectPool.categorie.items, (int)ObjectPool.items.upgradeSpeed);
+                break;
+            case ContentType.DamageUpgrade: ContentObj = mr.getObject(ObjectPool.categorie.items, (int)ObjectPool.items.upgradeDamage);
+                break;
+            case ContentType.RateUpgrade: ContentObj = mr.getObject(ObjectPool.categorie.items, (int)ObjectPool.items.upgradeRate);
+                break;
+            case ContentType.ShotSpeedUpgrade: ContentObj = mr.getObject(ObjectPool.categorie.items, (int)ObjectPool.items.upgradeShotSpeed);
+                break;
+            default: print("Error: Kein Gültiger Inhalt für Trufe");
+                break;
+        }
+
+        ContentObj.transform.position = transform.position;
+
+    }
+
+    private void generateBigBoxContent()
+    {
+
+    }        
 
     public void Collect(GameObject collecter)
     {
@@ -57,7 +103,9 @@ public class Item : MonoBehaviour {
         {
             if (opened == true)
             {
-                // TODO
+                
+
+
                 collected = true;
             }
         }
