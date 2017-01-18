@@ -7,7 +7,7 @@ public class Octopus : Enemy
     public float walkTimeSeconds;
     public float loadTimeSeconds;
     public float shotSize;
-
+    public Animator anim;
     public GameObject ShotPoint;
 
     private bool walking;
@@ -18,9 +18,17 @@ public class Octopus : Enemy
     private float shotScale;
     private float startTime;
     private Coroutine octopusRythm;
+    Rigidbody rb;
+
+    private void Start()
+    {
+        anim = GetComponent<Animator>();
+        rb = GetComponent<Rigidbody>();
+    }
 
     public void FixedUpdate()
     {
+        anim.SetBool("shoot", !walking);
         if (walking == true)
         {
             posBeforeShooting = transform.position;

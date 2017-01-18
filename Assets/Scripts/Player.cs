@@ -7,10 +7,11 @@ public class Player : MonoBehaviour
     private LevelManager lvlManager;
     private Coroutine currentImmortalHandler;
     private bool isImmportal;
+    public GameObject Model;
     [HideInInspector]
     public bool DieOnCollision;
 
-    private MeshRenderer meshRenderer;
+    private SkinnedMeshRenderer meshRenderer;
     private Lerper lerper;
     private Controll controller;
 
@@ -22,7 +23,7 @@ public class Player : MonoBehaviour
     {
         mr = ObjectPool.getObjectPool();
         lvlManager = LevelManager.getLevelManager();
-        meshRenderer = GetComponent<MeshRenderer>();
+        meshRenderer = Model.GetComponent<SkinnedMeshRenderer>(); 
         lerper = GetComponent<Lerper>();
         controller = GameMaster.getGameMaster().GetComponent<Controll>();
     }

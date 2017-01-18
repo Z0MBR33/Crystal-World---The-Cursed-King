@@ -246,7 +246,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013355022722}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 4300000, guid: 03d2a1a978b310b4e969e55e7ebcfe41, type: 3}
 --- !u!54 &54000011857564406
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -335,6 +335,7 @@ MonoBehaviour:
   walkTimeSeconds: 5
   loadTimeSeconds: 5
   shotSize: 2
+  anim: {fileID: 0}
   ShotPoint: {fileID: 1000010492342628}
 --- !u!136 &136000013444547876
 CapsuleCollider:
