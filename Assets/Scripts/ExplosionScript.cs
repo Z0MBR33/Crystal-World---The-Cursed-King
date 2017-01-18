@@ -5,14 +5,9 @@ public class ExplosionScript : MonoBehaviour {
 
     private ObjectPool mr;
 
-    public enum ExplosionType { PlayerShot, EnemyShot, EnemyDeath};
-    public ExplosionType explosionType;
-
-    public void Initialize(ExplosionType type, Vector3 position, Quaternion rotation)
+    public void Initialize(Vector3 position, Quaternion rotation)
     {
         mr = ObjectPool.getObjectPool();
-
-        explosionType = type;
 
         transform.position = position;
         transform.rotation = rotation;

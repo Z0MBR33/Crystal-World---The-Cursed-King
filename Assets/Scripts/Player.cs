@@ -111,7 +111,7 @@ public class Player : MonoBehaviour
     public void Die()
     {
         GameObject expl = ObjectPool.getObjectPool().getObject(ObjectPool.categorie.explosion, (int)ObjectPool.explosion.player);
-        expl.GetComponent<ExplosionScript>().Initialize(ExplosionScript.ExplosionType.PlayerShot, transform.position, new Quaternion());
+        expl.GetComponent<ExplosionScript>().Initialize(transform.position, new Quaternion());
 
         //ObjectPool mr = ObjectPool.getObjectPool();
         //mr.returnObject(gameObject); // no effect?

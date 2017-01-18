@@ -26,16 +26,8 @@ public class Lerper : MonoBehaviour {
         Distance = Vector3.Distance(startPos, targetPos);
         StartTime = Time.time;
 
-        /*conObject = GameMaster.getGameMaster().GetComponent<Controll>();
-
-        if (gameObject.tag == "Player")
-        {
-            conObject.startTeleporting(targetPos - startPos);
-        } */
-
         Lerping = true;
 
-        // ObjectPool.getObjectPool().getObject(ObjectPool.categorie.essential, (int)ObjectPool.essential.camera).GetComponent<justLook>().objectToLookAt = gameObject;
     }
 
     public void Update()
@@ -46,21 +38,10 @@ public class Lerper : MonoBehaviour {
             Ratio = disCovered / Distance;
 
             transform.position = Vector3.Lerp(StartPos, TargetPos, Ratio);
-            /*if (gameObject.tag == "Player")
-            {
-                conObject.updateTeleportProgress(ratio);
-            }*/
 
             if (Ratio >= 1)
             {
                 Lerping = false;
-                /*if (gameObject.tag == "Player")
-                {
-                    conObject.endTeleporting();
-                }
-                //TODO Bug für cam zurücksetzen zwischen meheren Lerps beheben...
-                ObjectPool.getObjectPool().getObject(ObjectPool.categorie.essential, (int)ObjectPool.essential.camera).GetComponent<justLook>().objectToLookAt = null;
-                */
             }
         }
   

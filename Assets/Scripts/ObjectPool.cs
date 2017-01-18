@@ -79,7 +79,7 @@ public class ObjectPool : MonoBehaviour
 
     public enum explosion
     {
-        shot,
+        playerShot,
         enemyShot,
         enemy,
         player
@@ -95,7 +95,8 @@ public class ObjectPool : MonoBehaviour
         smallKey,
         upgradeDamage,
         upgradeRate,
-        upgradeSpeed
+        upgradeSpeed,
+        upgradeShotSpeed
     }
 
     public enum planes

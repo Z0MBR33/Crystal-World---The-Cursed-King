@@ -4214,6 +4214,7 @@ MonoBehaviour:
   - {fileID: 1000012548389982, guid: 07208f22aefb14243abcbd103a7ce68b, type: 2}
   - {fileID: 1000010981664326, guid: d6eccaccc763e2640ada55af095815eb, type: 2}
   - {fileID: 1000011290304470, guid: ff16dbd8cddca7640ad926e748763e55, type: 2}
+  - {fileID: 1000010320286040, guid: cd51e44dabbb5f845a2c3b56927e4ea4, type: 2}
   planePrefabs:
   - {fileID: 1000010363719980, guid: e92eb2c33b931584ba0248056ee90efe, type: 2}
   - {fileID: 1000012390739682, guid: 2b421394575523f4a8e25479b8dfd410, type: 2}
