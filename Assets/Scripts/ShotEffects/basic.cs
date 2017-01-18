@@ -14,7 +14,17 @@ public class basic : ShotEffect {
         
         enemy.GetComponent<Enemy>().getPushed(shot.GetComponent<Rigidbody>().velocity, 5);
         Stats targetStats = enemy.GetComponent<Stats>();
-        targetStats.gotHit(shot.GetComponent<Shot>()._shootedFrom.GetComponent<Stats>().shotStrength);
+        
+
+
+        try
+        {
+            targetStats.gotHit(shot.GetComponent<Shot>()._shootedFrom.GetComponent<Stats>().shotStrength);
+        }
+        catch (Exception ex)
+        {
+            MonoBehaviour.print("---------------------------------------------------------------------");
+        }
     }
 
     public override void triggerHitStructure(GameObject shot)

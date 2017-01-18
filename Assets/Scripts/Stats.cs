@@ -24,6 +24,8 @@ public class Stats : MonoBehaviour
     {
         resetStats();
         possibleShotEffects = new List<ShotEffect>();
+        possibleShotEffects.Add(new basic());
+        possibleShotEffects.Add(new multiplyOnContact());
     }
 
     public void resetStats()
@@ -33,6 +35,7 @@ public class Stats : MonoBehaviour
 
     public void gotHit(float damage)
     {
+        print(gameObject);
         if (health > 0)
         {
             health -= damage;
@@ -41,6 +44,7 @@ public class Stats : MonoBehaviour
                 if (gameObject.tag == "Enemy")
                 {
                     gameObject.GetComponent<Enemy>().die();
+                    return;
                 }
                 if (gameObject.tag == "Player")
                 {

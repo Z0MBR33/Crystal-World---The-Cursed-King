@@ -23,11 +23,14 @@ public class Shot : MonoBehaviour
     public Vector3 _startDirection
     {
         get { return startDirection; }
-        private set { }
+        set { }
     }
 
     private float timeOutInSec = 3;
     private Coroutine timer;
+
+    private bool canPlop = false;
+    private Coroutine plopTimer;
 
     public void Awake()
     {
@@ -39,23 +42,34 @@ public class Shot : MonoBehaviour
 
     public void reset(GameObject shootedFrom, Vector3 horizontalDirection, Quaternion rotation)
     {
-        reset(shootedFrom, horizontalDirection, rotation, shootedFrom.GetComponent<Stats>().possibleShotEffects);
+
+        Vector3 startPosition = shootedFrom.transform.position + shootedFrom.GetComponent<Stats>().shootOffset;
+        Vector3 startDirection = shootedFrom.GetComponent<CharacterController>().velocity;
+        startDirection += (horizontalDirection.normalized + new Vector3(0, 0.2f, 0)) * shootedFrom.GetComponent<Stats>().shotSpeed;
+
+        List<ShotEffect> listToCopy = shootedFrom.GetComponent<Stats>().possibleShotEffects;
+
+        List<ShotEffect> copyOfEffectList = new List<ShotEffect>();
+        ShotEffect[] pufferarray = new ShotEffect[listToCopy.Count];
+        listToCopy.CopyTo(pufferarray);
+        copyOfEffectList.AddRange(pufferarray);
+        reset(shootedFrom, startPosition, startDirection, rotation, copyOfEffectList);
     }
 
-    public void reset(GameObject shootedFrom, Vector3 horizontalDirection, Quaternion rotation, List<ShotEffect> Effects)
+    public void reset(GameObject shootedFrom, Vector3 startPosition, Vector3 startDirection, Quaternion rotation, List<ShotEffect> effects)
     {
         this.shootedFrom = shootedFrom;
         this.tag = shootedFrom.tag;
         rb.velocity = new Vector3(0, 0, 0);
-
-        transform.position = shootedFrom.transform.position + shootedFrom.GetComponent<Stats>().shootOffset;
-        startDirection = shootedFrom.GetComponent<CharacterController>().velocity;
-        //startDirection = (horizontalDirection.normalized + new Vector3(0,0.5f,0)) * shootedFrom.GetComponent<Stats>().shotSpeed * shootedFrom.GetComponent<Stats>().speed;   // TODO
-        startDirection = (horizontalDirection.normalized + new Vector3(0, 0.2f, 0)) * shootedFrom.GetComponent<Stats>().shotSpeed;
-
+        transform.position = startPosition;
+        this.startDirection = startDirection;
+        effectsToExecute = effects;
         transform.rotation = rotation;
+
+
         timer = StartCoroutine(timerHandler());
-        this.GetComponent<AudioSource>().Play();
+        canPlop = false;
+        plopTimer = StartCoroutine(plopTimerHandler());
 
         for (int i = 0; i < effectsToExecute.Count; i++)
         {
@@ -73,32 +87,62 @@ public class Shot : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.collider.tag == "Floor")
+        executeCollison(collision);
+    }
+
+    void OnCollisionStay(Collision collision)
+    {
+        //executeCollison(collision);
+    }
+
+    void executeCollison(Collision collision)
+    {
+        if (canPlop)
         {
-            for (int i = 0; i < effectsToExecute.Count; i++)
+            if (collision.collider.tag != "Enemy")
             {
-                effectsToExecute[i].triggerHitStructure(gameObject);
+                for (int i = 0; i < effectsToExecute.Count; i++)
+                {
+                    effectsToExecute[i].triggerHitStructure(gameObject);
+                }
             }
-        }
-        if (collision.collider.tag == "Enemy")
-        {
-            for (int i = 0; i < effectsToExecute.Count; i++)
+            if (collision.collider.tag == "Enemy")
             {
-                effectsToExecute[i].triggerHitEnemy( gameObject, collision.collider.gameObject);
+                for (int i = 0; i < effectsToExecute.Count; i++)
+                {
+                    effectsToExecute[i].triggerHitEnemy(gameObject, collision.collider.gameObject);
+                }
             }
-        }
-        if (collision.collider.tag == "Floor" || collision.collider.tag == "Enemy")
-        {
-            StopCoroutine(timer);
-            mr.returnObject(gameObject);
+                StopAllCoroutines();
+                mr.returnObject(gameObject);
         }
     }
 
     private IEnumerator timerHandler()
     {
         yield return new WaitForSeconds(timeOutInSec);
-        StopCoroutine(timer);
+        for (int i = 0; i < effectsToExecute.Count; i++)
+        {
+            effectsToExecute[i].triggerHitStructure(gameObject);
+        }
+        StopAllCoroutines();
         mr.returnObject(gameObject);
     }
 
+    private IEnumerator plopTimerHandler()
+    {
+        yield return new WaitForSeconds(0.1f);
+        StopCoroutine(plopTimer);
+        canPlop = true;
+    }
+
+    public List<ShotEffect> getActivShotEffects()
+    {
+        return effectsToExecute;
+    }
+
+    public void removeActivShotEffect(ShotEffect effectToRemove)
+    {
+        effectsToExecute.Remove(effectToRemove);
+    }
 }
