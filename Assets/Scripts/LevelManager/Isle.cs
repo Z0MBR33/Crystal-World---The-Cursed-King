@@ -133,8 +133,11 @@ public class Isle : MonoBehaviour
                 GameObject box = null;
                 if (rnd.Next(0, 101) > lvlManager.ChancesBigBoxes)
                 {
+                    // small box
                     box = mr.getObject(ObjectPool.categorie.items, (int)ObjectPool.items.smallBox);
+
                 }else{
+                    // big box
                     box = mr.getObject(ObjectPool.categorie.items, (int)ObjectPool.items.bigBox);
                 }
                 box.transform.position = ItemPoints[i].transform.position;

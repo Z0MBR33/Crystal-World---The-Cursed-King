@@ -356,6 +356,10 @@ MonoBehaviour:
   - {fileID: 1000011913060384, guid: fc7d7e5ea2225884d9c80475fdd386aa, type: 2}
   - {fileID: 1000010882024320, guid: a0456b64c0ca3464e830050417c1a4ad, type: 2}
   - {fileID: 1000011326509916, guid: b41739f7d629e564bb60dd966fd1f00e, type: 2}
+  - {fileID: 1000012322576922, guid: aaaeb2d54f21bad4785651221a3300dc, type: 2}
+  - {fileID: 1000012548389982, guid: 07208f22aefb14243abcbd103a7ce68b, type: 2}
+  - {fileID: 1000010981664326, guid: d6eccaccc763e2640ada55af095815eb, type: 2}
+  - {fileID: 1000011290304470, guid: ff16dbd8cddca7640ad926e748763e55, type: 2}
   planePrefabs:
   - {fileID: 1000010363719980, guid: e92eb2c33b931584ba0248056ee90efe, type: 2}
   - {fileID: 1000012390739682, guid: 2b421394575523f4a8e25479b8dfd410, type: 2}

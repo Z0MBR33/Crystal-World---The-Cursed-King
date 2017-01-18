@@ -91,7 +91,11 @@ public class ObjectPool : MonoBehaviour
         key2,
         key3,
         smallBox,
-        bigBox
+        bigBox,
+        smallKey,
+        upgradeDamage,
+        upgradeRate,
+        upgradeSpeed
     }
 
     public enum planes

@@ -7,7 +7,10 @@ public class Item : MonoBehaviour {
     public enum ItemType { PortalKey1, PortalKey2, PortalKey3, BigBox, SmallBox }
     public ItemType Type;
 
-    public enum ContentType { SmallKey, StatUpgrade, Splitter, Tornado }; // TODO
+    public enum ContentType { SmallKey, SpeedUpgrade, DamageUpgrade, RateUpgrade };
+    public ContentType Content;
+    public GameObject ContentObj;
+
 
     [HideInInspector]
     public bool collected;
