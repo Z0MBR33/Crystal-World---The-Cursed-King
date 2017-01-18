@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine.SceneManagement;
 
 public class Stats : MonoBehaviour
 {
@@ -45,9 +44,10 @@ public class Stats : MonoBehaviour
                 }
                 if (gameObject.tag == "Player")
                 {
-                    SceneManager.LoadScene("Scenes/Main_Menue");
+                    gameObject.GetComponent<Player>().Die();
                 }
             }
         }
     }
+
 }

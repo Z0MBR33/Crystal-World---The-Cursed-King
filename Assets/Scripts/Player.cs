@@ -116,6 +116,18 @@ public class Player : MonoBehaviour
 
     }
 
+    public void Die()
+    {
+        GameObject expl = ObjectPool.getObjectPool().getObject(ObjectPool.categorie.explosion, (int)ObjectPool.explosion.player);
+        expl.GetComponent<ExplosionScript>().Initialize(ExplosionScript.ExplosionType.PlayerShot, transform.position, new Quaternion());
+
+        //ObjectPool mr = ObjectPool.getObjectPool();
+        //mr.returnObject(gameObject); // no effect?
+        gameObject.SetActive(false);
+
+        GameMaster.getGameMaster().BackToMenue();
+    }
+
     IEnumerator ImmportalHandler(float time)
     {
         yield return new WaitForSeconds(time);
@@ -123,4 +135,5 @@ public class Player : MonoBehaviour
         meshRenderer.enabled = true;
         isImmportal = false;
     }
+
 }

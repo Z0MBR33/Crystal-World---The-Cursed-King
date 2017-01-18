@@ -81,7 +81,8 @@ public class ObjectPool : MonoBehaviour
     {
         shot,
         enemyShot,
-        enemy
+        enemy,
+        player
     }
 
     public enum items

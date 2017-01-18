@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class GameMaster : MonoBehaviour {
     private ObjectPool mr;
@@ -55,4 +56,18 @@ public class GameMaster : MonoBehaviour {
 
     }
 
+    public void BackToMenue()
+    {
+        StartCoroutine(BackToMenueHandler());
+    }
+
+    IEnumerator BackToMenueHandler()
+    {
+
+        yield return new WaitForSeconds(3);
+
+        StopAllCoroutines();
+
+        SceneManager.LoadScene("Scenes/Main_Menue");
+    }
 }
