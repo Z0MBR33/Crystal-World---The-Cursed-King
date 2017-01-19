@@ -21,6 +21,7 @@ GameObject:
   - 4: {fileID: 4000013493951330}
   - 33: {fileID: 33000011205997364}
   - 65: {fileID: 65000011773931448}
+  - 95: {fileID: 95000014168516842}
   - 23: {fileID: 23000012371261684}
   - 114: {fileID: 114000010647106596}
   m_Layer: 0
@@ -91,6 +92,23 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!95 &95000014168516842
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010882024320}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 149956f4ffc38cc49b99dbe3137ce834, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &114000010647106596
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -103,4 +121,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Type: 4
+  ContentObj: {fileID: 0}
   collected: 0
+  opened: 0

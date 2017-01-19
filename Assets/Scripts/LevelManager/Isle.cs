@@ -235,6 +235,7 @@ public class Isle : MonoBehaviour
                 Item box = listBoxes[i];
                 box.opened = true;
                 box.gameObject.GetComponent<Renderer>().material.color = Color.green;
+                box.derObjectAnimator.SetBool("isOpen", true);
                 
                 if (box.ContentObj != null)
                 {

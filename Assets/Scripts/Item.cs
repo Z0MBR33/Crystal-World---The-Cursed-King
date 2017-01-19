@@ -25,7 +25,9 @@ public class Item : MonoBehaviour {
 
     private List<lerpInfo> lerpList;
 
-  
+    public Animator derObjectAnimator;
+
+
     public void initialize()
     {
         mr = ObjectPool.getObjectPool();
@@ -42,6 +44,8 @@ public class Item : MonoBehaviour {
         if (Type == ItemType.SmallBox)
         {
             generateSmallBoxContent();
+            derObjectAnimator = gameObject.GetComponent<Animator>();
+
         }
         if (Type == ItemType.BigBox)
         {

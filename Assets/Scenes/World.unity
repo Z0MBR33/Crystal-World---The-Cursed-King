@@ -5061,7 +5061,127 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1000013800675104, guid: 88371b0c8234c8f4584d2556cefb3d4f, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010284849340, guid: 88371b0c8234c8f4584d2556cefb3d4f,
+        type: 2}
+      propertyPath: ChangeForSpawn
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010284849340, guid: 88371b0c8234c8f4584d2556cefb3d4f,
+        type: 2}
+      propertyPath: Slime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010284849340, guid: 88371b0c8234c8f4584d2556cefb3d4f,
+        type: 2}
+      propertyPath: Octopus
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010284849340, guid: 88371b0c8234c8f4584d2556cefb3d4f,
+        type: 2}
+      propertyPath: Spider
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011508228504, guid: 88371b0c8234c8f4584d2556cefb3d4f,
+        type: 2}
+      propertyPath: ChangeForSpawn
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011670368158, guid: 88371b0c8234c8f4584d2556cefb3d4f,
+        type: 2}
+      propertyPath: ChangeForSpawn
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011508228504, guid: 88371b0c8234c8f4584d2556cefb3d4f,
+        type: 2}
+      propertyPath: Slime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011670368158, guid: 88371b0c8234c8f4584d2556cefb3d4f,
+        type: 2}
+      propertyPath: Slime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011508228504, guid: 88371b0c8234c8f4584d2556cefb3d4f,
+        type: 2}
+      propertyPath: Octopus
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011670368158, guid: 88371b0c8234c8f4584d2556cefb3d4f,
+        type: 2}
+      propertyPath: Octopus
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011508228504, guid: 88371b0c8234c8f4584d2556cefb3d4f,
+        type: 2}
+      propertyPath: Spider
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011670368158, guid: 88371b0c8234c8f4584d2556cefb3d4f,
+        type: 2}
+      propertyPath: Spider
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000013201651270, guid: 88371b0c8234c8f4584d2556cefb3d4f,
+        type: 2}
+      propertyPath: ChangeForSpawn
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000013507277956, guid: 88371b0c8234c8f4584d2556cefb3d4f,
+        type: 2}
+      propertyPath: ChangeForSpawn
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011892399854, guid: 88371b0c8234c8f4584d2556cefb3d4f,
+        type: 2}
+      propertyPath: ChangeForSpawn
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000013201651270, guid: 88371b0c8234c8f4584d2556cefb3d4f,
+        type: 2}
+      propertyPath: Slime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000013507277956, guid: 88371b0c8234c8f4584d2556cefb3d4f,
+        type: 2}
+      propertyPath: Slime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011892399854, guid: 88371b0c8234c8f4584d2556cefb3d4f,
+        type: 2}
+      propertyPath: Slime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000013201651270, guid: 88371b0c8234c8f4584d2556cefb3d4f,
+        type: 2}
+      propertyPath: Spider
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000013507277956, guid: 88371b0c8234c8f4584d2556cefb3d4f,
+        type: 2}
+      propertyPath: Spider
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011892399854, guid: 88371b0c8234c8f4584d2556cefb3d4f,
+        type: 2}
+      propertyPath: Spider
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000013201651270, guid: 88371b0c8234c8f4584d2556cefb3d4f,
+        type: 2}
+      propertyPath: Octopus
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000013507277956, guid: 88371b0c8234c8f4584d2556cefb3d4f,
+        type: 2}
+      propertyPath: Octopus
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011892399854, guid: 88371b0c8234c8f4584d2556cefb3d4f,
+        type: 2}
+      propertyPath: Octopus
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 88371b0c8234c8f4584d2556cefb3d4f, type: 2}
