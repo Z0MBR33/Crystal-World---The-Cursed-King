@@ -26,7 +26,7 @@ GameObject:
   - 114: {fileID: 114000010647106596}
   m_Layer: 0
   m_Name: Small_Box
-  m_TagString: Untagged
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -90,8 +90,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1.1507047, y: 1.1159654, z: 1.160012}
+  m_Center: {x: -0.013177693, y: 0.057982683, z: 0.0017962456}
 --- !u!95 &95000014168516842
 Animator:
   serializedVersion: 3
@@ -124,3 +124,4 @@ MonoBehaviour:
   ContentObj: {fileID: 0}
   collected: 0
   opened: 0
+  derObjectAnimator: {fileID: 0}

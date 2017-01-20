@@ -216,7 +216,7 @@ public class UI_Canvas : MonoBehaviour {
 
     public void UpdateLive(float live, float maxLive)
     {
-        float barHeight = 250 - ((live / maxLive) * 250);
+        float barHeight =((live / maxLive) * 114);
 
         DamageBar.GetComponent<RectTransform>().sizeDelta =  new Vector2(250, barHeight); 
     }

@@ -233,14 +233,8 @@ public class Isle : MonoBehaviour
             if (listBoxes[i].Type == Item.ItemType.SmallBox)
             {
                 Item box = listBoxes[i];
-                box.opened = true;
-                box.gameObject.GetComponent<Renderer>().material.color = Color.green;
-                box.derObjectAnimator.SetBool("isOpen", true);
-                
-                if (box.ContentObj != null)
-                {
-                    box.ContentObj.GetComponent<Lerper>().StartLerp(box.transform.position, box.transform.position + new Vector3(0, 2, 0), 0.5f);
-                }
+
+                box.OpenBox();
 
             }
         }

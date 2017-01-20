@@ -12,7 +12,6 @@ public class Item : MonoBehaviour {
     [HideInInspector]
     public GameObject ContentObj;
 
-
     [HideInInspector]
     public bool collected;
     [HideInInspector]
@@ -93,6 +92,18 @@ public class Item : MonoBehaviour {
 
     }        
 
+    public void OpenBox()
+    {
+        opened = true;
+        gameObject.GetComponent<Renderer>().material.color = Color.green;
+        derObjectAnimator.SetBool("isOpen", true);
+
+        if (ContentObj != null)
+        {
+            ContentObj.GetComponent<Lerper>().StartLerp(transform.position, transform.position + new Vector3(0, 2, 0), 0.5f);
+        }
+    }
+
     public void Collect(GameObject collecter)
     {
         if (Type == ItemType.PortalKey1 || Type ==  ItemType.PortalKey2 || Type == ItemType.PortalKey3)
@@ -107,8 +118,26 @@ public class Item : MonoBehaviour {
         {
             if (opened == true)
             {
-                
+                Player player = mr.getObject(ObjectPool.categorie.essential, (int)ObjectPool.essential.player).GetComponent<Player>();
+                Stats playerStats = player.GetComponent<Stats>();
 
+                switch(Content)
+                {
+                    case ContentType.SmallKey: player.NumberSmallKeys++;
+                        // TODO update GUI
+                        break;
+                    case ContentType.SpeedUpgrade: playerStats.speed += ContentObj.GetComponent<StatUpgrade>().IncreaseValue;
+                        break;
+                    case ContentType.DamageUpgrade: playerStats.strength += ContentObj.GetComponent<StatUpgrade>().IncreaseValue;
+                        break;
+                    case ContentType.RateUpgrade: playerStats.fireRate += ContentObj.GetComponent<StatUpgrade>().IncreaseValue;
+                        break;
+                    case ContentType.ShotSpeedUpgrade: playerStats.shotSpeed += ContentObj.GetComponent<StatUpgrade>().IncreaseValue;
+                        break;
+                }
+
+                mr.returnObject(ContentObj);
+                ContentObj = null;
 
                 collected = true;
             }
@@ -117,7 +146,7 @@ public class Item : MonoBehaviour {
         {
             Player player = mr.getObject(ObjectPool.categorie.essential, (int)ObjectPool.essential.player).GetComponent<Player>();
 
-            if (player.NumberKeys > 0)
+            if (player.NumberSmallKeys > 0)
             {
                 print("TODO GROSSE FETTE BOX!");
             }

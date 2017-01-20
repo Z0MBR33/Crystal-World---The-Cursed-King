@@ -14,7 +14,7 @@ public class Player : MonoBehaviour
     private SkinnedMeshRenderer meshRenderer;
 
     [HideInInspector]
-    public int NumberKeys = 0;
+    public int NumberSmallKeys = 0;
 
     // Use this for initialization
     void Start()

@@ -35,7 +35,7 @@ public class Stats : MonoBehaviour
 
     public void gotHit(float damage)
     {
-        print(gameObject);
+
         if (health > 0)
         {
             health -= damage;
