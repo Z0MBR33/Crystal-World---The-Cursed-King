@@ -4187,9 +4187,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efe9ede0aa9267b45a4482dec3f9e03c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WorldWidth: 5
-  WorldHeight: 5
-  IsleDensity: 0.5
+  WorldWidth: 3
+  WorldHeight: 2
+  IsleDensity: 1
   Fieldwidth: 100
   AddConnPerIsle: 1
   ChancesBigBoxes: 25
@@ -5061,7 +5061,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1000013800675104, guid: 88371b0c8234c8f4584d2556cefb3d4f, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114000010284849340, guid: 88371b0c8234c8f4584d2556cefb3d4f,
         type: 2}

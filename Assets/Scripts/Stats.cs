@@ -25,7 +25,7 @@ public class Stats : MonoBehaviour
         resetStats();
         possibleShotEffects = new List<ShotEffect>();
         possibleShotEffects.Add(new basic());
-        possibleShotEffects.Add(new multiplyOnContact());
+        //possibleShotEffects.Add(new multiplyOnContact());
     }
 
     public void resetStats()

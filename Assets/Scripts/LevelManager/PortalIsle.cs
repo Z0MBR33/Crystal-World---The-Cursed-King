@@ -16,8 +16,6 @@ public class PortalIsle : MonoBehaviour {
 
     public void KeyArrived()
     {
-        PortalKeys++;
-
         if (PortalKeys >= 3)
         {
             BossPortal.GetComponent<Renderer>().material.color = Color.yellow;

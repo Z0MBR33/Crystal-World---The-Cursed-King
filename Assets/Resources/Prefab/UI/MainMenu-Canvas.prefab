@@ -74,7 +74,6 @@ GameObject:
   - 222: {fileID: 222000012854314752}
   - 114: {fileID: 114000013068679656}
   - 114: {fileID: 114000013844605132}
-  - 114: {fileID: 114000012481680028}
   m_Layer: 5
   m_Name: Button Start
   m_TagString: Untagged
@@ -162,6 +161,7 @@ GameObject:
   - 223: {fileID: 223000012088378648}
   - 114: {fileID: 114000011453564818}
   - 114: {fileID: 114000010601624372}
+  - 114: {fileID: 114000010058161222}
   m_Layer: 5
   m_Name: MainMenu-Canvas
   m_TagString: Untagged
@@ -216,6 +216,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 224000013896042218}
   m_RootOrder: 6
+--- !u!114 &114000010058161222
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013566926124}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a076052e266b7e49812888b8917042f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114000010350809798
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -303,7 +314,7 @@ MonoBehaviour:
   m_Script: {fileID: -619905303, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_FirstSelected: {fileID: 0}
+  m_FirstSelected: {fileID: 1000010647493560}
   m_sendNavigationEvents: 1
   m_DragThreshold: 5
 --- !u!114 &114000010910453346
@@ -318,7 +329,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 2
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
@@ -470,7 +481,7 @@ MonoBehaviour:
   m_Script: {fileID: 1980459831, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
@@ -480,17 +491,6 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
---- !u!114 &114000012481680028
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000010647493560}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a076052e266b7e49812888b8917042f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114000012714360926
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -581,7 +581,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 2
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
@@ -607,7 +607,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 114000010598355784}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 114000010058161222}
+        m_MethodName: QuitGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &114000013672087950
@@ -655,7 +666,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 2
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
@@ -682,7 +693,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 114000012481680028}
+      - m_Target: {fileID: 114000010058161222}
         m_MethodName: ChangeScene
         m_Mode: 5
         m_Arguments:
@@ -690,7 +701,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Scenes/test
+          m_StringArgument: Scenes/World
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
@@ -802,8 +813,8 @@ RectTransform:
   m_RootOrder: 4
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 212.5, y: -104}
-  m_SizeDelta: {x: 248, y: 42}
+  m_AnchoredPosition: {x: 199.57, y: -99}
+  m_SizeDelta: {x: 214.05, y: 36}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224000011612057444
 RectTransform:
@@ -821,8 +832,8 @@ RectTransform:
   m_RootOrder: 3
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 212.5, y: -25}
-  m_SizeDelta: {x: 248, y: 42}
+  m_AnchoredPosition: {x: 197.55, y: -22}
+  m_SizeDelta: {x: 218.09, y: 37}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224000011904726748
 RectTransform:
@@ -875,8 +886,8 @@ RectTransform:
   m_RootOrder: 1
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.5, y: 1}
-  m_SizeDelta: {x: 1103, y: 599}
+  m_AnchoredPosition: {x: -2, y: -3}
+  m_SizeDelta: {x: 1028, y: 514}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224000013283887214
 RectTransform:
@@ -912,8 +923,8 @@ RectTransform:
   m_RootOrder: 2
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 212.5, y: 51}
-  m_SizeDelta: {x: 248, y: 42}
+  m_AnchoredPosition: {x: 197.5, y: 53}
+  m_SizeDelta: {x: 218, y: 37}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224000013896042218
 RectTransform:
@@ -955,6 +966,6 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.0007324219, y: 0}
-  m_SizeDelta: {x: 254.38, y: 152.42}
+  m_AnchoredPosition: {x: 0.00033569685, y: -0.0007109642}
+  m_SizeDelta: {x: 200.89, y: 130.25}
   m_Pivot: {x: 0.5, y: 0.5}

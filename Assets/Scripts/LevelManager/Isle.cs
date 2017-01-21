@@ -140,8 +140,10 @@ public class Isle : MonoBehaviour
                     // big box
                     box = mr.getObject(ObjectPool.categorie.items, (int)ObjectPool.items.bigBox);
                 }
-                box.GetComponent<Item>().initialize();
+
                 box.transform.position = ItemPoints[i].transform.position;
+                box.GetComponent<Item>().initialize();
+     
                 listBoxes.Add(box.GetComponent<Item>());
             }
         }
@@ -177,6 +179,9 @@ public class Isle : MonoBehaviour
         playerObject.GetComponent<NavMeshTarget>().IslePosition = transform.position;
 
         levelCheckRoutine = StartCoroutine(LevelCheckHandler());
+
+        UI_Canvas ui = mr.getObject(ObjectPool.categorie.essential, (int)ObjectPool.essential.UI).GetComponent<UI_Canvas>();
+        ui.ShowMessage("Destroy all enemies!");
     }
 
     public IEnumerator LevelCheckHandler()
@@ -188,6 +193,9 @@ public class Isle : MonoBehaviour
             if (ListEnemies.Count <= 0)
             {
                 // Level finished
+
+                UI_Canvas ui = mr.getObject(ObjectPool.categorie.essential, (int)ObjectPool.essential.UI).GetComponent<UI_Canvas>();
+                ui.ShowMessage("Level cleared!\nPortals are open now!");
 
                 UnlockPortals();
 

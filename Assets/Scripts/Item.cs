@@ -19,6 +19,7 @@ public class Item : MonoBehaviour {
 
     private ObjectPool mr;
     private LevelManager lvlManager;
+    private UI_Canvas ui;
 
     private Coroutine checkTeleportFinished;
 
@@ -31,6 +32,8 @@ public class Item : MonoBehaviour {
     {
         mr = ObjectPool.getObjectPool();
         lvlManager = LevelManager.getLevelManager();
+        ui = mr.getObject(ObjectPool.categorie.essential, (int)ObjectPool.essential.UI).GetComponent<UI_Canvas>();
+
         lerpList = new List<lerpInfo>();
 
         collected = false;
@@ -51,7 +54,6 @@ public class Item : MonoBehaviour {
             generateBigBoxContent();
         }
 
-        transform.position = Vector3.zero;
     }
 
     private void generateSmallBoxContent()
@@ -113,6 +115,20 @@ public class Item : MonoBehaviour {
             lvlManager.currentIsle.isleObjectType = IsleAbstract.IsleObjectType.normal;
             mr.getObject(ObjectPool.categorie.essential, (int)ObjectPool.essential.UI).GetComponent<UI_Canvas>().UpdateMiniMap();
             collected = true;
+
+            PortalIsle portalIsle = lvlManager.bossIsle.IsleObj.GetComponent<PortalIsle>();
+            portalIsle.PortalKeys++;
+
+            if (portalIsle.PortalKeys < 3)
+            {
+                ui.ShowMessage(portalIsle.PortalKeys + " of 3 Portal-Keys collected.");
+            }
+            else
+            {
+                ui.ShowMessage("All Portal-Keys collected.\nMain-Portal is open now!");
+            }
+   
+
         }
         else if (Type == ItemType.SmallBox)
         {
@@ -124,15 +140,20 @@ public class Item : MonoBehaviour {
                 switch(Content)
                 {
                     case ContentType.SmallKey: player.NumberSmallKeys++;
-                        // TODO update GUI
+                        ui.UpdateKeys(player.NumberSmallKeys);
+                        ui.ShowMessage("Small key collected");
                         break;
                     case ContentType.SpeedUpgrade: playerStats.speed += ContentObj.GetComponent<StatUpgrade>().IncreaseValue;
+                        ui.ShowMessage("More Speed!");
                         break;
                     case ContentType.DamageUpgrade: playerStats.strength += ContentObj.GetComponent<StatUpgrade>().IncreaseValue;
+                        ui.ShowMessage("More Damage!");
                         break;
                     case ContentType.RateUpgrade: playerStats.fireRate += ContentObj.GetComponent<StatUpgrade>().IncreaseValue;
+                        ui.ShowMessage("Fire rate increased!");
                         break;
                     case ContentType.ShotSpeedUpgrade: playerStats.shotSpeed += ContentObj.GetComponent<StatUpgrade>().IncreaseValue;
+                        ui.ShowMessage("Shots are faster!");
                         break;
                 }
 
@@ -148,7 +169,9 @@ public class Item : MonoBehaviour {
 
             if (player.NumberSmallKeys > 0)
             {
-                print("TODO GROSSE FETTE BOX!");
+                player.NumberSmallKeys--;
+                UI_Canvas ui = mr.getObject(ObjectPool.categorie.essential, (int)ObjectPool.essential.UI).GetComponent<UI_Canvas>();
+                ui.UpdateKeys(player.NumberSmallKeys);
             }
         }
 

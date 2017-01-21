@@ -53,7 +53,7 @@ public class GameMaster : MonoBehaviour {
         ui.ShowMiniMap();
         Stats stats = playerObject.GetComponent<Stats>();
         ui.UpdateLive(stats.health, stats.maxHealth);
-
+        ui.UpdateKeys(playerObject.GetComponent<Player>().NumberSmallKeys);
     }
 
     public void BackToMenue()

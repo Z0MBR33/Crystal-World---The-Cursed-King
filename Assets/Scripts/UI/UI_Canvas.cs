@@ -10,6 +10,9 @@ public class UI_Canvas : MonoBehaviour {
     public UI_Isle IsleImage;
     public UI_Connection ConnectionImage;
     public GameObject MapCompassImage;
+    public Text SmallKeyText;
+    public Text MessageBox;
+    public float MessageTimeSeconds;
 
     public int Fieldwidth;
 
@@ -18,6 +21,7 @@ public class UI_Canvas : MonoBehaviour {
     private List<UI_Isle> listIsles;
     private List<UI_Connection> listConnections;
     private RawImage mapCompass;
+    private Coroutine messageTimer;
 
     private GameObject cameraObject;
 
@@ -219,5 +223,29 @@ public class UI_Canvas : MonoBehaviour {
         float barHeight =((live / maxLive) * 114);
 
         DamageBar.GetComponent<RectTransform>().sizeDelta =  new Vector2(250, barHeight); 
+    }
+
+    public void UpdateKeys(int numberKey)
+    {
+        SmallKeyText.text = numberKey.ToString();
+    }
+
+    public void ShowMessage(string message)
+    {
+        if (messageTimer != null)
+        {
+            StopCoroutine(messageTimer);
+        }
+
+        MessageBox.text = message;
+
+        messageTimer = StartCoroutine(messageTimerHandler());
+    }
+
+    public IEnumerator messageTimerHandler()
+    {
+        yield return new WaitForSeconds(MessageTimeSeconds);
+
+        MessageBox.text = "";
     }
 }
