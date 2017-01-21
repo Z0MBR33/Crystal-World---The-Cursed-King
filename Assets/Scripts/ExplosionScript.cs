@@ -5,12 +5,11 @@ public class ExplosionScript : MonoBehaviour {
 
     private ObjectPool mr;
 
-    public void Initialize(Vector3 position, Quaternion rotation)
+    public void Initialize(Vector3 position)
     {
         mr = ObjectPool.getObjectPool();
 
         transform.position = position;
-        transform.rotation = rotation;
 
         StartCoroutine(timerHandler());
     }

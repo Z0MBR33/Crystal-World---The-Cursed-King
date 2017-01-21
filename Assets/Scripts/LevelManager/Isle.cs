@@ -242,7 +242,7 @@ public class Isle : MonoBehaviour
             {
                 Item box = listBoxes[i];
 
-                box.OpenBox();
+                box.OpenSmallBox();
 
             }
         }

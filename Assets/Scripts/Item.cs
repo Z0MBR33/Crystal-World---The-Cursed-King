@@ -7,8 +7,12 @@ public class Item : MonoBehaviour {
     public enum ItemType { PortalKey1, PortalKey2, PortalKey3, BigBox, SmallBox }
     public ItemType Type;
 
-    public enum ContentType { SmallKey, SpeedUpgrade, DamageUpgrade, RateUpgrade, ShotSpeedUpgrade };
-    private ContentType Content;
+    public enum ContentTypeSmall { SmallKey, SpeedUpgrade, DamageUpgrade, RateUpgrade, ShotSpeedUpgrade };
+    private ContentTypeSmall ContentSmall;
+
+    public enum ContentTypeBig { SpeedUpgrade, DamageUpgrade, RateUpgrade, ShotSpeedUpgrade, Splitter, Bluffer };
+    private ContentTypeBig ContentBig;
+
     [HideInInspector]
     public GameObject ContentObj;
 
@@ -22,6 +26,7 @@ public class Item : MonoBehaviour {
     private UI_Canvas ui;
 
     private Coroutine checkTeleportFinished;
+    private Coroutine checkBigBoxFinished;
 
     private List<lerpInfo> lerpList;
 
@@ -67,34 +72,68 @@ public class Item : MonoBehaviour {
 
         int tmp = mr.random.Next(0, 5);
 
-        Content = (ContentType)tmp;
+        ContentSmall = (ContentTypeSmall)tmp;
 
-        switch (Content)
+        switch (ContentSmall)
         {
-            case ContentType.SmallKey: ContentObj = mr.getObject(ObjectPool.categorie.items, (int)ObjectPool.items.smallKey);
+            case ContentTypeSmall.SmallKey: ContentObj = mr.getObject(ObjectPool.categorie.items, (int)ObjectPool.items.smallKey);
                 break;
-            case ContentType.SpeedUpgrade: ContentObj = mr.getObject(ObjectPool.categorie.items, (int)ObjectPool.items.upgradeSpeed);
+            case ContentTypeSmall.SpeedUpgrade: ContentObj = mr.getObject(ObjectPool.categorie.items, (int)ObjectPool.items.upgradeSpeed);
                 break;
-            case ContentType.DamageUpgrade: ContentObj = mr.getObject(ObjectPool.categorie.items, (int)ObjectPool.items.upgradeDamage);
+            case ContentTypeSmall.DamageUpgrade: ContentObj = mr.getObject(ObjectPool.categorie.items, (int)ObjectPool.items.upgradeDamage);
                 break;
-            case ContentType.RateUpgrade: ContentObj = mr.getObject(ObjectPool.categorie.items, (int)ObjectPool.items.upgradeRate);
+            case ContentTypeSmall.RateUpgrade: ContentObj = mr.getObject(ObjectPool.categorie.items, (int)ObjectPool.items.upgradeRate);
                 break;
-            case ContentType.ShotSpeedUpgrade: ContentObj = mr.getObject(ObjectPool.categorie.items, (int)ObjectPool.items.upgradeShotSpeed);
+            case ContentTypeSmall.ShotSpeedUpgrade: ContentObj = mr.getObject(ObjectPool.categorie.items, (int)ObjectPool.items.upgradeShotSpeed);
                 break;
-            default: print("Error: Kein Gültiger Inhalt für Trufe");
+            default: print("Error: No valid content for small box");
                 break;
         }
 
+        if (ContentSmall != ContentTypeSmall.SmallKey)
+        {
+            ContentObj.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+        }
         ContentObj.transform.position = transform.position;
 
     }
 
     private void generateBigBoxContent()
     {
+        if (ContentObj != null)
+        {
+            mr.returnObject(ContentObj);
+            ContentObj = null;
+        }
 
+        int tmp = mr.random.Next(0, 6);
+
+        ContentBig = (ContentTypeBig)tmp;
+   
+        switch (ContentBig)
+        {
+            case ContentTypeBig.SpeedUpgrade: ContentObj = mr.getObject(ObjectPool.categorie.items, (int)ObjectPool.items.upgradeSpeed);
+                break;
+            case ContentTypeBig.DamageUpgrade: ContentObj = mr.getObject(ObjectPool.categorie.items, (int)ObjectPool.items.upgradeDamage);
+                break;
+            case ContentTypeBig.RateUpgrade: ContentObj = mr.getObject(ObjectPool.categorie.items, (int)ObjectPool.items.upgradeRate);
+                break;
+            case ContentTypeBig.ShotSpeedUpgrade: ContentObj = mr.getObject(ObjectPool.categorie.items, (int)ObjectPool.items.upgradeShotSpeed);
+                break;
+            case ContentTypeBig.Splitter: ContentObj = mr.getObject(ObjectPool.categorie.items, (int)ObjectPool.items.splitter);
+                break;
+            case ContentTypeBig.Bluffer: ContentObj = mr.getObject(ObjectPool.categorie.items, (int)ObjectPool.items.bluffer);
+                break;
+            default:
+                print("Error: No valid content for big box");
+                break;
+        }
+
+        ContentObj.transform.localScale = new Vector3(1, 1, 1);
+        ContentObj.transform.position = transform.position;
     }        
 
-    public void OpenBox()
+    public void OpenSmallBox()
     {
         opened = true;
         gameObject.GetComponent<Renderer>().material.color = Color.green;
@@ -104,9 +143,102 @@ public class Item : MonoBehaviour {
         {
             ContentObj.GetComponent<Lerper>().StartLerp(transform.position, transform.position + new Vector3(0, 2, 0), 0.5f);
         }
+
     }
 
-    public void Collect(GameObject collecter)
+    public void OpenBigBox()
+    {
+        opened = true;
+        collected = true;
+    
+        gameObject.GetComponent<Renderer>().material.color = Color.green;
+
+        if (ContentObj != null)
+        {
+            ContentObj.GetComponent<Lerper>().StartLerp(transform.position, transform.position + new Vector3(0, 3, 0), 1.3f);
+        }
+
+        checkBigBoxFinished = StartCoroutine(checkBigBoxFinishedHandler());
+    }
+
+    public IEnumerator checkBigBoxFinishedHandler()
+    {
+        while(true)
+        {
+            if (ContentObj.GetComponent<Lerper>().Lerping == false)
+            {
+                break;
+            }
+            else
+            {
+                yield return new WaitForSeconds(0.3f);
+            }
+        }
+
+        Player player = mr.getObject(ObjectPool.categorie.essential, (int)ObjectPool.essential.player).GetComponent<Player>();
+        Stats playerStats = player.GetComponent<Stats>();
+
+        switch (ContentBig)  
+        {
+            case ContentTypeBig.SpeedUpgrade:
+                playerStats.speed += ContentObj.GetComponent<StatUpgrade>().IncreaseBigValue;
+                ui.ShowMessage("Much more Speed!");
+                break;
+            case ContentTypeBig.DamageUpgrade:
+                playerStats.strength += ContentObj.GetComponent<StatUpgrade>().IncreaseBigValue;
+                ui.ShowMessage("Much more Damage!");
+                break;
+            case ContentTypeBig.RateUpgrade:
+                playerStats.fireRate += ContentObj.GetComponent<StatUpgrade>().IncreaseBigValue;
+                ui.ShowMessage("Fire rate extremely increased!");
+                break;
+            case ContentTypeBig.ShotSpeedUpgrade:
+                playerStats.shotSpeed += ContentObj.GetComponent<StatUpgrade>().IncreaseBigValue;
+                ui.ShowMessage("Shots are much faster!");
+                break;
+            case ContentTypeBig.Splitter:
+                if (player.HasSplitter == false)
+                {
+                    player.HasSplitter = true;
+                    playerStats.possibleShotEffects.Add(new multiplyOnContact());
+                    ui.ShowMessage("You have Splitter-Shots!");
+                }
+                else
+                {
+                    playerStats.strength += ContentObj.GetComponent<StatUpgrade>().IncreaseBigValue;
+                    ui.ShowMessage("Much more Damage!");
+                }
+                break;
+            case ContentTypeBig.Bluffer:
+                if (player.hasBluffer == false)
+                {
+                    player.hasBluffer = true;
+                    //playerStats.possibleShotEffects.Add(new multiplyOnContact());  // TODO Add Bluffer!
+                    ui.ShowMessage("You have Bluffer-Shots!");
+                }
+                else
+                {
+                    playerStats.strength += ContentObj.GetComponent<StatUpgrade>().IncreaseBigValue;
+                    ui.ShowMessage("Much more Damage!");
+                }
+                break;
+        }
+
+        ExplosionScript itemEffect = mr.getObject(ObjectPool.categorie.explosion, (int)ObjectPool.explosion.itemCollected).GetComponent<ExplosionScript>();
+        itemEffect.Initialize(ContentObj.transform.position);
+
+        ExplosionScript heroEffect = mr.getObject(ObjectPool.categorie.explosion, (int)ObjectPool.explosion.itemCollectedHero).GetComponent<ExplosionScript>();
+        heroEffect.Initialize(player.transform.position);
+
+        mr.returnObject(ContentObj);
+        ContentObj = null;
+
+        StopCoroutine(checkBigBoxFinished);
+
+        yield return null;
+    }
+
+    public void Collect()
     {
         if (Type == ItemType.PortalKey1 || Type ==  ItemType.PortalKey2 || Type == ItemType.PortalKey3)
         {
@@ -137,25 +269,31 @@ public class Item : MonoBehaviour {
                 Player player = mr.getObject(ObjectPool.categorie.essential, (int)ObjectPool.essential.player).GetComponent<Player>();
                 Stats playerStats = player.GetComponent<Stats>();
 
-                switch(Content)
+                switch(ContentSmall)
                 {
-                    case ContentType.SmallKey: player.NumberSmallKeys++;
+                    case ContentTypeSmall.SmallKey: player.NumberSmallKeys++;
                         ui.UpdateKeys(player.NumberSmallKeys);
                         ui.ShowMessage("Small key collected");
                         break;
-                    case ContentType.SpeedUpgrade: playerStats.speed += ContentObj.GetComponent<StatUpgrade>().IncreaseValue;
+                    case ContentTypeSmall.SpeedUpgrade: playerStats.speed += ContentObj.GetComponent<StatUpgrade>().IncreaseSmallValue;
                         ui.ShowMessage("More Speed!");
                         break;
-                    case ContentType.DamageUpgrade: playerStats.strength += ContentObj.GetComponent<StatUpgrade>().IncreaseValue;
+                    case ContentTypeSmall.DamageUpgrade: playerStats.strength += ContentObj.GetComponent<StatUpgrade>().IncreaseSmallValue;
                         ui.ShowMessage("More Damage!");
                         break;
-                    case ContentType.RateUpgrade: playerStats.fireRate += ContentObj.GetComponent<StatUpgrade>().IncreaseValue;
+                    case ContentTypeSmall.RateUpgrade: playerStats.fireRate += ContentObj.GetComponent<StatUpgrade>().IncreaseSmallValue;
                         ui.ShowMessage("Fire rate increased!");
                         break;
-                    case ContentType.ShotSpeedUpgrade: playerStats.shotSpeed += ContentObj.GetComponent<StatUpgrade>().IncreaseValue;
+                    case ContentTypeSmall.ShotSpeedUpgrade: playerStats.shotSpeed += ContentObj.GetComponent<StatUpgrade>().IncreaseSmallValue;
                         ui.ShowMessage("Shots are faster!");
                         break;
                 }
+
+                ExplosionScript itemEffect = mr.getObject(ObjectPool.categorie.explosion, (int)ObjectPool.explosion.itemCollected).GetComponent<ExplosionScript>();
+                itemEffect.Initialize(ContentObj.transform.position);
+
+                ExplosionScript heroEffect = mr.getObject(ObjectPool.categorie.explosion, (int)ObjectPool.explosion.itemCollectedHero).GetComponent<ExplosionScript>();
+                heroEffect.Initialize(player.transform.position);
 
                 mr.returnObject(ContentObj);
                 ContentObj = null;
@@ -172,6 +310,8 @@ public class Item : MonoBehaviour {
                 player.NumberSmallKeys--;
                 UI_Canvas ui = mr.getObject(ObjectPool.categorie.essential, (int)ObjectPool.essential.UI).GetComponent<UI_Canvas>();
                 ui.UpdateKeys(player.NumberSmallKeys);
+
+                OpenBigBox();
             }
         }
 

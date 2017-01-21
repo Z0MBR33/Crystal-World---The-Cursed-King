@@ -82,7 +82,9 @@ public class ObjectPool : MonoBehaviour
         playerShot,
         enemyShot,
         enemy,
-        player
+        player,
+        itemCollected,
+        itemCollectedHero
     }
 
     public enum items
@@ -96,7 +98,9 @@ public class ObjectPool : MonoBehaviour
         upgradeDamage,
         upgradeRate,
         upgradeSpeed,
-        upgradeShotSpeed
+        upgradeShotSpeed,
+        splitter,
+        bluffer
     }
 
     public enum planes

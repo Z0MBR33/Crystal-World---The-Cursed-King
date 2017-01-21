@@ -15,6 +15,10 @@ public class Player : MonoBehaviour
 
     [HideInInspector]
     public int NumberSmallKeys = 0;
+    [HideInInspector]
+    public bool HasSplitter;
+    [HideInInspector]
+    public bool hasBluffer;
 
     // Use this for initialization
     void Start()
@@ -79,7 +83,7 @@ public class Player : MonoBehaviour
 
             if (item.collected == false)
             {
-                item.Collect(gameObject);
+                item.Collect();
             }
 
         }
@@ -111,7 +115,7 @@ public class Player : MonoBehaviour
     public void Die()
     {
         GameObject expl = ObjectPool.getObjectPool().getObject(ObjectPool.categorie.explosion, (int)ObjectPool.explosion.player);
-        expl.GetComponent<ExplosionScript>().Initialize(transform.position, new Quaternion());
+        expl.GetComponent<ExplosionScript>().Initialize(transform.position);
 
         //ObjectPool mr = ObjectPool.getObjectPool();
         //mr.returnObject(gameObject); // no effect?

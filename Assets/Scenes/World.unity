@@ -4162,6 +4162,8 @@ MonoBehaviour:
   - {fileID: 1000010230680444, guid: aff0c0444cebbdc49bfa3199a4b5f3b3, type: 2}
   - {fileID: 1000010384853792, guid: daf8039cbcb11eb4784edb8a6c5876f0, type: 2}
   - {fileID: 1000011658367158, guid: 7c587ecbca342ea4982c4d70a9c27c9d, type: 2}
+  - {fileID: 1000013040499682, guid: c0c2116e75fe908408709d213fac66c9, type: 2}
+  - {fileID: 1000014022155290, guid: 22ae0b61fa2d9e747af423c6c3709d7e, type: 2}
   itemPrefabs:
   - {fileID: 1000013681732068, guid: b44fcca7c2136d149b4ae6430af6c1d4, type: 2}
   - {fileID: 1000010971501996, guid: dac01df769baf1e44a043abf9f12337f, type: 2}
@@ -4173,6 +4175,8 @@ MonoBehaviour:
   - {fileID: 1000010981664326, guid: d6eccaccc763e2640ada55af095815eb, type: 2}
   - {fileID: 1000011290304470, guid: ff16dbd8cddca7640ad926e748763e55, type: 2}
   - {fileID: 1000010320286040, guid: cd51e44dabbb5f845a2c3b56927e4ea4, type: 2}
+  - {fileID: 1000014162500564, guid: 27877720759d7af458cc6f5bdd223fe9, type: 2}
+  - {fileID: 1000011162335236, guid: 124450bd7ebde6b4a91dac6b83e1f12f, type: 2}
   planePrefabs:
   - {fileID: 1000010363719980, guid: e92eb2c33b931584ba0248056ee90efe, type: 2}
   - {fileID: 1000012390739682, guid: 2b421394575523f4a8e25479b8dfd410, type: 2}
@@ -4187,9 +4191,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efe9ede0aa9267b45a4482dec3f9e03c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WorldWidth: 3
-  WorldHeight: 2
-  IsleDensity: 1
+  WorldWidth: 5
+  WorldHeight: 5
+  IsleDensity: 0.5
   Fieldwidth: 100
   AddConnPerIsle: 1
   ChancesBigBoxes: 25

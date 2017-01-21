@@ -3,5 +3,6 @@ using System.Collections;
 
 public class StatUpgrade : MonoBehaviour {
 
-    public float IncreaseValue;
+    public float IncreaseSmallValue;
+    public float IncreaseBigValue;
 }
