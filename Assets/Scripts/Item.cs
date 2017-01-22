@@ -185,7 +185,7 @@ public class Item : MonoBehaviour {
                 ui.ShowMessage("Much more Speed!");
                 break;
             case ContentTypeBig.DamageUpgrade:
-                playerStats.strength += ContentObj.GetComponent<StatUpgrade>().IncreaseBigValue;
+                playerStats.shotStrength += ContentObj.GetComponent<StatUpgrade>().IncreaseBigValue;
                 ui.ShowMessage("Much more Damage!");
                 break;
             case ContentTypeBig.RateUpgrade:
@@ -205,7 +205,7 @@ public class Item : MonoBehaviour {
                 }
                 else
                 {
-                    playerStats.strength += ContentObj.GetComponent<StatUpgrade>().IncreaseBigValue;
+                    playerStats.shotStrength += ContentObj.GetComponent<StatUpgrade>().IncreaseBigValue;
                     ui.ShowMessage("Much more Damage!");
                 }
                 break;
@@ -218,7 +218,7 @@ public class Item : MonoBehaviour {
                 }
                 else
                 {
-                    playerStats.strength += ContentObj.GetComponent<StatUpgrade>().IncreaseBigValue;
+                    playerStats.shotStrength += ContentObj.GetComponent<StatUpgrade>().IncreaseBigValue;
                     ui.ShowMessage("Much more Damage!");
                 }
                 break;
@@ -278,7 +278,7 @@ public class Item : MonoBehaviour {
                     case ContentTypeSmall.SpeedUpgrade: playerStats.speed += ContentObj.GetComponent<StatUpgrade>().IncreaseSmallValue;
                         ui.ShowMessage("More Speed!");
                         break;
-                    case ContentTypeSmall.DamageUpgrade: playerStats.strength += ContentObj.GetComponent<StatUpgrade>().IncreaseSmallValue;
+                    case ContentTypeSmall.DamageUpgrade: playerStats.shotStrength += ContentObj.GetComponent<StatUpgrade>().IncreaseSmallValue;
                         ui.ShowMessage("More Damage!");
                         break;
                     case ContentTypeSmall.RateUpgrade: playerStats.fireRate += ContentObj.GetComponent<StatUpgrade>().IncreaseSmallValue;

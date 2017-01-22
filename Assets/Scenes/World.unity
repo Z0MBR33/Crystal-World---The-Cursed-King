@@ -4186,6 +4186,7 @@ MonoBehaviour:
   - {fileID: 1000013943836704, guid: 697675f236d0e9c49b3f38593a8eb0b7, type: 2}
   shotPrefabs:
   - {fileID: 1000010133196268, guid: 0cb21fa5624af584f825fbe64b944137, type: 2}
+  - {fileID: 1000011398457958, guid: 7f3e67764ccae6d419c69a4032f7c7c9, type: 2}
   - {fileID: 1000011691271752, guid: 7646dc13bb403024a8511c3bbe719f6d, type: 2}
   enemyPrefabs:
   - {fileID: 1000012905966870, guid: eac0b18bfaf4c6c4c9377b8cccda99e2, type: 2}

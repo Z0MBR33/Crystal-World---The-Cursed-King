@@ -99,7 +99,16 @@ public class Octopus : Enemy
 
     private void shoot()
     {
-        // shot! TODO
+        Stats stats = GetComponent<Stats>();
+
+        Shot shot = mr.getObject(ObjectPool.categorie.shot, (int)ObjectPool.shot.roundEnemy).GetComponent<Shot>();
+        shot.gameObject.transform.localScale = new Vector3(shotSize, shotSize, shotSize);
+
+        Vector3 startPoint = loadingShot.GetComponent<LoadingBall>().CenterOfBall.transform.position;
+        Vector3 startDirection = transform.forward + new Vector3(0, 0.2f, 0);
+        startDirection *= stats.shotSpeed;
+
+        shot.reset(gameObject, startPoint, startDirection, new Quaternion(), stats.possibleShotEffects);
 
         if (loadingShot != null)
         {

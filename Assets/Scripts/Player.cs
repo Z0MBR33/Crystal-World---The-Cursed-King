@@ -48,14 +48,13 @@ public class Player : MonoBehaviour
 
         if (isImmportal == false)
         {
-            if (hit.gameObject.tag == "Enemy")
+            if (isImmportal == false)
             {
-                // TODO :  push player back
-
-                becomeImmortal(3);
-                Stats stats = GetComponent<Stats>();
-                stats.gotHit(hit.gameObject.GetComponent<Stats>().strength);
-                mr.getObject(ObjectPool.categorie.essential, (int)ObjectPool.essential.UI).GetComponent<UI_Canvas>().UpdateLive(stats.health, stats.maxHealth);
+                if (hit.gameObject.tag == "Enemy")
+                {
+                    float damage = hit.gameObject.GetComponent<Stats>().strength;
+                    TakeDamage(damage);
+                }
             }
         }
 
@@ -96,6 +95,18 @@ public class Player : MonoBehaviour
             {
                 portalIsle.teleport();
             }
+        }
+    }
+
+    public void TakeDamage(float damage)
+    {
+
+        if (isImmportal == false)
+        {
+            becomeImmortal(3);
+            Stats stats = GetComponent<Stats>();
+            stats.gotHit(damage);
+            mr.getObject(ObjectPool.categorie.essential, (int)ObjectPool.essential.UI).GetComponent<UI_Canvas>().UpdateLive(stats.health, stats.maxHealth);
         }
     }
 
