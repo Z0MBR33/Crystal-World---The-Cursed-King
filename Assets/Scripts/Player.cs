@@ -10,8 +10,8 @@ public class Player : MonoBehaviour
     public GameObject Model;
     [HideInInspector]
     public bool DieOnCollision;
-
-    private SkinnedMeshRenderer meshRenderer;
+    [HideInInspector]
+    public SkinnedMeshRenderer MeshRenderer;
 
     [HideInInspector]
     public int NumberSmallKeys = 0;
@@ -25,7 +25,7 @@ public class Player : MonoBehaviour
     {
         mr = ObjectPool.getObjectPool();
         lvlManager = LevelManager.getLevelManager();
-        meshRenderer = Model.GetComponent<SkinnedMeshRenderer>(); 
+        MeshRenderer = Model.GetComponent<SkinnedMeshRenderer>(); 
     }
 
     // Update is called once per frame
@@ -34,7 +34,7 @@ public class Player : MonoBehaviour
         if (isImmportal)
         {
             // flicker player
-            meshRenderer.enabled = !meshRenderer.enabled;
+            MeshRenderer.enabled = !MeshRenderer.enabled;
         }
     }
 
@@ -128,7 +128,7 @@ public class Player : MonoBehaviour
     {
         yield return new WaitForSeconds(time);
 
-        meshRenderer.enabled = true;
+        MeshRenderer.enabled = true;
         isImmportal = false;
     }
 

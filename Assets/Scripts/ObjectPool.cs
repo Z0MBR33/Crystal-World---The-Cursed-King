@@ -84,7 +84,8 @@ public class ObjectPool : MonoBehaviour
         enemy,
         player,
         itemCollected,
-        itemCollectedHero
+        itemCollectedHero,
+        heroTeleportBall
     }
 
     public enum items

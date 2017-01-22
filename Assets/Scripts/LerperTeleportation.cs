@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class LerperCameraFollow : MonoBehaviour
+public class LerperTeleportation : MonoBehaviour
 {
 
     [HideInInspector]
@@ -15,6 +15,7 @@ public class LerperCameraFollow : MonoBehaviour
     private float StartTime;
 
     private Controll conObject;
+    private GameObject teleportationBall;
 
     public void StartLerp(Vector3 startPos, Vector3 targetPos, float speed)
     {
@@ -31,10 +32,14 @@ public class LerperCameraFollow : MonoBehaviour
      
         Lerping = true;
 
-        ObjectPool.getObjectPool().getObject(ObjectPool.categorie.essential, (int)ObjectPool.essential.camera).GetComponent<justLook>().objectToLookAt = gameObject;
-    }
+        //ObjectPool.getObjectPool().getObject(ObjectPool.categorie.essential, (int)ObjectPool.essential.camera).GetComponent<justLook>().objectToLookAt = gameObject;
 
-    public void Update()
+        gameObject.GetComponent<Player>().MeshRenderer.enabled = false;
+        teleportationBall = ObjectPool.getObjectPool().getObject(ObjectPool.categorie.explosion, (int)ObjectPool.explosion.heroTeleportBall);
+        teleportationBall.transform.LookAt(targetPos);
+}
+
+public void Update()
     {
         if (Lerping == true)
         {
@@ -42,7 +47,9 @@ public class LerperCameraFollow : MonoBehaviour
             float ratio = disCovered / Distance;
 
             transform.position = Vector3.Lerp(StartPos, TargetPos, ratio);
-            
+            teleportationBall.transform.position = transform.position;
+
+
             conObject.updateTeleportProgress(ratio);
            
 
@@ -53,10 +60,13 @@ public class LerperCameraFollow : MonoBehaviour
                 transform.position = TargetPos;
 
                 conObject.endTeleporting();
-               
+
+                gameObject.GetComponent<Player>().MeshRenderer.enabled = true;
+                ObjectPool.getObjectPool().returnObject(teleportationBall);
+
                 //TODO Bug für cam zurücksetzen zwischen meheren Lerps beheben...
-                ObjectPool.getObjectPool().getObject(ObjectPool.categorie.essential, (int)ObjectPool.essential.camera).GetComponent<justLook>().objectToLookAt = null;
-               
+                //ObjectPool.getObjectPool().getObject(ObjectPool.categorie.essential, (int)ObjectPool.essential.camera).GetComponent<justLook>().objectToLookAt = null;
+
             }
         }
 

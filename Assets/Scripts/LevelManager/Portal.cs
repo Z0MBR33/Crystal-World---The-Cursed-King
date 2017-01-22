@@ -50,11 +50,12 @@ public class Portal : MonoBehaviour
         cr.enabled = false;
 
         // start lerping of player
-        player.GetComponent<LerperCameraFollow>().StartLerp(startPos, targetPos, 50);
+        player.GetComponent<LerperTeleportation>().StartLerp(startPos, targetPos, 50);
 
         checkTeleportFinished = StartCoroutine(checkTeleportFiniedHandler());
 
         lvlManager.currentIsle.IsleObj.RemoveBorders();
+
 
     }
 
@@ -64,7 +65,7 @@ public class Portal : MonoBehaviour
         {
             yield return new WaitForSeconds(0.5f);
 
-            if (player.GetComponent<LerperCameraFollow>().Lerping == false)
+            if (player.GetComponent<LerperTeleportation>().Lerping == false)
             {
                 // end teleporting
 
