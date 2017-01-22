@@ -25,11 +25,9 @@ public class PortalIsle : MonoBehaviour {
 
     public void teleport()
     {
-        ObjectPool mr = ObjectPool.getObjectPool();
-        
-        //mr.returnAllObjects();
-        //mr.preserveObjectsOnLoad();
-        //mr.DestroyAllObjects();
-        //SceneManager.LoadScene("Scenes/Boss");
+        int level = GameStats.Level + 1;
+        GameStats.UpdateLevelSettings(level);
+
+        SceneManager.LoadScene("Scenes/World");
     }
 }

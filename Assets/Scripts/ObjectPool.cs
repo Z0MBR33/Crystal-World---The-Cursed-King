@@ -257,9 +257,9 @@ public class ObjectPool : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// <para>With this method, you can lay back all objects into the pool.</para>
-    /// </summary>
+    
+    // Don't use this functions!
+    /*
     public void returnAllObjects()
     {
         for(int i = 0; i < activeObjects.Count; i++)
@@ -322,5 +322,5 @@ public class ObjectPool : MonoBehaviour
                 }
             }
         }
-    }
+    } */
 }

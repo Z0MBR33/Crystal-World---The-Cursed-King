@@ -30,14 +30,21 @@ public class GameMaster : MonoBehaviour {
         playerObject.SetActive(true);
         camObject.SetActive(true);
 
-        // Create world
         levelManager = LevelManager.getLevelManager();
+
+        LoadGameStats();
+
+        StartLevel();
+    }
+
+    private void StartLevel()
+    {   
         levelManager.GenerateMap();
 
-
         //Set Player on Start Isle
+        playerObject.GetComponent<CharacterController>().enabled = false;
+
         Isle startIsle = levelManager.startIsle.IsleObj;
-        //Isle startIsle = levelManager.getWorld()[0, 0].IsleObj;
         levelManager.currentIsle = startIsle.isleAbstract;
         playerObject.transform.position = new Vector3(startIsle.transform.position.x, startIsle.transform.position.y + 2, startIsle.transform.position.z);
         playerObject.GetComponent<NavMeshTarget>().IslePosition = startIsle.transform.position;
@@ -49,11 +56,45 @@ public class GameMaster : MonoBehaviour {
         playerObject.GetComponent<CharacterController>().enabled = true;
 
         // show UI (inclusive Mini-Map)
-        UI_Canvas ui = mr.getObject(ObjectPool.categorie.essential,(int)ObjectPool.essential.UI).GetComponent<UI_Canvas>();
+        UI_Canvas ui = mr.getObject(ObjectPool.categorie.essential, (int)ObjectPool.essential.UI).GetComponent<UI_Canvas>();
         ui.ShowMiniMap();
         Stats stats = playerObject.GetComponent<Stats>();
         ui.UpdateLive(stats.health, stats.maxHealth);
         ui.UpdateKeys(playerObject.GetComponent<Player>().NumberSmallKeys);
+    }
+
+    private void LoadGameStats()
+    {
+        if (GameStats.LoadLevelSettings == true)
+        {
+            // load Level Settings
+
+            int currentLevel = GameStats.Level;
+
+            GameStats.UpdateLevelSettings(currentLevel);
+
+            levelManager.WorldWidth = GameStats.LvlWorldWidht;
+            levelManager.WorldHeight = GameStats.LvlWorldHeight;
+            levelManager.IsleDensity = GameStats.LvlIsleDensity;
+
+            // load Player Stats
+        /*
+        public static float maxHealth;
+        public static float health;
+        public static float speed;
+        public static float luck;
+        public static float strength;
+
+        //Shoot stats
+        public static Vector3 shootOffset = new Vector3(0, 1, 0);
+        public static float StartVerticalDegree = 45;
+        public static float shotSpeed = 1.0f;
+        public static float shotStrength = 5.0f;
+        public static float fireRate = 0.1f;
+        public static float fireRateDifference = 0;
+        public static List<ShotEffect> possibleShotEffects;
+        */
+}
     }
 
     public void BackToMenue()
@@ -69,5 +110,16 @@ public class GameMaster : MonoBehaviour {
         StopAllCoroutines();
 
         SceneManager.LoadScene("Scenes/Main_Menue");
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Return))
+        {
+            int level = GameStats.Level + 1;
+            GameStats.UpdateLevelSettings(level);
+
+            SceneManager.LoadScene("Scenes/World"); ;
+        }
     }
 }

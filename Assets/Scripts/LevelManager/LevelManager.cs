@@ -49,16 +49,6 @@ public class LevelManager : MonoBehaviour
         mr = ObjectPool.getObjectPool();
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Return))
-        {
-            GenerateMap();
-
-            ObjectPool.getObjectPool().getObject(ObjectPool.categorie.essential, (int)ObjectPool.essential.UI).GetComponent<UI_Canvas>().ShowMiniMap();
-        }
-    }
-
     public void GenerateMap()
     {
         rnd = new System.Random();
