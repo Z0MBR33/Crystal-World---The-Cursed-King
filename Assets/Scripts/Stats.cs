@@ -18,6 +18,7 @@ public class Stats : MonoBehaviour
     public float shotSpeed = 1.0f;
     public float shotStrength = 5.0f;
     public float fireRate = 0.1f;
+    public float fireRateDifference = 0;
     public List<ShotEffect> possibleShotEffects;
 
     public void Awake()

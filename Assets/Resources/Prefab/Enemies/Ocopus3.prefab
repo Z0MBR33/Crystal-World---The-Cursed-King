@@ -127,8 +127,8 @@ GameObject:
   - 95: {fileID: 95000013583744428}
   - 65: {fileID: 65000014008244556}
   - 54: {fileID: 54000011387406526}
-  - 114: {fileID: 114000014276399926}
   - 114: {fileID: 114000012740306368}
+  - 114: {fileID: 114000014276399926}
   - 114: {fileID: 114000011695610544}
   m_Layer: 9
   m_Name: Ocopus3
@@ -1792,7 +1792,7 @@ BoxCollider:
   m_GameObject: {fileID: 1000012298268126}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -1858,6 +1858,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkTimeSeconds: 5
+  walkTimeDifference: 2
   loadTimeSeconds: 3
   shotSize: 2
   anim: {fileID: 0}

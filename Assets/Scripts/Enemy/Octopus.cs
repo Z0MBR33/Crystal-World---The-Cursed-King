@@ -5,6 +5,7 @@ public class Octopus : Enemy
 {
 
     public float walkTimeSeconds;
+    public float walkTimeDifference;
     public float loadTimeSeconds;
     public float shotSize;
     public Animator anim;
@@ -127,7 +128,16 @@ public class Octopus : Enemy
             {
                 ghostCopy.MovedByGhost = true;
 
-                yield return new WaitForSeconds(walkTimeSeconds);
+                // calculate difference-wait-time
+                float max = walkTimeDifference * 100;
+                float offset = mr.random.Next(0, (int)max);
+                offset = offset - (max/2);
+                offset = offset / 100;
+
+                float actualWaitTimeSeconds = walkTimeSeconds + offset;
+
+                // wait
+                yield return new WaitForSeconds(actualWaitTimeSeconds);
                 walking = false;
             }
             else
