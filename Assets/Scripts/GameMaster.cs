@@ -50,6 +50,7 @@ public class GameMaster : MonoBehaviour {
         Isle startIsle = levelManager.startIsle.IsleObj;
         levelManager.currentIsle = startIsle.isleAbstract;
         playerObject.transform.position = startIsle.PlayerStartPoint.transform.position;
+        playerObject.transform.rotation = startIsle.PlayerStartPoint.transform.rotation;
         playerObject.GetComponent<NavMeshTarget>().IslePosition = startIsle.transform.position;
 
         levelManager.currentIsle.IsleObj.StartIsle();
