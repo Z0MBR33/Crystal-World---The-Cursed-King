@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class UI_Canvas : MonoBehaviour {
 
     public GameObject MiniMap;
+    public GameObject MiniMapBackground;
     public GameObject DamageBar;
     public UI_Isle IsleImage;
     public UI_Connection ConnectionImage;
@@ -154,6 +155,9 @@ public class UI_Canvas : MonoBehaviour {
         mapCompass = Instantiate(MapCompassImage).GetComponent<RawImage>();
         mapCompass.transform.SetParent(MiniMap.transform, false);
         mapCompass.enabled = false;
+
+        // set Background
+        MiniMapBackground.GetComponent<RectTransform>().sizeDelta = new Vector2(mapWidth + Fieldwidth, mapHeight + Fieldwidth);
 
         UpdateMiniMap();
 
