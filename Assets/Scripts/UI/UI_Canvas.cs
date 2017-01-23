@@ -12,6 +12,7 @@ public class UI_Canvas : MonoBehaviour {
     public GameObject MapCompassImage;
     public Text SmallKeyText;
     public Text MessageBox;
+    public Image MessageBox_Background;
     public float MessageTimeSeconds;
 
     public int Fieldwidth;
@@ -238,6 +239,7 @@ public class UI_Canvas : MonoBehaviour {
         }
 
         MessageBox.text = message;
+        MessageBox_Background.enabled = true;
 
         messageTimer = StartCoroutine(messageTimerHandler());
     }
@@ -247,5 +249,6 @@ public class UI_Canvas : MonoBehaviour {
         yield return new WaitForSeconds(MessageTimeSeconds);
 
         MessageBox.text = "";
+        MessageBox_Background.enabled = false;
     }
 }
