@@ -99,18 +99,25 @@ public class Shot : MonoBehaviour
     {
         if (canPlop)
         {
-            if (collision.collider.tag != "Enemy")
-            {
-                for (int i = 0; i < effectsToExecute.Count; i++)
-                {
-                    effectsToExecute[i].triggerHitStructure(gameObject);
-                }
-            }
             if (collision.collider.tag == "Enemy")
             {
                 for (int i = 0; i < effectsToExecute.Count; i++)
                 {
                     effectsToExecute[i].triggerHitEnemy(gameObject, collision.collider.gameObject);
+                }
+            }
+            else if (collision.collider.tag == "Player")
+            {
+                for (int i = 0; i < effectsToExecute.Count; i++)
+                {
+                    effectsToExecute[i].triggerHitPlayer(gameObject);
+                }
+            }
+            else
+            {
+                for (int i = 0; i < effectsToExecute.Count; i++)
+                {
+                    effectsToExecute[i].triggerHitStructure(gameObject);
                 }
             }
                 StopAllCoroutines();

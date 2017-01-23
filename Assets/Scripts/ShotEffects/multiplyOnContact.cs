@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System;
 
 public class multiplyOnContact : ShotEffect
 {
@@ -11,6 +12,10 @@ public class multiplyOnContact : ShotEffect
     public override void triggerHitEnemy(GameObject shot, GameObject enemy)
     {
         multiply(shot);
+    }
+
+    public override void triggerHitPlayer(GameObject shot)
+    {
     }
 
     public override void triggerHitStructure(GameObject shot)

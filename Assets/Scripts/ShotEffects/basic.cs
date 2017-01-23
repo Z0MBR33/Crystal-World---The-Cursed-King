@@ -27,10 +27,26 @@ public class basic : ShotEffect {
         }
     }
 
+    public override void triggerHitPlayer(GameObject shot)
+    {
+        Stats playerData = ObjectPool.getObjectPool().getObject(ObjectPool.categorie.essential,(int)ObjectPool.essential.player).GetComponent<Stats>();
+        playerData.gotHit(shot.GetComponent<Shot>()._shootedFrom.GetComponent<Stats>().shotStrength);
+
+        GameObject expl = ObjectPool.getObjectPool().getObject(ObjectPool.categorie.explosion, (int)ObjectPool.explosion.shot);
+        expl.GetComponent<ExplosionScript>().Initialize(ExplosionScript.ExplosionType.EnemyShot, shot.transform.position, new Quaternion());
+    }
+
     public override void triggerHitStructure(GameObject shot)
     {
         GameObject expl = ObjectPool.getObjectPool().getObject(ObjectPool.categorie.explosion, (int)ObjectPool.explosion.shot);
-        expl.GetComponent<ExplosionScript>().Initialize(ExplosionScript.ExplosionType.PlayerShot, shot.transform.position, new Quaternion());
+        if (shot.tag == "Player")
+        {
+            expl.GetComponent<ExplosionScript>().Initialize(ExplosionScript.ExplosionType.PlayerShot, shot.transform.position, new Quaternion());
+        }
+        else
+        {
+            expl.GetComponent<ExplosionScript>().Initialize(ExplosionScript.ExplosionType.EnemyShot, shot.transform.position, new Quaternion());
+        }
     }
 
     public override void triggerStart(GameObject shot)
