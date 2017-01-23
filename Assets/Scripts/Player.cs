@@ -21,7 +21,7 @@ public class Player : MonoBehaviour
     public bool hasBluffer;
 
     [HideInInspector]
-    public bool InControllable = true;
+    public bool IsControllable = true;
 
     // Use this for initialization
     void Start()
@@ -128,7 +128,7 @@ public class Player : MonoBehaviour
 
     public void Die()
     {
-        InControllable = false;
+        IsControllable = false;
 
         GameObject expl = ObjectPool.getObjectPool().getObject(ObjectPool.categorie.explosion, (int)ObjectPool.explosion.player);
         expl.GetComponent<ExplosionScript>().Initialize(transform.position);

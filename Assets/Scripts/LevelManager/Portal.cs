@@ -48,7 +48,7 @@ public class Portal : MonoBehaviour
         Vector3 targetPos = targetPortal.spawnPoint.transform.position + new Vector3(0, 1, 0);
 
         cr.enabled = false;
-        player.GetComponent<Player>().InControllable = false;
+        player.GetComponent<Player>().IsControllable = false;
 
         // start lerping of player
         player.GetComponent<LerperTeleportation>().StartLerp(startPos, targetPos, 50);
@@ -71,7 +71,7 @@ public class Portal : MonoBehaviour
                 // end teleporting
 
                 player.GetComponent<CharacterController>().enabled = true;
-                player.GetComponent<Player>().InControllable = true;
+                player.GetComponent<Player>().IsControllable = true;
 
                 lvlManager.currentIsle = targetIsle;
 
