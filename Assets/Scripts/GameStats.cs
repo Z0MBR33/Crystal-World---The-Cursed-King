@@ -50,4 +50,44 @@ public static class GameStats {
                     break;
         }
     }
+
+    public static void ReadCharStats(Stats stats)
+    {
+        // load Player Stats
+
+        stats.maxHealth = GameStats.maxHealth;
+        stats.health = GameStats.health;
+        stats.speed = GameStats.speed;
+        stats.luck = GameStats.luck;
+        stats.strength = GameStats.strength;
+
+        //Shoot stats
+        stats.shootOffset = GameStats.shootOffset;
+        stats.StartVerticalDegree = GameStats.StartVerticalDegree;
+        stats.shotSpeed = GameStats.shotSpeed;
+        stats.shotStrength = GameStats.shotStrength;
+        stats.fireRate = GameStats.fireRate;
+        stats.fireRateDifference = GameStats.fireRateDifference;
+        stats.possibleShotEffects = GameStats.possibleShotEffects;
+    }
+
+    public static void SaveCharSets(Stats stats)
+    {
+        // save Player Stats
+
+        GameStats.maxHealth = stats.maxHealth;
+        GameStats.health = stats.health;
+        GameStats.speed = stats.speed;
+        GameStats.luck = stats.luck;
+        GameStats.strength = stats.strength;
+
+        //Shoot stats
+        GameStats.shootOffset = stats.shootOffset;
+        GameStats.StartVerticalDegree = stats.StartVerticalDegree;
+        GameStats.shotSpeed = stats.shotSpeed;
+        GameStats.shotStrength = stats.shotStrength;
+        GameStats.fireRate = stats.fireRate;
+        GameStats.fireRateDifference = stats.fireRateDifference;
+        GameStats.possibleShotEffects = stats.possibleShotEffects;
+    }
 }

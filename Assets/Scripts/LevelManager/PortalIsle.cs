@@ -25,9 +25,21 @@ public class PortalIsle : MonoBehaviour {
 
     public void teleport()
     {
+        // update Level Settings
         int level = GameStats.Level + 1;
         GameStats.UpdateLevelSettings(level);
 
+        // save char stats
+
+        GameStats.LoadCharStats = true;
+
+        ObjectPool mr = ObjectPool.getObjectPool();
+        GameObject player = mr.getObject(ObjectPool.categorie.essential, (int)ObjectPool.essential.player);
+        Stats stats = player.GetComponent<Stats>();
+
+        GameStats.SaveCharSets(stats);
+
+        // load Scene
         SceneManager.LoadScene("Scenes/World");
     }
 }

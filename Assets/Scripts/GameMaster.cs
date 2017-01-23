@@ -77,24 +77,18 @@ public class GameMaster : MonoBehaviour {
             levelManager.WorldHeight = GameStats.LvlWorldHeight;
             levelManager.IsleDensity = GameStats.LvlIsleDensity;
 
-            // load Player Stats
-        /*
-        public static float maxHealth;
-        public static float health;
-        public static float speed;
-        public static float luck;
-        public static float strength;
+        }
 
-        //Shoot stats
-        public static Vector3 shootOffset = new Vector3(0, 1, 0);
-        public static float StartVerticalDegree = 45;
-        public static float shotSpeed = 1.0f;
-        public static float shotStrength = 5.0f;
-        public static float fireRate = 0.1f;
-        public static float fireRateDifference = 0;
-        public static List<ShotEffect> possibleShotEffects;
-        */
-}
+        if (GameStats.LoadCharStats == true)
+        {
+            // load Player Stats
+
+            Stats stats = playerObject.GetComponent<Stats>();
+
+            GameStats.ReadCharStats(stats);
+            
+        }
+
     }
 
     public void BackToMenue()
@@ -116,10 +110,22 @@ public class GameMaster : MonoBehaviour {
     {
         if (Input.GetKeyDown(KeyCode.Return))
         {
+            // update Level Settings
             int level = GameStats.Level + 1;
             GameStats.UpdateLevelSettings(level);
 
-            SceneManager.LoadScene("Scenes/World"); ;
+            // save char stats
+
+            GameStats.LoadCharStats = true;
+
+            ObjectPool mr = ObjectPool.getObjectPool();
+            GameObject player = mr.getObject(ObjectPool.categorie.essential, (int)ObjectPool.essential.player);
+            Stats stats = player.GetComponent<Stats>();
+
+            GameStats.SaveCharSets(stats);
+
+            // load Scene
+            SceneManager.LoadScene("Scenes/World");
         }
     }
 }

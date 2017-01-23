@@ -10,6 +10,8 @@ public class MenuScript : MonoBehaviour
         GameStats.LoadLevelSettings = true;
         GameStats.Level = 1;
 
+        GameStats.LoadCharStats = false;
+
         ChangeScene("Scenes/World");
     }
 
