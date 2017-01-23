@@ -16,6 +16,7 @@ public class LerperTeleportation : MonoBehaviour
 
     private Controll conObject;
     private GameObject teleportationBall;
+    private bool lookedATarget;
 
     public void StartLerp(Vector3 startPos, Vector3 targetPos, float speed)
     {
@@ -36,8 +37,8 @@ public class LerperTeleportation : MonoBehaviour
 
         gameObject.GetComponent<Player>().MeshRenderer.enabled = false;
         teleportationBall = ObjectPool.getObjectPool().getObject(ObjectPool.categorie.explosion, (int)ObjectPool.explosion.heroTeleportBall);
-        teleportationBall.transform.LookAt(targetPos);
-}
+        lookedATarget = false;
+}       
 
 public void Update()
     {
@@ -51,7 +52,12 @@ public void Update()
 
 
             conObject.updateTeleportProgress(ratio);
-           
+
+            if (lookedATarget == false)
+            {
+                teleportationBall.transform.LookAt(TargetPos);
+                lookedATarget = true;
+            }
 
             if (ratio >= 1)
             {
