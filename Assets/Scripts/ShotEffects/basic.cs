@@ -9,8 +9,8 @@ public class basic : ShotEffect {
 
     public override void triggerHitEnemy(GameObject shot, GameObject enemy)
     {
-        GameObject expl = ObjectPool.getObjectPool().getObject(ObjectPool.categorie.explosion, (int)ObjectPool.explosion.shot);
-        expl.GetComponent<ExplosionScript>().Initialize(ExplosionScript.ExplosionType.PlayerShot, shot.transform.position, new Quaternion());
+        GameObject expl = ObjectPool.getObjectPool().getObject(ObjectPool.categorie.explosion, (int)ObjectPool.explosion.playerShot);
+        expl.GetComponent<ExplosionScript>().Initialize(shot.transform.position);
         
         enemy.GetComponent<Enemy>().getPushed(shot.GetComponent<Rigidbody>().velocity, 5);
         Stats targetStats = enemy.GetComponent<Stats>();
@@ -32,20 +32,22 @@ public class basic : ShotEffect {
         Stats playerData = ObjectPool.getObjectPool().getObject(ObjectPool.categorie.essential,(int)ObjectPool.essential.player).GetComponent<Stats>();
         playerData.gotHit(shot.GetComponent<Shot>()._shootedFrom.GetComponent<Stats>().shotStrength);
 
-        GameObject expl = ObjectPool.getObjectPool().getObject(ObjectPool.categorie.explosion, (int)ObjectPool.explosion.shot);
-        expl.GetComponent<ExplosionScript>().Initialize(ExplosionScript.ExplosionType.EnemyShot, shot.transform.position, new Quaternion());
+        GameObject expl = ObjectPool.getObjectPool().getObject(ObjectPool.categorie.explosion, (int)ObjectPool.explosion.enemyShot);
+        expl.GetComponent<ExplosionScript>().Initialize(shot.transform.position);
     }
 
     public override void triggerHitStructure(GameObject shot)
     {
-        GameObject expl = ObjectPool.getObjectPool().getObject(ObjectPool.categorie.explosion, (int)ObjectPool.explosion.shot);
+        
         if (shot.tag == "Player")
         {
-            expl.GetComponent<ExplosionScript>().Initialize(ExplosionScript.ExplosionType.PlayerShot, shot.transform.position, new Quaternion());
+            GameObject expl = ObjectPool.getObjectPool().getObject(ObjectPool.categorie.explosion, (int)ObjectPool.explosion.playerShot);
+            expl.GetComponent<ExplosionScript>().Initialize(shot.transform.position);
         }
         else
         {
-            expl.GetComponent<ExplosionScript>().Initialize(ExplosionScript.ExplosionType.EnemyShot, shot.transform.position, new Quaternion());
+            GameObject expl = ObjectPool.getObjectPool().getObject(ObjectPool.categorie.explosion, (int)ObjectPool.explosion.enemyShot);
+            expl.GetComponent<ExplosionScript>().Initialize(shot.transform.position);
         }
     }
 
