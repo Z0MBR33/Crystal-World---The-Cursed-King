@@ -130,6 +130,7 @@ GameObject:
   - 114: {fileID: 114000011610212086}
   - 114: {fileID: 114000012210269478}
   - 114: {fileID: 114000010834897180}
+  - 114: {fileID: 114000011532049794}
   m_Layer: 8
   m_Name: Player 1
   m_TagString: Player
@@ -2106,6 +2107,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5e9605e94cfb6f4596bc1bae34e1125, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Lerping: 0
 --- !u!114 &114000011137510158
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2119,7 +2121,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Model: {fileID: 1000012179615252}
   DieOnCollision: 0
-  NumberKeys: 0
+  MeshRenderer: {fileID: 0}
+  NumberSmallKeys: 0
+  HasSplitter: 0
+  hasBluffer: 0
+--- !u!114 &114000011532049794
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010241306294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fb40eb14e9621542854e5c6be6f3456, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114000011610212086
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2153,6 +2169,7 @@ MonoBehaviour:
   shotSpeed: 10
   shotStrength: 5
   fireRate: 0.5
+  fireRateDifference: 0
 --- !u!137 &137000013186399636
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
@@ -2263,7 +2280,7 @@ CharacterController:
   m_GameObject: {fileID: 1000010241306294}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Height: 7
   m_Radius: 1.5
