@@ -553,6 +553,7 @@ MonoBehaviour:
   - {fileID: 1000013040499682, guid: c0c2116e75fe908408709d213fac66c9, type: 2}
   - {fileID: 1000014022155290, guid: 22ae0b61fa2d9e747af423c6c3709d7e, type: 2}
   - {fileID: 1000010305564132, guid: ac14d34ac56fb354dae5db7d4f869f0c, type: 2}
+  - {fileID: 1000010881241194, guid: 195e114ce56f7074ba47c9bcf6b103b5, type: 2}
   itemPrefabs:
   - {fileID: 1000011993060188, guid: 63e502806d17aaa4a9fc12dd9e1fa38c, type: 2}
   - {fileID: 1000013308243050, guid: 0b005ae480705f44d960183a0bce37cc, type: 2}
