@@ -16,8 +16,6 @@ public class PortalIsle : MonoBehaviour {
 
     public void KeyArrived()
     {
-        PortalKeys++;
-
         if (PortalKeys >= 3)
         {
             BossPortal.GetComponent<Renderer>().material.color = Color.yellow;
@@ -27,11 +25,21 @@ public class PortalIsle : MonoBehaviour {
 
     public void teleport()
     {
+        // update Level Settings
+        int level = GameStats.Level + 1;
+        GameStats.UpdateLevelSettings(level);
+
+        // save char stats
+
+        GameStats.LoadCharStats = true;
+
         ObjectPool mr = ObjectPool.getObjectPool();
-        
-        //mr.returnAllObjects();
-        //mr.preserveObjectsOnLoad();
-        //mr.DestroyAllObjects();
-        //SceneManager.LoadScene("Scenes/Boss");
+        GameObject player = mr.getObject(ObjectPool.categorie.essential, (int)ObjectPool.essential.player);
+        Stats stats = player.GetComponent<Stats>();
+
+        GameStats.SaveCharSets(stats);
+
+        // load Scene
+        SceneManager.LoadScene("Scenes/World");
     }
 }

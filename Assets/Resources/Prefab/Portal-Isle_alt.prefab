@@ -2814,10 +2814,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbf8f643ccec62543b14b33d4b0f018c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ChangeForSpawn: 0
-  Slime: 0
-  Octopus: 0
-  Spider: 0
+  ChangeForSpawn: 80
+  Slime: 1
+  Octopus: 1
+  Spider: 1
   IslePosition: {x: 0, y: 0, z: 0}
 --- !u!114 &114000010578213690
 MonoBehaviour:
@@ -2830,10 +2830,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbf8f643ccec62543b14b33d4b0f018c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ChangeForSpawn: 0
-  Slime: 0
-  Octopus: 0
-  Spider: 0
+  ChangeForSpawn: 80
+  Slime: 1
+  Octopus: 1
+  Spider: 1
   IslePosition: {x: 0, y: 0, z: 0}
 --- !u!114 &114000011203175226
 MonoBehaviour:
@@ -2846,10 +2846,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbf8f643ccec62543b14b33d4b0f018c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ChangeForSpawn: 0
-  Slime: 0
-  Octopus: 0
-  Spider: 0
+  ChangeForSpawn: 80
+  Slime: 1
+  Octopus: 1
+  Spider: 1
   IslePosition: {x: 0, y: 0, z: 0}
 --- !u!114 &114000011236679218
 MonoBehaviour:
@@ -2888,10 +2888,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbf8f643ccec62543b14b33d4b0f018c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ChangeForSpawn: 0
-  Slime: 0
-  Octopus: 0
-  Spider: 0
+  ChangeForSpawn: 80
+  Slime: 1
+  Octopus: 1
+  Spider: 1
   IslePosition: {x: 0, y: 0, z: 0}
 --- !u!114 &114000011604702578
 MonoBehaviour:
@@ -2987,10 +2987,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbf8f643ccec62543b14b33d4b0f018c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ChangeForSpawn: 0
-  Slime: 0
-  Octopus: 0
-  Spider: 0
+  ChangeForSpawn: 80
+  Slime: 1
+  Octopus: 1
+  Spider: 1
   IslePosition: {x: 0, y: 0, z: 0}
 --- !u!114 &114000012621832904
 MonoBehaviour:
@@ -3014,10 +3014,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbf8f643ccec62543b14b33d4b0f018c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ChangeForSpawn: 0
-  Slime: 0
-  Octopus: 0
-  Spider: 0
+  ChangeForSpawn: 80
+  Slime: 1
+  Octopus: 1
+  Spider: 1
   IslePosition: {x: 0, y: 0, z: 0}
 --- !u!114 &114000013750139318
 MonoBehaviour:

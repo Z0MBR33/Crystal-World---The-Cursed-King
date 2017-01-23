@@ -130,7 +130,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!1 &1000010717677698
 GameObject:
@@ -435,7 +435,7 @@ GameObject:
   m_Name: Boss_Portal
   m_TagString: Boss-Portal
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!1 &1000012661264906
@@ -2758,10 +2758,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbf8f643ccec62543b14b33d4b0f018c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ChangeForSpawn: 0
-  Slime: 0
-  Octopus: 0
-  Spider: 0
+  ChangeForSpawn: 80
+  Slime: 1
+  Octopus: 1
+  Spider: 1
   IslePosition: {x: 0, y: 0, z: 0}
 --- !u!114 &114000010477562080
 MonoBehaviour:
@@ -2852,10 +2852,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbf8f643ccec62543b14b33d4b0f018c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ChangeForSpawn: 0
-  Slime: 0
-  Octopus: 0
-  Spider: 0
+  ChangeForSpawn: 80
+  Slime: 1
+  Octopus: 1
+  Spider: 1
   IslePosition: {x: 0, y: 0, z: 0}
 --- !u!114 &114000011545115762
 MonoBehaviour:
@@ -2883,10 +2883,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbf8f643ccec62543b14b33d4b0f018c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ChangeForSpawn: 0
-  Slime: 0
-  Octopus: 0
-  Spider: 0
+  ChangeForSpawn: 80
+  Slime: 1
+  Octopus: 1
+  Spider: 1
   IslePosition: {x: 0, y: 0, z: 0}
 --- !u!114 &114000011892399854
 MonoBehaviour:
@@ -2899,10 +2899,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbf8f643ccec62543b14b33d4b0f018c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ChangeForSpawn: 0
-  Slime: 0
-  Octopus: 0
-  Spider: 0
+  ChangeForSpawn: 80
+  Slime: 1
+  Octopus: 1
+  Spider: 1
   IslePosition: {x: 0, y: 0, z: 0}
 --- !u!114 &114000012017463500
 MonoBehaviour:
@@ -2967,10 +2967,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbf8f643ccec62543b14b33d4b0f018c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ChangeForSpawn: 0
-  Slime: 0
-  Octopus: 0
-  Spider: 0
+  ChangeForSpawn: 80
+  Slime: 1
+  Octopus: 1
+  Spider: 1
   IslePosition: {x: 0, y: 0, z: 0}
 --- !u!114 &114000013507277956
 MonoBehaviour:
@@ -2983,10 +2983,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbf8f643ccec62543b14b33d4b0f018c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ChangeForSpawn: 0
-  Slime: 0
-  Octopus: 0
-  Spider: 0
+  ChangeForSpawn: 80
+  Slime: 1
+  Octopus: 1
+  Spider: 1
   IslePosition: {x: 0, y: 0, z: 0}
 --- !u!114 &114000013564148640
 MonoBehaviour:

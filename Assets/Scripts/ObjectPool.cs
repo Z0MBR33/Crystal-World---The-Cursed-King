@@ -48,6 +48,7 @@ public class ObjectPool : MonoBehaviour
     public enum shot
     {
         round,
+        roundEnemy,
         loadingBall
     }
 
@@ -79,10 +80,13 @@ public class ObjectPool : MonoBehaviour
 
     public enum explosion
     {
-        shot,
+        playerShot,
         enemyShot,
         enemy,
-        player
+        player,
+        itemCollected,
+        itemCollectedHero,
+        heroTeleportBall
     }
 
     public enum items
@@ -95,7 +99,10 @@ public class ObjectPool : MonoBehaviour
         smallKey,
         upgradeDamage,
         upgradeRate,
-        upgradeSpeed
+        upgradeSpeed,
+        upgradeShotSpeed,
+        splitter,
+        bluffer
     }
 
     public enum planes
@@ -250,9 +257,9 @@ public class ObjectPool : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// <para>With this method, you can lay back all objects into the pool.</para>
-    /// </summary>
+    
+    // Don't use this functions!
+    /*
     public void returnAllObjects()
     {
         for(int i = 0; i < activeObjects.Count; i++)
@@ -315,5 +322,5 @@ public class ObjectPool : MonoBehaviour
                 }
             }
         }
-    }
+    } */
 }

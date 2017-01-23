@@ -5,6 +5,7 @@ public class Octopus : Enemy
 {
 
     public float walkTimeSeconds;
+    public float walkTimeDifference;
     public float loadTimeSeconds;
     public float shotSize;
     public Animator anim;
@@ -99,7 +100,16 @@ public class Octopus : Enemy
 
     private void shoot()
     {
-        // shot! TODO
+        Stats stats = GetComponent<Stats>();
+
+        Shot shot = mr.getObject(ObjectPool.categorie.shot, (int)ObjectPool.shot.roundEnemy).GetComponent<Shot>();
+        shot.gameObject.transform.localScale = new Vector3(shotSize, shotSize, shotSize);
+
+        Vector3 startPoint = loadingShot.GetComponent<LoadingBall>().CenterOfBall.transform.position;
+        Vector3 startDirection = transform.forward + new Vector3(0, 0.2f, 0);
+        startDirection *= stats.shotSpeed;
+
+        shot.reset(gameObject, startPoint, startDirection, new Quaternion(), stats.possibleShotEffects);
 
         if (loadingShot != null)
         {
@@ -118,7 +128,16 @@ public class Octopus : Enemy
             {
                 ghostCopy.MovedByGhost = true;
 
-                yield return new WaitForSeconds(walkTimeSeconds);
+                // calculate difference-wait-time
+                float max = walkTimeDifference * 100;
+                float offset = mr.random.Next(0, (int)max);
+                offset = offset - (max/2);
+                offset = offset / 100;
+
+                float actualWaitTimeSeconds = walkTimeSeconds + offset;
+
+                // wait
+                yield return new WaitForSeconds(actualWaitTimeSeconds);
                 walking = false;
             }
             else

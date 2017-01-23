@@ -18,6 +18,7 @@ public class Stats : MonoBehaviour
     public float shotSpeed = 1.0f;
     public float shotStrength = 5.0f;
     public float fireRate = 0.1f;
+    public float fireRateDifference = 0;
     public List<ShotEffect> possibleShotEffects;
 
     public void Awake()
@@ -25,7 +26,7 @@ public class Stats : MonoBehaviour
         resetStats();
         possibleShotEffects = new List<ShotEffect>();
         possibleShotEffects.Add(new basic());
-        possibleShotEffects.Add(new multiplyOnContact());
+        //possibleShotEffects.Add(new multiplyOnContact());
     }
 
     public void resetStats()
@@ -35,7 +36,7 @@ public class Stats : MonoBehaviour
 
     public void gotHit(float damage)
     {
-        print(gameObject);
+
         if (health > 0)
         {
             health -= damage;

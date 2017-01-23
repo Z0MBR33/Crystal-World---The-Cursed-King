@@ -60,7 +60,7 @@ public class Enemy : MonoBehaviour
         ExplosionScript expl = mr.getObject(ObjectPool.categorie.explosion, (int)ObjectPool.explosion.enemy).GetComponent<ExplosionScript>();
         expl.gameObject.SetActive(true);
 
-        expl.Initialize(ExplosionScript.ExplosionType.EnemyDeath, transform.position, new Quaternion());
+        expl.Initialize(transform.position);
     }
 
     public virtual void getPushed(Vector3 pushDirection, float force)

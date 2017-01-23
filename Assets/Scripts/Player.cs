@@ -10,18 +10,22 @@ public class Player : MonoBehaviour
     public GameObject Model;
     [HideInInspector]
     public bool DieOnCollision;
-
-    private SkinnedMeshRenderer meshRenderer;
+    [HideInInspector]
+    public SkinnedMeshRenderer MeshRenderer;
 
     [HideInInspector]
-    public int NumberKeys = 0;
+    public int NumberSmallKeys = 0;
+    [HideInInspector]
+    public bool HasSplitter;
+    [HideInInspector]
+    public bool hasBluffer;
 
     // Use this for initialization
     void Start()
     {
         mr = ObjectPool.getObjectPool();
         lvlManager = LevelManager.getLevelManager();
-        meshRenderer = Model.GetComponent<SkinnedMeshRenderer>(); 
+        MeshRenderer = Model.GetComponent<SkinnedMeshRenderer>(); 
     }
 
     // Update is called once per frame
@@ -30,7 +34,7 @@ public class Player : MonoBehaviour
         if (isImmportal)
         {
             // flicker player
-            meshRenderer.enabled = !meshRenderer.enabled;
+            MeshRenderer.enabled = !MeshRenderer.enabled;
         }
     }
 
@@ -44,14 +48,13 @@ public class Player : MonoBehaviour
 
         if (isImmportal == false)
         {
-            if (hit.gameObject.tag == "Enemy")
+            if (isImmportal == false)
             {
-                // TODO :  push player back
-
-                becomeImmortal(3);
-                Stats stats = GetComponent<Stats>();
-                stats.gotHit(hit.gameObject.GetComponent<Stats>().strength);
-                mr.getObject(ObjectPool.categorie.essential, (int)ObjectPool.essential.UI).GetComponent<UI_Canvas>().UpdateLive(stats.health, stats.maxHealth);
+                if (hit.gameObject.tag == "Enemy")
+                {
+                    float damage = hit.gameObject.GetComponent<Stats>().strength;
+                    TakeDamage(damage);
+                }
             }
         }
 
@@ -79,7 +82,7 @@ public class Player : MonoBehaviour
 
             if (item.collected == false)
             {
-                item.Collect(gameObject);
+                item.Collect();
             }
 
         }
@@ -92,6 +95,18 @@ public class Player : MonoBehaviour
             {
                 portalIsle.teleport();
             }
+        }
+    }
+
+    public void TakeDamage(float damage)
+    {
+
+        if (isImmportal == false)
+        {
+            becomeImmortal(3);
+            Stats stats = GetComponent<Stats>();
+            stats.gotHit(damage);
+            mr.getObject(ObjectPool.categorie.essential, (int)ObjectPool.essential.UI).GetComponent<UI_Canvas>().UpdateLive(stats.health, stats.maxHealth);
         }
     }
 
@@ -111,7 +126,7 @@ public class Player : MonoBehaviour
     public void Die()
     {
         GameObject expl = ObjectPool.getObjectPool().getObject(ObjectPool.categorie.explosion, (int)ObjectPool.explosion.player);
-        expl.GetComponent<ExplosionScript>().Initialize(ExplosionScript.ExplosionType.PlayerShot, transform.position, new Quaternion());
+        expl.GetComponent<ExplosionScript>().Initialize(transform.position);
 
         //ObjectPool mr = ObjectPool.getObjectPool();
         //mr.returnObject(gameObject); // no effect?
@@ -124,7 +139,7 @@ public class Player : MonoBehaviour
     {
         yield return new WaitForSeconds(time);
 
-        meshRenderer.enabled = true;
+        MeshRenderer.enabled = true;
         isImmportal = false;
     }
 
