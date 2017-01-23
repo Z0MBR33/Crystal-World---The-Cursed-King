@@ -29,8 +29,8 @@ public class basic : ShotEffect {
 
     public override void triggerHitPlayer(GameObject shot)
     {
-        Stats playerData = ObjectPool.getObjectPool().getObject(ObjectPool.categorie.essential,(int)ObjectPool.essential.player).GetComponent<Stats>();
-        playerData.gotHit(shot.GetComponent<Shot>()._shootedFrom.GetComponent<Stats>().shotStrength);
+        Player playerData = ObjectPool.getObjectPool().getObject(ObjectPool.categorie.essential,(int)ObjectPool.essential.player).GetComponent<Player>();
+        playerData.TakeDamage(shot.GetComponent<Shot>()._shootedFrom.GetComponent<Stats>().shotStrength);
 
         GameObject expl = ObjectPool.getObjectPool().getObject(ObjectPool.categorie.explosion, (int)ObjectPool.explosion.enemyShot);
         expl.GetComponent<ExplosionScript>().Initialize(shot.transform.position);
