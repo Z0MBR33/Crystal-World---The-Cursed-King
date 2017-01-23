@@ -49,7 +49,7 @@ public class GameMaster : MonoBehaviour {
 
         Isle startIsle = levelManager.startIsle.IsleObj;
         levelManager.currentIsle = startIsle.isleAbstract;
-        playerObject.transform.position = new Vector3(startIsle.transform.position.x, startIsle.transform.position.y + 2, startIsle.transform.position.z);
+        playerObject.transform.position = startIsle.PlayerStartPoint.transform.position;
         playerObject.GetComponent<NavMeshTarget>().IslePosition = startIsle.transform.position;
 
         levelManager.currentIsle.IsleObj.StartIsle();

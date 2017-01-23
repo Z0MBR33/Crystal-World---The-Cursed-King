@@ -8,6 +8,8 @@ public class Isle : MonoBehaviour
     
     public Vector3 NavMeshPosition;
 
+    public GameObject PlayerStartPoint;
+
     public Portal PortalUp;
     public Portal PortalUpRight;
     public Portal PortalDownRight;
@@ -64,6 +66,12 @@ public class Isle : MonoBehaviour
         {
             EnemyPoints[i].IslePosition = transform.position;
             EnemyPoints[i].GetComponent<Renderer>().enabled = false;
+        }
+        
+        // hide Player Start Point
+        if (PlayerStartPoint != null)
+        {
+            PlayerStartPoint.SetActive(false);
         }
 
         // hide Item Spawns
