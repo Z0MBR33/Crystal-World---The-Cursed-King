@@ -15,6 +15,18 @@ public class MenuScript : MonoBehaviour
         ChangeScene("Scenes/World");
     }
 
+    public void ReturnToMainMenu()
+    {
+        Time.timeScale = 1;
+        ChangeScene("Scenes/Main_Menue");
+    }
+
+    public void ExitPauseMenue()
+    {
+        Time.timeScale = 1;
+        gameObject.SetActive(false);
+    }
+
     public void ChangeScene(string sceneName)
     {
         SceneManager.LoadScene(sceneName);

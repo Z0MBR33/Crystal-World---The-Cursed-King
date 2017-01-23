@@ -4184,6 +4184,7 @@ MonoBehaviour:
   - {fileID: 1000010241306294, guid: bbf42b63f61b4c44e8dfb3f74f3fa675, type: 2}
   - {fileID: 1000013544393320, guid: 057318eb1cce80341b108cd0f05de159, type: 2}
   - {fileID: 1000013943836704, guid: 697675f236d0e9c49b3f38593a8eb0b7, type: 2}
+  - {fileID: 1000012003945320, guid: b41e8ec2ff6724b41b49e251df1ce467, type: 2}
   shotPrefabs:
   - {fileID: 1000010133196268, guid: 0cb21fa5624af584f825fbe64b944137, type: 2}
   - {fileID: 1000011398457958, guid: 7f3e67764ccae6d419c69a4032f7c7c9, type: 2}

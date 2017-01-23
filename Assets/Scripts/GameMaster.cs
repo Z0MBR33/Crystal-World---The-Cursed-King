@@ -7,6 +7,7 @@ public class GameMaster : MonoBehaviour {
     private ObjectPool mr;
     private GameObject playerObject;
     private GameObject camObject;
+    private GameObject pauseMenue;
     private LevelManager levelManager;
    
     public static GameMaster gameMaster;
@@ -26,6 +27,8 @@ public class GameMaster : MonoBehaviour {
         mr = ObjectPool.getObjectPool();
         playerObject = mr.getObject(ObjectPool.categorie.essential, (int)ObjectPool.essential.player);
         camObject = mr.getObject(ObjectPool.categorie.essential, (int)ObjectPool.essential.camera);
+        pauseMenue = mr.getObject(ObjectPool.categorie.essential, (int)ObjectPool.essential.Pause_menue);
+        pauseMenue.SetActive(false);
 
         playerObject.SetActive(true);
         camObject.SetActive(true);
@@ -105,10 +108,17 @@ public class GameMaster : MonoBehaviour {
 
         SceneManager.LoadScene("Scenes/Main_Menue");
     }
+    
+    public void ShowPauseMenue()
+    {
+        Time.timeScale = 0;
+
+        pauseMenue.SetActive(true);
+    }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Return))
+        if (Input.GetKeyDown(KeyCode.Backspace))
         {
             // update Level Settings
             int level = GameStats.Level + 1;
@@ -127,5 +137,11 @@ public class GameMaster : MonoBehaviour {
             // load Scene
             SceneManager.LoadScene("Scenes/World");
         }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            ShowPauseMenue();
+        }
     }
+
 }

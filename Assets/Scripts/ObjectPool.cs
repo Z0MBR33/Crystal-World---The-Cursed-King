@@ -42,7 +42,8 @@ public class ObjectPool : MonoBehaviour
     {
         player,
         camera,
-        UI
+        UI,
+        Pause_menue
     }
 
     public enum shot
