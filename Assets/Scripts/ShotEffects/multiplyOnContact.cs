@@ -5,7 +5,7 @@ using System;
 
 public class multiplyOnContact : ShotEffect
 {
-    public override void triggerFixUpate(GameObject shot)
+    public override void triggerFixUpdate(GameObject shot)
     {
     }
 
@@ -36,10 +36,16 @@ public class multiplyOnContact : ShotEffect
         float velocityOld = shot.GetComponent<Rigidbody>().velocity.magnitude;
 
         Vector3[] directions = new Vector3[4];
+        /*
         directions[0] = shot.transform.up - shot.transform.forward;
         directions[1] = shot.transform.right - shot.transform.forward;
         directions[2] = -shot.transform.up - shot.transform.forward;
         directions[3] = -shot.transform.right - shot.transform.forward;
+        */
+        directions[0] = (Vector3.Scale(shot.transform.forward, new Vector3(1,0,1)) + new Vector3(0,1,0)).normalized;
+        directions[1] = -(Vector3.Scale(shot.transform.forward, new Vector3(1, 0, 1)) - new Vector3(0, 1, 0)).normalized;
+        directions[2] = (Vector3.Scale(shot.transform.right, new Vector3(1, 0, 1)) + new Vector3(0, 1, 0)).normalized;
+        directions[3] = -(Vector3.Scale(shot.transform.right, new Vector3(1, 0, 1)) - new Vector3(0, 1, 0)).normalized;
 
         float veloTweaker = shot.GetComponent<Shot>()._shootedFrom.GetComponent<Stats>().shotSpeed * 0.5f;
 

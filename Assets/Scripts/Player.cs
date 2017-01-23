@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class Player : MonoBehaviour
 {
@@ -28,7 +29,7 @@ public class Player : MonoBehaviour
     {
         mr = ObjectPool.getObjectPool();
         lvlManager = LevelManager.getLevelManager();
-        MeshRenderer = Model.GetComponent<SkinnedMeshRenderer>(); 
+        MeshRenderer = Model.GetComponent<SkinnedMeshRenderer>();
     }
 
     // Update is called once per frame
@@ -55,8 +56,14 @@ public class Player : MonoBehaviour
             {
                 if (hit.gameObject.tag == "Enemy")
                 {
-                    float damage = hit.gameObject.GetComponent<Stats>().strength;
-                    TakeDamage(damage);
+                    try
+                    {
+                        float damage = hit.gameObject.GetComponent<Stats>().strength;
+                        TakeDamage(damage);
+                    }
+                    catch (Exception ex)
+                    {
+                    }
                 }
             }
         }

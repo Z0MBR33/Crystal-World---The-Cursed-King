@@ -8,6 +8,7 @@ public class Shot : MonoBehaviour
     //Just needs to be initialized once.
     private ObjectPool mr;
     private Rigidbody rb;
+    private Vector3 normalScale;
 
     //Needs a reset every time it comes back from the ObjectPool
     private GameObject shootedFrom;
@@ -26,6 +27,17 @@ public class Shot : MonoBehaviour
         set { }
     }
 
+    private float shotStrength;
+    public float _shotStrength
+    {
+        get { return shotStrength; }
+        set {
+            transform.localScale = normalScale * (value / shootedFrom.GetComponent<Stats>()._startDmg);
+            shotStrength = value;
+
+        }
+    }
+
     private float timeOutInSec = 3;
     private Coroutine timer;
 
@@ -36,6 +48,7 @@ public class Shot : MonoBehaviour
     {
         mr = ObjectPool.getObjectPool();
         rb = GetComponent<Rigidbody>();
+        normalScale = transform.localScale;
         effectsToExecute = new List<ShotEffect>();
         effectsToExecute.Add(new basic());
     }
@@ -59,6 +72,7 @@ public class Shot : MonoBehaviour
     public void reset(GameObject shootedFrom, Vector3 startPosition, Vector3 startDirection, Quaternion rotation, List<ShotEffect> effects)
     {
         this.shootedFrom = shootedFrom;
+        Stats shooterData = shootedFrom.GetComponent<Stats>();
         this.tag = shootedFrom.tag;
         rb.velocity = new Vector3(0, 0, 0);
         transform.position = startPosition;
@@ -66,10 +80,12 @@ public class Shot : MonoBehaviour
         effectsToExecute = effects;
         transform.rotation = rotation;
 
-
         timer = StartCoroutine(timerHandler());
         canPlop = false;
         plopTimer = StartCoroutine(plopTimerHandler());
+        shotStrength = shooterData.shotStrength;
+        float shotDmgTpScaleMultiplier = shotStrength / shooterData._startDmg;
+        transform.localScale = normalScale * shotDmgTpScaleMultiplier;
 
         for (int i = 0; i < effectsToExecute.Count; i++)
         {
@@ -77,11 +93,19 @@ public class Shot : MonoBehaviour
         }
     }
 
+    public void Update()
+    {
+        for (int i = 0; i < effectsToExecute.Count; i++)
+        {
+            effectsToExecute[i].triggerUpdate(gameObject);
+        }
+    }
+
     void FixedUpdate()
     {
-        for(int i = 0; i < effectsToExecute.Count; i++)
+        for (int i = 0; i < effectsToExecute.Count; i++)
         {
-            effectsToExecute[i].triggerFixUpate(gameObject);
+            effectsToExecute[i].triggerFixUpdate(gameObject);
         }
     }
 
@@ -120,8 +144,8 @@ public class Shot : MonoBehaviour
                     effectsToExecute[i].triggerHitStructure(gameObject);
                 }
             }
-                StopAllCoroutines();
-                mr.returnObject(gameObject);
+            StopAllCoroutines();
+            mr.returnObject(gameObject);
         }
     }
 

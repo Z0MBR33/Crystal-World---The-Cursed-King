@@ -21,12 +21,22 @@ public class Stats : MonoBehaviour
     public float fireRateDifference = 0;
     public List<ShotEffect> possibleShotEffects;
 
+    private float startDmg;
+    public float _startDmg
+    {
+        get { return startDmg;}
+        private set { }
+    }
+
     public void Awake()
     {
         resetStats();
+        startDmg = shotStrength;
         possibleShotEffects = new List<ShotEffect>();
         possibleShotEffects.Add(new basic());
-        //possibleShotEffects.Add(new multiplyOnContact());
+        possibleShotEffects.Add(new multiplyOnContact());
+        //possibleShotEffects.Add(new bluff());
+        //possibleShotEffects.Add(new slowstarter());
     }
 
     public void resetStats()
