@@ -42,7 +42,7 @@ public class Controll : MonoBehaviour
     }
     void FixedUpdate()
     {
-        if (!teleporting)
+        if (!teleporting && playerObj.GetComponent<Player>().IsControllable)
         {
             playerMovement();
         }
