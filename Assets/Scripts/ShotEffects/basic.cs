@@ -2,7 +2,8 @@
 using System.Collections;
 using System;
 
-public class basic : ShotEffect {
+public class basic : ShotEffect
+{
     public override void triggerFixUpdate(GameObject shot)
     {
     }
@@ -14,8 +15,8 @@ public class basic : ShotEffect {
 
         try
         {
-        enemy.GetComponent<Enemy>().getPushed(shot.GetComponent<Rigidbody>().velocity, 5);
-        Stats targetStats = enemy.GetComponent<Stats>();
+            enemy.GetComponent<Enemy>().getPushed(shot.GetComponent<Rigidbody>().velocity, 5);
+            Stats targetStats = enemy.GetComponent<Stats>();
             targetStats.gotHit(shot.GetComponent<Shot>()._shotStrength);
         }
         catch (Exception ex)
@@ -26,7 +27,7 @@ public class basic : ShotEffect {
 
     public override void triggerHitPlayer(GameObject shot)
     {
-        Player playerData = ObjectPool.getObjectPool().getObject(ObjectPool.categorie.essential,(int)ObjectPool.essential.player).GetComponent<Player>();
+        Player playerData = ObjectPool.getObjectPool().getObject(ObjectPool.categorie.essential, (int)ObjectPool.essential.player).GetComponent<Player>();
         playerData.TakeDamage(shot.GetComponent<Shot>()._shotStrength);
 
         GameObject expl = ObjectPool.getObjectPool().getObject(ObjectPool.categorie.explosion, (int)ObjectPool.explosion.enemyShot);
@@ -35,7 +36,7 @@ public class basic : ShotEffect {
 
     public override void triggerHitStructure(GameObject shot)
     {
-        
+
         if (shot.tag == "Player")
         {
             GameObject expl = ObjectPool.getObjectPool().getObject(ObjectPool.categorie.explosion, (int)ObjectPool.explosion.playerShot);

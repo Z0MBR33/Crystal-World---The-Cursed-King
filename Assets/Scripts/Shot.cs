@@ -31,7 +31,8 @@ public class Shot : MonoBehaviour
     public float _shotStrength
     {
         get { return shotStrength; }
-        set {
+        set
+        {
             transform.localScale = normalScale * (value / shootedFrom.GetComponent<Stats>()._startDmg);
             shotStrength = value;
 
@@ -125,16 +126,22 @@ public class Shot : MonoBehaviour
         {
             if (collision.collider.tag == "Enemy")
             {
-                for (int i = 0; i < effectsToExecute.Count; i++)
+                if (collision.collider.gameObject.GetComponent<Stats>() != null)
                 {
-                    effectsToExecute[i].triggerHitEnemy(gameObject, collision.collider.gameObject);
+                    for (int i = 0; i < effectsToExecute.Count; i++)
+                    {
+                        effectsToExecute[i].triggerHitEnemy(gameObject, collision.collider.gameObject);
+                    }
                 }
             }
             else if (collision.collider.tag == "Player")
             {
-                for (int i = 0; i < effectsToExecute.Count; i++)
+                if (collision.collider.gameObject.GetComponent<Stats>() != null)
                 {
-                    effectsToExecute[i].triggerHitPlayer(gameObject);
+                    for (int i = 0; i < effectsToExecute.Count; i++)
+                    {
+                        effectsToExecute[i].triggerHitPlayer(gameObject);
+                    }
                 }
             }
             else

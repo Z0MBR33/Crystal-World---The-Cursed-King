@@ -34,7 +34,7 @@ public class Stats : MonoBehaviour
         startDmg = shotStrength;
         possibleShotEffects = new List<ShotEffect>();
         possibleShotEffects.Add(new basic());
-        possibleShotEffects.Add(new multiplyOnContact());
+        //possibleShotEffects.Add(new multiplyOnContact());
         //possibleShotEffects.Add(new bluff());
         //possibleShotEffects.Add(new slowstarter());
     }
