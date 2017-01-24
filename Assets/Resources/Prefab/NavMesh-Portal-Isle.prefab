@@ -313,7 +313,7 @@ GameObject:
   - 4: {fileID: 4000011183436706}
   - 135: {fileID: 135000012265658196}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: TeleportZone
   m_TagString: Boss-Portal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1127,7 +1127,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010888039976}
   m_LocalRotation: {x: 0.000000010901711, y: 0.8667152, z: -0.000000018942664, w: 0.49880347}
-  m_LocalPosition: {x: -14.099976, y: 3.9, z: 36.6}
+  m_LocalPosition: {x: -14.099976, y: 2.73, z: 36.6}
   m_LocalScale: {x: 104.67451, y: 104.67435, z: 104.67451}
   m_LocalEulerAnglesHint: {x: 0, y: 120.18101, z: 0}
   m_Children: []
@@ -1279,7 +1279,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013977702232}
   m_LocalRotation: {x: 0.000000019262526, y: 0.47246483, z: -0.000000010326023, w: 0.88134956}
-  m_LocalPosition: {x: -39.700012, y: 3.5, z: 4.7}
+  m_LocalPosition: {x: -39.700012, y: 2.47, z: 4.7}
   m_LocalScale: {x: 104.674545, y: 104.67435, z: 104.674545}
   m_LocalEulerAnglesHint: {x: 0, y: 56.226, z: 0}
   m_Children: []
@@ -1292,7 +1292,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000014072488750}
   m_LocalRotation: {x: 0.000000018941131, y: -0.49892938, z: 0.000000010904523, w: 0.8666427}
-  m_LocalPosition: {x: 10.200012, y: 3.7, z: -39.24}
+  m_LocalPosition: {x: 10.200012, y: 2.4, z: -39.24}
   m_LocalScale: {x: 104.674576, y: 104.67435, z: 104.674576}
   m_LocalEulerAnglesHint: {x: 0, y: -59.836002, z: 0}
   m_Children: []
