@@ -213,7 +213,7 @@ public class Item : MonoBehaviour {
                 if (player.hasBluffer == false)
                 {
                     player.hasBluffer = true;
-                    //playerStats.possibleShotEffects.Add(new multiplyOnContact());  // TODO Add Bluffer!
+                    playerStats.possibleShotEffects.Add(new bluff());  // TODO Add Bluffer!
                     ui.ShowMessage("You have Bluffer-Shots!");
                 }
                 else

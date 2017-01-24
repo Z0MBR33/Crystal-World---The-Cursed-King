@@ -81,6 +81,4 @@ public class camShowDmg : MonoBehaviour
         }
         StopCoroutine(timerEnd);
     }
-
-
 }
