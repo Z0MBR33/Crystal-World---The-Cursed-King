@@ -34,6 +34,7 @@ public class Isle : MonoBehaviour
     private LevelManager lvlManager;
     private GameObject playerObject;
 
+    private Coroutine enemySpawnRoutine;
     private Coroutine levelCheckRoutine;
 
     private System.Random rnd;
@@ -168,10 +169,30 @@ public class Isle : MonoBehaviour
         }
         ListEnemies.Clear();
 
+        for (int i = 0; i < EnemyPoints.Count; i++)
+        {
+            EnemyPoints[i].Initialize();
+
+            if (EnemyPoints[i].CanCreateEnemy == true)
+            {
+                ExplosionScript expl = mr.getObject(ObjectPool.categorie.explosion, (int)ObjectPool.explosion.enemySpawn).GetComponent<ExplosionScript>();
+                expl.Initialize(EnemyPoints[i].transform.position);
+            }
+        }
+
+        enemySpawnRoutine = StartCoroutine(EnemySpawnHandler());
+
+        UI_Canvas ui = mr.getObject(ObjectPool.categorie.essential, (int)ObjectPool.essential.UI).GetComponent<UI_Canvas>();
+        ui.ShowMessage("Destroy all enemies!");
+    }
+
+    public IEnumerator EnemySpawnHandler()
+    {
+        yield return new WaitForSeconds(1);
+
         // create enemies
         for (int i = 0; i < EnemyPoints.Count; i++)
         {
-
             GameObject enemy = EnemyPoints[i].createEnemy();
             if (enemy != null)
             {
@@ -188,8 +209,7 @@ public class Isle : MonoBehaviour
 
         levelCheckRoutine = StartCoroutine(LevelCheckHandler());
 
-        UI_Canvas ui = mr.getObject(ObjectPool.categorie.essential, (int)ObjectPool.essential.UI).GetComponent<UI_Canvas>();
-        ui.ShowMessage("Destroy all enemies!");
+        StopCoroutine(enemySpawnRoutine);
     }
 
     public IEnumerator LevelCheckHandler()

@@ -11,6 +11,11 @@ public class EnemyPoint : MonoBehaviour {
     public bool Octopus;
     public bool Spider;
 
+    private ObjectPool mr;
+
+    [HideInInspector]
+    public bool CanCreateEnemy;
+
     [HideInInspector]
     public Vector3 IslePosition;
 
@@ -19,48 +24,64 @@ public class EnemyPoint : MonoBehaviour {
         return transform.position - IslePosition;
     }
 
-    public GameObject createEnemy()
+    public bool Initialize()
     {
-        GameObject enemy = null;
-
-        ObjectPool mr = ObjectPool.getObjectPool();
+        mr = ObjectPool.getObjectPool();
 
         int tmp = mr.random.Next(0, 101);
 
         if (tmp <= ChangeForSpawn)
         {
-            List<int> list = new List<int>();
+            CanCreateEnemy = true;
+        }else
+        {
+            CanCreateEnemy = false;
+        }
 
-            if (Slime == true)
-            {
-                list.Add(0);
-            }
-            if (Octopus == true)
-            {
-                list.Add(1);
-            }
-            if (Spider == true)
-            {
-                list.Add(2);
-            }
+        return CanCreateEnemy;
+    }
 
-            if (list.Count > 0)
+    public GameObject createEnemy()
+    {
+        GameObject enemy = null;
+        
+        if (CanCreateEnemy == false)
+        {
+            return enemy;
+        }
+
+        List<int> list = new List<int>();
+
+        if (Slime == true)
+        {
+            list.Add(0);
+        }
+        if (Octopus == true)
+        {
+            list.Add(1);
+        }
+        if (Spider == true)
+        {
+            list.Add(2);
+        }
+
+        if (list.Count > 0)
+        {
+            int tmp = mr.random.Next(0, list.Count);
+
+            int enemyNo = list[tmp];
+
+            switch(enemyNo)
             {
-                tmp = mr.random.Next(0, list.Count);
-
-                int enemyNo = list[tmp];
-
-                switch(enemyNo)
-                {
-                    case 0: enemy = mr.getObject(ObjectPool.categorie.enemy, (int)ObjectPool.enemy.slime);
-                        break;
-                    case 1: enemy = mr.getObject(ObjectPool.categorie.enemy, (int)ObjectPool.enemy.octopus);
-                        break;
-                    case 2: enemy = mr.getObject(ObjectPool.categorie.enemy, (int)ObjectPool.enemy.spider);
-                        break;
-                }
+                case 0: enemy = mr.getObject(ObjectPool.categorie.enemy, (int)ObjectPool.enemy.slime);
+                    break;
+                case 1: enemy = mr.getObject(ObjectPool.categorie.enemy, (int)ObjectPool.enemy.octopus);
+                    break;
+                case 2: enemy = mr.getObject(ObjectPool.categorie.enemy, (int)ObjectPool.enemy.spider);
+                    break;
             }
-        } 
+        }
+        
 
         return enemy;
     }
