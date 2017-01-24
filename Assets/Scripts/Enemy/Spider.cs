@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Spider : Enemy {
+public class Spider : Enemy
+{
 
     public GameObject ShotPoint;
 
@@ -15,6 +16,11 @@ public class Spider : Enemy {
 
             canShoot = false;
         }
+    }
+
+    public void Start()
+    {
+        gameObject.GetComponent<Stats>().possibleShotEffects.Add(new bluff());
     }
 
     public override void Initialize(EnemyPoint enemyPoint, Vector3 islePosition, Vector3 navMeshPosition, NavMeshTarget target)
@@ -66,7 +72,7 @@ public class Spider : Enemy {
 
     public IEnumerator ShotRythmHandler()
     {
-        while(true)
+        while (true)
         {
             // calculate difference-wait-time
             Stats stats = GetComponent<Stats>();
