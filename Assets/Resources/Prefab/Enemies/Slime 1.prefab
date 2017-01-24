@@ -141,16 +141,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad2ca409fc26e2e47a272683c7cec68f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 10
+  maxHealth: 8
   health: 10
   speed: 10
   luck: 0
-  strength: 2
+  strength: 1
   shootOffset: {x: 0, y: 0, z: 0}
   StartVerticalDegree: 45
   shotSpeed: 1
   shotStrength: 5
   fireRate: 1
+  fireRateDifference: 0
 --- !u!114 &114000014248408032
 MonoBehaviour:
   m_ObjectHideFlags: 1

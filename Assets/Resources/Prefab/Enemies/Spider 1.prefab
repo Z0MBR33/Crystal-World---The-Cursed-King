@@ -1086,11 +1086,11 @@ MonoBehaviour:
   health: 10
   speed: 20
   luck: 0
-  strength: 2
+  strength: 1
   shootOffset: {x: 0, y: 1, z: 0}
   StartVerticalDegree: 45
   shotSpeed: 10
-  shotStrength: 5
+  shotStrength: 3
   fireRate: 5
   fireRateDifference: 1
 --- !u!114 &114000013736479396

@@ -116,4 +116,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce01fec7ded731c49801ee2927f6618a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IncreaseValue: 1
+  IncreaseSmallValue: 2
+  IncreaseBigValue: 4

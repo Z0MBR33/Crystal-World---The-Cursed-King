@@ -2160,7 +2160,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad2ca409fc26e2e47a272683c7cec68f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 10
+  maxHealth: 25
   health: 20
   speed: 10
   luck: 0
@@ -2168,7 +2168,7 @@ MonoBehaviour:
   shootOffset: {x: 0, y: 2, z: 0}
   StartVerticalDegree: 45
   shotSpeed: 10
-  shotStrength: 5
+  shotStrength: 4
   fireRate: 0.5
   fireRateDifference: 0
 --- !u!137 &137000013186399636
