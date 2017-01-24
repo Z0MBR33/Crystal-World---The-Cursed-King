@@ -33,15 +33,8 @@ public class multiplyOnContact : ShotEffect
 
     private void multiply(GameObject shot)
     {
-        float velocityOld = shot.GetComponent<Rigidbody>().velocity.magnitude;
-
         Vector3[] directions = new Vector3[4];
-        /*
-        directions[0] = shot.transform.up - shot.transform.forward;
-        directions[1] = shot.transform.right - shot.transform.forward;
-        directions[2] = -shot.transform.up - shot.transform.forward;
-        directions[3] = -shot.transform.right - shot.transform.forward;
-        */
+
         directions[0] = (Vector3.Scale(shot.transform.forward, new Vector3(1,0,1)) + new Vector3(0,1,0)).normalized;
         directions[1] = -(Vector3.Scale(shot.transform.forward, new Vector3(1, 0, 1)) - new Vector3(0, 1, 0)).normalized;
         directions[2] = (Vector3.Scale(shot.transform.right, new Vector3(1, 0, 1)) + new Vector3(0, 1, 0)).normalized;

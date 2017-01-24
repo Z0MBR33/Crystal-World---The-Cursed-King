@@ -150,7 +150,7 @@ public class GameMaster : MonoBehaviour {
             SceneManager.LoadScene("Scenes/World");
         }
 
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetAxisRaw("Cancel") == 1)
         {
             ShowPauseMenue();
         }

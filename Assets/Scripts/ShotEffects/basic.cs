@@ -22,6 +22,7 @@ public class basic : ShotEffect
         catch (Exception ex)
         {
             Debug.Log("Enemy not found");
+            Debug.Log(ex);
         }
     }
 

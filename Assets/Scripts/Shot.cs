@@ -40,7 +40,7 @@ public class Shot : MonoBehaviour
     }
 
     private float timeOutInSec = 3;
-    private Coroutine timer;
+    //private Coroutine timer;
 
     private bool canPlop = false;
     private Coroutine plopTimer;
@@ -81,7 +81,8 @@ public class Shot : MonoBehaviour
         effectsToExecute = effects;
         transform.rotation = rotation;
 
-        timer = StartCoroutine(timerHandler());
+        //timer = StartCoroutine(timerHandler());
+        StartCoroutine(timerHandler());
         canPlop = false;
         plopTimer = StartCoroutine(plopTimerHandler());
         shotStrength = shooterData.shotStrength;

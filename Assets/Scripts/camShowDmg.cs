@@ -56,7 +56,6 @@ public class camShowDmg : MonoBehaviour
         for (int i = 100; i >= 0; i--)
         {
             vig.intensity = startValueVig * (((float)i) / 100);
-            Debug.Log(startValueVig * (((float)i) / 100));
             yield return new WaitForSeconds(fadingOutTime / 100);
         }
         StopCoroutine(timer);
