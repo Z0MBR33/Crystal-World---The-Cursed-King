@@ -36,7 +36,6 @@ namespace UnityStandardAssets.ImageEffects
         public override bool CheckResources ()
         {
             CheckSupport (false);
-            m_VignetteMaterial.color = VignetteColor;
 
             m_VignetteMaterial = CheckShaderAndCreateMaterial (vignetteShader, m_VignetteMaterial);
             m_SeparableBlurMaterial = CheckShaderAndCreateMaterial (separableBlurShader, m_SeparableBlurMaterial);

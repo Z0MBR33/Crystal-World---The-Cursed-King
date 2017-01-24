@@ -27,6 +27,7 @@ public class GameMaster : MonoBehaviour {
         mr = ObjectPool.getObjectPool();
         playerObject = mr.getObject(ObjectPool.categorie.essential, (int)ObjectPool.essential.player);
         camObject = mr.getObject(ObjectPool.categorie.essential, (int)ObjectPool.essential.camera);
+        camObject.GetComponent<camShowDmg>().showStart();
         pauseMenue = mr.getObject(ObjectPool.categorie.essential, (int)ObjectPool.essential.Pause_menue);
         pauseMenue.SetActive(false);
 
