@@ -120,7 +120,7 @@ public class GameMaster : MonoBehaviour {
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Backspace))
+        /*if (Input.GetKeyDown(KeyCode.Backspace))
         {
             int level = GameStats.Level;
 
@@ -148,7 +148,7 @@ public class GameMaster : MonoBehaviour {
 
             // load Scene
             SceneManager.LoadScene("Scenes/World");
-        }
+        } */
 
         if (Input.GetAxisRaw("Cancel") == 1)
         {
