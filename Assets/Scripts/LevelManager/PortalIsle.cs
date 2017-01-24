@@ -8,7 +8,6 @@ public class PortalIsle : MonoBehaviour {
     public GameObject Podest1;
     public GameObject Podest2;
     public GameObject Podest3;
-    public GameObject portalParticle;
 
     [HideInInspector]
     public int PortalKeys = 0;
@@ -19,7 +18,7 @@ public class PortalIsle : MonoBehaviour {
     {
         if (PortalKeys >= 3)
         {
-            portalParticle.SetActive(true);
+            BossPortal.GetComponent<Renderer>().material.color = Color.yellow;
             open = true;
         }
     }

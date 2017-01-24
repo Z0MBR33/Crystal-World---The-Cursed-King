@@ -30,7 +30,7 @@ public class Item : MonoBehaviour {
 
     private List<lerpInfo> lerpList;
 
-    public Animator theTresure;
+    public Animator derObjectAnimator;
 
 
     public void initialize()
@@ -44,20 +44,19 @@ public class Item : MonoBehaviour {
         collected = false;
         opened = false;
 
-        /*if (Type == ItemType.SmallBox || Type == ItemType.BigBox)
+        if (Type == ItemType.SmallBox || Type == ItemType.BigBox)
         {
             gameObject.GetComponent<Renderer>().material.color = new Color(0.296f, 0.141f, 0.057f, 1);
-        }*/
+        }
         if (Type == ItemType.SmallBox)
         {
             generateSmallBoxContent();
-            theTresure = gameObject.GetComponentInChildren<Animator>();
+            derObjectAnimator = gameObject.GetComponent<Animator>();
 
         }
         if (Type == ItemType.BigBox)
         {
             generateBigBoxContent();
-            theTresure = gameObject.GetComponentInChildren<Animator>();
         }
 
     }
@@ -137,8 +136,8 @@ public class Item : MonoBehaviour {
     public void OpenSmallBox()
     {
         opened = true;
-        
-        theTresure.SetBool("isOpen", true);
+        gameObject.GetComponent<Renderer>().material.color = Color.green;
+        derObjectAnimator.SetBool("isOpen", true);
 
         if (ContentObj != null)
         {
@@ -151,8 +150,8 @@ public class Item : MonoBehaviour {
     {
         opened = true;
         collected = true;
-
-        theTresure.SetBool("IsOpen", true);
+    
+        gameObject.GetComponent<Renderer>().material.color = Color.green;
 
         if (ContentObj != null)
         {
