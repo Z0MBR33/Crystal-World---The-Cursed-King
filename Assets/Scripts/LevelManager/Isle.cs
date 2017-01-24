@@ -223,7 +223,7 @@ public class Isle : MonoBehaviour
                 // Level finished
 
                 UI_Canvas ui = mr.getObject(ObjectPool.categorie.essential, (int)ObjectPool.essential.UI).GetComponent<UI_Canvas>();
-                ui.ShowMessage("Level cleared!\nPortals are open now!");
+                ui.ShowMessage("Isle cleared!\nPortals are open now!");
 
                 UnlockPortals();
 

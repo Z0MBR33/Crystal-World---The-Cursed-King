@@ -141,7 +141,8 @@ public class Controll : MonoBehaviour
     void camManualHorizontalMovement()
     {
         Vector3 camVelo = new Vector3(0, 0, 0);
-        camVelo += Vector3.Scale(camObj.transform.right, new Vector3(1, 0, 1)) * Input.GetAxisRaw("Horizontal_camera");
+        float camRotationTweaker = 2;
+        camVelo += Vector3.Scale(camObj.transform.right, new Vector3(1, 0, 1)) * Input.GetAxisRaw("Horizontal_camera") * camRotationTweaker;
 
         camObj.GetComponent<Rigidbody>().velocity += camVelo * 10;
     }
