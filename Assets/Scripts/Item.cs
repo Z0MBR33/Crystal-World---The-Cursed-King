@@ -189,7 +189,7 @@ public class Item : MonoBehaviour {
                 ui.ShowMessage("Much more Damage!");
                 break;
             case ContentTypeBig.RateUpgrade:
-                playerStats.fireRate += ContentObj.GetComponent<StatUpgrade>().IncreaseBigValue;
+                playerStats.fireRate *= ContentObj.GetComponent<StatUpgrade>().IncreaseBigValue;
                 ui.ShowMessage("Fire rate extremely increased!");
                 break;
             case ContentTypeBig.ShotSpeedUpgrade:
@@ -213,7 +213,7 @@ public class Item : MonoBehaviour {
                 if (player.hasBluffer == false)
                 {
                     player.hasBluffer = true;
-                    playerStats.possibleShotEffects.Add(new bluff());  // TODO Add Bluffer!
+                    playerStats.possibleShotEffects.Add(new bluff());
                     ui.ShowMessage("You have Bluffer-Shots!");
                 }
                 else
@@ -281,7 +281,7 @@ public class Item : MonoBehaviour {
                     case ContentTypeSmall.DamageUpgrade: playerStats.shotStrength += ContentObj.GetComponent<StatUpgrade>().IncreaseSmallValue;
                         ui.ShowMessage("More Damage!");
                         break;
-                    case ContentTypeSmall.RateUpgrade: playerStats.fireRate += ContentObj.GetComponent<StatUpgrade>().IncreaseSmallValue;
+                    case ContentTypeSmall.RateUpgrade: playerStats.fireRate *= ContentObj.GetComponent<StatUpgrade>().IncreaseSmallValue;
                         ui.ShowMessage("Fire rate increased!");
                         break;
                     case ContentTypeSmall.ShotSpeedUpgrade: playerStats.shotSpeed += ContentObj.GetComponent<StatUpgrade>().IncreaseSmallValue;
