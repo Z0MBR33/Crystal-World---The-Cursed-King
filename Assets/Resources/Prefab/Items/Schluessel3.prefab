@@ -20,10 +20,10 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000010674176226}
   - 33: {fileID: 33000011423656594}
-  - 65: {fileID: 65000013627422200}
   - 23: {fileID: 23000011017187600}
   - 114: {fileID: 114000010545013520}
   - 114: {fileID: 114000010744298692}
+  - 65: {fileID: 65000012624493428}
   m_Layer: 0
   m_Name: Schluessel3
   m_TagString: Item
@@ -80,7 +80,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012652348774}
   m_Mesh: {fileID: 4300000, guid: 984306c9ef333f84eb275d7c4dc268e4, type: 3}
---- !u!65 &65000013627422200
+--- !u!65 &65000012624493428
 BoxCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -90,8 +90,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.0069562695, y: 0.013120661, z: 0.0067716585}
-  m_Center: {x: -0.000021973849, y: 0, z: -0.00019116401}
+  m_Size: {x: 0.015, y: 0.015, z: 0.015}
+  m_Center: {x: -0.0001824738, y: 0, z: -0.0000007724762}
 --- !u!114 &114000010545013520
 MonoBehaviour:
   m_ObjectHideFlags: 1

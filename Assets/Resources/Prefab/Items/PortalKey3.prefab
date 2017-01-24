@@ -52,7 +52,7 @@ MeshRenderer:
   m_GameObject: {fileID: 1000011913060384}
   m_Enabled: 1
   m_CastShadows: 1
-  m_ReceiveShadows: 1
+  m_ReceiveShadows: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -79,7 +79,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011913060384}
-  m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 4300000, guid: 552081d132d6a0047baaca8fc70f3810, type: 3}
 --- !u!114 &114000010485230096
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -92,7 +92,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Type: 2
+  ContentObj: {fileID: 0}
   collected: 0
+  opened: 0
+  derObjectAnimator: {fileID: 0}
 --- !u!114 &114000012749631156
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -105,6 +108,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Lerping: 0
+  Ratio: 0
 --- !u!136 &136000013010607620
 CapsuleCollider:
   m_ObjectHideFlags: 1
