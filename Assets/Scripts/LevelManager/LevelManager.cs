@@ -161,7 +161,7 @@ public class LevelManager : MonoBehaviour
                 Isle isleObj;
                 if (isle.isleObjectType != IsleAbstract.IsleObjectType.boss)
                 {
-                    int type = mr.random.Next(1, 4);
+                    int type = mr.random.Next(1, 5);
                     switch(type)
                     {
                         case 1: isleObj = mr.getObject(ObjectPool.categorie.islands, (int)ObjectPool.islands.type1).GetComponent<Isle>();

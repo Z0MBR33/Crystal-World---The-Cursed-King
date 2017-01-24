@@ -1846,6 +1846,7 @@ MonoBehaviour:
   shotSpeed: 15
   shotStrength: 5
   fireRate: 0.1
+  fireRateDifference: 0
 --- !u!114 &114000012740306368
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1860,7 +1861,7 @@ MonoBehaviour:
   walkTimeSeconds: 5
   walkTimeDifference: 2
   loadTimeSeconds: 3
-  shotSize: 2
+  shotSize: 1
   anim: {fileID: 0}
   ShotPoint: {fileID: 1000012298268126}
 --- !u!114 &114000014276399926

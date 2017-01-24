@@ -14,7 +14,6 @@ public class PlayerAnimations : MonoBehaviour {
     void Update() {
         if (charController.velocity.sqrMagnitude > 0.01)
         {
-            Debug.Log("hallo");
             playerAnimator.SetBool("isWalking", true);
         }
         else
