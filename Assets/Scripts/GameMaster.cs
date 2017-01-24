@@ -121,8 +121,18 @@ public class GameMaster : MonoBehaviour {
     {
         if (Input.GetKeyDown(KeyCode.Backspace))
         {
+            int level = GameStats.Level;
+
+            if (level == 3)
+            {
+                // load End screen
+                SceneManager.LoadScene("Scenes/End");
+                return;
+            }
+
+
             // update Level Settings
-            int level = GameStats.Level + 1;
+            level += 1;
             GameStats.UpdateLevelSettings(level);
 
             // save char stats

@@ -25,8 +25,17 @@ public class PortalIsle : MonoBehaviour {
 
     public void teleport()
     {
+        int level = GameStats.Level;
+
+        if (level == 3)
+        {
+            // load End screen
+            SceneManager.LoadScene("Scenes/End");
+        }
+
+
         // update Level Settings
-        int level = GameStats.Level + 1;
+        level += 1;
         GameStats.UpdateLevelSettings(level);
 
         // save char stats
