@@ -113,10 +113,11 @@ public class Player : MonoBehaviour
 
         if (isImmportal == false)
         {
-            becomeImmortal(3);
+            becomeImmortal(1);
             Stats stats = GetComponent<Stats>();
             stats.gotHit(damage);
             mr.getObject(ObjectPool.categorie.essential, (int)ObjectPool.essential.UI).GetComponent<UI_Canvas>().UpdateLive(stats.health, stats.maxHealth);
+            mr.getObject(ObjectPool.categorie.essential, (int)ObjectPool.essential.camera).GetComponent<camShowDmg>().showDmg();
         }
     }
 
@@ -140,8 +141,7 @@ public class Player : MonoBehaviour
         GameObject expl = ObjectPool.getObjectPool().getObject(ObjectPool.categorie.explosion, (int)ObjectPool.explosion.player);
         expl.GetComponent<ExplosionScript>().Initialize(transform.position);
 
-        //ObjectPool mr = ObjectPool.getObjectPool();
-        //mr.returnObject(gameObject); // no effect?
+        mr.getObject(ObjectPool.categorie.essential,(int)ObjectPool.essential.camera).GetComponent<camShowDmg>().showDead();
         gameObject.SetActive(false);
 
         GameMaster.getGameMaster().BackToMenue();
