@@ -214,7 +214,7 @@ GameObject:
   m_IsActive: 1
 --- !u!1 &1000011160153834
 GameObject:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 4
@@ -305,7 +305,7 @@ GameObject:
   m_IsActive: 1
 --- !u!1 &1000011462460864
 GameObject:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 4
@@ -318,7 +318,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1000011468154818
 GameObject:
   m_ObjectHideFlags: 0
@@ -546,7 +546,7 @@ GameObject:
   - 114: {fileID: 114000011695682082}
   - 114: {fileID: 114000010922020334}
   m_Layer: 0
-  m_Name: NavMesh-Portal-Isle
+  m_Name: Portal-Isle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -869,13 +869,14 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011160153834}
-  m_LocalRotation: {x: 0.000000020605915, y: -0.33331198, z: 0.000000007284764, w: 0.9428166}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 300.00024, y: 104.5224, z: 300.00024}
+  m_LocalRotation: {x: 0.000000020605915, y: -0.33331198, z: 0.0000000072847635, w: 0.9428166}
+  m_LocalPosition: {x: 0, y: 2.34, z: 0}
+  m_LocalScale: {x: 300.0003, y: 104.5224, z: 300.0003}
   m_LocalEulerAnglesHint: {x: 0, y: -39.206, z: 0}
-  m_Children: []
-  m_Father: {fileID: 4000011183436706}
-  m_RootOrder: 0
+  m_Children:
+  - {fileID: 4000011183436706}
+  m_Father: {fileID: 4000013784195322}
+  m_RootOrder: 23
 --- !u!4 &4000010205613544
 Transform:
   m_ObjectHideFlags: 1
@@ -963,14 +964,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011462460864}
-  m_LocalRotation: {x: -0, y: -0, z: -4.440892e-16, w: 1}
-  m_LocalPosition: {x: 0, y: 2.34, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0.000000020605915, y: 0.33331198, z: -0.000000007284764, w: 0.9428166}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.00333333, y: 0.009567327, z: 0.00333333}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_Children:
-  - {fileID: 4000010198629466}
-  m_Father: {fileID: 4000013784195322}
-  m_RootOrder: 23
+  m_Children: []
+  m_Father: {fileID: 4000010198629466}
+  m_RootOrder: 0
 --- !u!4 &4000011465438002
 Transform:
   m_ObjectHideFlags: 1
@@ -1184,7 +1184,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012954451702}
-  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalRotation: {x: -0.7071068, y: -0.000000029802319, z: 0.000000024614256, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 1.74, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1345,7 +1345,7 @@ Transform:
   - {fileID: 4000013446251744}
   - {fileID: 4000013476974142}
   - {fileID: 4000012944728760}
-  - {fileID: 4000011183436706}
+  - {fileID: 4000010198629466}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!4 &4000013923963028
@@ -3202,7 +3202,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5daa4731f4d906445876f7497738e50f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BossPortal: {fileID: 100000, guid: f1b3e4c494e6f454984819522a3bb843, type: 3}
+  BossPortalCollider: {fileID: 1000011462460864}
   Podest1: {fileID: 1000011314021298}
   Podest2: {fileID: 1000010160544716}
   Podest3: {fileID: 1000013670839400}
@@ -3456,7 +3456,7 @@ ParticleSystem:
   moveWithTransform: 1
   autoRandomSeed: 1
   scalingMode: 1
-  randomSeed: -195820636
+  randomSeed: -1935372999
   InitialModule:
     serializedVersion: 2
     enabled: 1

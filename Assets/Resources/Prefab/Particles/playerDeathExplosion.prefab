@@ -563,12 +563,12 @@ ParticleSystem:
         serializedVersion: 2
         m_Curve:
         - time: 0
-          value: 0.14280075
+          value: 0.07536337
           inSlope: 0
           outSlope: 0
           tangentMode: 0
-        - time: 1
-          value: 0.253447
+        - time: 0.9967051
+          value: 0.12627937
           inSlope: 0
           outSlope: 0
           tangentMode: 0
@@ -579,12 +579,12 @@ ParticleSystem:
         serializedVersion: 2
         m_Curve:
         - time: 0
-          value: 0.12991402
+          value: 0.064403415
           inSlope: 0
           outSlope: 0
           tangentMode: 0
         - time: 1
-          value: 0.12323254
+          value: 0.06542908
           inSlope: 0
           outSlope: 0
           tangentMode: 0

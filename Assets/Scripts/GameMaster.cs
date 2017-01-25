@@ -88,9 +88,7 @@ public class GameMaster : MonoBehaviour {
         {
             // load Player Stats
 
-            Stats stats = playerObject.GetComponent<Stats>();
-
-            GameStats.ReadCharStats(stats);
+            GameStats.ReadCharStats(playerObject);
             
         }
 
@@ -120,40 +118,16 @@ public class GameMaster : MonoBehaviour {
 
     private void Update()
     {
-        /*if (Input.GetKeyDown(KeyCode.Backspace))
-        {
-            int level = GameStats.Level;
-
-            if (level == 3)
-            {
-                // load End screen
-                SceneManager.LoadScene("Scenes/End");
-                return;
-            }
-
-
-            // update Level Settings
-            level += 1;
-            GameStats.UpdateLevelSettings(level);
-
-            // save char stats
-
-            GameStats.LoadCharStats = true;
-
-            ObjectPool mr = ObjectPool.getObjectPool();
-            GameObject player = mr.getObject(ObjectPool.categorie.essential, (int)ObjectPool.essential.player);
-            Stats stats = player.GetComponent<Stats>();
-
-            GameStats.SaveCharSets(stats);
-
-            // load Scene
-            SceneManager.LoadScene("Scenes/World");
-        } */
-
         if (Input.GetAxisRaw("Cancel") == 1)
         {
             ShowPauseMenue();
         }
+
+        // Cheat mode to next Level
+        /*if (Input.GetKeyDown(KeyCode.Backspace))
+        {
+            levelManager.bossIsle.IsleObj.gameObject.GetComponent<PortalIsle>().teleport();
+        }*/
     }
 
 }

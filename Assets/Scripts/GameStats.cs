@@ -30,6 +30,9 @@ public static class GameStats {
     public static float fireRateDifference = 0;
     public static List<ShotEffect> possibleShotEffects;
 
+    // other stuff
+    public static int NumberOfKeys;
+
     public static void UpdateLevelSettings(int level)
     {
         Level = level;
@@ -51,8 +54,10 @@ public static class GameStats {
         }
     }
 
-    public static void ReadCharStats(Stats stats)
+    public static void ReadCharStats(GameObject player)
     {
+        Stats stats = player.GetComponent<Stats>();
+
         // load Player Stats
 
         stats.maxHealth = GameStats.maxHealth;
@@ -69,10 +74,16 @@ public static class GameStats {
         stats.fireRate = GameStats.fireRate;
         stats.fireRateDifference = GameStats.fireRateDifference;
         stats.possibleShotEffects = GameStats.possibleShotEffects;
+
+        // other stuff
+
+        player.GetComponent<Player>().NumberSmallKeys = GameStats.NumberOfKeys;
     }
 
-    public static void SaveCharSets(Stats stats)
+    public static void SaveCharSets(GameObject player)
     {
+        Stats stats = player.GetComponent<Stats>();
+
         // save Player Stats
 
         GameStats.maxHealth = stats.maxHealth;
@@ -89,5 +100,9 @@ public static class GameStats {
         GameStats.fireRate = stats.fireRate;
         GameStats.fireRateDifference = stats.fireRateDifference;
         GameStats.possibleShotEffects = stats.possibleShotEffects;
+
+        // other stuff
+
+        GameStats.NumberOfKeys = player.GetComponent<Player>().NumberSmallKeys;
     }
 }

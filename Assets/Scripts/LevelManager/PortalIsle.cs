@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class PortalIsle : MonoBehaviour {
 
-    public GameObject BossPortal;
+    public GameObject BossPortalCollider;
     public GameObject Podest1;
     public GameObject Podest2;
     public GameObject Podest3;
@@ -20,6 +20,7 @@ public class PortalIsle : MonoBehaviour {
         if (PortalKeys >= 3)
         {
             portalParticle.SetActive(true);
+            BossPortalCollider.SetActive(true);
             open = true;
         }
     }
@@ -32,6 +33,7 @@ public class PortalIsle : MonoBehaviour {
         {
             // load End screen
             SceneManager.LoadScene("Scenes/End");
+            return;
         }
 
 
@@ -45,9 +47,8 @@ public class PortalIsle : MonoBehaviour {
 
         ObjectPool mr = ObjectPool.getObjectPool();
         GameObject player = mr.getObject(ObjectPool.categorie.essential, (int)ObjectPool.essential.player);
-        Stats stats = player.GetComponent<Stats>();
 
-        GameStats.SaveCharSets(stats);
+        GameStats.SaveCharSets(player);
 
         // load Scene
         SceneManager.LoadScene("Scenes/World");
