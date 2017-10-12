@@ -11,3 +11,9 @@ EditorBuildSettings:
     path: Assets/Scenes/World.unity
   - enabled: 1
     path: Assets/Scenes/End.unity
+  - enabled: 1
+    path: Assets/Scenes/ForestIsles.unity
+  - enabled: 1
+    path: Assets/Scenes/LavaIsles.unity
+  - enabled: 1
+    path: Assets/Scenes/SnowIsles.unity

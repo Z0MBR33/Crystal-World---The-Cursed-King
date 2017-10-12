@@ -11,6 +11,8 @@ TagManager:
   - Item
   - Boss-Portal
   - BorderPlane
+  - Ground
+  - Crystal
   layers:
   - Default
   - TransparentFX
@@ -23,8 +25,8 @@ TagManager:
   - Player
   - Enemy
   - Plane
-  - 
-  - 
+  - Ground
+  - Crystalls
   - 
   - 
   - 

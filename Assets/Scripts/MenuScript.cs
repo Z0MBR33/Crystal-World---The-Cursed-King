@@ -12,7 +12,7 @@ public class MenuScript : MonoBehaviour
 
         GameStats.LoadCharStats = false;
 
-        ChangeScene("Scenes/World");
+        ChangeScene("Scenes/ForestIsles");
     }
 
     public void ReturnToMainMenu()

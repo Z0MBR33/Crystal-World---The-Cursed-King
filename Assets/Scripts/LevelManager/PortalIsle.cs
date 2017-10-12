@@ -9,6 +9,8 @@ public class PortalIsle : MonoBehaviour {
     public GameObject Podest2;
     public GameObject Podest3;
     public GameObject portalParticle;
+    //public string theScene;
+    
 
     [HideInInspector]
     public int PortalKeys = 0;
@@ -29,7 +31,7 @@ public class PortalIsle : MonoBehaviour {
     {
         int level = GameStats.Level;
 
-        if (level == 3)
+        if (level == 4)
         {
             // load End screen
             SceneManager.LoadScene("Scenes/End");
@@ -51,6 +53,19 @@ public class PortalIsle : MonoBehaviour {
         GameStats.SaveCharSets(player);
 
         // load Scene
-        SceneManager.LoadScene("Scenes/World");
+        //theScene = Application.loadedLevelName;
+       // Debug.Log(theScene);
+        if (level == 2)
+        {
+             SceneManager.LoadScene("Scenes/SnowIsles");
+            return;
+        }
+        if (level == 3)
+        {
+            SceneManager.LoadScene("Scenes/LavaIsles");
+            return;
+        }
+
+
     }
 }
