@@ -88,8 +88,9 @@ public class GameMaster : MonoBehaviour {
         {
             // load Player Stats
 
-            GameStats.ReadCharStats(playerObject);
-            
+            Player player = playerObject.GetComponent<Player>();
+            GameStats.ReadCharStats(player);
+
         }
 
     }
