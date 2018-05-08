@@ -67,6 +67,7 @@ public class Shot : MonoBehaviour
         ShotEffect[] pufferarray = new ShotEffect[listToCopy.Count];
         listToCopy.CopyTo(pufferarray);
         copyOfEffectList.AddRange(pufferarray);
+        rotation = new Quaternion(0, 0, 0, 0);
         reset(shootedFrom, startPosition, startDirection, rotation, copyOfEffectList);
     }
 

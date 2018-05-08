@@ -25,12 +25,12 @@ public class Enemy : MonoBehaviour
         gameObject.GetComponent<GhostCopy>().IslePosition = islePosition;
 
         GameObject slimeGhost = getGhost();
-        slimeGhost.GetComponent<NavMeshAgent>().enabled = false;
+        slimeGhost.GetComponent<UnityEngine.AI.NavMeshAgent>().enabled = false;
         slimeGhost.transform.position = navMeshPosition + enemyPoint.getPositionOnIsle();
         slimeGhost.GetComponent<GhostMovement>().NavMashPosition = navMeshPosition;
         slimeGhost.GetComponent<GhostMovement>().target = target;
         slimeGhost.GetComponent<GhostMovement>().ghostCopy = ghostCopy;
-        slimeGhost.GetComponent<NavMeshAgent>().enabled = true;
+        slimeGhost.GetComponent<UnityEngine.AI.NavMeshAgent>().enabled = true;
         gameObject.GetComponent<GhostCopy>().ghost = slimeGhost.GetComponent<GhostMovement>();
 
     }
