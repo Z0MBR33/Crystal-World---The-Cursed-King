@@ -108,8 +108,9 @@ public class Octopus : Enemy
         Vector3 startPoint = loadingShot.GetComponent<LoadingBall>().CenterOfBall.transform.position;
         Vector3 startDirection = transform.forward + new Vector3(0, 0.2f, 0);
         startDirection *= stats.shotSpeed;
+        float timeUntilFalloff = stats.TimeUntilShotFalloff;
 
-        shot.reset(gameObject, startPoint, startDirection, new Quaternion(), stats.possibleShotEffects);
+        shot.reset(gameObject, startPoint, startDirection, timeUntilFalloff, stats.possibleShotEffects);
 
         if (loadingShot != null)
         {
