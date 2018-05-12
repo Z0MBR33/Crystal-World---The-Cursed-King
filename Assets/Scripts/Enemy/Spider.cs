@@ -58,7 +58,7 @@ public class Spider : Enemy
 
             Vector3 startPoint = ShotPoint.transform.position;
             Vector3 startDirection = shotVecs[i];
-            startDirection = (startDirection.normalized + new Vector3(0, 0.2f, 0)) * stats.shotSpeed;
+            startDirection = (startDirection.normalized + new Vector3(0, 0, 0)) * stats.shotSpeed;
 
             shot.reset(gameObject, startPoint, startDirection, stats.TimeUntilShotFalloff, stats.possibleShotEffects);
         }

@@ -1071,7 +1071,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010241306294}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -343.12244, y: 105.29472, z: 64.7261}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_Children:
   - {fileID: 4213466473973254}
@@ -2089,6 +2089,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Model: {fileID: 1067620133094880}
+  CompleteModel: {fileID: 1641486550496536}
   DieOnCollision: 0
   MeshRenderer: {fileID: 0}
   NumberSmallKeys: 0
@@ -2134,9 +2135,10 @@ MonoBehaviour:
   speed: 10
   luck: 0
   strength: 10
-  shootOffset: {x: 0, y: 2, z: 0}
+  shootOffset: {x: 0, y: 1.5, z: 0}
   StartVerticalDegree: 45
-  shotSpeed: 10
+  shotSpeed: 500
+  TimeUntilShotFalloff: 1
   shotStrength: 4
   fireRate: 0.5
   fireRateDifference: 0

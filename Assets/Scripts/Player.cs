@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     private Coroutine currentImmortalHandler;
     private bool isImmportal;
     public GameObject Model;
+    public GameObject CompleteModel;
     [HideInInspector]
     public bool DieOnCollision;
     [HideInInspector]
@@ -38,7 +39,7 @@ public class Player : MonoBehaviour
         if (isImmportal)
         {
             // flicker player
-            MeshRenderer.enabled = !MeshRenderer.enabled;
+            //MeshRenderer.enabled = !MeshRenderer.enabled;
         }
     }
 

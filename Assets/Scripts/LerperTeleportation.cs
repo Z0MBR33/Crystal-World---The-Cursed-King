@@ -35,7 +35,7 @@ public class LerperTeleportation : MonoBehaviour
 
         //ObjectPool.getObjectPool().getObject(ObjectPool.categorie.essential, (int)ObjectPool.essential.camera).GetComponent<justLook>().objectToLookAt = gameObject;
 
-        gameObject.GetComponent<Player>().MeshRenderer.enabled = false;
+        gameObject.GetComponent<Player>().CompleteModel.SetActive(false);
         teleportationBall = ObjectPool.getObjectPool().getObject(ObjectPool.categorie.explosion, (int)ObjectPool.explosion.heroTeleportBall);
         lookedATarget = false;
 }       
@@ -67,7 +67,7 @@ public void Update()
 
                 conObject.endTeleporting();
 
-                gameObject.GetComponent<Player>().MeshRenderer.enabled = true;
+                gameObject.GetComponent<Player>().CompleteModel.SetActive(true);
                 ObjectPool.getObjectPool().returnObject(teleportationBall);
 
                 //TODO Bug für cam zurücksetzen zwischen meheren Lerps beheben...

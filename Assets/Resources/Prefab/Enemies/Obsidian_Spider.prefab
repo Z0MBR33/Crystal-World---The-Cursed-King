@@ -1213,8 +1213,9 @@ MonoBehaviour:
   luck: 0
   strength: 1
   shootOffset: {x: 0, y: 1, z: 0}
-  StartVerticalDegree: 45
-  shotSpeed: 10
+  StartVerticalDegree: 0
+  shotSpeed: 350
+  TimeUntilShotFalloff: 1
   shotStrength: 3
   fireRate: 5
   fireRateDifference: 1

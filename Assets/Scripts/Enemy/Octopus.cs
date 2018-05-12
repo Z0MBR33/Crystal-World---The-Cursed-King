@@ -106,7 +106,7 @@ public class Octopus : Enemy
         shot.gameObject.transform.localScale = new Vector3(shotSize, shotSize, shotSize);
 
         Vector3 startPoint = loadingShot.GetComponent<LoadingBall>().CenterOfBall.transform.position;
-        Vector3 startDirection = transform.forward + new Vector3(0, 0.2f, 0);
+        Vector3 startDirection = transform.forward + new Vector3(0, 0, 0);
         startDirection *= stats.shotSpeed;
         float timeUntilFalloff = stats.TimeUntilShotFalloff;
 
