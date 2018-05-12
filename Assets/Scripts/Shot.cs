@@ -12,6 +12,8 @@ public class Shot : MonoBehaviour
 
     //Needs a reset every time it comes back from the ObjectPool
     private GameObject shootedFrom;
+    private float TimeUntilSFalloff;
+
     public GameObject _shootedFrom
     {
         get { return shootedFrom; }
@@ -27,6 +29,7 @@ public class Shot : MonoBehaviour
         set { }
     }
 
+    
     private float shotStrength;
     public float _shotStrength
     {
@@ -40,10 +43,11 @@ public class Shot : MonoBehaviour
     }
 
     private float timeOutInSec = 3;
-    //private Coroutine timer;
 
     private bool canPlop = false;
     private Coroutine plopTimer;
+
+    private int characterMovementMultiplicator = 50;
 
     public void Awake()
     {
@@ -54,12 +58,14 @@ public class Shot : MonoBehaviour
         effectsToExecute.Add(new basic());
     }
 
-    public void reset(GameObject shootedFrom, Vector3 horizontalDirection, Quaternion rotation)
+    public void reset(GameObject shootedFrom, Vector3 horizontalDirection)
     {
+        Stats stats = shootedFrom.GetComponent<Stats>();
 
         Vector3 startPosition = shootedFrom.transform.position + shootedFrom.GetComponent<Stats>().shootOffset;
-        Vector3 startDirection = shootedFrom.GetComponent<CharacterController>().velocity;
-        startDirection += (horizontalDirection.normalized + new Vector3(0, 0.2f, 0)) * shootedFrom.GetComponent<Stats>().shotSpeed;
+        Vector3 startDirection = shootedFrom.GetComponent<CharacterController>().velocity * characterMovementMultiplicator;
+        startDirection += (horizontalDirection.normalized + new Vector3(0, 0, 0)) * stats.shotSpeed;
+        float timeUntilSFalloff = stats.TimeUntilShotFalloff;
 
         List<ShotEffect> listToCopy = shootedFrom.GetComponent<Stats>().possibleShotEffects;
 
@@ -67,11 +73,10 @@ public class Shot : MonoBehaviour
         ShotEffect[] pufferarray = new ShotEffect[listToCopy.Count];
         listToCopy.CopyTo(pufferarray);
         copyOfEffectList.AddRange(pufferarray);
-        rotation = new Quaternion(0, 0, 0, 0);
-        reset(shootedFrom, startPosition, startDirection, rotation, copyOfEffectList);
+        reset(shootedFrom, startPosition, startDirection, timeUntilSFalloff, copyOfEffectList);
     }
 
-    public void reset(GameObject shootedFrom, Vector3 startPosition, Vector3 startDirection, Quaternion rotation, List<ShotEffect> effects)
+    public void reset(GameObject shootedFrom, Vector3 startPosition, Vector3 startDirection, float timeUntilSFalloff, List<ShotEffect> effects)
     {
         this.shootedFrom = shootedFrom;
         Stats shooterData = shootedFrom.GetComponent<Stats>();
@@ -79,11 +84,13 @@ public class Shot : MonoBehaviour
         rb.velocity = new Vector3(0, 0, 0);
         transform.position = startPosition;
         this.startDirection = startDirection;
+        this.TimeUntilSFalloff = timeUntilSFalloff;
+        this.GetComponent<Rigidbody>().useGravity = false;
         effectsToExecute = effects;
-        transform.rotation = rotation;
+        transform.rotation = new Quaternion();
 
-        //timer = StartCoroutine(timerHandler());
         StartCoroutine(timerHandler());
+        StartCoroutine(FalloffHandler());
         canPlop = false;
         plopTimer = StartCoroutine(plopTimerHandler());
         shotStrength = shooterData.shotStrength;
@@ -119,7 +126,8 @@ public class Shot : MonoBehaviour
 
     void OnCollisionStay(Collision collision)
     {
-        //executeCollison(collision);
+        // TODO
+        executeCollison(collision);
     }
 
     void executeCollison(Collision collision)
@@ -167,6 +175,13 @@ public class Shot : MonoBehaviour
         }
         StopAllCoroutines();
         mr.returnObject(gameObject);
+    }
+
+    private IEnumerator FalloffHandler()
+    {
+        yield return new WaitForSeconds(TimeUntilSFalloff);
+
+        this.GetComponent<Rigidbody>().useGravity = true;
     }
 
     private IEnumerator plopTimerHandler()

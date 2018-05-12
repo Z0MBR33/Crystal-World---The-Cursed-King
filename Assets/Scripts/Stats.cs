@@ -16,6 +16,7 @@ public class Stats : MonoBehaviour
     public Vector3 shootOffset = new Vector3(0, 1, 0);
     public float StartVerticalDegree = 45;
     public float shotSpeed = 1.0f;
+    public float TimeUntilShotFalloff = 1f;
     public float shotStrength = 5.0f;
     public float fireRate = 0.1f;
     public float fireRateDifference = 0;

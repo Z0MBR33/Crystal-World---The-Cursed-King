@@ -52,7 +52,7 @@ public class basic : ShotEffect
 
     public override void triggerStart(GameObject shot)
     {
-        shot.GetComponent<Rigidbody>().AddForce(shot.GetComponent<Shot>()._startDirection, ForceMode.VelocityChange);
+        shot.GetComponent<Rigidbody>().AddForce(shot.GetComponent<Shot>()._startDirection, ForceMode.Acceleration);
     }
 
     public override void triggerUpdate(GameObject shot)

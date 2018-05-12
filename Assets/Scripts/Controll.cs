@@ -84,7 +84,7 @@ public class Controll : MonoBehaviour
                 canShoot = false;
                 Shot shot = mr.getObject(ObjectPool.categorie.shot, (int)ObjectPool.shot.round).GetComponent<Shot>();
                 shot.gameObject.SetActive(true);
-                shot.reset(playerObj, inputVector, transform.rotation);
+                shot.reset(playerObj, inputVector);
                 CoolDownShooting = StartCoroutine(shootCoolDown());
             }
         }

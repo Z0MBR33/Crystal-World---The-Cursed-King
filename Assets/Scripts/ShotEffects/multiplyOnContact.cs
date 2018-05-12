@@ -56,6 +56,6 @@ public class multiplyOnContact : ShotEffect
         desiredShotEffects.Remove(this);
 
         GameObject newShot = ObjectPool.getObjectPool().getObject(ObjectPool.categorie.shot, (int)ObjectPool.shot.round);
-        newShot.GetComponent<Shot>().reset(oldShotData._shootedFrom, shot.transform.position, direction, new Quaternion(), desiredShotEffects);
+        newShot.GetComponent<Shot>().reset(oldShotData._shootedFrom, shot.transform.position, direction, 0.1f, desiredShotEffects);
     }
 }
