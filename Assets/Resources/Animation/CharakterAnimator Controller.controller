@@ -94,11 +94,13 @@ AnimatorState:
   m_SpeedParameterActive: 0
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: f1e061a48820785489640e8a5e9fcf10, type: 3}
+  m_TimeParameterActive: 0
+  m_Motion: {fileID: 7400000, guid: b0c56982f612ebb48aac1168a14d9ad8, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
+  m_TimeParameter: 
 --- !u!1102 &1102000011073024276
 AnimatorState:
   serializedVersion: 5
@@ -106,7 +108,7 @@ AnimatorState:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: metarig.001|Walk
-  m_Speed: 1.8
+  m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 1101000010496984420}
@@ -118,11 +120,13 @@ AnimatorState:
   m_SpeedParameterActive: 0
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
-  m_Motion: {fileID: 7400002, guid: f1e061a48820785489640e8a5e9fcf10, type: 3}
+  m_TimeParameterActive: 0
+  m_Motion: {fileID: 7400000, guid: c6c3b8cba106e5144b0e83a40397f671, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
+  m_TimeParameter: 
 --- !u!1107 &1107000010350398456
 AnimatorStateMachine:
   serializedVersion: 5
